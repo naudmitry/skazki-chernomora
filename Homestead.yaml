@@ -1,0 +1,32 @@
+ip: 192.168.10.10
+memory: 2048
+cpus: 2
+name: skazki-chernomora
+hostname: skazki-chernomora
+provider: virtualbox
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: '../skazki-chernomora'
+      to: /home/vagrant/skazki_chernomora
+
+sites:
+    - map: admin.skazki-chernomora.local
+      to: /home/vagrant/skazki_chernomora/public
+    - map: vitebsk.skazki-chernomora.local
+      to: /home/vagrant/skazki_chernomora/public
+    - map: polotsk.skazki-chernomora.local
+      to: /home/vagrant/skazki_chernomora/public
+    - map: skazki-chernomora.local
+      to: /home/vagrant/skazki_chernomora/public
+
+databases:
+    - skazki
+
+ports:
+    - send: 6001
+      to: 6001

@@ -1,0 +1,1 @@
+<a href="{{ route('admin.children.edit', ['@buyerId', '@childId']) }}">@{{ child.full_name }}</a>

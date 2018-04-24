@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Widgets\Miracle;
+
+use Validator;
+
+class CallOutBox extends AbstractContentWidget
+{
+    protected $defaultSettings =
+        [
+            'title' => '',
+            'link' => '',
+            'button' => '',
+            'is_button_show' => '',
+        ];
+
+    /**
+     * @param $validatedData
+     * @return \Illuminate\Validation\Validator
+     */
+    public function getSettingsValidator($validatedData)
+    {
+        return Validator::make(
+            $validatedData,
+            [
+                'title' => 'required|string',
+                'link' => 'required|string',
+                'button' => 'required|string'
+            ],
+            [],
+            [
+                'title' => 'Введите название.',
+                'link' => 'Введите ссылку.',
+                'button' => 'Введите надпись для кнопки.'
+            ]
+        );
+    }
+}

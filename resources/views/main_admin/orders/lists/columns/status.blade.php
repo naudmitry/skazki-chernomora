@@ -1,0 +1,1 @@
+@{{order.statusI18n}}

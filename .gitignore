@@ -1,0 +1,17 @@
+/node_modules
+/public/mix-manifest.json
+/storage/*.key
+/vendor
+/.idea
+/public/images/
+/public/fonts/
+.env
+/package-lock.json
+/public/vali-admin/js/app.js
+/public/vali-admin/css/app.css
+/public/miracle/js/miracle.js
+/yarn.lock
+/.php_cs.cache
+/.php_cs
+/.vagrant/
+composer.lock
