@@ -1,0 +1,32 @@
+{
+  "name": "TaleBlackSea",
+  "description": "Tale of the Black Sea",
+  "main": "",
+  "authors": [
+    "Naumov Dmitry"
+  ],
+  "license": "Apache License 2.0",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-select": "^1.13.1",
+    "slick-carousel": "^1.8.1",
+    "jquery": "^3.3.1",
+    "animate.css": "^3.5.2",
+    "jquery-ui": "^1.12.1",
+    "fancybox": "fancyBox#^3.3.5",
+    "jquery-validation": "^1.17.0",
+    "wow": "wowjs#^1.1.2",
+    "jQuery.ptTimeSelect": "^0.8.2",
+    "components-font-awesome": "5.0.6"
+  },
+  "devDependencies": {}
+}
