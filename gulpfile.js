@@ -30,6 +30,9 @@ gulp.task('jquery', function () {
     gulp.src(paths.bower + 'jquery/dist/jquery.js')
         .pipe(gulp.dest(paths.public + '/js'));
 
+    gulp.src(paths.bower + 'jquery/dist/jquery.min.js')
+        .pipe(gulp.dest(paths.public + '/js'));
+
     gulp.src(paths.bower + 'jquery-ui/jquery-ui.js')
         .pipe(gulp.dest(paths.public + '/js'));
 
@@ -125,7 +128,13 @@ gulp.task('custom', function () {
     gulp.src(paths.resource + 'css/style.css')
         .pipe(gulp.dest(paths.public + '/css'));
 
+    gulp.src(paths.resource + 'css/main.css')
+        .pipe(gulp.dest(paths.public + '/css'));
+
     gulp.src(paths.resource + 'js/script.js')
+        .pipe(gulp.dest(paths.public + '/js'));
+
+    gulp.src(paths.resource + 'js/main.js')
         .pipe(gulp.dest(paths.public + '/js'));
 
     return true;

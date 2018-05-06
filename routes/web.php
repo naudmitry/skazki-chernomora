@@ -18,8 +18,38 @@ Route::get('/contact',
         'as' => 'front.contact.index',
     ]);
 
-Route::get('/portfolio',
+Route::get('/about',
     [
-        'uses' => 'Front\IndexController@portfolio',
-        'as' => 'front.portfolio.index',
+        'uses' => 'Front\IndexController@about',
+        'as' => 'front.about.index',
+    ]);
+
+Route::get('/service',
+    [
+        'uses' => 'Front\IndexController@service',
+        'as' => 'front.service.index',
+    ]);
+
+Route::get('/gallery',
+    [
+        'uses' => 'Front\IndexController@gallery',
+        'as' => 'front.gallery.index',
+    ]);
+
+Route::get('/team',
+    [
+        'uses' => 'Front\IndexController@team',
+        'as' => 'front.team.index',
+    ]);
+
+Route::get('/appointment',
+    [
+        'uses' => 'Front\IndexController@appointment',
+        'as' => 'front.appointment.index',
+    ]);
+
+Route::get('/admin',
+    [
+        'uses' => 'Admin\IndexController@index',
+        'as' => 'admin.index',
     ]);

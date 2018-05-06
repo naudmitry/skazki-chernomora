@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Front;
 
-
 class IndexController extends Controller
 {
     /**
@@ -10,7 +9,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('frontend/index');
+        return view('site/index');
     }
 
     /**
@@ -18,7 +17,7 @@ class IndexController extends Controller
      */
     public function blog()
     {
-        return view('frontend/blog/index');
+        return view('site/blog/index');
     }
 
     /**
@@ -26,14 +25,46 @@ class IndexController extends Controller
      */
     public function contact()
     {
-        return view('frontend/contact/index');
+        return view('site/contact/index');
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function portfolio()
+    public function about()
     {
-        return view('frontend/portfolio/index');
+        return view('site/about/index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function service()
+    {
+        return view('site/service/index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function gallery()
+    {
+        return view('site/gallery/index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function team()
+    {
+        return view('site/team/index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function appointment()
+    {
+        return view('site/appointment/index');
     }
 }
