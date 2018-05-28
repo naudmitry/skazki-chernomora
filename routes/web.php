@@ -48,8 +48,26 @@ Route::get('/appointment',
         'as' => 'front.appointment.index',
     ]);
 
-Route::get('/admin',
-    [
-        'uses' => 'Admin\IndexController@index',
-        'as' => 'admin.index',
-    ]);
+
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/',
+        [
+            'uses' => 'Admin\IndexController@index',
+            'as' => 'admin.index',
+        ]);
+
+    Route::get('/blog/articles',
+        [
+            'uses' => 'Admin\BlogArticleController@index',
+            'as' => 'admin.blog.articles.index',
+        ]);
+
+    Route::get('/blog/categories',
+        [
+            'uses' => 'Admin\BlogCategoryController@index',
+            'as' => 'admin.blog.categories.index',
+        ]);
+});

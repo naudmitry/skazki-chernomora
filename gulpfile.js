@@ -92,16 +92,7 @@ gulp.task('wow', function () {
 });
 
 gulp.task('font-awesome', function () {
-    gulp.src(paths.bower + 'components-font-awesome/css/fontawesome.min.css')
-        .pipe(gulp.dest(paths.public + '/css'));
-
-    gulp.src(paths.bower + 'components-font-awesome/css/fa-brands.css')
-        .pipe(gulp.dest(paths.public + '/css'));
-
-    gulp.src(paths.bower + 'components-font-awesome/css/fa-regular.css')
-        .pipe(gulp.dest(paths.public + '/css'));
-
-    gulp.src(paths.bower + 'components-font-awesome/css/fa-solid.css')
+    gulp.src(paths.bower + 'components-font-awesome/css/fontawesome-all.min.css')
         .pipe(gulp.dest(paths.public + '/css'));
 
     return true;
