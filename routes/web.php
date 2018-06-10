@@ -59,15 +59,50 @@ Route::prefix('admin')->group(function () {
             'as' => 'admin.index',
         ]);
 
+    /*
+     * BLOG
+     */
     Route::get('/blog/articles',
         [
-            'uses' => 'Admin\BlogArticleController@index',
+            'uses' => 'Admin\BlogController@index',
             'as' => 'admin.blog.articles.index',
         ]);
+    Route::post('/blog/change/availability/{blog}',
+        [
+            'uses' => 'Admin\BlogController@changeAvailability',
+            'as' => 'admin.blog.change.availability',
+        ])
+    ->where('blog', '[0-9]+');
 
+    /**
+     * BLOG CATEGORIES
+     */
     Route::get('/blog/categories',
         [
             'uses' => 'Admin\BlogCategoryController@index',
             'as' => 'admin.blog.categories.index',
         ]);
+    Route::get('/blog/categories/create',
+        [
+            'uses' => 'Admin\BlogCategoryController@create',
+            'as' => 'admin.blog.categories.create',
+        ]);
+    Route::post('/blog/categories/save/{category?}',
+        [
+            'uses' => 'Admin\BlogCategoryController@save',
+            'as' => 'admin.blog.categories.save',
+        ])
+        ->where('category', '[0-9]+');
+    Route::get('/blog/categories/edit/{category}',
+        [
+            'uses' => 'Admin\BlogCategoryController@edit',
+            'as' => 'admin.blog.categories.edit',
+        ])
+    ->where('category', '[0-9]+');
+    Route::delete('/blog/categories/delete/{category}',
+        [
+            'uses' => 'Admin\BlogCategoryController@delete',
+            'as' => 'admin.blog.categories.delete',
+        ])
+        ->where('category', '[0-9]+');
 });

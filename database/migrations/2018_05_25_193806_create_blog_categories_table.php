@@ -25,6 +25,7 @@ class CreateBlogCategoriesTable extends Migration
             $table->string('meta_keywords');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,30 +1,19 @@
-<i class="fas fa-arrows-alt"></i>
-<label class="control-label col-md-8">Name</label>
+<div class="tile-title-w-btn blog-categories-list-item" data-blog-category-id="{{ $category->id }}">
+    <p class="title">{{ $category->title }}</p>
 
-<div class="toggle-flip pull-right">
-    <ul class="nav nav-pills">
+    <div class="btn-group">
+        <a class="btn btn-primary" href="#">
+            <i class="fas fa-arrows-alt"></i>
+        </a>
 
-        <li class="nav-item">
-            <label>
-                <input type="checkbox"><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
-            </label>
-        </li>
-        <li class="nav-item dropdown">
-            <a
-                class="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                href="#"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-            ><i class="fa fa-bars" aria-hidden="true"></i></a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">
-                    <i class="fa fa-cog pull-right" aria-hidden="true"></i>Настройки
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Удалить</a>
-            </div>
-        </li>
-    </ul>
+        <a
+            class="btn btn-primary blog-categories-settings-open"
+            href="{{ route('admin.blog.categories.edit', $category) }}"
+        ><i class="fa fa-lg fa-edit"></i></a>
+
+        <a
+            class="btn btn-primary blog-category-delete"
+            href="{{ route('admin.blog.categories.delete', $category) }}"
+        ><i class="fa fa-lg fa-trash"></i></a>
+    </div>
 </div>

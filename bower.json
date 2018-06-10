@@ -26,7 +26,8 @@
     "jquery-validation": "^1.17.0",
     "wow": "wowjs#^1.1.2",
     "jQuery.ptTimeSelect": "^0.8.2",
-    "components-font-awesome": "5.0.6"
+    "components-font-awesome": "5.0.6",
+    "mustache.js": "mustache#^2.3.0"
   },
   "devDependencies": {}
 }
