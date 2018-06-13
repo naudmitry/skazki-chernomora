@@ -51,13 +51,13 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                width: '8%',
+                width: '9%',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCreated, {blog}),
             },
             {
                 targets: 1,
                 data: 'title',
-                width: '10%',
+                width: '9%',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnTitle, {blog}),
             },
             {

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property string $title
+ * @property string $title_list
  * @property boolean $enable
  * @property string $content
  * @property integer $view_count

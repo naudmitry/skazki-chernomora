@@ -49,9 +49,6 @@ Route::get('/appointment',
     ]);
 
 
-
-
-
 Route::prefix('admin')->group(function () {
     Route::get('/',
         [
@@ -67,12 +64,18 @@ Route::prefix('admin')->group(function () {
             'uses' => 'Admin\BlogController@index',
             'as' => 'admin.blog.articles.index',
         ]);
+    Route::get('/blog/article/edit/{blog}',
+        [
+            'uses' => 'Admin\BlogController@edit',
+            'as' => 'admin.blog.article.edit',
+        ])
+        ->where('blog', '[0-9]+');
     Route::post('/blog/change/availability/{blog}',
         [
             'uses' => 'Admin\BlogController@changeAvailability',
             'as' => 'admin.blog.change.availability',
         ])
-    ->where('blog', '[0-9]+');
+        ->where('blog', '[0-9]+');
 
     /**
      * BLOG CATEGORIES
@@ -98,7 +101,7 @@ Route::prefix('admin')->group(function () {
             'uses' => 'Admin\BlogCategoryController@edit',
             'as' => 'admin.blog.categories.edit',
         ])
-    ->where('category', '[0-9]+');
+        ->where('category', '[0-9]+');
     Route::delete('/blog/categories/delete/{category}',
         [
             'uses' => 'Admin\BlogCategoryController@delete',

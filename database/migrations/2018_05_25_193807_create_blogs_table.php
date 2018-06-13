@@ -17,9 +17,13 @@ class CreateBlogsTable extends Migration
             $table->increments('id');
 
             $table->string('title');
+            $table->string('title_list');
             $table->boolean('enable')->default(false);
             $table->text('content');
             $table->integer('view_count')->unsigned()->default(0);
+            $table->string('meta_title');
+            $table->string('meta_description');
+            $table->string('meta_keywords');
 
             $table->integer('author_id')->unsigned()->nullable();
             $table->foreign('author_id')->references('id')->on('admins');

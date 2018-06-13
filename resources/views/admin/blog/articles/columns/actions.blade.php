@@ -1,6 +1,7 @@
 <div class="btn-group">
     <a
-        class="btn btn-primary blog-categories-settings-open"
+        href="{{ route('admin.blog.article.edit', '') }}/@{{blog.id}}"
+        class="btn btn-primary"
     ><i class="fa fa-lg fa-edit" style="color: #FFF"></i></a>
 
     <a

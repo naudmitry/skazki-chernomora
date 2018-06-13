@@ -4,7 +4,7 @@
     @include('admin.vendor.pageHeader', [
         'section' => 'Новости',
         'description' => 'Добавление и редактирование новостей',
-        'page' => 'Статьи'
+        'page' => 'Список новостей'
     ])
 
     <div class="row">

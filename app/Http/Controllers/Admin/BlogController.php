@@ -38,4 +38,11 @@ class BlogController extends Controller
             'message' => 'Доступность статьи успешно изменена.',
         ]);
     }
+
+    public function edit(Blog $blog)
+    {
+        return view('admin.blog.articles.item.index', compact(
+            'blog'
+        ));
+    }
 }
