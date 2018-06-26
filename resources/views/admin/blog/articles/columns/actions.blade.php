@@ -5,6 +5,7 @@
     ><i class="fa fa-lg fa-edit" style="color: #FFF"></i></a>
 
     <a
-        class="btn btn-primary blog-category-delete"
+        href="{{ route('admin.blog.article.delete', '') }}/@{{blog.id}}"
+        class="btn btn-primary blog-article-delete"
     ><i class="fa fa-lg fa-trash" style="color: #FFF"></i></a>
 </div>

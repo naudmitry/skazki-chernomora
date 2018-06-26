@@ -2,12 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Blog\BlogRequest;
 use App\Models\Blog;
+use App\Models\BlogCategory;
+use App\Repositories\BlogRepository;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class BlogController extends Controller
 {
+    private $blogRepository;
+
+    /**
+     * BlogController constructor.
+     * @param BlogRepository $blogRepository
+     */
+    public function __construct(BlogRepository $blogRepository)
+    {
+        $this->blogRepository = $blogRepository;
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -29,7 +43,7 @@ class BlogController extends Controller
      * @param Blog $blog
      * @return \Illuminate\Http\JsonResponse
      */
-    public function changeAvailability(Blog $blog)
+    public function enable(Blog $blog)
     {
         $blog->enable = !$blog->enable;
         $blog->update();
@@ -39,10 +53,60 @@ class BlogController extends Controller
         ]);
     }
 
+    /**
+     * @param Blog $blog
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Blog $blog)
     {
+        $categories = BlogCategory::all();
+
         return view('admin.blog.articles.item.index', compact(
-            'blog'
+            'blog', 'categories'
         ));
+    }
+
+    /**
+     * @param Blog $blog
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function delete(Blog $blog)
+    {
+        $blog->delete();
+
+        return response()->json([
+            'message' => 'Новость удалена.',
+            'blog' => $blog,
+        ]);
+    }
+
+    /**
+     * @param BlogRequest $request
+     * @param Blog|null $blog
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function save(BlogRequest $request, Blog $blog = null)
+    {
+        $blog = $this->blogRepository->saveBlog($blog, $request->all());
+
+        return response()->json([
+            'message' => 'Статья успешно сохранена.',
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Blog $blog
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function saveContent(Request $request, Blog $blog)
+    {
+        $blog->content = $request->get('content');
+        $blog->update();
+
+        return response()->json([
+            'message' => 'Статья успешно сохранена.',
+        ]);
     }
 }

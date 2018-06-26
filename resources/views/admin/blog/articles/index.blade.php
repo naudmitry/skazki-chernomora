@@ -12,9 +12,9 @@
             <div class="tile">
                 <div class="tile-body">
                     <table
-                            class="table table-hover table-bordered"
+                            class="table table-hover table-bordered" style="width: 100%"
                             id="blogArticlesTable"
-                            data-href="{{ route('admin.blog.articles.index') }}"
+                            data-href="{{ route('admin.blog.article.index') }}"
                     >
                         <thead>
                         <tr>

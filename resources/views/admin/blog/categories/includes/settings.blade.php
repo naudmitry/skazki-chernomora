@@ -1,7 +1,11 @@
 <div class="tile">
     <h3 class="tile-title">Категория</h3>
     <div class="tile-body">
-        <form class="form-horizontal blog-category-settings-form" action="{{ route('admin.blog.categories.save', $category ?? '') }}" method="post">
+        <form
+                class="form-horizontal blog-category-settings-form"
+                action="{{ route('admin.blog.category.save', $category ?? '') }}"
+                method="post"
+        >
             <div class="form-group row">
                 <label class="control-label col-md-4">Имя для списка:</label>
                 <div class="col-md-8">

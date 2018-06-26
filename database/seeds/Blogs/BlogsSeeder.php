@@ -25,10 +25,10 @@ class BlogsSeeder extends Seeder
                 /** @var Blog $blog */
                 $blog = Blog::create([
                     'title' => $faker->word,
-                    'title_list' => $faker->word,
+                    'name' => $faker->word,
                     'enable' => $faker->boolean(50),
                     'content' => $faker->text,
-                    'view_count' => 0,
+                    'view_count' => $faker->randomNumber(),
                     'meta_title' => $faker->word,
                     'meta_description' => $faker->word,
                     'meta_keywords' => $faker->word,

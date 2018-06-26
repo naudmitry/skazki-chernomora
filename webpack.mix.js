@@ -12,4 +12,20 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.scripts([
+        'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/select2/dist/js/select2.js',
+        'node_modules/popper.js/dist/umd/popper.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'resources/assets/js/main.js'
+    ],
+    'public/js/all.js'
+);
+
+mix.styles([
+        'resources/assets/css/main.css',
+        'node_modules/dragula/dist/dragula.min.css',
+    ],
+    'public/css/backend.css');

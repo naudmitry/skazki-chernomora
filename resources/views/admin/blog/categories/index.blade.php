@@ -12,7 +12,7 @@
             <div class="tile">
                 <h3 class="tile-title">Категории новости</h3>
 
-                <div class="blog-categories-list">
+                <div class="blog-categories-list" id="container">
                     @foreach ($categories as $category)
                         @include('admin.blog.categories.includes.item')
                     @endforeach
@@ -20,9 +20,9 @@
 
                 <div class="tile-footer">
                     <button
-                        class="btn btn-primary blog-categories-settings-open"
+                        class="btn btn-primary blog-category-settings-open"
                         type="button"
-                        href="{{ route('admin.blog.categories.create') }}"
+                        href="{{ route('admin.blog.category.create') }}"
                     ><i class="fa fa-fw fa-lg fa-plus-circle" aria-hidden="true"></i>Добавить категорию</button>
                 </div>
             </div>
@@ -37,6 +37,11 @@
 @endsection
 
 @section('footer__script')
-    <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
+
+    <script type="text/javascript">
+        let backendPageConfig = {
+            saveCategorySequence: '{{ route('admin.blog.category.sequence') }}',
+        };
+    </script>
 @endsection

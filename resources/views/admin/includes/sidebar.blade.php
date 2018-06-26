@@ -30,15 +30,15 @@
             <ul class="treeview-menu">
                 <li>
                     <a
-                        class="treeview-item @if (Route::is('admin.blog.categories.index')) active @endif"
-                        href="{{ route('admin.blog.categories.index') }}"
+                        class="treeview-item @if (Route::is('admin.blog.category.*')) active @endif"
+                        href="{{ route('admin.blog.category.index') }}"
                     ><i class="icon far fa-circle"></i> Категории</a>
                 </li>
 
                 <li>
                     <a
-                        class="treeview-item @if (Route::is('admin.blog.articles.index')) active @endif"
-                        href="{{ route('admin.blog.articles.index') }}"
+                        class="treeview-item @if (Route::is('admin.blog.article.*')) active @endif"
+                        href="{{ route('admin.blog.article.index') }}"
                     ><i class="icon far fa-circle"></i> Статьи</a>
                 </li>
             </ul>

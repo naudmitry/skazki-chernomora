@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBlogCategoriesTable extends Migration
 {
@@ -20,9 +20,9 @@ class CreateBlogCategoriesTable extends Migration
             $table->string('name');
             $table->boolean('enable')->default(false);
             $table->integer('position')->default(0);
-            $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keywords');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

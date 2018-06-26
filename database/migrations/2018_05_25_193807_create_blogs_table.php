@@ -17,7 +17,7 @@ class CreateBlogsTable extends Migration
             $table->increments('id');
 
             $table->string('title');
-            $table->string('title_list');
+            $table->string('name');
             $table->boolean('enable')->default(false);
             $table->text('content');
             $table->integer('view_count')->unsigned()->default(0);

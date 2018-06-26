@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Blog;
 use App\Models\BlogCategory;
 
 class BlogRepository
@@ -25,5 +26,32 @@ class BlogRepository
         $category->save();
 
         return $category;
+    }
+
+    /**
+     * @param Blog|null $blog
+     * @param $data
+     * @return Blog
+     */
+    public function saveBlog(Blog $blog = null, $data)
+    {
+        if (!isset($blog)) {
+            $blog = new Blog();
+        }
+
+        $blog->title = array_get($data, 'title');
+        $blog->name = array_get($data, 'name');
+        $blog->meta_title = array_get($data, 'meta_title');
+        $blog->meta_description = array_get($data, 'meta_description');
+        $blog->meta_keywords = array_get($data, 'meta_keywords');
+        $blog->save();
+
+        if (array_get($data, 'categories')) {
+            $blog->categories()->sync(array_get($data, 'categories'));
+        } else {
+            $blog->categories()->detach();
+        }
+
+        return $blog;
     }
 }

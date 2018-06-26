@@ -10,10 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property string $title
- * @property string $title_list
+ * @property string $name
  * @property boolean $enable
  * @property string $content
  * @property integer $view_count
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $meta_keywords
  * @property integer $author_id
  * @property integer $updater_id
  * @property-read \App\Models\BlogCategory $categories

@@ -10,7 +10,7 @@ $(function () {
     let $blogCategoriesList = $('.blog-categories-list');
     let isChange = false;
 
-    $(document).on('click', '.blog-categories-settings-open', function (e, options = {isConfirm: false}) {
+    $(document).on('click', '.blog-category-settings-open', function (e) {
         e.preventDefault();
         let $this = $(this);
 
@@ -18,30 +18,32 @@ $(function () {
             swal({
                 title: "Вы действительно уверены?",
                 text: "Данные, которые не были сохранены, будут удалены.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Ок",
-                cancelButtonText: "Отмена",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function (isConfirm) {
-                if (isConfirm) {
+                icon: "warning",
+                buttons: ["Отмена", "Ок"],
+                dangerMode: true,
+            }).then(value => {
+                if (value) {
                     swal("Изменение подтверждено!", "Данные будут изменены.", "success");
                     isChange = false;
+                    edit($this.attr('href'));
                 } else {
                     swal("Изменение отменено!", "Данные не будут изменены.", "error");
-                    return false;
                 }
-            }).then(() => $this.trigger('click', {isConfirm: true}));
+            });
         }
+        else {
+            edit($this.attr('href'));
+        }
+    });
 
+    function edit(href) {
         if ($blogCategorySettingsContainer.data('ajax')) {
             $blogCategorySettingsContainer.data('ajax').abort();
         }
         $blogCategorySettingsContainer.html(blogCategorySettingsLoadingTemplate);
         $blogCategorySettingsContainer.data('ajax', $.ajax({
             type: 'get',
-            url: $this.attr('href'),
+            url: href,
             cache: false,
             success: response => {
                 $blogCategorySettingsContainer.html(response);
@@ -57,7 +59,7 @@ $(function () {
                 $blogCategorySettingsContainer.removeData('ajax');
             },
         }));
-    });
+    }
 
     $(document).on('submit', '.blog-category-settings-form', function (e) {
         e.preventDefault();
@@ -66,11 +68,6 @@ $(function () {
             return;
         }
         $form.find('.is-invalid').removeClass('is-invalid');
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -127,20 +124,11 @@ $(function () {
         swal({
             title: "Подтвердите удаление",
             text: "Вы действительно хотите удалить категорию?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Да, удалить",
-            cancelButtonText: "Отмена",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
                 $.ajax({
                     type: 'delete',
                     url: $this.attr('href'),
@@ -155,7 +143,7 @@ $(function () {
                             message: response.message,
                             icon: 'fa fa-check'
                         }, {
-                            type: "info",
+                            type: "danger",
                             placement: {
                                 from: "top",
                                 align: "right",
@@ -177,20 +165,76 @@ $(function () {
     $(document).on('change keyup', '.blog-category-settings-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
-
         isChange = true;
-
         if (!$input.is('input,select,textarea')) {
             return;
         }
-
         if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
             return;
         }
-
         $form.find('[type=submit]')
             .removeClass('btn-default')
             .addClass('btn-primary')
             .prop('disabled', false);
+    });
+
+    let dragula = require('dragula');
+
+    dragula([document.getElementById('container')], {
+        mirrorContainer: document.querySelector('.blog-categories-list'),
+        moves: function (el, container, handle) {
+            return handle.classList.contains('dragula-handle');
+        }
+    }).on('dragend', function (el) {
+        let categories = [];
+
+        $('#container > div').each(function (index, el) {
+            categories.push($(el).data('blog-category-id'))
+        });
+
+        $.ajax({
+            method: 'POST',
+            url: backendPageConfig.saveCategorySequence,
+            dataType: 'json',
+            data: {
+                categories: categories
+            },
+            success: function (response) {
+                $.notify({
+                    title: "Успех!",
+                    message: response.message,
+                    icon: 'fa fa-check'
+                }, {
+                    type: "info",
+                    placement: {
+                        from: "top",
+                        align: "right",
+                    },
+                });
+            },
+        });
+    });
+
+    $(document).on('change', '.checkbox', function () {
+        $.ajax({
+            url: $(this).data('href'),
+            type: 'POST',
+            success: (response) => {
+                $.notify({
+                    title: "Успех!",
+                    message: response.message,
+                    icon: 'fa fa-check'
+                }, {
+                    type: "info",
+                    placement: {
+                        from: "top",
+                        align: "right",
+                    },
+                });
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
     });
 });

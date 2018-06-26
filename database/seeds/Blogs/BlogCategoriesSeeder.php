@@ -18,6 +18,7 @@ class BlogCategoriesSeeder extends Seeder
             BlogCategory::create([
                 'title' => $faker->word,
                 'name' => $faker->word,
+                'enable' => $faker->boolean(50),
                 'meta_title' => $faker->word,
                 'meta_description' => $faker->word,
                 'meta_keywords' => $faker->word

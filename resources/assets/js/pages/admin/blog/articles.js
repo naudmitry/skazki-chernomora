@@ -17,6 +17,7 @@ $(function () {
     let mustacheTemplateBlogArticlesTableColumnActions = $('.template-blog-articles-table-column-actions').text();
 
     $blogArticlesTable.DataTable({
+        "scrollX": true,
         language: {
             processing: "Подождите...",
             search: "Поиск:",
@@ -35,8 +36,6 @@ $(function () {
                 last: "Последняя"
             }
         },
-        processing: true,
-        serverSide: true,
         ajax:
             {
                 url: $blogArticlesTable.data('href'),
@@ -46,77 +45,63 @@ $(function () {
                 //     });
                 // },
             },
-        autoWidth: false,
         columnDefs: [
             {
                 targets: 0,
                 data: 'created_at',
-                width: '9%',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCreated, {blog}),
             },
             {
                 targets: 1,
                 data: 'title',
-                width: '9%',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnTitle, {blog}),
             },
             {
                 targets: 2,
-                width: '15%',
                 sortable: false,
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCategories, {blog}),
             },
             {
                 targets: 3,
-                width: '5%',
+                data: 'enable',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnPublished, {blog}),
             },
             {
                 targets: 4,
                 data: 'author_id',
-                width: '18%',
                 sortable: false,
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnAuthor, {blog}),
             },
             {
                 targets: 5,
                 data: 'updated_at',
-                width: '8%',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdated, {blog}),
             },
             {
                 targets: 6,
                 data: 'updater_id',
-                width: '18%',
                 sortable: false,
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdater, {blog}),
             },
             {
                 targets: 7,
                 data: 'view_count',
-                width: '10%',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnViewed, {blog}),
             },
             {
                 targets: 8,
                 orderable: false,
-                width: '8%',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnActions, {blog}),
             },
         ],
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
-    }).on('page.dt', () => $('html, body').animate({scrollTop: 0}, 500, 'swing'));
+    });
 
     $(document).on('change', '.checkbox', function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $.ajax({
             url: $(this).data('href'),
-            type: 'POST',
+            type: 'post',
             success: (response) => {
                 $.notify({
                     title: "Успех!",
@@ -134,7 +119,47 @@ $(function () {
                 console.log(data);
             }
         });
-
     });
 
+    $(document).on('click', '.blog-article-delete', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить статью?",
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'delete',
+                    url: $this.attr('href'),
+                    success: response => {
+                        $.notify({
+                            title: "Успех!",
+                            message: response.message,
+                            icon: 'fa fa-check'
+                        }, {
+                            type: "danger",
+                            placement: {
+                                from: "top",
+                                align: "right",
+                            },
+                        });
+
+                        $blogArticlesTable.DataTable().ajax.reload();
+                    },
+                    error: xhr => {
+                        console.error(xhr);
+                    },
+                });
+
+                swal("Удаление подтверждено!", "Статья будет удалена.", "success");
+            } else {
+                swal("Удаление отменено!", "Статья не будет удалена.", "error");
+            }
+        });
+    });
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Blog\BlogCategoryRequest;
 use App\Models\BlogCategory;
 use App\Repositories\BlogRepository;
+use Illuminate\Http\Request;
 
 class BlogCategoryController extends Controller
 {
@@ -24,7 +25,9 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        $categories = BlogCategory::all();
+        $categories = BlogCategory::query()
+            ->orderBy('position')
+            ->get();
 
         return view('admin.blog.categories.index', compact(
             'categories'
@@ -89,5 +92,41 @@ class BlogCategoryController extends Controller
     public function create()
     {
         return view('admin.blog.categories.includes.settings');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function sequence(Request $request)
+    {
+        $categories = $request->get('categories');
+        $items = BlogCategory::whereIn('id', $categories)->get();
+
+        \DB::transaction(function () use ($items, $categories) {
+            /** @var BlogCategory $item */
+            foreach ($items as $item) {
+                $item->position = array_search($item->id, $categories);
+                $item->save();
+            }
+        });
+
+        return response([
+            'message' => 'Порядок категорий сохранен.'
+        ], 200);
+    }
+
+    /**
+     * @param BlogCategory $category
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(BlogCategory $category)
+    {
+        $category->enable = !$category->enable;
+        $category->update();
+
+        return response()->json([
+            'message' => 'Доступность категории изменена.',
+        ]);
     }
 }
