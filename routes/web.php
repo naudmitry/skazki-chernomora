@@ -2,49 +2,55 @@
 
 Route::get('/',
     [
-        'uses' => 'Front\IndexController@index',
+        'uses' => 'Site\IndexController@index',
         'as' => 'front.index',
     ]);
 
 Route::get('/blog',
     [
-        'uses' => 'Front\IndexController@blog',
+        'uses' => 'Site\BlogController@index',
         'as' => 'front.blog.index',
+    ]);
+
+Route::get('/blog/{blog}',
+    [
+        'uses' => 'Site\BlogController@show',
+        'as' => 'site.blog.show',
     ]);
 
 Route::get('/contact',
     [
-        'uses' => 'Front\IndexController@contact',
+        'uses' => 'Site\IndexController@contact',
         'as' => 'front.contact.index',
     ]);
 
 Route::get('/about',
     [
-        'uses' => 'Front\IndexController@about',
+        'uses' => 'Site\IndexController@about',
         'as' => 'front.about.index',
     ]);
 
 Route::get('/service',
     [
-        'uses' => 'Front\IndexController@service',
+        'uses' => 'Site\IndexController@service',
         'as' => 'front.service.index',
     ]);
 
 Route::get('/gallery',
     [
-        'uses' => 'Front\IndexController@gallery',
+        'uses' => 'Site\IndexController@gallery',
         'as' => 'front.gallery.index',
     ]);
 
 Route::get('/team',
     [
-        'uses' => 'Front\IndexController@team',
+        'uses' => 'Site\IndexController@team',
         'as' => 'front.team.index',
     ]);
 
 Route::get('/appointment',
     [
-        'uses' => 'Front\IndexController@appointment',
+        'uses' => 'Site\IndexController@appointment',
         'as' => 'front.appointment.index',
     ]);
 
@@ -54,6 +60,18 @@ Route::prefix('admin')->group(function () {
         [
             'uses' => 'Admin\IndexController@index',
             'as' => 'admin.index',
+        ]);
+
+    Route::get('404',
+        [
+            'as'=>'404',
+            'uses'=>'Admin\ErrorHandlerController@errorCode404'
+        ]);
+
+    Route::get('405',
+        [
+            'as'=>'405',
+            'uses'=>'Admin\ErrorHandlerController@errorCode405'
         ]);
 
     /*
@@ -135,6 +153,48 @@ Route::prefix('admin')->group(function () {
         [
             'uses' => 'Admin\BlogCategoryController@enable',
             'as' => 'admin.blog.category.enable',
+        ])
+        ->where('category', '[0-9]+');
+
+
+    // FAQ Categories
+    Route::get('/faq/categories',
+        [
+            'uses' => 'Admin\FaqCategoryController@index',
+            'as' => 'admin.faq.category.index',
+        ]);
+    Route::get('/faq/categories/create',
+        [
+            'uses' => 'Admin\FaqCategoryController@create',
+            'as' => 'admin.faq.category.create',
+        ]);
+    Route::post('/faq/categories/sequence',
+        [
+            'uses' => 'Admin\FaqCategoryController@sequence',
+            'as' => 'admin.faq.category.sequence',
+        ]);
+    Route::post('/faq/categories/{category}/enable',
+        [
+            'uses' => 'Admin\FaqCategoryController@enable',
+            'as' => 'admin.faq.category.enable',
+        ])
+        ->where('category', '[0-9]+');
+    Route::get('/faq/categories/{category}/edit',
+        [
+            'uses' => 'Admin\FaqCategoryController@edit',
+            'as' => 'admin.faq.category.edit',
+        ])
+        ->where('category', '[0-9]+');
+    Route::delete('/faq/categories/{category}',
+        [
+            'uses' => 'Admin\FaqCategoryController@delete',
+            'as' => 'admin.faq.category.delete',
+        ])
+        ->where('category', '[0-9]+');
+    Route::post('/faq/categories/save/{category?}',
+        [
+            'uses' => 'Admin\FaqCategoryController@save',
+            'as' => 'admin.faq.category.save',
         ])
         ->where('category', '[0-9]+');
 });

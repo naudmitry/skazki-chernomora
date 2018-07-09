@@ -16,9 +16,9 @@ class AdminsSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
             Admin::create([
-                'name' => $faker->word,
-                'firstname' => $faker->word,
-                'surname' => $faker->word,
+                'surname' => $faker->lastName,
+                'name' => $faker->firstName,
+                'middle_name' => $faker->lastName,
                 'position' => $faker->word,
                 'email' => $faker->email,
             ]);

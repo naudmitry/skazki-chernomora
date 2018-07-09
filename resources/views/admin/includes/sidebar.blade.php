@@ -24,7 +24,6 @@
                 <i class="app-menu__icon fas fa-newspaper"></i>
                 <span class="app-menu__label">Новости</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
-
             </a>
 
             <ul class="treeview-menu">
@@ -40,6 +39,30 @@
                         class="treeview-item @if (Route::is('admin.blog.article.*')) active @endif"
                         href="{{ route('admin.blog.article.index') }}"
                     ><i class="icon far fa-circle"></i> Статьи</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="treeview @if (Route::is('admin.faq.*')) is-expanded @endif">
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon fas fa-question"></i>
+                <span class="app-menu__label">FAQ</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+
+            <ul class="treeview-menu">
+                <li>
+                    <a
+                        class="treeview-item @if (Route::is('admin.faq.category.*')) active @endif"
+                        href="{{ route('admin.faq.category.index') }}"
+                    ><i class="icon far fa-circle"></i> Категории</a>
+                </li>
+
+                <li>
+                    <a
+                        {{--class="treeview-item @if (Route::is('admin.blog.article.*')) active @endif"--}}
+                        {{--href="{{ route('admin.blog.article.index') }}"--}}
+                    ><i class="icon far fa-circle"></i> Вопросы</a>
                 </li>
             </ul>
         </li>

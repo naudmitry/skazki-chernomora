@@ -238,4 +238,4 @@
 </section>
 <!-- End Contact Section -->
 
-@include('site.layouts.footer')
+@include('site.vendor.footer')

@@ -234,4 +234,4 @@
 </section>
 <!--End Service Section-->
 
-@include('site.layouts.footer')
+@include('site.vendor.footer')

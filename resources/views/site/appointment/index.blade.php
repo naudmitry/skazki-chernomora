@@ -116,4 +116,4 @@
 </section>
 <!--End team section-->
 
-@include('site.layouts.footer')
+@include('site.vendor.footer')

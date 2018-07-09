@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
 
             $table->boolean('super')->default(false);
             $table->string('name');
-            $table->string('firstname');
+            $table->string('middle_name');
             $table->string('surname');
             $table->string('position');
             $table->string('phone')->nullable();

@@ -126,4 +126,4 @@
     </div>
 </section>
 
-@include('site.layouts.footer')
+@include('site.vendor.footer')

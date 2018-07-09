@@ -1,4 +1,4 @@
-<section class="page-title text-center" style="background-image:url(images/background/3.jpg);">
+<section class="page-title text-center" style="background-image:url({{ url('/images/background/3.jpg') }});">
     <div class="container">
         <div class="title-text">
             <h1>{{ $page }}</h1>

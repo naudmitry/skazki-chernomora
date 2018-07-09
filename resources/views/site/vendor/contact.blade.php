@@ -4,7 +4,7 @@
         <div class="logo">
             <figure>
                 <a href="index.html">
-                    <img src="images/logo.png" alt="" width="130">
+                    <img src="{{ URL::to('/images/logo.png') }}" alt="logo" width="130">
                 </a>
             </figure>
         </div>

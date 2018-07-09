@@ -31,4 +31,12 @@ class BlogCategory extends Model
     {
         return $this->belongsToMany(Blog::class);
     }
+
+    /**
+     * @return int
+     */
+    public function getCountBlogs()
+    {
+        return $this->blogs()->where('enable', true)->count();
+    }
 }

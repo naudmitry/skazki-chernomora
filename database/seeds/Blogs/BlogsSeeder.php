@@ -17,21 +17,20 @@ class BlogsSeeder extends Seeder
         $faker = Faker\Factory::create();
         $categories = BlogCategory::all();
 
-
         foreach ($categories as $category) {
             for ($i = 0; $i < 5; $i++) {
                 $admins = Admin::all();
 
                 /** @var Blog $blog */
                 $blog = Blog::create([
-                    'title' => $faker->word,
-                    'name' => $faker->word,
+                    'title' => $faker->word(),
+                    'name' => $faker->text(25),
                     'enable' => $faker->boolean(50),
-                    'content' => $faker->text,
+                    'content' => $faker->text(1000),
                     'view_count' => $faker->randomNumber(),
-                    'meta_title' => $faker->word,
-                    'meta_description' => $faker->word,
-                    'meta_keywords' => $faker->word,
+                    'meta_title' => $faker->text(15),
+                    'meta_description' => $faker->text(15),
+                    'meta_keywords' => $faker->text(15),
                 ]);
 
                 $blog->author()->associate($admins->random());

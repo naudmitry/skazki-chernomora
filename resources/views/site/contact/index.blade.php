@@ -91,4 +91,4 @@
 </section>
 <!--====  End of Google Map  ====-->
 
-@include('site.layouts.footer')
+@include('site.vendor.footer')
