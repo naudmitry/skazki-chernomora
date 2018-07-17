@@ -1,3 +1,3 @@
 <span class="text-semibold">
-    @{{blog.created_at}}
+    @{{faq.created_at}}
 </span>

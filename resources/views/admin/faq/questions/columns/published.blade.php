@@ -2,9 +2,9 @@
     <label>
         <input
                 class="checkbox"
-                data-href="{{ route('admin.blog.article.enable', '') }}/@{{blog.id}}"
+                data-href="{{ route('admin.faq.question.enable', '') }}/@{{faq.id}}"
                 type="checkbox"
-                @{{#blog.enable}} checked @{{/blog.enable}}
+                @{{#faq.enable}} checked @{{/faq.enable}}
         ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
     </label>
 </div>

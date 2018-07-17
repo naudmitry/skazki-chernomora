@@ -1,16 +1,16 @@
 <div class="row">
-    <div class="col-md-12 blog-article">
+        <div class="col-md-12 faq-question">
         <form
-                class="tile blog-item-editor-form"
-                action="{{ route('admin.blog.article.save.content', $blog) }}"
+                class="tile faq-item-editor-form"
+                action="{{ route('admin.faq.question.save.content', $faq) }}"
                 method="post"
         >
             <div class="page-header">
-                <h2 class="mb-3 line-head">Редактор статьи</h2>
+                <h2 class="mb-3 line-head">Редактор ответа</h2>
             </div>
 
             <div class="content-group">
-                <textarea id="textarea-editor" name="content">{{ $blog->content ?? '' }}</textarea>
+                <textarea id="textarea-editor" name="content">{{ $faq->content ?? '' }}</textarea>
             </div>
 
             <div class="tile-footer">

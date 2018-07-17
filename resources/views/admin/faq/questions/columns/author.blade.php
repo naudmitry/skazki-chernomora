@@ -1,3 +1,3 @@
 <a href="#">
-    @{{blog.author.name}}
+    @{{faq.author.name}}
 </a>

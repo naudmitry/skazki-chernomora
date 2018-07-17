@@ -26,6 +26,13 @@ class Faq extends Model
 {
     use SoftDeletes;
 
+    protected $with =
+        [
+            'categories',
+            'author',
+            'updater',
+        ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

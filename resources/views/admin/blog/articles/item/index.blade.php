@@ -15,6 +15,7 @@
                 </div>
 
                 <div class="row">
+
                     <div class="col-md-8">
                         <div class="bs-component">
                             <ul class="nav nav-tabs">
@@ -93,65 +94,61 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-md-4">
                         <div class="bs-component">
                             <div class="card">
                                 <div class="card-body">
                                     <label class="control-label">Информация о статье</label>
 
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td style="border: 0;">
+                                    <div style="display: flex;flex-direction: column;padding:15px;">
+                                        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+                                            <div>
                                                 <i class="far fa-check-circle"></i> Опубликовано:
-                                            </td>
-                                            <td style="text-align: right; border: 0;">
-                                                <div class="toggle-flip" style="height: 21px;">
-                                                    <label>
-                                                        <input
-                                                                data-href="{{ isset($blog) ? route('admin.blog.article.enable', $blog) : '' }}"
-                                                                @if ($blog->enable) checked @endif
-                                                                type="checkbox"
-                                                                class="checkbox"
-                                                        ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border: 0;">
+                                            </div>
+                                            <div class="toggle-flip" style="height: 21px;">
+                                                <label>
+                                                    <input
+                                                            data-href="{{ isset($blog) ? route('admin.blog.article.enable', $blog) : '' }}"
+                                                            @if ($blog->enable) checked @endif
+                                                            type="checkbox"
+                                                            class="checkbox"
+                                                    ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
+                                            <div>
                                                 <i class="far fa-calendar-check"></i> Создано:
-                                            </td>
-                                            <td style="text-align: right; border: 0;">
-                                                {{ $blog->created_at ?? '' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border: 0;">
+                                            </div>
+                                            <div>
+                                                {{ $blog->created_at->format('d/m/Y') ?? '' }}
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
+                                            <div>
                                                 <i class="far fa-calendar-plus"></i> Обновлено:
-                                            </td>
-                                            <td style="text-align: right; border: 0;">
-                                                {{ $blog->updated_at ?? '' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border: 0;">
+                                            </div>
+                                            <div>
+                                                {{ $blog->updated_at->format('d/m/Y') ?? '' }}
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
+                                            <div>
                                                 <i class="far fa-plus-square"></i> Обновлен:
-                                            </td>
-                                            <td style="text-align: right; border: 0;">
+                                            </div>
+                                            <div>
                                                 {{ $blog->updater->name ?? '' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border: 0;">
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
+                                            <div>
                                                 <i class="fas fa-street-view"></i> Просмотрено:
-                                            </td>
-                                            <td style="text-align: right; border: 0;">
+                                            </div>
+                                            <div>
                                                 {{ $blog->view_count ?? '' }}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>

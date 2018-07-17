@@ -13,7 +13,7 @@ class FaqRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class FaqRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string',
+            'name' => 'required|string',
+            'meta_title' => '',
+            'meta_description' => '',
+            'meta_keywords' => '',
         ];
     }
 }

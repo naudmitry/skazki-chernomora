@@ -1,22 +1,22 @@
 $(function () {
-    let $blogArticles = $('.blog-articles');
+    let $faqQuestions = $('.faq-questions');
 
-    if (!$blogArticles.length) {
+    if (!$faqQuestions.length) {
         return;
     }
 
-    let $blogArticlesTable = $('#blogArticlesTable');
-    let mustacheTemplateBlogArticlesTableColumnCreated = $('.template-blog-articles-table-column-created').text();
-    let mustacheTemplateBlogArticlesTableColumnTitle = $('.template-blog-articles-table-column-title').text();
-    let mustacheTemplateBlogArticlesTableColumnCategories = $('.template-blog-articles-table-column-categories').text();
-    let mustacheTemplateBlogArticlesTableColumnPublished = $('.template-blog-articles-table-column-published').text();
-    let mustacheTemplateBlogArticlesTableColumnAuthor = $('.template-blog-articles-table-column-author').text();
-    let mustacheTemplateBlogArticlesTableColumnUpdated = $('.template-blog-articles-table-column-updated').text();
-    let mustacheTemplateBlogArticlesTableColumnUpdater = $('.template-blog-articles-table-column-updater').text();
-    let mustacheTemplateBlogArticlesTableColumnViewed = $('.template-blog-articles-table-column-viewed').text();
-    let mustacheTemplateBlogArticlesTableColumnActions = $('.template-blog-articles-table-column-actions').text();
+    let $faqQuestionsTable = $('#faqQuestionsTable');
+    let mustacheTemplateFaqQuestionsTableColumnCreated = $('.template-faq-questions-table-column-created').text();
+    let mustacheTemplateFaqQuestionsTableColumnTitle = $('.template-faq-questions-table-column-title').text();
+    let mustacheTemplateFaqQuestionsTableColumnCategories = $('.template-faq-questions-table-column-categories').text();
+    let mustacheTemplateFaqQuestionsTableColumnPublished = $('.template-faq-questions-table-column-published').text();
+    let mustacheTemplateFaqQuestionsTableColumnAuthor = $('.template-faq-questions-table-column-author').text();
+    let mustacheTemplateFaqQuestionsTableColumnUpdated = $('.template-faq-questions-table-column-updated').text();
+    let mustacheTemplateFaqQuestionsTableColumnUpdater = $('.template-faq-questions-table-column-updater').text();
+    let mustacheTemplateFaqQuestionsTableColumnViewed = $('.template-faq-questions-table-column-viewed').text();
+    let mustacheTemplateFaqQuestionsTableColumnActions = $('.template-faq-questions-table-column-actions').text();
 
-    $blogArticlesTable.DataTable({
+    $faqQuestionsTable.DataTable({
         "scrollX": true,
         language: {
             processing: "Подождите...",
@@ -38,7 +38,7 @@ $(function () {
         },
         ajax:
             {
-                url: $blogArticlesTable.data('href'),
+                url: $faqQuestionsTable.data('href'),
                 // data: function (data) {
                 //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
                 //         data[filter.name] = filter.value;
@@ -49,49 +49,49 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCreated, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnCreated, {faq}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnTitle, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnTitle, {faq}),
             },
             {
                 targets: 2,
                 sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCategories, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnCategories, {faq}),
             },
             {
                 targets: 3,
                 data: 'enable',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnPublished, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnPublished, {faq}),
             },
             {
                 targets: 4,
                 data: 'author_id',
                 sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnAuthor, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnAuthor, {faq}),
             },
             {
                 targets: 5,
                 data: 'updated_at',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdated, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdated, {faq}),
             },
             {
                 targets: 6,
                 data: 'updater_id',
                 sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdater, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdater, {faq}),
             },
             {
                 targets: 7,
                 data: 'view_count',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnViewed, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnViewed, {faq}),
             },
             {
                 targets: 8,
                 orderable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnActions, {blog}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnActions, {faq}),
             },
         ],
         lengthMenu: [15, 25, 50, 75, 100],
@@ -121,13 +121,13 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.blog-article-delete', function (e) {
+    $(document).on('click', '.faq-question-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить статью?",
+            text: "Вы действительно хотите удалить вопрос?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -149,16 +149,16 @@ $(function () {
                             },
                         });
 
-                        $blogArticlesTable.DataTable().ajax.reload();
+                        $faqQuestionsTable.DataTable().ajax.reload();
                     },
                     error: xhr => {
                         console.error(xhr);
                     },
                 });
 
-                swal("Удаление подтверждено!", "Статья будет удалена.", "success");
+                swal("Удаление подтверждено!", "Вопрос будет удален.", "success");
             } else {
-                swal("Удаление отменено!", "Статья не будет удалена.", "error");
+                swal("Удаление отменено!", "Вопрос не будет удален.", "error");
             }
         });
     });

@@ -1,5 +1,5 @@
 <ul>
-    @{{#blog.categories}}
+    @{{#faq.categories}}
     <li class="text-nowrap">@{{title}}</li>
-    @{{/blog.categories}}
+    @{{/faq.categories}}
 </ul>

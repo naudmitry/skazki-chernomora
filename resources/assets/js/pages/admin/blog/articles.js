@@ -17,7 +17,8 @@ $(function () {
     let mustacheTemplateBlogArticlesTableColumnActions = $('.template-blog-articles-table-column-actions').text();
 
     $blogArticlesTable.DataTable({
-        "scrollX": true,
+        scrollX: true,
+        scrollCollapse: true,
         language: {
             processing: "Подождите...",
             search: "Поиск:",

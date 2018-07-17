@@ -64,14 +64,14 @@ Route::prefix('admin')->group(function () {
 
     Route::get('404',
         [
-            'as'=>'404',
-            'uses'=>'Admin\ErrorHandlerController@errorCode404'
+            'as' => '404',
+            'uses' => 'Admin\ErrorHandlerController@errorCode404'
         ]);
 
     Route::get('405',
         [
-            'as'=>'405',
-            'uses'=>'Admin\ErrorHandlerController@errorCode405'
+            'as' => '405',
+            'uses' => 'Admin\ErrorHandlerController@errorCode405'
         ]);
 
     /*
@@ -157,7 +157,8 @@ Route::prefix('admin')->group(function () {
         ->where('category', '[0-9]+');
 
 
-    // FAQ Categories
+    // FAQ CATEGORIES
+
     Route::get('/faq/categories',
         [
             'uses' => 'Admin\FaqCategoryController@index',
@@ -197,4 +198,42 @@ Route::prefix('admin')->group(function () {
             'as' => 'admin.faq.category.save',
         ])
         ->where('category', '[0-9]+');
+
+    // FAQ
+
+    Route::get('/faq/questions',
+        [
+            'uses' => 'Admin\FaqController@index',
+            'as' => 'admin.faq.question.index',
+        ]);
+    Route::get('/faq/questions/edit/{faq}',
+        [
+            'uses' => 'Admin\FaqController@edit',
+            'as' => 'admin.faq.question.edit',
+        ])
+        ->where('faq', '[0-9]+');
+    Route::delete('/faq/questions/{faq}',
+        [
+            'uses' => 'Admin\FaqController@delete',
+            'as' => 'admin.faq.question.delete',
+        ])
+        ->where('faq', '[0-9]+');
+    Route::post('/faq/questions/enable/{faq}',
+        [
+            'uses' => 'Admin\FaqController@enable',
+            'as' => 'admin.faq.question.enable',
+        ])
+        ->where('faq', '[0-9]+');
+    Route::post('/faq/questions/save/{faq?}',
+        [
+            'uses' => 'Admin\FaqController@save',
+            'as' => 'admin.faq.question.save',
+        ])
+        ->where('faq', '[0-9]+');
+    Route::post('/faq/questions/save/content/{faq}',
+        [
+            'uses' => 'Admin\FaqController@saveContent',
+            'as' => 'admin.faq.question.save.content',
+        ])
+        ->where('faq', '[0-9]+');
 });

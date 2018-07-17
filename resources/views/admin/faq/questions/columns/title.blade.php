@@ -1,3 +1,3 @@
-<a href="{{ route('admin.blog.article.edit', '') }}/@{{blog.id}}">
-    @{{blog.title}}
+<a href="{{ route('admin.faq.question.edit', '') }}/@{{faq.id}}">
+    @{{faq.title}}
 </a>

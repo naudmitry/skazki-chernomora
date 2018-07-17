@@ -2,7 +2,7 @@
 
 @section('content')
     @include('admin.vendor.pageHeader', [
-        'section' => 'Вопросы',
+        'section' => 'FAQ',
         'description' => 'Добавление и редактирование сведений категорий вопросов',
         'page' => 'Категории'
     ])
