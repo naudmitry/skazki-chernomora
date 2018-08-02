@@ -12,11 +12,11 @@ Route::get('/blog',
         'as' => 'front.blog.index',
     ]);
 
-Route::get('/blog/{blog}',
-    [
-        'uses' => 'Site\BlogController@show',
-        'as' => 'site.blog.show',
-    ]);
+//Route::get('/blog/{blog}',
+//    [
+//        'uses' => 'Site\BlogController@show',
+//        'as' => 'site.blog.show',
+//    ]);
 
 Route::get('/contact',
     [
@@ -52,6 +52,12 @@ Route::get('/appointment',
     [
         'uses' => 'Site\IndexController@appointment',
         'as' => 'front.appointment.index',
+    ]);
+
+Route::get('{slug}',
+    [
+        'uses' => 'Front\SlugController@index',
+        'as' => 'slug.index',
     ]);
 
 
@@ -230,10 +236,13 @@ Route::prefix('admin')->group(function () {
             'as' => 'admin.faq.question.save',
         ])
         ->where('faq', '[0-9]+');
-    Route::post('/faq/questions/save/content/{faq}',
+
+    // SETTINGS
+
+    Route::get('/settings/{tab?}',
         [
-            'uses' => 'Admin\FaqController@saveContent',
-            'as' => 'admin.faq.question.save.content',
+            'uses' => 'Admin\SettingController@index',
+            'as' => 'admin.settings.index',
         ])
-        ->where('faq', '[0-9]+');
+    ->where('tab', 'general|contacts');
 });

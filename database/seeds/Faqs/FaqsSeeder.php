@@ -25,6 +25,7 @@ class FaqsSeeder extends Seeder
                 $faq = Faq::create([
                     'title' => $faker->word(),
                     'name' => $faker->text(25),
+                    'answer' => $faker->text(50),
                     'enable' => $faker->boolean(50),
                     'view_count' => $faker->randomNumber(),
                     'meta_title' => $faker->text(15),

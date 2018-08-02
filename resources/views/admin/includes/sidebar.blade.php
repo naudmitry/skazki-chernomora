@@ -31,14 +31,14 @@
                     <a
                         class="treeview-item @if (Route::is('admin.blog.category.*')) active @endif"
                         href="{{ route('admin.blog.category.index') }}"
-                    ><i class="icon far fa-circle"></i> Категории</a>
+                    ><i class="icon far fa-circle"></i>Категории</a>
                 </li>
 
                 <li>
                     <a
                         class="treeview-item @if (Route::is('admin.blog.article.*')) active @endif"
                         href="{{ route('admin.blog.article.index') }}"
-                    ><i class="icon far fa-circle"></i> Статьи</a>
+                    ><i class="icon far fa-circle"></i>Статьи</a>
                 </li>
             </ul>
         </li>
@@ -55,16 +55,23 @@
                     <a
                         class="treeview-item @if (Route::is('admin.faq.category.*')) active @endif"
                         href="{{ route('admin.faq.category.index') }}"
-                    ><i class="icon far fa-circle"></i> Категории</a>
+                    ><i class="icon far fa-circle"></i>Категории</a>
                 </li>
 
                 <li>
                     <a
                         class="treeview-item @if (Route::is('admin.faq.question.*')) active @endif"
                         href="{{ route('admin.faq.question.index') }}"
-                    ><i class="icon far fa-circle"></i> Вопросы</a>
+                    ><i class="icon far fa-circle"></i>Вопросы</a>
                 </li>
             </ul>
+        </li>
+
+        <li>
+            <a
+                class="app-menu__item @if (Route::is('admin.settings.*')) active @endif"
+                href="{{ route('admin.settings.index') }}"
+            ><i class="app-menu__icon fas fa-cog"></i><span class="app-menu__label">Настройки</span></a>
         </li>
     </ul>
 </aside>

@@ -54,16 +54,23 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="control-label col-md-3" for="name">Название новости:</label>
+                                        <label class="control-label col-md-3" for="name">Вопрос:</label>
                                         <div class="col-md-9">
                                             <input class="form-control" id="name" name="name" value="{{ $faq->name ?? '' }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3" for="name">Ответ:</label>
+                                        <div class="col-md-9">
+                                            <textarea name="answer" rows="4" cols="5" class="form-control" required="required">{{ $faq->answer ?? '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="seo" style="margin-top: 20px;">
                                     <div class="form-group row">
-                                        <label class="control-label col-md-3" for="metaTitle">Метатег TITLE:</label>
+                                        <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>
                                         <div class="col-md-9">
                                             <input class="form-control" id="metaTitle" name="meta_title" value="{{ $faq->meta_title ?? '' }}">
                                         </div>
@@ -156,8 +163,6 @@
             </div>
         </div>
     </div>
-
-    @include('admin.faq.questions.item.editor')
 @endsection
 
 @section('footer__script')

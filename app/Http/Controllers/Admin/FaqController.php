@@ -88,25 +88,10 @@ class FaqController extends Controller
      */
     public function save(FaqRequest $request, Faq $faq = null)
     {
-        $faq = $this->faqRepository->saveFaq($faq, $request->all());
+        $this->faqRepository->saveFaq($faq, $request->all());
 
         return response()->json([
             'message' => 'Вопрос успешно сохранен.',
-        ]);
-    }
-
-    /**
-     * @param Request $request
-     * @param Faq $faq
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function saveContent(Request $request, Faq $faq)
-    {
-        $faq->content = $request->get('content');
-        $faq->update();
-
-        return response()->json([
-            'message' => 'Ответ успешно сохранен.',
         ]);
     }
 }

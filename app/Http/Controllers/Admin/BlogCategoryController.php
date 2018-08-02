@@ -5,19 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Blog\BlogCategoryRequest;
 use App\Models\BlogCategory;
 use App\Repositories\BlogRepository;
+use App\Repositories\Slug\SlugsRepository;
 use Illuminate\Http\Request;
 
 class BlogCategoryController extends Controller
 {
-    private $blogRepository;
+    protected $blogRepository;
+    protected $slugRepository;
 
     /**
      * BlogCategoryController constructor.
      * @param BlogRepository $blogRepository
+     * @param SlugsRepository $slugRepository
      */
-    public function __construct(BlogRepository $blogRepository)
+    public function __construct(BlogRepository $blogRepository, SlugsRepository $slugRepository)
     {
+        parent::__construct();
+
         $this->blogRepository = $blogRepository;
+        $this->slugRepository = $slugRepository;
     }
 
     /**
@@ -53,7 +59,11 @@ class BlogCategoryController extends Controller
      */
     public function save(BlogCategoryRequest $request, BlogCategory $category = null)
     {
-        $category = $this->blogRepository->saveCategory($category, $request->all());
+        \DB::transaction(function () use (&$category, $request)
+        {
+            $category = $this->blogRepository->saveCategory($category, $request->all());
+            $this->slugRepository->updateSlug($category, $request['address']);
+        });
 
         $row = view('admin.blog.categories.includes.item', compact(
             'category'

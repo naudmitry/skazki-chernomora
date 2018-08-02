@@ -7,7 +7,7 @@
                 method="post"
         >
             <div class="form-group row">
-                <label class="control-label col-md-4">Имя для списка:</label>
+                <label class="control-label col-md-4">Название для списка:</label>
                 <div class="col-md-8">
                     <input name="title" class="form-control" type="text" value="{{ $category->title ?? '' }}">
                 </div>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Метатег TITLE:</label>
+                <label class="control-label col-md-4">Тег TITLE:</label>
                 <div class="col-md-8">
                     <input name="meta_title" class="form-control" type="text" value="{{ $category->meta_title ?? '' }}">
                 </div>

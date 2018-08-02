@@ -41,6 +41,7 @@ class FaqRepository
 
         $faq->title = array_get($data, 'title');
         $faq->name = array_get($data, 'name');
+        $faq->answer = array_get($data, 'answer');
         $faq->meta_title = array_get($data, 'meta_title');
         $faq->meta_description = array_get($data, 'meta_description');
         $faq->meta_keywords = array_get($data, 'meta_keywords');

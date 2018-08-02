@@ -64,7 +64,7 @@
 
                                 <div class="tab-pane fade" id="seo" style="margin-top: 20px;">
                                     <div class="form-group row">
-                                        <label class="control-label col-md-3" for="metaTitle">Метатег TITLE:</label>
+                                        <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>
                                         <div class="col-md-9">
                                             <input class="form-control" id="metaTitle" name="meta_title" value="{{ $blog->meta_title ?? '' }}">
                                         </div>

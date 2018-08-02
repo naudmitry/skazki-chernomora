@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Slug\SlugableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Blog extends Model
 {
     use SoftDeletes;
+    use SlugableTrait;
 
     protected $with =
         [
@@ -76,5 +78,15 @@ class Blog extends Model
         }
 
         return $text;
+    }
+
+    /**
+     * @param int $value
+     */
+    public function incrementViewsCount($value = 1)
+    {
+        $this->increment('view_count', $value);
+
+        self::where('id', $this->id)->increment('view_count', $value);
     }
 }
