@@ -73,5 +73,20 @@
                 href="{{ route('admin.settings.index') }}"
             ><i class="app-menu__icon fas fa-cog"></i><span class="app-menu__label">Настройки</span></a>
         </li>
+
+        <li class="treeview">
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon far fa-file-alt"></i>
+                <span class="app-menu__label">Страницы</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="#">
+                        <i class="icon far fa-circle"></i>Контакты
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </aside>

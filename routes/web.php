@@ -56,7 +56,7 @@ Route::get('/appointment',
 
 Route::get('{slug}',
     [
-        'uses' => 'Front\SlugController@index',
+        'uses' => 'Site\SlugController@index',
         'as' => 'slug.index',
     ]);
 

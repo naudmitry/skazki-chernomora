@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models;
 use App\Repositories\Slug\SlugsRepository;
 use Illuminate\Http\Request;
-use App\Models;
+use Illuminate\Http\Response;
 
 class SlugController extends Controller
 {
@@ -29,7 +30,7 @@ class SlugController extends Controller
      */
     public function index(Request $request, $slug)
     {
-        $obj = $this->slugRepository->getSlug($this->showcase, $slug, $language);
+        $obj = $this->slugRepository->getSlug($slug);
 
         if (is_null($obj)) {
             abort(Response::HTTP_NOT_FOUND);
@@ -44,15 +45,6 @@ class SlugController extends Controller
         switch (true) {
             case $entity instanceof Models\Blog:
                 return app(BlogController::class)->single($entity);
-
-//            case $entity instanceof Models\BlogCategory:
-//                return app(BlogController::class)->category($entity);
-//
-//            case $entity instanceof Models\Faq:
-//                return app(FaqController::class)->single($entity);
-//
-//            case $entity instanceof Models\FaqCategory:
-//                return app(FaqController::class)->filter($entity);
 
         }
 

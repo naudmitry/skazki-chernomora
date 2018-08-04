@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Repositories\Slug\SlugableInterface;
 use Carbon\Carbon;

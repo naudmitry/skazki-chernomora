@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Slug;
 
-use App\Slug;
+use App\Models\Slug;
 
 /**
  * Trait SlugableTrait

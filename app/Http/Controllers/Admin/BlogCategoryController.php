@@ -20,8 +20,6 @@ class BlogCategoryController extends Controller
      */
     public function __construct(BlogRepository $blogRepository, SlugsRepository $slugRepository)
     {
-        parent::__construct();
-
         $this->blogRepository = $blogRepository;
         $this->slugRepository = $slugRepository;
     }
