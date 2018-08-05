@@ -6,20 +6,24 @@ use App\Http\Requests\Faq\FaqRequest;
 use App\Models\Faq;
 use App\Models\FaqCategory;
 use App\Repositories\FaqRepository;
+use App\Repositories\Slug\SlugsRepository;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class FaqController extends Controller
 {
-    private $faqRepository;
+    protected $faqRepository;
+    protected $slugRepository;
 
     /**
      * FaqController constructor.
      * @param FaqRepository $faqRepository
+     * @param SlugsRepository $slugRepository
      */
-    public function __construct(FaqRepository $faqRepository)
+    public function __construct(FaqRepository $faqRepository, SlugsRepository $slugRepository)
     {
         $this->faqRepository = $faqRepository;
+        $this->slugRepository = $slugRepository;
     }
 
     /**
@@ -55,11 +59,13 @@ class FaqController extends Controller
     /**
      * @param Faq $faq
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
      */
     public function delete(Faq $faq)
     {
-        $faq->delete();
+        \DB::transaction(function () use (&$faq) {
+            $faq->slug()->delete();
+            $faq->delete();
+        });
 
         return response()->json([
             'message' => 'Вопрос удален.',
@@ -88,7 +94,10 @@ class FaqController extends Controller
      */
     public function save(FaqRequest $request, Faq $faq = null)
     {
-        $this->faqRepository->saveFaq($faq, $request->all());
+        \DB::transaction(function () use (&$faq, $request) {
+            $this->faqRepository->saveFaq($faq, $request->all());
+            $this->slugRepository->updateSlug($faq, $request['address']);
+        });
 
         return response()->json([
             'message' => 'Вопрос успешно сохранен.',

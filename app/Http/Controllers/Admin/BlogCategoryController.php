@@ -82,11 +82,13 @@ class BlogCategoryController extends Controller
     /**
      * @param BlogCategory $category
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
      */
     public function delete(BlogCategory $category)
     {
-        $category->delete();
+        \DB::transaction(function () use (&$category) {
+            $category->slug()->delete();
+            $category->delete();
+        });
 
         return response()->json([
             'message' => 'Категория новости удалена.',
@@ -109,7 +111,7 @@ class BlogCategoryController extends Controller
     public function sequence(Request $request)
     {
         $categories = $request->get('categories');
-        $items = BlogCategory::whereIn('id', $categories)->get();
+        $items = BlogCategory::query()->whereIn('id', $categories)->get();
 
         \DB::transaction(function () use ($items, $categories) {
             /** @var BlogCategory $item */

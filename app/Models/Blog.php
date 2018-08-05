@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Slug\SlugableInterface;
 use App\Repositories\Slug\SlugableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
  */
-class Blog extends Model
+class Blog extends Model implements SlugableInterface
 {
     use SoftDeletes;
     use SlugableTrait;

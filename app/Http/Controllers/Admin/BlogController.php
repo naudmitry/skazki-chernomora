@@ -6,20 +6,24 @@ use App\Http\Requests\Blog\BlogRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Repositories\BlogRepository;
+use App\Repositories\Slug\SlugsRepository;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class BlogController extends Controller
 {
-    private $blogRepository;
+    protected $blogRepository;
+    protected $slugRepository;
 
     /**
      * BlogController constructor.
      * @param BlogRepository $blogRepository
+     * @param SlugsRepository $slugRepository
      */
-    public function __construct(BlogRepository $blogRepository)
+    public function __construct(BlogRepository $blogRepository, SlugsRepository $slugRepository)
     {
         $this->blogRepository = $blogRepository;
+        $this->slugRepository = $slugRepository;
     }
 
     /**
@@ -69,11 +73,13 @@ class BlogController extends Controller
     /**
      * @param Blog $blog
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
      */
     public function delete(Blog $blog)
     {
-        $blog->delete();
+        \DB::transaction(function () use (&$blog) {
+            $blog->slug()->delete();
+            $blog->delete();
+        });
 
         return response()->json([
             'message' => 'Новость удалена.',
@@ -88,7 +94,11 @@ class BlogController extends Controller
      */
     public function save(BlogRequest $request, Blog $blog = null)
     {
-        $blog = $this->blogRepository->saveBlog($blog, $request->all());
+        \DB::transaction(function () use (&$blog, $request)
+        {
+            $this->blogRepository->saveBlog($blog, $request->all());
+            $this->slugRepository->updateSlug($blog, $request['address']);
+        });
 
         return response()->json([
             'message' => 'Статья успешно сохранена.',

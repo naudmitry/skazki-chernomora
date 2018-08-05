@@ -60,8 +60,14 @@
                                             <input class="form-control" id="name" name="name" value="{{ $blog->name ?? '' }}">
                                         </div>
                                     </div>
-                                </div>
 
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">Адрес категории:</label>
+                                        <div class="col-md-9">
+                                            <input name="address" class="form-control" type="text" value="{{ $blog->getSlug() }}">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="tab-pane fade" id="seo" style="margin-top: 20px;">
                                     <div class="form-group row">
                                         <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>

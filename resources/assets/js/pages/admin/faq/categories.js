@@ -137,6 +137,7 @@ $(function () {
                             $faqCategoriesList.find('.faq-categories-list-item[data-faq-category-id="' + response.category.id + '"]');
                         $faqCategorySettingsContainer.empty();
                         $faqCategoriesListItem.remove();
+                        isChange = false;
 
                         $.notify({
                             title: "Успех!",

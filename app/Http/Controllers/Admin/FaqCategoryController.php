@@ -5,19 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Faq\FaqCategoryRequest;
 use App\Models\FaqCategory;
 use App\Repositories\FaqRepository;
+use App\Repositories\Slug\SlugsRepository;
 use Illuminate\Http\Request;
 
 class FaqCategoryController extends Controller
 {
-    private $faqRepository;
+    protected $faqRepository;
+    protected $slugRepository;
 
     /**
      * FaqCategoryController constructor.
      * @param FaqRepository $faqRepository
+     * @param SlugsRepository $slugRepository
      */
-    public function __construct(FaqRepository $faqRepository)
+    public function __construct(FaqRepository $faqRepository, SlugsRepository $slugRepository)
     {
         $this->faqRepository = $faqRepository;
+        $this->slugRepository = $slugRepository;
     }
 
     /**
@@ -92,11 +96,13 @@ class FaqCategoryController extends Controller
     /**
      * @param FaqCategory $category
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
      */
     public function delete(FaqCategory $category)
     {
-        $category->delete();
+        \DB::transaction(function () use (&$category) {
+            $category->slug()->delete();
+            $category->delete();
+        });
 
         return response()->json([
             'message' => 'Категория новости удалена.',
@@ -112,7 +118,11 @@ class FaqCategoryController extends Controller
      */
     public function save(FaqCategoryRequest $request, FaqCategory $category = null)
     {
-        $category = $this->faqRepository->saveCategory($category, $request->all());
+        \DB::transaction(function () use (&$category, $request)
+        {
+            $category = $this->faqRepository->saveCategory($category, $request->all());
+            $this->slugRepository->updateSlug($category, $request['address']);
+        });
 
         $row = view('admin.faq.categories.includes.item', compact(
             'category'

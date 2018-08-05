@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class BlogCategory
  * @package App
  *
+ * @property integer $id
  * @property string $title
  * @property string $name
  * @property boolean $enable

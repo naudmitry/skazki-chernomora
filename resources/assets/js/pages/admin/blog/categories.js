@@ -137,6 +137,7 @@ $(function () {
                             $blogCategoriesList.find('.blog-categories-list-item[data-blog-category-id="' + response.category.id + '"]');
                         $blogCategorySettingsContainer.empty();
                         $blogCategoriesListItem.remove();
+                        isChange = false;
 
                         $.notify({
                             title: "Успех!",
