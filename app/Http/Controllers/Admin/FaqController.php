@@ -24,6 +24,8 @@ class FaqController extends Controller
     {
         $this->faqRepository = $faqRepository;
         $this->slugRepository = $slugRepository;
+
+        parent::__construct();
     }
 
     /**

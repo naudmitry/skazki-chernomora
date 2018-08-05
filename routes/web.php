@@ -1,5 +1,7 @@
 <?php
 
+Auth::routes();
+
 Route::get('/',
     [
         'uses' => 'Site\IndexController@index',
@@ -12,11 +14,11 @@ Route::get('/blog',
         'as' => 'front.blog.index',
     ]);
 
-//Route::get('/blog/{blog}',
-//    [
-//        'uses' => 'Site\BlogController@show',
-//        'as' => 'site.blog.show',
-//    ]);
+Route::get('/blog/{blog}',
+    [
+        'uses' => 'Site\BlogController@show',
+        'as' => 'site.blog.show',
+    ]);
 
 Route::get('/contact',
     [
@@ -246,3 +248,7 @@ Route::prefix('admin')->group(function () {
         ])
     ->where('tab', 'general|contacts');
 });
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');

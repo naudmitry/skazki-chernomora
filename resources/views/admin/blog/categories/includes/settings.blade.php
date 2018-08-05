@@ -22,8 +22,15 @@
 
             <div class="form-group row">
                 <label class="control-label col-md-4">Адрес категории:</label>
-                <div class="col-md-8">
+                <div class="input-group col-md-8">
                     <input name="address" class="form-control" type="text" value="{{ $category->getSlug() }}">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <a href="{{ $category->getSlug() }}">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
 

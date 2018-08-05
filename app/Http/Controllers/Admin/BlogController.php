@@ -24,6 +24,8 @@ class BlogController extends Controller
     {
         $this->blogRepository = $blogRepository;
         $this->slugRepository = $slugRepository;
+
+        parent::__construct();
     }
 
     /**

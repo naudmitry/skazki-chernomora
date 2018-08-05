@@ -17,8 +17,6 @@ class SlugController extends Controller
      */
     public function __construct(SlugsRepository $slugRepository)
     {
-        parent::__construct();
-
         $this->slugRepository = $slugRepository;
     }
 
