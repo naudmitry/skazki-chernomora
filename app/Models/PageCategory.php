@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class FaqCategory
- * @package App\Models
+ * Class PageCategory
+ * @package App
  *
  * @property integer $id
  * @property string $title
@@ -21,18 +21,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $meta_keywords
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property-read \App\Models\Faq $faqs
+ * @property-read \App\Models\Page $pages
  */
-class FaqCategory extends Model implements SlugableInterface
+class PageCategory extends Model implements SlugableInterface
 {
     use SoftDeletes;
     use SlugableTrait;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function faqs()
+    public function pages()
     {
-        return $this->belongsToMany(Faq::class);
+        return $this->hasMany(Page::class, 'category_id', 'id');
     }
 }

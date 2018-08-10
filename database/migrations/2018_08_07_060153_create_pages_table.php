@@ -18,11 +18,15 @@ class CreatePagesTable extends Migration
             $table->increments('id');
 
             $table->string('static_page_type')->nullable()->default(null);
-            $table->string('title');
             $table->string('type')->default(PageTypesEnum::CUSTOM_PAGE);
-            $table->string('display_type')->nullable();
-            $table->boolean('status')->default(false);
+            $table->string('title')->index();
+            $table->string('name');
+            $table->longText('content');
+            $table->boolean('enable')->index()->default(false);
             $table->integer('view_count')->default(0);
+            $table->string('meta_title');
+            $table->string('meta_description');
+            $table->string('meta_keywords');
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('author_id')->unsigned()->nullable()->default(null);
             $table->integer('updater_id')->unsigned()->nullable()->default(null);

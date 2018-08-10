@@ -8,42 +8,42 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Faq
+ * Class Page
  * @package App\Models
  *
  * @property integer $id
+ * @property string $static_page_type
+ * @property string $type
  * @property string $title
  * @property string $name
+ * @property string $content
  * @property boolean $enable
- * @property string $answer
  * @property integer $view_count
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keywords
- * @property integer $author_id
- * @property integer $updater_id
- * @property-read \App\Models\FaqCategory $categories
+ * @property-read \App\Models\PageCategory $category
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
  */
-class Faq extends Model implements SlugableInterface
+class Page extends Model implements SlugableInterface
 {
     use SoftDeletes;
     use SlugableTrait;
 
     protected $with =
         [
-            'categories',
+            'category',
             'author',
             'updater',
         ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(FaqCategory::class);
+        return $this->hasOne(PageCategory::class, 'id', 'category_id');
     }
 
     /**
