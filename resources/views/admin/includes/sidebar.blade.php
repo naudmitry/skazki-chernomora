@@ -7,7 +7,7 @@
             alt="User Image"
         >
         <div>
-            <p class="app-sidebar__user-name">Иванов Иван</p>
+            <p class="app-sidebar__user-name">{{ Auth::guard('admin')->user()->name }} {{ Auth::guard('admin')->user()->surname }}</p>
             <p class="app-sidebar__user-designation">Менеджер</p>
         </div>
     </div>

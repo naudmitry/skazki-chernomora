@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Models;
-use App\Repositories\Slug\SlugsRepository;
-use Illuminate\Http\Request;
+use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Response;
 
 class SlugController extends Controller
@@ -13,20 +12,18 @@ class SlugController extends Controller
 
     /**
      * SlugController constructor.
-     * @param SlugsRepository $slugRepository
+     * @param SlugRepository $slugRepository
      */
-    public function __construct(SlugsRepository $slugRepository)
+    public function __construct(SlugRepository $slugRepository)
     {
         $this->slugRepository = $slugRepository;
     }
 
     /**
-     * @param Request $request
      * @param $slug
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|Response|\Illuminate\View\View
-     * @throws \Throwable
+     * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function index(Request $request, $slug)
+    public function index($slug)
     {
         $obj = $this->slugRepository->getSlug($slug);
 
@@ -43,6 +40,8 @@ class SlugController extends Controller
         switch (true) {
             case $entity instanceof Models\Blog:
                 return app(BlogController::class)->single($entity);
+            case $entity instanceof Models\BlogCategory:
+                return app(BlogController::class)->category($entity);
 
         }
 

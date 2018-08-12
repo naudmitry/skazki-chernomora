@@ -28,7 +28,7 @@ class PagesSeeder extends Seeder
                     'name' => $faker->text(25),
                     'content' => $faker->text(1000),
                     'enable' => $faker->boolean(50),
-                    'view_count' => $faker->randomNumber(),
+                    'view_count' => $faker->randomNumber(2),
                     'meta_title' => $faker->text(15),
                     'meta_description' => $faker->text(15),
                     'meta_keywords' => $faker->text(15),

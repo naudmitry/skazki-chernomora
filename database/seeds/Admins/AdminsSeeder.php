@@ -21,6 +21,16 @@ class AdminsSeeder extends Seeder
                 'middle_name' => $faker->lastName,
                 'position' => $faker->word,
                 'email' => $faker->email,
+                'password' => \Hash::make('123456'),
+                'phone' => $faker->phoneNumber,
+            ]);
+        }
+
+        for ($i = 0; $i < 20; $i++) {
+            \App\User::create([
+                'name' => $faker->firstName,
+                'email' => $faker->email,
+                'password' => \Hash::make('123456'),
             ]);
         }
     }

@@ -28,4 +28,21 @@ trait SlugableTrait
         return $obj ? $obj->slug : null;
     }
 
+    public function getRoute($extraOptions = [])
+    {
+        $slug = $this->getSlug();
+
+        $options = count($extraOptions) ? array_merge([$slug], $extraOptions) : $slug;
+
+        return $slug ? route('slug.index', $options) : null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShowcaseUrl()
+    {
+        return 'http://' .  env('DOMAIN_CLIENT') . '/' . $this->getSlug();
+    }
+
 }

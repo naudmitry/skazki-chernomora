@@ -1,6 +1,6 @@
 <!-- Navbar-->
 <header class="app-header">
-    <a class="app-header__logo" href="{{ route('admin.index') }}">Black Sea</a>
+    <a class="app-header__logo" href="{{ route('admin.index') }}">Black Sea tale</a>
     <!-- Sidebar toggle button-->
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar">
         <i class="fas fa-bars" style="margin-top: 20px;"></i>
@@ -140,7 +140,7 @@
                 </li>
 
                 <li>
-                    <a class="dropdown-item" href="page-login.html">
+                    <a class="dropdown-item" href="{{ route('account.logout') }}">
                         <i class="fas fa-sign-out-alt fas-lg"></i> Выйти
                     </a>
                 </li>

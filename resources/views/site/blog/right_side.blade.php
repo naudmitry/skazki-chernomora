@@ -4,8 +4,8 @@
             <h6>Поиск</h6>
         </div>
         <div class="search-box">
-            <form method="post" action="index.html">
-                <input type="search" name="search" placeholder="Enter to Search" required="">
+            <form method="post" action="#">
+                <input type="search" name="search" placeholder="Введите для поиска" required>
             </form>
         </div>
         <div class="categorise-menu">
@@ -15,9 +15,10 @@
             <ul class="categorise-list">
                 @foreach ($categories as $category)
                     <li>
-                        <a href="#">
-                            {{ $category->name }} <span>({{ $category->getCountBlogs() }})</span>
-                        </a>
+                        <a
+                            href="{{ $category->getShowcaseUrl() }}"
+                            @if (isset($currentCategory) && $category->id == $currentCategory->id) style="color: #48bdc5;" @endif
+                        >{{ $category->name }} <span>({{ $category->getCountBlogs() }})</span></a>
                     </li>
                 @endforeach
             </ul>

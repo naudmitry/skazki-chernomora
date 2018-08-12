@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
  * Class SlugsRepository
  * @package App\Repositories\Slug
  */
-class SlugsRepository
+class SlugRepository
 {
     /**
      * @param SlugableInterface $mixed

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $title
  * @property string $name
  * @property boolean $enable
+ * @property boolean $favorite
  * @property string $answer
  * @property integer $view_count
  * @property string $meta_title

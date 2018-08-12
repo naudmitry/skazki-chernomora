@@ -88,7 +88,6 @@ class Blog extends Model implements SlugableInterface
     public function incrementViewsCount($value = 1)
     {
         $this->increment('view_count', $value);
-
         self::where('id', $this->id)->increment('view_count', $value);
     }
 }

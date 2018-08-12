@@ -11,7 +11,7 @@
             <div class="tile">
                 <h3 class="tile-title">Features</h3>
 
-                s@if (session('status'))
+                @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
                     </div>

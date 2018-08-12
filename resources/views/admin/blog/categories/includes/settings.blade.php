@@ -26,7 +26,7 @@
                     <input name="address" class="form-control" type="text" value="{{ $category->getSlug() }}">
                     <div class="input-group-append">
                         <span class="input-group-text">
-                            <a href="{{ $category->getSlug() }}">
+                            <a href="{{ $category->getShowcaseUrl() }}" target="_blank">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </span>

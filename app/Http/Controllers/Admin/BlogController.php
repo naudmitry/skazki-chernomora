@@ -6,7 +6,7 @@ use App\Http\Requests\Blog\BlogRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Repositories\BlogRepository;
-use App\Repositories\Slug\SlugsRepository;
+use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -18,9 +18,9 @@ class BlogController extends Controller
     /**
      * BlogController constructor.
      * @param BlogRepository $blogRepository
-     * @param SlugsRepository $slugRepository
+     * @param SlugRepository $slugRepository
      */
-    public function __construct(BlogRepository $blogRepository, SlugsRepository $slugRepository)
+    public function __construct(BlogRepository $blogRepository, SlugRepository $slugRepository)
     {
         $this->blogRepository = $blogRepository;
         $this->slugRepository = $slugRepository;

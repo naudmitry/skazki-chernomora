@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Faq\FaqCategoryRequest;
 use App\Models\FaqCategory;
 use App\Repositories\FaqRepository;
-use App\Repositories\Slug\SlugsRepository;
+use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
 
 class FaqCategoryController extends Controller
@@ -16,9 +16,9 @@ class FaqCategoryController extends Controller
     /**
      * FaqCategoryController constructor.
      * @param FaqRepository $faqRepository
-     * @param SlugsRepository $slugRepository
+     * @param SlugRepository $slugRepository
      */
-    public function __construct(FaqRepository $faqRepository, SlugsRepository $slugRepository)
+    public function __construct(FaqRepository $faqRepository, SlugRepository $slugRepository)
     {
         $this->faqRepository = $faqRepository;
         $this->slugRepository = $slugRepository;

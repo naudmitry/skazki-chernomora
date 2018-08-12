@@ -26,7 +26,7 @@
                                     <span>{{ $blog->author->surname }} {{ $blog->author->name }} / {{ $blog->updated_at }}</span>
                                     <p>{{ $blog->reduction($blog->content, 300) }}</p>
                                     <div class="link-btn">
-                                        <a href="{{ $blog->getShowcaseUrl() }}" class="btn-style-one">Подробнее</a>
+                                        <a href="{{ $blog->getRoute(isset($currentCategory) ? ['category_id' => $currentCategory->id] : ['']) }}" class="btn-style-one">Подробнее</a>
                                     </div>
                                 </div>
                             </div>

@@ -2,26 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\StaticPageTypesEnum;
 use App\Http\Requests\Blog\BlogCategoryRequest;
 use App\Models\BlogCategory;
 use App\Repositories\BlogRepository;
-use App\Repositories\Slug\SlugsRepository;
+use App\Repositories\PageRepository;
+use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
 
 class BlogCategoryController extends Controller
 {
     protected $blogRepository;
     protected $slugRepository;
+    protected $pageRepository;
 
     /**
      * BlogCategoryController constructor.
      * @param BlogRepository $blogRepository
-     * @param SlugsRepository $slugRepository
+     * @param SlugRepository $slugRepository
+     * @param PageRepository $pageRepository
      */
-    public function __construct(BlogRepository $blogRepository, SlugsRepository $slugRepository)
+    public function __construct(BlogRepository $blogRepository, SlugRepository $slugRepository, PageRepository $pageRepository)
     {
         $this->blogRepository = $blogRepository;
         $this->slugRepository = $slugRepository;
+        $this->pageRepository = $pageRepository;
 
         parent::__construct();
     }
@@ -35,8 +40,10 @@ class BlogCategoryController extends Controller
             ->orderBy('position')
             ->get();
 
+        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::BLOG_PAGE);
+
         return view('admin.blog.categories.index', compact(
-            'categories'
+            'categories', 'staticPage'
         ));
     }
 
@@ -59,8 +66,7 @@ class BlogCategoryController extends Controller
      */
     public function save(BlogCategoryRequest $request, BlogCategory $category = null)
     {
-        \DB::transaction(function () use (&$category, $request)
-        {
+        \DB::transaction(function () use (&$category, $request) {
             $category = $this->blogRepository->saveCategory($category, $request->all());
             $this->slugRepository->updateSlug($category, $request['address']);
         });

@@ -7,6 +7,8 @@
         'page' => 'Категории'
     ])
 
+    @include('admin.blog.categories.includes.page_settings')
+
     <div class="row">
         <div class="col-md-6 blog-categories">
             <div class="tile">

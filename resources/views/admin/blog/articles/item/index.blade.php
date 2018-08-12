@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12 blog-item">
             <div class="tile">
-                <div class="page-header">
+                <div     class="page-header">
                     <h2 class="mb-3 line-head">Настройка статьи</h2>
                 </div>
 
@@ -63,11 +63,19 @@
 
                                     <div class="form-group row">
                                         <label class="control-label col-md-3">Адрес категории:</label>
-                                        <div class="col-md-9">
+                                        <div class="input-group col-md-9">
                                             <input name="address" class="form-control" type="text" value="{{ $blog->getSlug() }}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <a href="{{ $blog->getShowcaseUrl() }}" target="_blank">
+                                                        <i class="fas fa-external-link-alt"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="seo" style="margin-top: 20px;">
                                     <div class="form-group row">
                                         <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>

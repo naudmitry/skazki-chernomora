@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    @include('site.blog.comments')
+                    @include('site.blog.comments.index')
                 </div>
 
                 @include('site.blog.right_side')

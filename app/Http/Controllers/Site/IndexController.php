@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models\Faq;
+
 class IndexController extends Controller
 {
     /**
@@ -9,7 +11,14 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('site/index');
+        $faqs = Faq::query()
+            ->where('enable', true)
+            ->where('favorite', true)
+            ->get();
+
+        return view('site.index', compact([
+            'faqs'
+        ]));
     }
 
     /**

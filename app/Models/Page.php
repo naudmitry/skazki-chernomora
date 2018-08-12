@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keywords
+ * @property integer $author_id
+ * @property integer $updater_id
+ * @property integer $category_id
  * @property-read \App\Models\PageCategory $category
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater

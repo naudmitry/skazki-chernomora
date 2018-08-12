@@ -19,6 +19,7 @@ class CreateFaqsTable extends Migration
             $table->string('title')->index();
             $table->string('name');
             $table->boolean('enable')->default(false);
+            $table->boolean('favorite')->default(false);
             $table->longText('answer')->nullable();
             $table->integer('view_count')->default(0);
             $table->string('meta_title');

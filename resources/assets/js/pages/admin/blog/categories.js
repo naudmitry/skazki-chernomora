@@ -238,4 +238,71 @@ $(function () {
             }
         });
     });
+
+    let $pageSettings = $('.page-settings');
+
+    $pageSettings.find('.select2').select2({
+        width: '100%',
+        language: {
+            noResults: function (params) {
+                return "Результаты не найдены";
+            }
+        }
+    });
+
+    $(document).on('submit', '.page-settings-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.find('.has-error').removeClass('has-error');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                notifyService.showMessage(response.error ? 'error' : 'alert', 'topRight', response.message);
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON) {
+                        $form.find('[name="' + key + '"]').closest('.form-group').addClass('has-error');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default');
+
+                setTimeout(function () {
+                    $form.find('[type=submit]').attr('disabled', 'disabled'); // Disables the button correctly.
+                }, 0);
+            },
+        }));
+    });
+
+    $(document).on('input change keyup', '.page-settings-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+
+        if (!$input.is('input,select,textarea')) {
+            return;
+        }
+
+        if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
+            return;
+        }
+
+        $form.find('.has-error').removeClass('has-error');
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
 });

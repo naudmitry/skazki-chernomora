@@ -16,6 +16,9 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function ($request, $next)
+        {
+            return $next($request);
+        });
     }
 }

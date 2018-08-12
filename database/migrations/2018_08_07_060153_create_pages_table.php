@@ -17,16 +17,16 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('static_page_type')->nullable()->default(null);
+            $table->string('static_page_type')->nullable();
             $table->string('type')->default(PageTypesEnum::CUSTOM_PAGE);
-            $table->string('title')->index();
-            $table->string('name');
-            $table->longText('content');
+            $table->string('title')->index()->nullable();
+            $table->string('name')->nullable();
+            $table->longText('content')->nullable();
             $table->boolean('enable')->index()->default(false);
-            $table->integer('view_count')->default(0);
-            $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keywords');
+            $table->integer('view_count')->default(0)->index();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('author_id')->unsigned()->nullable()->default(null);
             $table->integer('updater_id')->unsigned()->nullable()->default(null);
