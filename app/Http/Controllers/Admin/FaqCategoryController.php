@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\StaticPageTypesEnum;
 use App\Http\Requests\Faq\FaqCategoryRequest;
 use App\Models\FaqCategory;
 use App\Repositories\FaqRepository;
+use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
 
@@ -12,16 +14,19 @@ class FaqCategoryController extends Controller
 {
     protected $faqRepository;
     protected $slugRepository;
+    protected $pageRepository;
 
     /**
      * FaqCategoryController constructor.
      * @param FaqRepository $faqRepository
      * @param SlugRepository $slugRepository
+     * @param PageRepository $pageRepository
      */
-    public function __construct(FaqRepository $faqRepository, SlugRepository $slugRepository)
+    public function __construct(FaqRepository $faqRepository, SlugRepository $slugRepository, PageRepository $pageRepository)
     {
         $this->faqRepository = $faqRepository;
         $this->slugRepository = $slugRepository;
+        $this->pageRepository = $pageRepository;
 
         parent::__construct();
     }
@@ -35,8 +40,10 @@ class FaqCategoryController extends Controller
             ->orderBy('position')
             ->get();
 
+        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::FAQ_PAGE);
+
         return view('admin.faq.categories.index', compact(
-            'categories'
+            'categories', 'staticPage'
         ));
     }
 
@@ -45,7 +52,11 @@ class FaqCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.faq.categories.includes.settings');
+        $category = new FaqCategory();
+
+        return view('admin.faq.categories.includes.settings', compact([
+            'category'
+        ]));
     }
 
     /**
@@ -120,8 +131,7 @@ class FaqCategoryController extends Controller
      */
     public function save(FaqCategoryRequest $request, FaqCategory $category = null)
     {
-        \DB::transaction(function () use (&$category, $request)
-        {
+        \DB::transaction(function () use (&$category, $request) {
             $category = $this->faqRepository->saveCategory($category, $request->all());
             $this->slugRepository->updateSlug($category, $request['address']);
         });

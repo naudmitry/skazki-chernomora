@@ -1,13 +1,7 @@
 <div class="row">
     <div class="col-md-12 blog-article">
-        <form
-                class="tile blog-item-editor-form"
-                action="{{ route('admin.blog.article.save.content', $blog) }}"
-                method="post"
-        >
-            <div class="page-header">
-                <h2 class="mb-3 line-head">Редактор статьи</h2>
-            </div>
+        <form class="tile blog-item-editor-form" action="{{ route('admin.blog.article.save.content', $blog) }}" method="post">
+            <h3 class="tile-title">Редактор статьи</h3>
 
             <div class="content-group">
                 <textarea id="textarea-editor" name="content">{{ $blog->content ?? '' }}</textarea>

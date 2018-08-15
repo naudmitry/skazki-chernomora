@@ -67,26 +67,35 @@
             </ul>
         </li>
 
-        <li>
-            <a
-                class="app-menu__item @if (Route::is('admin.settings.*')) active @endif"
-                href="{{ route('admin.settings.index') }}"
-            ><i class="app-menu__icon fas fa-cog"></i><span class="app-menu__label">Настройки</span></a>
-        </li>
-
-        <li class="treeview">
+        <li class="treeview @if (Route::is('admin.page.*')) is-expanded @endif">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon far fa-file-alt"></i>
                 <span class="app-menu__label">Страницы</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
+
             <ul class="treeview-menu">
                 <li>
-                    <a class="treeview-item" href="#">
-                        <i class="icon far fa-circle"></i>Контакты
-                    </a>
+                    <a
+                        class="treeview-item @if (Route::is('admin.page.category.*')) active @endif"
+                        href="{{ route('admin.page.category.index') }}"
+                    ><i class="icon far fa-circle"></i>Категории</a>
+                </li>
+
+                <li>
+                    <a
+                        class="treeview-item @if (Route::is('admin.page.list.*')) active @endif"
+                        href="{{ route('admin.page.list.index') }}"
+                    ><i class="icon far fa-circle"></i>Список</a>
                 </li>
             </ul>
+        </li>
+
+        <li>
+            <a
+                class="app-menu__item @if (Route::is('admin.settings.*')) active @endif"
+                href="{{ route('admin.settings.index') }}"
+            ><i class="app-menu__icon fas fa-cog"></i><span class="app-menu__label">Настройки</span></a>
         </li>
     </ul>
 </aside>

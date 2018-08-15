@@ -2,7 +2,7 @@
     <h3 class="tile-title">Настройки категории</h3>
 
     <div class="tile-body">
-        <form class="form-horizontal faq-category-settings-form" action="{{ route('admin.faq.category.save', $category ?? '') }}" method="post">
+        <form class="form-horizontal page-category-settings-form" action="{{ route('admin.page.category.save', $category) }}" method="post">
             {{ csrf_field() }}
 
             <div class="form-group row">
@@ -23,7 +23,7 @@
                 <label class="control-label col-md-4">Адрес категории:</label>
                 <div class="input-group col-md-8">
                     <input name="address" class="form-control" type="text" value="{{ $category->getSlug() }}">
-                    @if (isset($category->id))
+                    @if(isset($category->id))
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <a href="{{ $category->getShowcaseUrl() }}" target="_blank">

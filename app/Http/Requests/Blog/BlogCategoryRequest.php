@@ -26,9 +26,9 @@ class BlogCategoryRequest extends FormRequest
         return [
             'title' => 'required|string',
             'name' => 'required|string',
-            'meta_title' => '',
-            'meta_description' => '',
-            'meta_keywords' => '',
+            'meta_title' => 'string',
+            'meta_description' => 'string',
+            'meta_keywords' => 'string',
           ];
     }
 }

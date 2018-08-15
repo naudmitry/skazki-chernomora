@@ -188,10 +188,58 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
 
     // PAGE
 
-    Route::post('static-page/save/{page}',
+    Route::post('/static-page/save/{staticPage}',
         [
-            'uses' => 'Admin\PageController@save',
+            'uses' => 'Admin\PageController@saveStaticPage',
             'as' => 'admin.static.page.save',
         ])
-        ->where('page', '[0-9]+');
+        ->where('staticPage', '[0-9]+');
+
+    Route::get('/page/list',
+        [
+            'uses' => 'Admin\PageController@index',
+            'as' => 'admin.page.list.index',
+        ]);
+
+    // PAGE CATEGORIES
+
+    Route::get('/page/categories',
+        [
+            'uses' => 'Admin\PageCategoryController@index',
+            'as' => 'admin.page.category.index',
+        ]);
+    Route::get('/page/categories/create',
+        [
+            'uses' => 'Admin\PageCategoryController@create',
+            'as' => 'admin.page.category.create',
+        ]);
+    Route::post('/page/categories/sequence',
+        [
+            'uses' => 'Admin\PageCategoryController@sequence',
+            'as' => 'admin.page.category.sequence',
+        ]);
+    Route::post('/page/categories/{category}/enable',
+        [
+            'uses' => 'Admin\PageCategoryController@enable',
+            'as' => 'admin.page.category.enable',
+        ])
+        ->where('category', '[0-9]+');
+    Route::get('/page/categories/{category}/edit',
+        [
+            'uses' => 'Admin\PageCategoryController@edit',
+            'as' => 'admin.page.category.edit',
+        ])
+        ->where('category', '[0-9]+');
+    Route::delete('/page/categories/{category}',
+        [
+            'uses' => 'Admin\PageCategoryController@delete',
+            'as' => 'admin.page.category.delete',
+        ])
+        ->where('category', '[0-9]+');
+    Route::post('/page/categories/save/{category?}',
+        [
+            'uses' => 'Admin\PageCategoryController@save',
+            'as' => 'admin.page.category.save',
+        ])
+        ->where('category', '[0-9]+');
 });

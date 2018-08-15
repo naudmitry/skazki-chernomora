@@ -17,84 +17,67 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="bs-component">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#generalSettings">Общие настройки</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#seo">Настройки SEO</a>
-                                </li>
-                            </ul>
-
-                            <form
-                                    class="tab-content faq-item-form"
-                                    action="{{ route('admin.faq.question.save', $faq ?? '') }}"
-                                    method="post"
-                            >
-                                <div class="tab-pane fade active show" id="generalSettings" style="margin-top: 20px;">
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3" for="categories">Категории:</label>
-                                        <div class="col-md-9">
-                                            <select class="form-control select2" multiple name="categories[]">
-                                                @foreach ($categories as $category)
-                                                    <option
-                                                            @if ($faq->categories->whereIn('id', $category->id)->count()) selected @endif
-                                                            value="{{ $category->id }}"
-                                                    >{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3" for="title">Имя для списка:</label>
-                                        <div class="col-md-9">
-                                            <input class="form-control" id="title" name="title" value="{{ $faq->title ?? '' }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">Адрес категории:</label>
-                                        <div class="col-md-9">
-                                            <input name="address" class="form-control" type="text" value="{{ $faq->getSlug() }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3" for="name">Вопрос:</label>
-                                        <div class="col-md-9">
-                                            <input class="form-control" id="name" name="name" value="{{ $faq->name ?? '' }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3" for="name">Ответ:</label>
-                                        <div class="col-md-9">
-                                            <textarea name="answer" rows="4" cols="5" class="form-control" required="required">{{ $faq->answer ?? '' }}</textarea>
-                                        </div>
+                            <form class="tab-content faq-item-form" action="{{ route('admin.faq.question.save', $faq ?? '') }}" method="post">
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3" for="categories">Категории:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control select2" multiple name="categories[]">
+                                            @foreach ($categories as $category)
+                                                <option
+                                                        @if ($faq->categories->whereIn('id', $category->id)->count()) selected @endif
+                                                        value="{{ $category->id }}"
+                                                >{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="seo" style="margin-top: 20px;">
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>
-                                        <div class="col-md-9">
-                                            <input class="form-control" id="metaTitle" name="meta_title" value="{{ $faq->meta_title ?? '' }}">
-                                        </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3" for="title">Имя для списка:</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" id="title" name="title" value="{{ $faq->title ?? '' }}">
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3" for="metaDescription">Метатег DESCRIPTION:</label>
-                                        <div class="col-md-9">
-                                            <input class="form-control" id="metaDescription" name="meta_description" value="{{ $faq->meta_description ?? '' }}">
-                                        </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">Адрес категории:</label>
+                                    <div class="col-md-9">
+                                        <input name="address" class="form-control" type="text" value="{{ $faq->getSlug() }}">
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3" for="metaKeywords">Метатег KEYWORDS:</label>
-                                        <div class="col-md-9">
-                                            <input class="form-control" id="metaKeywords" name="meta_keywords" value="{{ $faq->meta_keywords ?? '' }}">
-                                        </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3" for="name">Вопрос:</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" id="name" name="name" value="{{ $faq->name ?? '' }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3" for="name">Ответ:</label>
+                                    <div class="col-md-9">
+                                        <textarea name="answer" rows="4" cols="5" class="form-control" required="required">{{ $faq->answer ?? '' }}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" id="metaTitle" name="meta_title" value="{{ $faq->meta_title ?? '' }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3" for="metaDescription">Метатег DESCRIPTION:</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" id="metaDescription" name="meta_description" value="{{ $faq->meta_description ?? '' }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3" for="metaKeywords">Метатег KEYWORDS:</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" id="metaKeywords" name="meta_keywords" value="{{ $faq->meta_keywords ?? '' }}">
                                     </div>
                                 </div>
 

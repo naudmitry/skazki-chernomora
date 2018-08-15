@@ -109,7 +109,11 @@ class BlogCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.categories.includes.settings');
+        $category = new BlogCategory();
+
+        return view('admin.blog.categories.includes.settings', compact([
+            'category'
+        ]));
     }
 
     /**

@@ -7,6 +7,8 @@
         'page' => 'Категории'
     ])
 
+    @include('admin.faq.categories.includes.page_settings')
+
     <div class="row">
         <div class="col-md-6 faq-categories">
             <div class="tile">

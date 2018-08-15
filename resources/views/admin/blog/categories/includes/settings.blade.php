@@ -1,11 +1,10 @@
 <div class="tile">
-    <h3 class="tile-title">Категория</h3>
+    <h3 class="tile-title">Настройки категории</h3>
+
     <div class="tile-body">
-        <form
-                class="form-horizontal blog-category-settings-form"
-                action="{{ route('admin.blog.category.save', $category ?? '') }}"
-                method="post"
-        >
+        <form class="form-horizontal blog-category-settings-form" action="{{ route('admin.blog.category.save', $category) }}" method="post">
+            {{ csrf_field() }}
+
             <div class="form-group row">
                 <label class="control-label col-md-4">Название для списка:</label>
                 <div class="col-md-8">
@@ -24,13 +23,15 @@
                 <label class="control-label col-md-4">Адрес категории:</label>
                 <div class="input-group col-md-8">
                     <input name="address" class="form-control" type="text" value="{{ $category->getSlug() }}">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            <a href="{{ $category->getShowcaseUrl() }}" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </span>
-                    </div>
+                    @if (isset($category->id))
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <a href="{{ $category->getShowcaseUrl() }}" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </span>
+                        </div>
+                    @endif
                 </div>
             </div>
 

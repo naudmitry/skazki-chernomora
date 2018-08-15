@@ -1,7 +1,7 @@
 <div class="row page-settings">
     <div class="col-md-12">
         <div class="tile">
-            <h3 class="tile-title">Настройки страницы блога</h3>
+            <h3 class="tile-title">Настройки страницы FAQ</h3>
 
             <div class="row">
                 <div class="col-md-8">

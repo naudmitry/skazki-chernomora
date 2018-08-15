@@ -50,18 +50,18 @@ class Page extends Model implements SlugableInterface
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function author()
     {
-        return $this->belongsTo(Admin::class);
+        return $this->hasOne(Admin::class, 'id', 'author_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function updater()
     {
-        return $this->belongsTo(Admin::class);
+        return $this->hasOne(Admin::class, 'id', 'updater_id');
     }
 }

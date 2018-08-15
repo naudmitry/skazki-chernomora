@@ -1,16 +1,16 @@
 $(function () {
-    let $faqCategories = $('.faq-categories');
+    let $pageCategories = $('.page-categories');
 
-    if (!$faqCategories.length) {
+    if (!$pageCategories.length) {
         return;
     }
 
-    let $faqCategorySettingsContainer = $('.faq-category-settings-container');
-    let faqCategorySettingsLoadingTemplate = $('.faq-category-settings-loading-template').text();
-    let $faqCategoriesList = $('.faq-categories-list');
+    let $pageCategorySettingsContainer = $('.page-category-settings-container');
+    let pageCategorySettingsLoadingTemplate = $('.page-category-settings-loading-template').text();
+    let $pageCategoriesList = $('.page-categories-list');
     let isChange = false;
 
-    $(document).on('click', '.faq-category-settings-open', function (e) {
+    $(document).on('click', '.page-category-settings-open', function (e) {
         e.preventDefault();
         let $this = $(this);
 
@@ -37,31 +37,31 @@ $(function () {
     });
 
     function edit(href) {
-        if ($faqCategorySettingsContainer.data('ajax')) {
-            $faqCategorySettingsContainer.data('ajax').abort();
+        if ($pageCategorySettingsContainer.data('ajax')) {
+            $pageCategorySettingsContainer.data('ajax').abort();
         }
-        $faqCategorySettingsContainer.html(faqCategorySettingsLoadingTemplate);
-        $faqCategorySettingsContainer.data('ajax', $.ajax({
+        $pageCategorySettingsContainer.html(pageCategorySettingsLoadingTemplate);
+        $pageCategorySettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: response => {
-                $faqCategorySettingsContainer.html(response);
+                $pageCategorySettingsContainer.html(response);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
                     return;
                 }
                 console.error(xhr);
-                $faqCategorySettingsContainer.empty();
+                $pageCategorySettingsContainer.empty();
             },
             complete: () => {
-                $faqCategorySettingsContainer.removeData('ajax');
+                $pageCategorySettingsContainer.removeData('ajax');
             },
         }));
     }
 
-    $(document).on('submit', '.faq-category-settings-form', function (e) {
+    $(document).on('submit', '.page-category-settings-form', function (e) {
         e.preventDefault();
         let $form = $(this);
         if ($form.data('ajax')) {
@@ -73,15 +73,15 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                let $faqCategoriesListItem =
-                    $faqCategoriesList.find('.faq-categories-list-item[data-faq-category-id="' + response.category.id + '"]');
-                if ($faqCategoriesListItem.length) {
-                    $faqCategoriesListItem.replaceWith(response.row);
+                let $pageCategoriesListItem =
+                    $pageCategoriesList.find('.page-categories-list-item[data-page-category-id="' + response.category.id + '"]');
+                if ($pageCategoriesListItem.length) {
+                    $pageCategoriesListItem.replaceWith(response.row);
                 }
                 else {
-                    $faqCategoriesList.append(response.row);
+                    $pageCategoriesList.append(response.row);
                 }
-                $faqCategorySettingsContainer.html(response.settings);
+                $pageCategorySettingsContainer.html(response.settings);
 
                 $.notify({
                     title: "Успех!",
@@ -117,10 +117,9 @@ $(function () {
         }));
     });
 
-    $(document).on('click', '.faq-category-delete', function (e) {
+    $(document).on('click', '.page-category-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
-
         swal({
             title: "Подтвердите удаление",
             text: "Вы действительно хотите удалить категорию?",
@@ -133,10 +132,10 @@ $(function () {
                     type: 'delete',
                     url: $this.attr('href'),
                     success: response => {
-                        let $faqCategoriesListItem =
-                            $faqCategoriesList.find('.faq-categories-list-item[data-faq-category-id="' + response.category.id + '"]');
-                        $faqCategorySettingsContainer.empty();
-                        $faqCategoriesListItem.remove();
+                        let $pageCategoriesListItem =
+                            $pageCategoriesList.find('.page-categories-list-item[data-page-category-id="' + response.category.id + '"]');
+                        $pageCategorySettingsContainer.empty();
+                        $pageCategoriesListItem.remove();
                         isChange = false;
 
                         $.notify({
@@ -163,11 +162,11 @@ $(function () {
         });
     });
 
-    $(document).on('change keyup', '.faq-category-settings-form', function (e) {
+    $(document).on('change keyup', '.page-category-settings-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         isChange = true;
-        if (!$input.is('input,select')) {
+        if (!$input.is('input,select,textarea')) {
             return;
         }
         if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
@@ -182,7 +181,7 @@ $(function () {
     let dragula = require('dragula');
 
     dragula([document.getElementById('container')], {
-        mirrorContainer: document.querySelector('.faq-categories-list'),
+        mirrorContainer: document.querySelector('.page-categories-list'),
         moves: function (el, container, handle) {
             return handle.classList.contains('dragula-handle');
         }
@@ -190,7 +189,7 @@ $(function () {
         let categories = [];
 
         $('#container > div').each(function (index, el) {
-            categories.push($(el).data('faq-category-id'))
+            categories.push($(el).data('page-category-id'))
         });
 
         $.ajax({
@@ -237,64 +236,5 @@ $(function () {
                 console.log(data);
             }
         });
-    });
-
-    $(document).on('submit', '.page-settings-form', function (e) {
-        e.preventDefault();
-        let $form = $(this);
-        if ($form.data('ajax')) {
-            return;
-        }
-        $form.find('.is-invalid').removeClass('is-invalid');
-        $form.data('ajax', $.ajax({
-            type: $form.attr('method'),
-            url: $form.attr('action'),
-            data: $form.serialize(),
-            success: response => {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
-            },
-            error: xhr => {
-                if ('object' === typeof xhr.responseJSON) {
-                    for (let key in xhr.responseJSON['errors']) {
-                        $form.find('[name="' + key + '"]').addClass('is-invalid');
-                    }
-                    return;
-                }
-                console.error(xhr);
-            },
-            complete: () => {
-                $form.removeData('ajax');
-                $form.find('[type=submit]')
-                    .removeClass('btn-primary')
-                    .addClass('btn-default')
-                    .prop('disabled', true);
-            },
-        }));
-    });
-
-    $(document).on('input change keyup', '.page-settings-form', function (e) {
-        let $form = $(this);
-        let $input = $(e.target);
-        if (!$input.is('input,select,textarea')) {
-            return;
-        }
-        if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
-            return;
-        }
-        $form.find('.is-invalid').removeClass('is-invalid');
-        $form.find('[type=submit]')
-            .removeClass('btn-default')
-            .addClass('btn-primary')
-            .prop('disabled', false);
     });
 });

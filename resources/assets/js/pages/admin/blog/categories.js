@@ -120,7 +120,6 @@ $(function () {
     $(document).on('click', '.blog-category-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
-
         swal({
             title: "Подтвердите удаление",
             text: "Вы действительно хотите удалить категорию?",
@@ -256,18 +255,28 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.has-error').removeClass('has-error');
+        $form.find('.is-invalid').removeClass('is-invalid');
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                notifyService.showMessage(response.error ? 'error' : 'alert', 'topRight', response.message);
+                $.notify({
+                    title: "Успех!",
+                    message: response.message,
+                    icon: 'fa fa-check'
+                }, {
+                    type: "info",
+                    placement: {
+                        from: "top",
+                        align: "right",
+                    },
+                });
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
-                    for (let key in xhr.responseJSON) {
-                        $form.find('[name="' + key + '"]').closest('.form-group').addClass('has-error');
+                    for (let key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
                     }
                     return;
                 }
@@ -275,14 +284,10 @@ $(function () {
             },
             complete: () => {
                 $form.removeData('ajax');
-
                 $form.find('[type=submit]')
                     .removeClass('btn-primary')
-                    .addClass('btn-default');
-
-                setTimeout(function () {
-                    $form.find('[type=submit]').attr('disabled', 'disabled'); // Disables the button correctly.
-                }, 0);
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });
@@ -290,16 +295,13 @@ $(function () {
     $(document).on('input change keyup', '.page-settings-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
-
         if (!$input.is('input,select,textarea')) {
             return;
         }
-
         if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
             return;
         }
-
-        $form.find('.has-error').removeClass('has-error');
+        $form.find('.is-invalid').removeClass('is-invalid');
         $form.find('[type=submit]')
             .removeClass('btn-default')
             .addClass('btn-primary')
