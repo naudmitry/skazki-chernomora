@@ -11,4 +11,5 @@ npm run dev
 ```
 sweetalert: https://github.com/t4t5/sweetalert
 dragula: https://www.npmjs.com/package/dragula
+slug: https://github.com/dodo/node-slug
 ```

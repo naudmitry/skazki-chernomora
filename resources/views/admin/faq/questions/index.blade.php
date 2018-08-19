@@ -11,6 +11,16 @@
         <div class="col-md-12 faq-questions">
             <div class="tile">
                 <div class="tile-body">
+                    <div class="row">
+                        <div class="form-group col-md-4 align-self-end">
+                            <button data-href="{{ route('admin.faq.question.create') }}" class="btn btn-primary open-create-form" type="button">
+                                <i class="fas fa-plus-circle"></i> Добавить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-body">
                     <table
                             class="table table-hover table-bordered" style="width: 100%"
                             id="faqQuestionsTable"

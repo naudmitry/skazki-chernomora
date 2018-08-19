@@ -1,3 +1,5 @@
+import slug from "slug";
+
 $(function () {
     let $blogCategories = $('.blog-categories');
 
@@ -67,7 +69,7 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
+        $blogCategorySettingsContainer.html(blogCategorySettingsLoadingTemplate);
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -187,11 +189,9 @@ $(function () {
         }
     }).on('dragend', function (el) {
         let categories = [];
-
         $('#container > div').each(function (index, el) {
             categories.push($(el).data('blog-category-id'))
         });
-
         $.ajax({
             method: 'POST',
             url: backendPageConfig.saveCategorySequence,
@@ -255,12 +255,13 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
+        $pageSettings.html(blogCategorySettingsLoadingTemplate);
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
+                $pageSettings.html(response.settings);
                 $.notify({
                     title: "Успех!",
                     message: response.message,
@@ -306,5 +307,19 @@ $(function () {
             .removeClass('btn-default')
             .addClass('btn-primary')
             .prop('disabled', false);
+    });
+
+    $(document).on('change keyup', '.page-settings-form input[id=name]', function () {
+        let title = $('#name').val();
+        $pageSettings.find('#address').val(slug(title).toLowerCase());
+        $pageSettings.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $pageSettings.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
+    });
+
+    $(document).on('change keyup', '.blog-category-settings-form input[id=name]', function () {
+        let title = $blogCategorySettingsContainer.find('#name').val();
+        $blogCategorySettingsContainer.find('#address').val(slug(title).toLowerCase());
+        $blogCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $blogCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
 });

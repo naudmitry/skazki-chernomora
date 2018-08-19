@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->string('title')->index();
             $table->string('name');
             $table->boolean('enable')->default(false);
-            $table->longText('content');
+            $table->longText('content')->nullable();
             $table->integer('view_count')->unsigned()->default(0);
             $table->string('meta_title');
             $table->string('meta_description');

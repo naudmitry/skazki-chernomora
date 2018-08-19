@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Classes\StaticPageTypesEnum;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Repositories\PageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class BlogController extends Controller
 {
+    protected $pagesRepository;
+
+    /**
+     * BlogController constructor.
+     * @param PageRepository $pagesRepository
+     */
+    public function __construct(PageRepository $pagesRepository)
+    {
+        $this->pagesRepository = $pagesRepository;
+
+        parent::__construct();
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -31,8 +46,11 @@ class BlogController extends Controller
 
         $blogs = $blogs->paginate(3);
 
+        $staticPage = $this->pagesRepository->getStaticPage(StaticPageTypesEnum::BLOG_PAGE);
+        $staticPage->incrementViewsCount();
+
         return view('site.blog.index', compact([
-            'categories', 'blogs'
+            'categories', 'blogs', 'staticPage'
         ]));
     }
 
@@ -53,6 +71,8 @@ class BlogController extends Controller
             ->where('enable', true)
             ->orderBy('position')
             ->get();
+
+        $blog->incrementViewsCount();
 
         return view('site.blog.single.index', compact([
             'blog', 'categories', 'currentCategory'

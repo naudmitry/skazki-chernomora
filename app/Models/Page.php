@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $author_id
  * @property integer $updater_id
  * @property integer $category_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\PageCategory $category
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
@@ -39,6 +41,12 @@ class Page extends Model implements SlugableInterface
             'category',
             'author',
             'updater',
+        ];
+
+    protected $appends =
+        [
+            'formatCreatedAt',
+            'formatUpdatedAt'
         ];
 
     /**
@@ -63,5 +71,29 @@ class Page extends Model implements SlugableInterface
     public function updater()
     {
         return $this->hasOne(Admin::class, 'id', 'updater_id');
+    }
+
+    /**
+     * @param int $value
+     */
+    public function incrementViewsCount($value = 1)
+    {
+        self::where('id', $this->id)->increment('view_count', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y H:i');
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatUpdatedAtAttribute()
+    {
+        return $this->updated_at->format('d/m/Y H:i');
     }
 }

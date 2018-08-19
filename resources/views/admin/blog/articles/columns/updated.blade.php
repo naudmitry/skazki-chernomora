@@ -1,3 +1,3 @@
 <span class="text-semibold">
-    @{{blog.updated_at}}
+    @{{blog.formatUpdatedAt}}
 </span>

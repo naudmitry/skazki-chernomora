@@ -1,3 +1,3 @@
 <span class="text-semibold">
-    @{{faq.updated_at}}
+    @{{faq.formatUpdatedAt}}
 </span>

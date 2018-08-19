@@ -1,5 +1,22 @@
 @extends('site.layouts.master')
 
+@section('header__meta')
+    <meta name="description" content="{{ $staticPage->meta_description ?? '' }}"/>
+    <meta name="keywords" content="{{ $staticPage->meta_keywords ?? '' }}"/>
+    <title>{{ $staticPage->meta_title ?: 'Новости' }} {{ ($blogs->currentPage() > 1) ? 'Страница' . $blogs->currentPage() : ''  }}</title>
+
+    <link rel="page" data="{{ $blogs->currentPage() }}">
+
+    @if ($blogs->hasPages())
+        @if (!$blogs->onFirstPage())
+            <link rel="prev" href="{{ $blogs->previousPageUrl() }}">
+        @endif
+        @if ($blogs->hasMorePages())
+            <link rel="next" href="{{ $blogs->nextPageUrl() }}">
+        @endif
+    @endif
+@endsection
+
 @section('content')
     @include('site.vendor.pageHeader', [
         'page' => 'Новости',

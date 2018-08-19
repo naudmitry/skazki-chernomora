@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Classes\PageTypesEnum;
+use App\Models\Admin;
 use App\Models\Page;
 use App\Models\PageCategory;
 use Illuminate\Support\Facades\Auth;
@@ -80,11 +81,14 @@ class PageRepository
             ->first();
 
         if (!isset($page)) {
+            /** @var Admin $admin */
+            $admin = Auth::guard('admin')->user();
+
             $page = new Page();
             $page->static_page_type = $pageType;
             $page->type = PageTypesEnum::STATIC_PAGE;
-            $page->author_id = Auth::guard('admin')->user()->id;
-            $page->updater_id = Auth::guard('admin')->user()->id;
+            $page->author_id = $admin->id;
+            $page->updater_id = $admin->id;
             $page->save();
         }
 
@@ -97,6 +101,9 @@ class PageRepository
      */
     public function updateStaticPage(Page $staticPage, array $data)
     {
+        /** @var Admin $admin */
+        $admin = Auth::guard('admin')->user();
+
         $fields =
             [
                 'name',
@@ -111,6 +118,7 @@ class PageRepository
             }
         }
 
+        $staticPage->updater_id = $admin->id;
         $staticPage->update();
     }
 }

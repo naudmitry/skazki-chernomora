@@ -1,3 +1,5 @@
+import slug from "slug";
+
 $(function () {
     let $pageCategories = $('.page-categories');
 
@@ -67,7 +69,7 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
+        $pageCategorySettingsContainer.html(pageCategorySettingsLoadingTemplate);
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -236,5 +238,12 @@ $(function () {
                 console.log(data);
             }
         });
+    });
+
+    $(document).on('change keyup', '.page-category-settings-form input[id=name]', function () {
+        let title = $pageCategorySettingsContainer.find('#name').val();
+        $pageCategorySettingsContainer.find('#address').val(slug(title).toLowerCase());
+        $pageCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $pageCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
 });

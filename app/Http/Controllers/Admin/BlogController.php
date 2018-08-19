@@ -92,18 +92,31 @@ class BlogController extends Controller
     /**
      * @param BlogRequest $request
      * @param Blog|null $blog
+     * @param bool $isNew
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
-    public function save(BlogRequest $request, Blog $blog = null)
+    public function save(BlogRequest $request, Blog $blog = null, $isNew = false)
     {
-        \DB::transaction(function () use (&$blog, $request)
-        {
-            $this->blogRepository->saveBlog($blog, $request->all());
+        if (!isset($blog)) {
+            $isNew = true;
+        }
+
+        \DB::transaction(function () use (&$blog, $request) {
+            $blog = $this->blogRepository->saveBlog($blog, $request->all());
             $this->slugRepository->updateSlug($blog, $request['address']);
         });
 
+        $categories = BlogCategory::all();
+
+        $settings = $isNew ? null : $settings = view('admin.blog.articles.item.settings', compact(
+            'blog', 'categories'
+        ))->render();
+
         return response()->json([
             'message' => 'Статья успешно сохранена.',
+            'redirectUrl' => $isNew ? route('admin.blog.article.edit', $blog) : null,
+            'settings' => $settings,
         ]);
     }
 
@@ -120,5 +133,17 @@ class BlogController extends Controller
         return response()->json([
             'message' => 'Статья успешно сохранена.',
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        $categories = BlogCategory::all();
+
+        return view('admin.blog.articles.item.create', compact(
+            'categories'
+        ));
     }
 }

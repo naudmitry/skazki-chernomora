@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $meta_keywords
  * @property integer $author_id
  * @property integer $updater_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\BlogCategory $categories
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
@@ -36,6 +38,12 @@ class Blog extends Model implements SlugableInterface
             'categories',
             'author',
             'updater',
+        ];
+
+    protected $appends =
+        [
+            'formatCreatedAt',
+            'formatUpdatedAt'
         ];
 
     /**
@@ -87,7 +95,22 @@ class Blog extends Model implements SlugableInterface
      */
     public function incrementViewsCount($value = 1)
     {
-        $this->increment('view_count', $value);
         self::where('id', $this->id)->increment('view_count', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y H:i');
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatUpdatedAtAttribute()
+    {
+        return $this->updated_at->format('d/m/Y H:i');
     }
 }

@@ -16,12 +16,11 @@ class PagesSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         $categories = PageCategory::all();
+        $admins = Admin::all();
 
         /** @var PageCategory $category */
         foreach ($categories as $category) {
             for ($i = 0; $i < 5; $i++) {
-                $admins = Admin::all();
-
                 /** @var Page $page */
                 $page = Page::create([
                     'title' => $faker->word(),
@@ -33,11 +32,9 @@ class PagesSeeder extends Seeder
                     'meta_description' => $faker->text(15),
                     'meta_keywords' => $faker->text(15),
                     'category_id' => $category->id,
+                    'author_id' => $admins->random()->id,
+                    'updater_id' => $admins->random()->id,
                 ]);
-
-                $page->author()->associate($admins->random());
-                $page->updater()->associate($admins->random());
-                $page->update();
             }
         }
     }

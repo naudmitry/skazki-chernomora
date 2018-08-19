@@ -1,3 +1,5 @@
+import slug from "slug";
+
 $(function () {
     let $faqCategories = $('.faq-categories');
 
@@ -67,7 +69,7 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
+        $faqCategorySettingsContainer.html(faqCategorySettingsLoadingTemplate);
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -239,18 +241,21 @@ $(function () {
         });
     });
 
+    let $pageSettings = $('.page-settings');
+
     $(document).on('submit', '.page-settings-form', function (e) {
         e.preventDefault();
         let $form = $(this);
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
+        $pageSettings.html(faqCategorySettingsLoadingTemplate);
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
+                $pageSettings.html(response.settings);
                 $.notify({
                     title: "Успех!",
                     message: response.message,
@@ -296,5 +301,19 @@ $(function () {
             .removeClass('btn-default')
             .addClass('btn-primary')
             .prop('disabled', false);
+    });
+
+    $(document).on('change keyup', '.page-settings-form input[id=name]', function () {
+        let title = $('#name').val();
+        $pageSettings.find('#address').val(slug(title).toLowerCase());
+        $pageSettings.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $pageSettings.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
+    });
+
+    $(document).on('change keyup', '.faq-category-settings-form input[id=name]', function () {
+        let title = $faqCategorySettingsContainer.find('#name').val();
+        $faqCategorySettingsContainer.find('#address').val(slug(title).toLowerCase());
+        $faqCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $faqCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
 });

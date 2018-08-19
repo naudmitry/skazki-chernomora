@@ -1,23 +1,24 @@
 $(function () {
-    let $faqQuestions = $('.faq-questions');
+    let $pageLists = $('.page-lists');
 
-    if (!$faqQuestions.length) {
+    if (!$pageLists.length) {
         return;
     }
 
-    let $faqQuestionsTable = $('#faqQuestionsTable');
-    let mustacheTemplateFaqQuestionsTableColumnCreated = $('.template-faq-questions-table-column-created').text();
-    let mustacheTemplateFaqQuestionsTableColumnTitle = $('.template-faq-questions-table-column-title').text();
-    let mustacheTemplateFaqQuestionsTableColumnCategories = $('.template-faq-questions-table-column-categories').text();
-    let mustacheTemplateFaqQuestionsTableColumnPublished = $('.template-faq-questions-table-column-published').text();
-    let mustacheTemplateFaqQuestionsTableColumnAuthor = $('.template-faq-questions-table-column-author').text();
-    let mustacheTemplateFaqQuestionsTableColumnUpdated = $('.template-faq-questions-table-column-updated').text();
-    let mustacheTemplateFaqQuestionsTableColumnUpdater = $('.template-faq-questions-table-column-updater').text();
-    let mustacheTemplateFaqQuestionsTableColumnViewed = $('.template-faq-questions-table-column-viewed').text();
-    let mustacheTemplateFaqQuestionsTableColumnActions = $('.template-faq-questions-table-column-actions').text();
+    let $pageListsTable = $('#pageListsTable');
+    let mustacheTemplatePageListsTableColumnCreated = $('.template-page-lists-table-column-created').text();
+    let mustacheTemplatePageListsTableColumnTitle = $('.template-page-lists-table-column-title').text();
+    let mustacheTemplatePageListsTableColumnCategory = $('.template-page-lists-table-column-category').text();
+    let mustacheTemplatePageListsTableColumnPublished = $('.template-page-lists-table-column-published').text();
+    let mustacheTemplatePageListsTableColumnAuthor = $('.template-page-lists-table-column-author').text();
+    let mustacheTemplatePageListsTableColumnUpdated = $('.template-page-lists-table-column-updated').text();
+    let mustacheTemplatePageListsTableColumnUpdater = $('.template-page-lists-table-column-updater').text();
+    let mustacheTemplatePageListsTableColumnViewed = $('.template-page-lists-table-column-viewed').text();
+    let mustacheTemplatePageListsTableColumnActions = $('.template-page-lists-table-column-actions').text();
 
-    $faqQuestionsTable.DataTable({
-        "scrollX": true,
+    $pageListsTable.DataTable({
+        scrollX: true,
+        scrollCollapse: true,
         language: {
             processing: "Подождите...",
             search: "Поиск:",
@@ -38,7 +39,7 @@ $(function () {
         },
         ajax:
             {
-                url: $faqQuestionsTable.data('href'),
+                url: $pageListsTable.data('href'),
                 // data: function (data) {
                 //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
                 //         data[filter.name] = filter.value;
@@ -49,49 +50,49 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnCreated, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnCreated, {page}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnTitle, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnTitle, {page}),
             },
             {
                 targets: 2,
                 sortable: false,
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnCategories, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnCategory, {page}),
             },
             {
                 targets: 3,
                 data: 'enable',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnPublished, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnPublished, {page}),
             },
             {
                 targets: 4,
                 data: 'author_id',
                 sortable: false,
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnAuthor, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnAuthor, {page}),
             },
             {
                 targets: 5,
                 data: 'updated_at',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdated, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnUpdated, {page}),
             },
             {
                 targets: 6,
                 data: 'updater_id',
                 sortable: false,
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdater, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnUpdater, {page}),
             },
             {
                 targets: 7,
                 data: 'view_count',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnViewed, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnViewed, {page}),
             },
             {
                 targets: 8,
                 orderable: false,
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnActions, {faq}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnActions, {page}),
             },
         ],
         lengthMenu: [15, 25, 50, 75, 100],
@@ -121,13 +122,13 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.faq-question-delete', function (e) {
+    $(document).on('click', '.page-article-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить вопрос?",
+            text: "Вы действительно хотите удалить статью?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -149,19 +150,20 @@ $(function () {
                             },
                         });
 
-                        $faqQuestionsTable.DataTable().ajax.reload();
+                        $pageListsTable.DataTable().ajax.reload();
                     },
                     error: xhr => {
                         console.error(xhr);
                     },
                 });
 
-                swal("Удаление подтверждено!", "Вопрос будет удален.", "success");
+                swal("Удаление подтверждено!", "Статья будет удалена.", "success");
             } else {
-                swal("Удаление отменено!", "Вопрос не будет удален.", "error");
+                swal("Удаление отменено!", "Статья не будет удалена.", "error");
             }
         });
     });
+
 
     $('.open-create-form').bind('click', function () {
         location.href = $(this).data('href');

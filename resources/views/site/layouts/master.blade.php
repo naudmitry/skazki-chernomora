@@ -2,19 +2,17 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Medic | Medical HTML Template</title>
-
-    <!-- mobile responsive meta -->
+    {{--<title>Medic | Medical HTML Template</title>--}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- Slick Carousel -->
+    @yield('header__meta')
+
     <link href="{{ asset('css/slick.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/jquery.fancybox.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
 
-    <!--Favicon-->
     <link rel="shortcut icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
 

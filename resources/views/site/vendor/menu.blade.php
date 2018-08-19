@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="{{ (Route::is('front.blog.*') ? 'active' : '') }}">
-                    <a href="{{ route('front.blog.index') }}">Новости</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::BLOG_PAGE, []) }}">Новости</a>
                 </li>
 
                 <li class="{{ (Route::is('front.contact.*') ? 'active' : '') }}">

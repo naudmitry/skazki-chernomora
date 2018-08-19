@@ -28,6 +28,11 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'uses' => 'Admin\BlogController@index',
             'as' => 'admin.blog.article.index',
         ]);
+    Route::get('/blog/articles/create',
+        [
+            'uses' => 'Admin\BlogController@create',
+            'as' => 'admin.blog.article.create',
+        ]);
     Route::post('/blog/articles/save/{blog?}',
         [
             'uses' => 'Admin\BlogController@save',
@@ -152,6 +157,11 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'uses' => 'Admin\FaqController@index',
             'as' => 'admin.faq.question.index',
         ]);
+    Route::get('/faq/questions/create',
+        [
+            'uses' => 'Admin\FaqController@create',
+            'as' => 'admin.faq.question.create',
+        ]);
     Route::get('/faq/questions/edit/{faq}',
         [
             'uses' => 'Admin\FaqController@edit',
@@ -195,11 +205,34 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         ])
         ->where('staticPage', '[0-9]+');
 
-    Route::get('/page/list',
+    Route::get('/page/lists',
         [
             'uses' => 'Admin\PageController@index',
             'as' => 'admin.page.list.index',
         ]);
+    Route::get('/page/lists/create',
+        [
+            'uses' => 'Admin\PageController@create',
+            'as' => 'admin.page.list.create',
+        ]);
+    Route::get('/page/lists/edit/{page}',
+        [
+            'uses' => 'Admin\PageController@edit',
+            'as' => 'admin.page.list.edit',
+        ])
+        ->where('page', '[0-9]+');
+    Route::delete('/page/lists/{faq}',
+        [
+            'uses' => 'Admin\PageController@delete',
+            'as' => 'admin.page.list.delete',
+        ])
+        ->where('page', '[0-9]+');
+    Route::post('/page/lists/enable/{faq}',
+        [
+            'uses' => 'Admin\PageController@enable',
+            'as' => 'admin.page.list.enable',
+        ])
+        ->where('page', '[0-9]+');
 
     // PAGE CATEGORIES
 

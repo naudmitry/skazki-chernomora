@@ -1,9 +1,13 @@
+import slug from "slug";
+
 $(function () {
     let $faqItem = $('.faq-item');
 
     if (!$faqItem.length) {
         return;
     }
+
+    let faqItemSettingsLoadingTemplate = $('.faq-item-settings-loading-template').text();
 
     $faqItem.find('.select2').select2({
         width: '100%'
@@ -27,24 +31,33 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
+        if (!$faqItem.data('new')) {
+            $faqItem.html(faqItemSettingsLoadingTemplate);
+        }
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check',
-                    showProgressbar: true
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                if (response.redirectUrl) {
+                    window.location.href = response.redirectUrl;
+                }
+                else {
+                    $faqItem.html(response.settings);
+                    $faqItem.find('.select2').select2({width: '100%'});
+                    $.notify({
+                        title: "Успех!",
+                        message: response.message,
+                        icon: 'fa fa-check',
+                        showProgressbar: true
+                    }, {
+                        type: "info",
+                        placement: {
+                            from: "top",
+                            align: "right",
+                        },
+                    });
+                }
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
@@ -86,5 +99,12 @@ $(function () {
                 console.log(data);
             }
         });
+    });
+
+    $(document).on('change keyup', '.faq-item-form input[id=name]', function () {
+        let title = $faqItem.find('#name').val();
+        $faqItem.find('#address').val(slug(title).toLowerCase());
+        $faqItem.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $faqItem.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
 });

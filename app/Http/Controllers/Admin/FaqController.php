@@ -92,17 +92,43 @@ class FaqController extends Controller
     /**
      * @param FaqRequest $request
      * @param Faq|null $faq
+     * @param bool $isNew
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
-    public function save(FaqRequest $request, Faq $faq = null)
+    public function save(FaqRequest $request, Faq $faq = null, $isNew = false)
     {
+        if (!isset($faq)) {
+            $isNew = true;
+        }
+
         \DB::transaction(function () use (&$faq, $request) {
-            $this->faqRepository->saveFaq($faq, $request->all());
+            $faq = $this->faqRepository->saveFaq($faq, $request->all());
             $this->slugRepository->updateSlug($faq, $request['address']);
         });
 
+        $categories = FaqCategory::all();
+
+        $settings = $isNew ? null : $settings = view('admin.faq.questions.item.settings', compact(
+            'faq', 'categories'
+        ))->render();
+
         return response()->json([
             'message' => 'Вопрос успешно сохранен.',
+            'redirectUrl' => $isNew ? route('admin.faq.question.edit', $faq) : null,
+            'settings' => $settings,
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        $categories = FaqCategory::all();
+
+        return view('admin.faq.questions.item.create', compact(
+            'categories'
+        ));
     }
 }

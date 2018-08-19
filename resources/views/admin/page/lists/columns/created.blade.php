@@ -1,3 +1,3 @@
 <span class="text-semibold">
-    @{{blog.formatCreatedAt}}
+    @{{page.formatCreatedAt}}
 </span>
