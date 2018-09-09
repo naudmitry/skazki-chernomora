@@ -1,0 +1,3 @@
+<span>
+    @{{admin.name}}
+</span>

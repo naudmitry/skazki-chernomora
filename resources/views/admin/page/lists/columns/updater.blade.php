@@ -1,3 +1,1 @@
-<a href="#">
-    @{{page.updater.name}}
-</a>
+@{{page.updater.name}}

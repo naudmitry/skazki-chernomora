@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $content
  * @property boolean $enable
  * @property integer $view_count
+ * @property string $breadcrumbs
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keywords

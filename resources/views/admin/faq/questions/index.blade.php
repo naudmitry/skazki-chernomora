@@ -11,18 +11,43 @@
         <div class="col-md-12 faq-questions">
             <div class="tile">
                 <div class="tile-body">
-                    <div class="row">
-                        <div class="form-group col-md-4 align-self-end">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-6 col-lg-3">
                             <button data-href="{{ route('admin.faq.question.create') }}" class="btn btn-primary open-create-form" type="button">
                                 <i class="fas fa-plus-circle"></i> Добавить
                             </button>
                         </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="widget-small primary coloured-icon">
+                                <div class="circle-icon">
+                                    <i class="far fa-file-alt"></i>
+                                </div>
+                                <div class="info">
+                                    <p class="enable-faqs-count"><b>{{ array_get($counters, 'enable_faqs_count', 0) }}</b></p>
+                                    <p>вопросов онлайн</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="widget-small primary coloured-icon">
+                                <div class="circle-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="info">
+                                    <p class="view-count-total"><b>{{ array_get($counters, 'view_count_total', 0) }}</b></p>
+                                    <p>всего просмотров</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3" style="margin-top: 10px;">
+                            <input class="form-control form-control-sm search" placeholder="Введите и нажмите Enter..." />
+                        </div>
                     </div>
                 </div>
 
-                <div class="tile-body">
+                <div class="tile-body datatable-scroll-lg">
                     <table
-                            class="table table-hover table-bordered" style="width: 100%"
+                            class="table table-hover" style="width: 100%"
                             id="faqQuestionsTable"
                             data-href="{{ route('admin.faq.question.index') }}"
                     >

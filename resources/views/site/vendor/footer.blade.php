@@ -112,13 +112,13 @@
             </div>
             <ul class="footer-bottom-link">
                 <li>
-                    <a href="{{ route('front.index') }}">Главная</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, []) }}">Главная</a>
                 </li>
                 <li>
-                    <a href="{{ route('front.about.index') }}">О нас</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT, []) }}">О нас</a>
                 </li>
                 <li>
-                    <a href="{{ route('front.contact.index') }}">Контакты</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, []) }}">Контакты</a>
                 </li>
             </ul>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Classes\LinkTypesEnum;
 use App\Models\Admin;
 use App\Models\Blog;
 use App\Models\BlogCategory;
@@ -26,8 +27,11 @@ class BlogsSeeder extends Seeder
                     'title' => $faker->word(),
                     'name' => $faker->text(25),
                     'enable' => $faker->boolean(50),
+                    'link' => $faker->imageUrl(),
+                    'img_or_video' => LinkTypesEnum::IMAGE,
                     'content' => $faker->text(1000),
                     'view_count' => $faker->randomNumber(2),
+                    'breadcrumbs' => $faker->text(10),
                     'meta_title' => $faker->text(15),
                     'meta_description' => $faker->text(15),
                     'meta_keywords' => $faker->text(15),

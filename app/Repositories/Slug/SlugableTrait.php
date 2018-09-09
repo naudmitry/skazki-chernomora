@@ -34,7 +34,7 @@ trait SlugableTrait
 
         $options = count($extraOptions) ? array_merge([$slug], $extraOptions) : $slug;
 
-        return $slug ? route('slug.index', $options) : null;
+        return $slug ? route('slug.index', $options) : '/';
     }
 
     /**
@@ -42,7 +42,6 @@ trait SlugableTrait
      */
     public function getShowcaseUrl()
     {
-        return 'http://' .  env('DOMAIN_CLIENT') . '/' . $this->getSlug();
+        return 'http://' . env('DOMAIN_CLIENT') . '/' . $this->getSlug();
     }
-
 }

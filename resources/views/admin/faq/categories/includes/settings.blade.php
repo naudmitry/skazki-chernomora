@@ -36,6 +36,13 @@
             </div>
 
             <div class="form-group row">
+                <label class="control-label col-md-4">Навигационная цепочка:</label>
+                <div class="col-md-8">
+                    <input id="breadcrumbs" name="breadcrumbs" class="form-control" type="text" value="{{ $category->breadcrumbs ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="control-label col-md-4">Тег TITLE:</label>
                 <div class="col-md-8">
                     <input id="metaTitle" name="meta_title" class="form-control" type="text" value="{{ $category->meta_title ?? '' }}">

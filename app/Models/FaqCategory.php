@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property boolean $enable
  * @property integer $position
+ * @property string $breadcrumbs
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keywords
@@ -28,11 +29,24 @@ class FaqCategory extends Model implements SlugableInterface
     use SoftDeletes;
     use SlugableTrait;
 
+    protected $appends =
+        [
+            'countFaqs',
+        ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function faqs()
     {
         return $this->belongsToMany(Faq::class);
+    }
+
+    /**
+     * @return int
+     */
+    public function getCountFaqsAttribute()
+    {
+        return $this->faqs()->where('enable', true)->count();
     }
 }

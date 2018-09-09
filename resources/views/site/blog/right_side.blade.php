@@ -18,7 +18,7 @@
                         <a
                             href="{{ $category->getShowcaseUrl() }}"
                             @if (isset($currentCategory) && $category->id == $currentCategory->id) style="color: #48bdc5;" @endif
-                        >{{ $category->name }} <span>({{ $category->getCountBlogs() }})</span></a>
+                        >{{ $category->name }} <span>({{ $category->countBlogs }})</span></a>
                     </li>
                 @endforeach
             </ul>

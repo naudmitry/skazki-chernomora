@@ -24,6 +24,7 @@ class CreatePagesTable extends Migration
             $table->longText('content')->nullable();
             $table->boolean('enable')->index()->default(false);
             $table->integer('view_count')->default(0)->index();
+            $table->string('breadcrumbs')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();

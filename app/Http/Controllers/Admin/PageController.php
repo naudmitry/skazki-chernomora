@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes\PageTypesEnum;
+use App\Classes\StaticPageTypesEnum;
+use App\Http\Requests\PageRequest;
 use App\Models\Page;
 use App\Models\PageCategory;
 use App\Repositories\PageRepository;
@@ -39,12 +41,21 @@ class PageController extends Controller
             ->where('type', PageTypesEnum::CUSTOM_PAGE)
             ->get();
 
+        $counters =
+            [
+                'enable_pages_count' => (clone $pageQuery)->where('enable', true)->count(),
+                'view_count_total' => (clone $pageQuery)->sum('view_count'),
+            ];
+
         if ($request->ajax()) {
             return Datatables::of($pageQuery)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('admin.page.lists.index');
+        return view('admin.page.lists.index', compact(
+            'counters'
+        ));
     }
 
     /**
@@ -57,7 +68,9 @@ class PageController extends Controller
     {
         \DB::transaction(function () use (&$staticPage, $request) {
             $this->pageRepository->updateStaticPage($staticPage, $request->all());
-            $this->slugRepository->updateSlug($staticPage, $request['address']);
+            if ($staticPage->static_page_type != StaticPageTypesEnum::MAIN_PAGE) {
+                $this->slugRepository->updateSlug($staticPage, $request['address']);
+            }
         });
 
         $settings = view('admin.blog.categories.includes.page_settings', compact(
@@ -124,5 +137,72 @@ class PageController extends Controller
         return response()->json([
             'message' => 'Доступность страницы успешно изменена.',
         ]);
+    }
+
+    /**
+     * @param PageRequest $request
+     * @param Page|null $page
+     * @param bool $isNew
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function save(PageRequest $request, Page $page = null, $isNew = false)
+    {
+        if (!isset($page)) {
+            $isNew = true;
+        }
+
+        \DB::transaction(function () use (&$page, $request) {
+            $page = $this->pageRepository->savePage($page, $request->all());
+            $this->slugRepository->updateSlug($page, $request['address']);
+        });
+
+        $categories = PageCategory::all();
+
+        $settings = $isNew ? null : $settings = view('admin.page.lists.item.settings', compact(
+            'page', 'categories'
+        ))->render();
+
+        return response()->json([
+            'message' => 'Страница успешно сохранена.',
+            'redirectUrl' => $isNew ? route('admin.page.list.edit', $page) : null,
+            'settings' => $settings,
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function main()
+    {
+        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::MAIN_PAGE);
+
+        return view('admin.main.index', compact(
+            'staticPage'
+        ));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contacts()
+    {
+        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::CONTACTS_PAGE);
+
+        return view('admin.contacts.index', compact(
+            'staticPage'
+        ));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function about()
+    {
+        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::ABOUT);
+
+        return view('admin.about.index', compact(
+            'staticPage'
+        ));
     }
 }

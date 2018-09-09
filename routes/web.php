@@ -7,24 +7,6 @@ Route::group(['domain' => env('DOMAIN_CLIENT')], function () {
             'as' => 'front.index',
         ]);
 
-    Route::get('/blog',
-        [
-            'uses' => 'Site\BlogController@index',
-            'as' => 'front.blog.index',
-        ]);
-
-    Route::get('/contact',
-        [
-            'uses' => 'Site\IndexController@contact',
-            'as' => 'front.contact.index',
-        ]);
-
-    Route::get('/about',
-        [
-            'uses' => 'Site\IndexController@about',
-            'as' => 'front.about.index',
-        ]);
-
     Route::get('/service',
         [
             'uses' => 'Site\IndexController@service',

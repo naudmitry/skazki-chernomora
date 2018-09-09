@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $title
  * @property string $name
  * @property boolean $enable
+ * @property string $breadcrumbs
  * @property integer $position
  * @property string $meta_title
  * @property string $meta_description
@@ -28,6 +29,11 @@ class BlogCategory extends Model implements SlugableInterface
     use SoftDeletes;
     use SlugableTrait;
 
+    protected $appends =
+        [
+            'countBlogs',
+        ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -39,7 +45,7 @@ class BlogCategory extends Model implements SlugableInterface
     /**
      * @return int
      */
-    public function getCountBlogs()
+    public function getCountBlogsAttribute()
     {
         return $this->blogs()->where('enable', true)->count();
     }

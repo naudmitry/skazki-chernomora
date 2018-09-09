@@ -29,7 +29,7 @@ $(function () {
         width: '100%'
     });
 
-    $(document).on('change keyup', '.blog-item-form', function (e) {
+    $(document).on('change keyup', '.blog-item-form, .blog-item-editor-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         if (!$input.is('input,select')) {

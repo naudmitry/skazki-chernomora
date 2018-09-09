@@ -1,3 +1,1 @@
-<a href="#">
-    @{{faq.updater.name}}
-</a>
+@{{faq.updater.name}}

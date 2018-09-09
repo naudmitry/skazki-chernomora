@@ -26,15 +26,15 @@ class IndexController extends Controller
      */
     public function blog()
     {
-        return view('site/blog/index');
+        return view('site.blog.index');
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function contact()
+    public function contacts()
     {
-        return view('site/contact/index');
+        return view('site.contacts.index');
     }
 
     /**
@@ -42,7 +42,7 @@ class IndexController extends Controller
      */
     public function about()
     {
-        return view('site/about/index');
+        return view('site.about.index');
     }
 
     /**
@@ -50,7 +50,7 @@ class IndexController extends Controller
      */
     public function service()
     {
-        return view('site/service/index');
+        return view('site.service.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class IndexController extends Controller
      */
     public function gallery()
     {
-        return view('site/gallery/index');
+        return view('site.gallery.index');
     }
 
     /**
@@ -66,7 +66,7 @@ class IndexController extends Controller
      */
     public function team()
     {
-        return view('site/team/index');
+        return view('site.team.index');
     }
 
     /**
@@ -74,6 +74,6 @@ class IndexController extends Controller
      */
     public function appointment()
     {
-        return view('site/appointment/index');
+        return view('site.appointment.index');
     }
 }

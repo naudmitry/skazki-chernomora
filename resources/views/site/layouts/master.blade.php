@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    {{--<title>Medic | Medical HTML Template</title>--}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -12,6 +11,7 @@
     <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/jquery.fancybox.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
 
     <link rel="shortcut icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
@@ -33,7 +33,6 @@
 
     @include('site.vendor.footer')
 
-    <!--Scroll to top-->
     <div class="scroll-to-top scroll-to-target" data-target=".header-top">
         <span class="icon fa fa-angle-up"></span>
     </div>
@@ -41,7 +40,6 @@
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-    <!-- Slick Slider -->
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
     <!-- Google Map -->

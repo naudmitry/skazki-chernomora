@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean $favorite
  * @property string $answer
  * @property integer $view_count
+ * @property string $breadcrumbs
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keywords
@@ -93,5 +94,25 @@ class Faq extends Model implements SlugableInterface
     public function incrementViewsCount($value = 1)
     {
         self::where('id', $this->id)->increment('view_count', $value);
+    }
+
+    /**
+     * @param $text
+     * @param int $length
+     * @return null|string|string[]
+     */
+    function reduction($text, $length = 70)
+    {
+        if (mb_strlen($text, 'UTF-8') > $length) {
+            $substr = mb_substr($text, 0, $length, 'UTF-8');
+
+            $text = strpos($substr, ' ') !== false
+                ? preg_replace('~(\s)?(?(1)\S+$|\s$)~', '', $substr)
+                : strstr($text, ' ', true);
+
+            $text .= ' ... ';
+        }
+
+        return $text;
     }
 }

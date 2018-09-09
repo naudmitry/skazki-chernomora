@@ -1,5 +1,6 @@
 <?php
 
+use App\Classes\StaticPageTypesEnum;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Faq;
@@ -68,7 +69,7 @@ class SlugsSeeder extends Seeder
         /** @var Page $page */
         foreach ($pages as $page) {
             Slug::create([
-                'slug' => $faker->unique()->slug(),
+                'slug' => $page->static_page_type == StaticPageTypesEnum::MAIN_PAGE ? '' : $faker->unique()->slug(),
                 'entity_type' => Page::class,
                 'entity_id' => $page->id,
             ]);

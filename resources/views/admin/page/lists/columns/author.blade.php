@@ -1,3 +1,1 @@
-<a href="#">
-    @{{page.author.name}}
-</a>
+@{{page.author.name}}

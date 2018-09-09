@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PageCategoriesSeeder::class);
         $this->call(PagesSeeder::class);
+        $this->call(StaticPagesSeeder::class);
 
         $this->call(SlugsSeeder::class);
     }

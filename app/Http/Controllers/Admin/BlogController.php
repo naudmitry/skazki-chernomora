@@ -37,12 +37,21 @@ class BlogController extends Controller
     {
         $blogQuery = Blog::all();
 
+        $counters =
+            [
+                'enable_news_count' => (clone $blogQuery)->where('enable', true)->count(),
+                'view_count_total' => (clone $blogQuery)->sum('view_count'),
+            ];
+
         if ($request->ajax()) {
             return Datatables::of($blogQuery)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('admin.blog.articles.index');
+        return view('admin.blog.articles.index', compact(
+            'counters'
+        ));
     }
 
     /**
@@ -127,6 +136,7 @@ class BlogController extends Controller
      */
     public function saveContent(Request $request, Blog $blog)
     {
+        $blog->link = $request->get('link');
         $blog->content = $request->get('content');
         $blog->update();
 

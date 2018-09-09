@@ -21,6 +21,7 @@ class BlogRepository
 
         $category->title = array_get($data, 'title');
         $category->name = array_get($data, 'name');
+        $category->breadcrumbs = array_get($data, 'breadcrumbs');
         $category->meta_title = array_get($data, 'meta_title');
         $category->meta_description = array_get($data, 'meta_description');
         $category->meta_keywords = array_get($data, 'meta_keywords');
@@ -45,6 +46,7 @@ class BlogRepository
 
         $blog->title = array_get($data, 'title');
         $blog->name = array_get($data, 'name');
+        $blog->breadcrumbs = array_get($data, 'breadcrumbs');
         $blog->meta_title = array_get($data, 'meta_title');
         $blog->meta_description = array_get($data, 'meta_description');
         $blog->meta_keywords = array_get($data, 'meta_keywords');

@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/backend.css') }}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Login - Vali Admin</title>
+    <title>Вход</title>
 </head>
 <body>
 <section class="material-half-bg">
@@ -16,7 +16,7 @@
 </section>
 <section class="login-content">
     <div class="logo">
-        <h1>More Soli</h1>
+        <h1>Salt Cave</h1>
     </div>
     <div class="login-box">
         <form class="login-form" method="POST" action="{{ route('account.adminLoginPost') }}">

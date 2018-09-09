@@ -24,9 +24,12 @@ class CreateAdminsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->index();
             $table->string('password')->nullable();
+            $table->string('ip')->nullable()->index();
+            $table->string('last_ip')->nullable();
 
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

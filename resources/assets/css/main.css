@@ -1726,6 +1726,22 @@ pre code {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
+.datatable-scroll-lg {
+  min-height: .01%;
+}
+
+@media (max-width:1199px) {
+  .datatable-scroll-lg {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  .datatable-scroll-lg th,
+  .datatable-scroll-lg td {
+    white-space: nowrap;
+  }
+}
+
 .table-hover tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.075);
 }
@@ -9500,6 +9516,29 @@ div.dataTables_wrapper div.dataTables_length label {
   white-space: nowrap;
 }
 
+div.dataTables_paginate {
+  float: right;
+  text-align: right;
+  margin: 0 0 20px 20px;
+}
+
+div.dataTables_length {
+  float: right;
+  display: inline-block;
+  margin: 0 0 20px 20px;
+}
+
+div.dataTables_info {
+  float: left;
+  padding: 8px 0;
+  margin-bottom: 20px;
+}
+
+.datatable-footer {
+  height: 40px;
+  margin-top: 16px;
+}
+
 div.dataTables_wrapper div.dataTables_length select {
   width: 75px;
   display: inline-block;
@@ -13857,6 +13896,28 @@ be a descendant of the grid when it is being dragged.
   padding-bottom: 40px;
 }
 
+.app-menu__header {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 12px 15px;
+  font-size: 1.08em;
+  border-left: 3px solid transparent;
+  -webkit-transition: border-left-color 0.3s ease,
+  background-color 0.3s ease;
+  -o-transition: border-left-color 0.3s ease,
+  background-color 0.3s ease;
+  transition: border-left-color 0.3s ease,
+  background-color 0.3s ease;
+  color: #009688;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
 .app-menu__item {
   position: relative;
   display: -webkit-box;
@@ -13878,7 +13939,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-menu__item.active, .app-menu__item:hover, .app-menu__item:focus {
-  background: #0d1214;
+  background: #153c4c;
   border-left-color: #009688;
   text-decoration: none;
   color: #fff;
@@ -14643,9 +14704,6 @@ be a descendant of the grid when it is being dragged.
   display: flex;
   border-radius: 4px;
   color: #FFF;
-  margin-bottom: 30px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .widget-small .icon {
@@ -14684,7 +14742,7 @@ be a descendant of the grid when it is being dragged.
 
 .widget-small .info p {
   margin: 0;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .widget-small.primary {
@@ -15227,4 +15285,17 @@ be a descendant of the grid when it is being dragged.
 
 .user .user-settings label {
   color: #666;
+}
+
+.circle-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  border: 2px solid #009688;
+}
+
+.circle-icon i {
+  color: #009688;
 }

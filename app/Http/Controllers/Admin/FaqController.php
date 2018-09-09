@@ -37,12 +37,21 @@ class FaqController extends Controller
     {
         $faqQuery = Faq::all();
 
+        $counters =
+            [
+                'enable_faqs_count' => (clone $faqQuery)->where('enable', true)->count(),
+                'view_count_total' => (clone $faqQuery)->sum('view_count'),
+            ];
+
         if ($request->ajax()) {
             return Datatables::of($faqQuery)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('admin.faq.questions.index');
+        return view('admin.faq.questions.index', compact(
+            'counters'
+        ));
     }
 
     /**

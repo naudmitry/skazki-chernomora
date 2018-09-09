@@ -1,4 +1,4 @@
-<div class="toggle-flip" style="text-align: center">
+<div class="toggle-flip">
     <label>
         <input
                 class="checkbox"

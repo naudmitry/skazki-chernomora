@@ -20,6 +20,14 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'uses' => 'Admin\ErrorHandlerController@errorCode405'
         ]);
 
+    // ADMIN LISTS
+
+    Route::get('/admin/lists',
+        [
+            'uses' => 'Admin\AdminController@index',
+            'as' => 'admin.admin.list.index',
+        ]);
+
     /*
      * BLOG
      */
@@ -204,7 +212,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'as' => 'admin.static.page.save',
         ])
         ->where('staticPage', '[0-9]+');
-
     Route::get('/page/lists',
         [
             'uses' => 'Admin\PageController@index',
@@ -227,10 +234,16 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'as' => 'admin.page.list.delete',
         ])
         ->where('page', '[0-9]+');
-    Route::post('/page/lists/enable/{faq}',
+    Route::post('/page/lists/enable/{page}',
         [
             'uses' => 'Admin\PageController@enable',
             'as' => 'admin.page.list.enable',
+        ])
+        ->where('page', '[0-9]+');
+    Route::post('/page/lists/save/{page?}',
+        [
+            'uses' => 'Admin\PageController@save',
+            'as' => 'admin.page.list.save',
         ])
         ->where('page', '[0-9]+');
 
@@ -275,4 +288,24 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'as' => 'admin.page.category.save',
         ])
         ->where('category', '[0-9]+');
+
+    // HEADER
+//    Route::get('/header',
+//        [
+//            'uses' => 'Admin\PageController@header',
+//            'as' => 'admin.header.index',
+//        ]);
+
+    Route::get('/main',
+        [
+            'uses' => 'Admin\PageController@main',
+            'as' => 'admin.main.index',
+        ]);
+
+    // CONTACTS
+    Route::get('/contacts',
+        [
+            'uses' => 'Admin\PageController@contacts',
+            'as' => 'admin.contacts.index',
+        ]);
 });

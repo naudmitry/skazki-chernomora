@@ -29,3 +29,11 @@ mix.styles([
         'node_modules/dragula/dist/dragula.min.css',
     ],
     'public/css/backend.css');
+
+mix.styles([
+        'node_modules/@fortawesome/fontawesome-free/css/fontawesome.css',
+        'node_modules/@fortawesome/fontawesome-free/css/solid.css',
+        'node_modules/@fortawesome/fontawesome-free/css/regular.css',
+        'node_modules/@fortawesome/fontawesome-free/css/brands.css',
+    ],
+    'public/css/fontawesome.css');

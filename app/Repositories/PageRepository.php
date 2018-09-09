@@ -15,13 +15,22 @@ class PageRepository
      * @param array $data
      * @return Page
      */
-    public function savePage(Page $page, array $data)
+    public function savePage(Page $page = null, $data)
     {
+        $admin = Auth::guard('admin')->user();
+
+        if (!isset($faq)) {
+            $page = new Page();
+            $page->author_id = $admin->id;
+        }
+
         $fields =
             [
                 'category_id',
                 'title',
+                'name',
                 'content',
+                'breadcrumbs',
                 'meta_title',
                 'meta_description',
                 'meta_keywords',
@@ -33,6 +42,7 @@ class PageRepository
             }
         }
 
+        $page->updater_id = $admin->id;
         $page->save();
 
         return $page;
@@ -53,6 +63,7 @@ class PageRepository
             [
                 'title',
                 'name',
+                'breadcrumbs',
                 'meta_title',
                 'meta_description',
                 'meta_keywords',
@@ -107,6 +118,7 @@ class PageRepository
         $fields =
             [
                 'name',
+                'breadcrumbs',
                 'meta_title',
                 'meta_description',
                 'meta_keywords',

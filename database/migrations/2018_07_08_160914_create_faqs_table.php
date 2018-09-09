@@ -22,9 +22,10 @@ class CreateFaqsTable extends Migration
             $table->boolean('favorite')->default(false);
             $table->longText('answer')->nullable();
             $table->integer('view_count')->default(0);
-            $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keywords');
+            $table->string('breadcrumbs')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
 
             $table->integer('author_id')->unsigned()->nullable();
             $table->foreign('author_id')->references('id')->on('admins');

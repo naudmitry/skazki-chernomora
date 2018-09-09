@@ -8,4 +8,5 @@ class StaticPageTypesEnum extends Enum
     const BLOG_PAGE = 'blog';
     const FAQ_PAGE = 'faq';
     const CONTACTS_PAGE = 'contacts';
+    const ABOUT = 'about';
 }

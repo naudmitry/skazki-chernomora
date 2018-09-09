@@ -32,7 +32,7 @@
                                 <div class="image-box">
                                     <figure>
                                         <a href="{{ $blog->getShowcaseUrl() }}">
-                                            <img src="images/blog/5.jpg" alt="{{ $blog->name }}">
+                                            <img src="{{ $blog->link }}" alt="{{ $blog->name }}">
                                         </a>
                                     </figure>
                                 </div>
@@ -40,7 +40,7 @@
                                     <a href="{{ $blog->getShowcaseUrl() }}">
                                         <h6>{{ $blog->name }}</h6>
                                     </a>
-                                    <span>{{ $blog->author->surname }} {{ $blog->author->name }} / {{ $blog->updated_at }}</span>
+                                    <span>{{ $blog->author->surname }} {{ $blog->author->name }} / {{ $blog->updated_at->format('d-m-Y H:i') }}</span>
                                     <p>{{ $blog->reduction($blog->content, 300) }}</p>
                                     <div class="link-btn">
                                         <a href="{{ $blog->getShowcaseUrl() }}" class="btn-style-one">Подробнее</a>

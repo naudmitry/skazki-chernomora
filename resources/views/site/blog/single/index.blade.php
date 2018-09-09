@@ -1,5 +1,11 @@
 @extends('site.layouts.master')
 
+@section('header__meta')
+    <meta name="description" content="{{ $blog->meta_description ?? '' }}"/>
+    <meta name="keywords" content="{{ $blog->meta_keywords ?? '' }}"/>
+    <title>{{ $blog->meta_title ?? 'Новости' }}</title>
+@endsection
+
 @section('content')
     @include('site.vendor.pageHeader', [
         'page' => 'Информация о новости',
@@ -14,7 +20,7 @@
                             <div class="image-box">
                                 <figure>
                                     <a href="javascript:;">
-                                        <img src="{{ URL::to('/images/blog/5.jpg') }}" alt="">
+                                        <img src="{{ $blog->link }}" alt="">
                                     </a>
                                 </figure>
                             </div>

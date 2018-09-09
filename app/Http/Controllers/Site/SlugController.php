@@ -43,18 +43,37 @@ class SlugController extends Controller
         $entity = $obj->entity;
 
         switch (true) {
-            case $entity instanceof Models\Blog:
-                return app(BlogController::class)->single($entity);
-            case $entity instanceof Models\BlogCategory:
-                return app(BlogController::class)->category($entity);
             case $entity instanceof Models\Page:
                 switch ($entity->static_page_type) {
                     case StaticPageTypesEnum::BLOG_PAGE :
                         return app(BlogController::class)->index($request);
+
+                    case StaticPageTypesEnum::FAQ_PAGE :
+                        return app(FaqController::class)->index($request);
+
+                    case StaticPageTypesEnum::MAIN_PAGE :
+                        return app(IndexController::class)->index();
+
+                    case StaticPageTypesEnum::CONTACTS_PAGE :
+                        return app(IndexController::class)->contacts();
+
+                    case StaticPageTypesEnum::ABOUT :
+                        return app(IndexController::class)->about();
                 }
 
                 return app(PageController::class)->single($entity);
 
+            case $entity instanceof Models\Blog:
+                return app(BlogController::class)->single($entity);
+
+            case $entity instanceof Models\BlogCategory:
+                return app(BlogController::class)->category($entity);
+
+            case $entity instanceof Models\Faq:
+                return app(FaqController::class)->single($entity);
+
+            case $entity instanceof Models\FaqCategory:
+                return app(FaqController::class)->category($entity);
         }
 
         return abort(Response::HTTP_NOT_FOUND);

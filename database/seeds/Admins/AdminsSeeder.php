@@ -19,10 +19,12 @@ class AdminsSeeder extends Seeder
                 'surname' => $faker->lastName,
                 'name' => $faker->firstName,
                 'middle_name' => $faker->lastName,
-                'position' => $faker->word,
+                'position' => 'admin',
                 'email' => $faker->email,
                 'password' => \Hash::make('123456'),
                 'phone' => $faker->phoneNumber,
+                'ip' => $faker->ipv4,
+                'last_ip' => $faker->ipv4,
             ]);
         }
 
