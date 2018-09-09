@@ -115,7 +115,7 @@
                     <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, []) }}">Главная</a>
                 </li>
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT, []) }}">О нас</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, []) }}">О нас</a>
                 </li>
                 <li>
                     <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, []) }}">Контакты</a>

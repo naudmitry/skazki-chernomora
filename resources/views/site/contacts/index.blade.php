@@ -1,5 +1,11 @@
 @extends('site.layouts.master')
 
+@section('header__meta')
+    <meta name="description" content="{{ $staticPage->meta_description ?? '' }}"/>
+    <meta name="keywords" content="{{ $staticPage->meta_keywords ?? '' }}"/>
+    <title>{{ $staticPage->meta_title ?: 'Главная' }}</title>
+@endsection
+
 @section('content')
     @include('site.vendor.pageHeader', [
         'page' => 'Контакты',

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Classes\PageTypesEnum;
+use App\Classes\StaticPageTypesEnum;
 use App\Models\Faq;
+use App\Models\Page;
 
 class IndexController extends Controller
 {
@@ -11,13 +14,18 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $staticPage = Page::query()
+            ->where('static_page_type', StaticPageTypesEnum::MAIN_PAGE)
+            ->where('type', PageTypesEnum::STATIC_PAGE)
+            ->first();
+
         $faqs = Faq::query()
             ->where('enable', true)
             ->where('favorite', true)
             ->get();
 
         return view('site.index', compact([
-            'faqs'
+            'faqs', 'staticPage'
         ]));
     }
 
@@ -26,7 +34,14 @@ class IndexController extends Controller
      */
     public function blog()
     {
-        return view('site.blog.index');
+        $staticPage = Page::query()
+            ->where('static_page_type', StaticPageTypesEnum::BLOG_PAGE)
+            ->where('type', PageTypesEnum::STATIC_PAGE)
+            ->first();
+
+        return view('site.blog.index', compact([
+            'staticPage'
+        ]));
     }
 
     /**
@@ -34,7 +49,14 @@ class IndexController extends Controller
      */
     public function contacts()
     {
-        return view('site.contacts.index');
+        $staticPage = Page::query()
+            ->where('static_page_type', StaticPageTypesEnum::CONTACTS_PAGE)
+            ->where('type', PageTypesEnum::STATIC_PAGE)
+            ->first();
+
+        return view('site.contacts.index', compact([
+            'staticPage'
+        ]));
     }
 
     /**
@@ -42,7 +64,14 @@ class IndexController extends Controller
      */
     public function about()
     {
-        return view('site.about.index');
+        $staticPage = Page::query()
+            ->where('static_page_type', StaticPageTypesEnum::ABOUT_PAGE)
+            ->where('type', PageTypesEnum::STATIC_PAGE)
+            ->first();
+
+        return view('site.about.index', compact([
+            'staticPage'
+        ]));
     }
 
     /**

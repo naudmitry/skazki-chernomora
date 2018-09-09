@@ -22,7 +22,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT, []) }}">О нас</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, []) }}">О нас</a>
                 </li>
 
                 {{--<li class="{{ (Route::is('front.service.*') ? 'active' : '') }}">--}}

@@ -91,13 +91,13 @@
 <li>
     <a
         class="app-menu__item"
-        href=""
+        href="#"
     ><i class="app-menu__icon fas fa-chess-queen"></i><span class="app-menu__label">Header</span></a>
 </li>
 
 <li>
     <a
         class="app-menu__item"
-        href=""
+        href="#"
     ><i class="app-menu__icon fas fa-shoe-prints"></i><span class="app-menu__label">Footer</span></a>
 </li>

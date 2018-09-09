@@ -1,5 +1,11 @@
 @extends('site.layouts.master')
 
+@section('header__meta')
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <title>{{ 'Галерея' }}</title>
+@endsection
+
 @section('content')
     @include('site.vendor.pageHeader', [
         'page' => 'Галерея',

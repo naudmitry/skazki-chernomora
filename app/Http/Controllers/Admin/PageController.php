@@ -199,7 +199,7 @@ class PageController extends Controller
      */
     public function about()
     {
-        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::ABOUT);
+        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::ABOUT_PAGE);
 
         return view('admin.about.index', compact(
             'staticPage'
