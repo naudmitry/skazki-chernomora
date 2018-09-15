@@ -79,7 +79,7 @@ $(function () {
                 render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnActions, {page}),
             },
         ],
-        order: [[ 0, 'asc' ]],
+        order: [[0, 'asc']],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
         language: {
             processing: "Подождите...",
@@ -121,17 +121,7 @@ $(function () {
             url: $(this).data('href'),
             type: 'post',
             success: (response) => {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                notifyService.showMessage('info', 'Успех!', response.message);
             },
             error: function (data) {
                 console.log(data);
@@ -155,18 +145,7 @@ $(function () {
                     type: 'delete',
                     url: $this.attr('href'),
                     success: response => {
-                        $.notify({
-                            title: "Успех!",
-                            message: response.message,
-                            icon: 'fa fa-check'
-                        }, {
-                            type: "danger",
-                            placement: {
-                                from: "top",
-                                align: "right",
-                            },
-                        });
-
+                        notifyService.showMessage('danger', 'Успех!', response.message);
                         $pageListsTable.DataTable().ajax.reload();
                     },
                     error: xhr => {

@@ -124,6 +124,16 @@ class PageCategoryController extends Controller
      */
     public function save(PageCategoryRequest $request, PageCategory $category = null)
     {
+        $slugUniqueValidationRule = $this
+            ->slugRepository
+            ->getSlugUniqueValidationRule
+            (
+                PageCategory::class,
+                $category->id ?? null
+            );
+
+        $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
+
         \DB::transaction(function () use (&$category, $request) {
             $category = $this->pageRepository->saveCategory($category, $request->all());
             $this->slugRepository->updateSlug($category, $request['address']);

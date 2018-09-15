@@ -7,7 +7,7 @@ $(function () {
         return;
     }
 
-    let $blogCategorySettingsContainer = $('.blog-category-settings-container');
+    let $blogCategoriesSettingsContainer = $('.blog-categories-settings-container');
     let blogCategorySettingsLoadingTemplate = $('.blog-category-settings-loading-template').text();
     let $blogCategoriesList = $('.blog-categories-list');
     let isChange = false;
@@ -39,26 +39,26 @@ $(function () {
     });
 
     function edit(href) {
-        if ($blogCategorySettingsContainer.data('ajax')) {
-            $blogCategorySettingsContainer.data('ajax').abort();
+        if ($blogCategoriesSettingsContainer.data('ajax')) {
+            $blogCategoriesSettingsContainer.data('ajax').abort();
         }
-        $blogCategorySettingsContainer.html(blogCategorySettingsLoadingTemplate);
-        $blogCategorySettingsContainer.data('ajax', $.ajax({
+        $blogCategoriesSettingsContainer.html(blogCategorySettingsLoadingTemplate);
+        $blogCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: response => {
-                $blogCategorySettingsContainer.html(response);
+                $blogCategoriesSettingsContainer.html(response);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
                     return;
                 }
                 console.error(xhr);
-                $blogCategorySettingsContainer.empty();
+                $blogCategoriesSettingsContainer.empty();
             },
             complete: () => {
-                $blogCategorySettingsContainer.removeData('ajax');
+                $blogCategoriesSettingsContainer.removeData('ajax');
             },
         }));
     }
@@ -69,7 +69,6 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $blogCategorySettingsContainer.html(blogCategorySettingsLoadingTemplate);
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -83,24 +82,14 @@ $(function () {
                 else {
                     $blogCategoriesList.append(response.row);
                 }
-                $blogCategorySettingsContainer.html(response.settings);
-
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check',
-                    showProgressbar: true
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
-
+                $blogCategoriesSettingsContainer.html(response.settings);
+                notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
             error: xhr => {
+                if (xhr.responseJSON.errors.address) {
+                    notifyService.showMessage('danger', 'Ошибка!', 'Данный адрес уже существует.');
+                }
                 if ('object' === typeof xhr.responseJSON) {
                     for (let key in xhr.responseJSON['errors']) {
                         $form.find('[name="' + key + '"]').addClass('is-invalid');
@@ -136,21 +125,13 @@ $(function () {
                     success: response => {
                         let $blogCategoriesListItem =
                             $blogCategoriesList.find('.blog-categories-list-item[data-blog-category-id="' + response.category.id + '"]');
-                        $blogCategorySettingsContainer.empty();
+                        let $blogCategorySettingsContainer = $('.blog-category-settings-container');
+                        if ($blogCategorySettingsContainer.data('category-id') == response.category.id) {
+                            $blogCategoriesSettingsContainer.empty();
+                        }
                         $blogCategoriesListItem.remove();
                         isChange = false;
-
-                        $.notify({
-                            title: "Успех!",
-                            message: response.message,
-                            icon: 'fa fa-check'
-                        }, {
-                            type: "danger",
-                            placement: {
-                                from: "top",
-                                align: "right",
-                            },
-                        });
+                        notifyService.showMessage('danger', 'Успех!', response.message);
                     },
                     error: xhr => {
                         console.error(xhr);
@@ -164,7 +145,7 @@ $(function () {
         });
     });
 
-    $(document).on('change keyup', '.blog-category-settings-form', function (e) {
+    $(document).on('input', '.blog-category-settings-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         isChange = true;
@@ -200,17 +181,7 @@ $(function () {
                 categories: categories
             },
             success: function (response) {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                notifyService.showMessage('info', 'Успех!', response.message);
             },
         });
     });
@@ -220,17 +191,7 @@ $(function () {
             url: $(this).data('href'),
             type: 'POST',
             success: (response) => {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                notifyService.showMessage('info', 'Успех!', response.message);
             },
             error: function (data) {
                 console.log(data);
@@ -239,9 +200,9 @@ $(function () {
     });
 
     $(document).on('change keyup', '.blog-category-settings-form input[id=name]', function () {
-        let title = $blogCategorySettingsContainer.find('#name').val();
-        $blogCategorySettingsContainer.find('#address').val(slug(title).toLowerCase());
-        $blogCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
-        $blogCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
+        let title = $blogCategoriesSettingsContainer.find('#name').val();
+        $blogCategoriesSettingsContainer.find('#address').val(slug(title).toLowerCase());
+        $blogCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $blogCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
 });

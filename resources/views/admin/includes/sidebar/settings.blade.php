@@ -8,3 +8,10 @@
         href="{{ route('admin.settings.index') }}"
     ><i class="app-menu__icon fas fa-cog"></i><span class="app-menu__label">Общие</span></a>
 </li>
+
+<li>
+    <a
+        class="app-menu__item"
+        href="{{ route('admin.settings.index') }}"
+    ><i class="app-menu__icon fas fa-coins"></i><span class="app-menu__label">Оплата</span></a>
+</li>

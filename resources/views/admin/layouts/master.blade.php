@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/backend.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
 
     @yield('header__sc')
 </head>
@@ -20,8 +20,8 @@
         @yield('content')
     </main>
 
-    <script src="{{ mix('js/all.js') }}"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/admin/scripts.js') }}"></script>
+    <script src="{{ mix('js/admin/app.js') }}"></script>
     <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
 
     @yield('footer__script')

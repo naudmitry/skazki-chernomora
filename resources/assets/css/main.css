@@ -1,8 +1,5 @@
 @charset "UTF-8";
-/*!
- * Vali Admin
- * Author: Pratik Borsadiya
- * ================================*/
+
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,400i,700);
 @import url(https://fonts.googleapis.com/css?family=Niconne);
 /*!
@@ -14321,8 +14318,8 @@ be a descendant of the grid when it is being dragged.
 }
 
 .animated-checkbox input[type="checkbox"] + .label-text:before {
-  content: "";
-  font-family: "FontAwesome";
+  content: "\f0c8";
+  font-family: "Font Awesome 5 Free";
   speak: none;
   font-style: normal;
   font-weight: normal;

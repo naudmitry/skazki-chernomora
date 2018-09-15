@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 blog-category-settings-container"></div>
+        <div class="col-md-6 blog-categories-settings-container"></div>
     </div>
 
     <script type="text/template" class="blog-category-settings-loading-template">

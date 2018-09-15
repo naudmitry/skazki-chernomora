@@ -1,4 +1,4 @@
-<div class="tile">
+<div class="tile blog-category-settings-container" data-category-id="{{ $category->id ?? '' }}">
     <h3 class="tile-title">Настройки категории</h3>
 
     <div class="tile-body">

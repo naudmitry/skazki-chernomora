@@ -6,7 +6,7 @@
     <a
         class="app-menu__item"
         href=""
-    ><i class="app-menu__icon fas fa-cogs"></i><span class="app-menu__label">Настройки компании</span></a>
+    ><i class="app-menu__icon fas fa-cogs"></i><span class="app-menu__label">Компания</span></a>
 </li>
 
 <li>

@@ -1,4 +1,4 @@
-import swal from 'sweetalert';
+require('./bootstrap');
 
 require('./pages/admin/blog');
 require('./pages/admin/faq');

@@ -66,6 +66,16 @@ class BlogCategoryController extends Controller
      */
     public function save(BlogCategoryRequest $request, BlogCategory $category = null)
     {
+        $slugUniqueValidationRule = $this
+            ->slugRepository
+            ->getSlugUniqueValidationRule
+            (
+                BlogCategory::class,
+                $category->id ?? null
+            );
+
+        $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
+
         \DB::transaction(function () use (&$category, $request) {
             $category = $this->blogRepository->saveCategory($category, $request->all());
             $this->slugRepository->updateSlug($category, $request['address']);

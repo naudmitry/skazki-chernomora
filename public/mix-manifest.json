@@ -1,7 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/all.js": "/js/all.js",
-    "/css/backend.css": "/css/backend.css",
+    "/js/admin/app.js": "/js/admin/app.js",
+    "/css/admin/app.css": "/css/admin/app.css",
+    "/js/admin/scripts.js": "/js/admin/scripts.js",
+    "/css/admin/style.css": "/css/admin/style.css",
+    "/css/site/style.css": "/css/site/style.css",
     "/css/fontawesome.css": "/css/fontawesome.css"
 }

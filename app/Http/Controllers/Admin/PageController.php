@@ -66,6 +66,16 @@ class PageController extends Controller
      */
     public function saveStaticPage(Request $request, Page $staticPage)
     {
+        $slugUniqueValidationRule = $this
+            ->slugRepository
+            ->getSlugUniqueValidationRule
+            (
+                Page::class,
+                $staticPage->id ?? null
+            );
+
+        $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
+
         \DB::transaction(function () use (&$staticPage, $request) {
             $this->pageRepository->updateStaticPage($staticPage, $request->all());
             if ($staticPage->static_page_type != StaticPageTypesEnum::MAIN_PAGE) {
@@ -148,6 +158,16 @@ class PageController extends Controller
      */
     public function save(PageRequest $request, Page $page = null, $isNew = false)
     {
+        $slugUniqueValidationRule = $this
+            ->slugRepository
+            ->getSlugUniqueValidationRule
+            (
+                Page::class,
+                $page->id ?? null
+            );
+
+        $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
+
         if (!isset($page)) {
             $isNew = true;
         }

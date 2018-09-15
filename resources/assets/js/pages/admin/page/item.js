@@ -13,7 +13,7 @@ $(function () {
         width: '100%'
     });
 
-    $(document).on('change keyup', '.page-item-form', function (e) {
+    $(document).on('input', '.page-item-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         if (!$input.is('input,select,textarea')) {
@@ -45,21 +45,13 @@ $(function () {
                 else {
                     $pageItem.html(response.settings);
                     $pageItem.find('.select2').select2({width: '100%'});
-                    $.notify({
-                        title: "Успех!",
-                        message: response.message,
-                        icon: 'fa fa-check',
-                        showProgressbar: true
-                    }, {
-                        type: "info",
-                        placement: {
-                            from: "top",
-                            align: "right",
-                        },
-                    });
+                    notifyService.showMessage('info', 'Успех!', response.message);
                 }
             },
             error: xhr => {
+                if (xhr.responseJSON.errors.address) {
+                    notifyService.showMessage('danger', 'Ошибка!', 'Данный адрес уже существует.');
+                }
                 if ('object' === typeof xhr.responseJSON) {
                     for (let key in xhr.responseJSON['errors']) {
                         $form.find('[name="' + key + '"]').addClass('is-invalid');
@@ -83,17 +75,7 @@ $(function () {
             url: $(this).data('href'),
             type: 'post',
             success: (response) => {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                notifyService.showMessage('info', 'Успех!', response.message);
             },
             error: function (data) {
                 console.log(data);

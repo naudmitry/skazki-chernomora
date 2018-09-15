@@ -45,18 +45,7 @@ $(function () {
                 else {
                     $faqItem.html(response.settings);
                     $faqItem.find('.select2').select2({width: '100%'});
-                    $.notify({
-                        title: "Успех!",
-                        message: response.message,
-                        icon: 'fa fa-check',
-                        showProgressbar: true
-                    }, {
-                        type: "info",
-                        placement: {
-                            from: "top",
-                            align: "right",
-                        },
-                    });
+                    notifyService.showMessage('info', 'Успех!', response.message);
                 }
             },
             error: xhr => {
@@ -83,17 +72,7 @@ $(function () {
             url: $(this).data('href'),
             type: 'post',
             success: (response) => {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                notifyService.showMessage('info', 'Успех!', response.message);
             },
             error: function (data) {
                 console.log(data);

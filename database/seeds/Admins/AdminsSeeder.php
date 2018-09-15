@@ -28,6 +28,8 @@ class AdminsSeeder extends Seeder
             ]);
         }
 
+        $this->call(AdminsStaticSeeder::class);
+
         for ($i = 0; $i < 20; $i++) {
             \App\User::create([
                 'name' => $faker->firstName,

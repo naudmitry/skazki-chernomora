@@ -69,7 +69,6 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $faqCategorySettingsContainer.html(faqCategorySettingsLoadingTemplate);
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -84,23 +83,13 @@ $(function () {
                     $faqCategoriesList.append(response.row);
                 }
                 $faqCategorySettingsContainer.html(response.settings);
-
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check',
-                    showProgressbar: true
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
-
+                notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
             error: xhr => {
+                if (xhr.responseJSON.errors.address) {
+                    notifyService.showMessage('danger', 'Ошибка!', 'Данный адрес уже существует.');
+                }
                 if ('object' === typeof xhr.responseJSON) {
                     for (let key in xhr.responseJSON['errors']) {
                         $form.find('[name="' + key + '"]').addClass('is-invalid');
@@ -140,18 +129,7 @@ $(function () {
                         $faqCategorySettingsContainer.empty();
                         $faqCategoriesListItem.remove();
                         isChange = false;
-
-                        $.notify({
-                            title: "Успех!",
-                            message: response.message,
-                            icon: 'fa fa-check'
-                        }, {
-                            type: "danger",
-                            placement: {
-                                from: "top",
-                                align: "right",
-                            },
-                        });
+                        notifyService.showMessage('danger', 'Успех!', response.message);
                     },
                     error: xhr => {
                         console.error(xhr);
@@ -165,7 +143,7 @@ $(function () {
         });
     });
 
-    $(document).on('change keyup', '.faq-category-settings-form', function (e) {
+    $(document).on('input', '.faq-category-settings-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         isChange = true;
@@ -203,17 +181,7 @@ $(function () {
                 categories: categories
             },
             success: function (response) {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                notifyService.showMessage('info', 'Успех!', response.message);
             },
         });
     });
@@ -223,17 +191,7 @@ $(function () {
             url: $(this).data('href'),
             type: 'POST',
             success: (response) => {
-                $.notify({
-                    title: "Успех!",
-                    message: response.message,
-                    icon: 'fa fa-check'
-                }, {
-                    type: "info",
-                    placement: {
-                        from: "top",
-                        align: "right",
-                    },
-                });
+                notifyService.showMessage('info', 'Успех!', response.message);
             },
             error: function (data) {
                 console.log(data);

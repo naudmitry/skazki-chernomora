@@ -7,11 +7,12 @@
 
     @yield('header__meta')
 
-    <link href="{{ asset('css/slick.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/jquery.fancybox.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
+    <link href="{{ asset('css/site/slick.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/site/slick-theme.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/site/jquery.fancybox.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/site/style.css') }}" rel="stylesheet"/>
+
+
 
     <link rel="shortcut icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
@@ -42,15 +43,13 @@
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
-    <!-- Google Map -->
-    {{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>--}}
-    {{--<script src="plugins/google-map/gmap.js"></script>--}}
-
     <script src="{{ asset('js/jquery.validate.js') }}"></script>
     <script src="{{ asset('js/wow.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/jquery.ptTimeSelect.js') }}"></script>
+
     <script src="{{ asset('js/script.js') }}"></script>
+
 
     @yield('footer__script')
 </body>

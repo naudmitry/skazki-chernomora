@@ -55,6 +55,7 @@ class Handler extends ExceptionHandler
         $isAdminRequest = ($request->getHost() == env('DOMAIN_ADMIN'));
 
         if ($isAdminRequest and !$request->user('admin')) {
+            dd($exception); // TODO : delete
             return redirect()
                 ->route('admin.login');
         }

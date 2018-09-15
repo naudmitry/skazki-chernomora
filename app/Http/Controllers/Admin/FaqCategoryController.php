@@ -131,6 +131,16 @@ class FaqCategoryController extends Controller
      */
     public function save(FaqCategoryRequest $request, FaqCategory $category = null)
     {
+        $slugUniqueValidationRule = $this
+            ->slugRepository
+            ->getSlugUniqueValidationRule
+            (
+                FaqCategory::class,
+                $category->id ?? null
+            );
+
+        $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
+
         \DB::transaction(function () use (&$category, $request) {
             $category = $this->faqRepository->saveCategory($category, $request->all());
             $this->slugRepository->updateSlug($category, $request['address']);

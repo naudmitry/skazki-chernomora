@@ -11,24 +11,28 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js/admin')
+    .sass('resources/assets/sass/app.scss', 'public/css/admin');
 
 mix.scripts([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/select2/dist/js/select2.js',
         'node_modules/popper.js/dist/umd/popper.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'resources/assets/js/main.js'
     ],
-    'public/js/all.js'
+    'public/js/admin/scripts.js'
 );
 
 mix.styles([
         'resources/assets/css/main.css',
         'node_modules/dragula/dist/dragula.min.css',
     ],
-    'public/css/backend.css');
+    'public/css/admin/style.css');
+
+mix.styles([
+        'resources/assets/css/style.css',
+    ],
+    'public/css/site/style.css');
 
 mix.styles([
         'node_modules/@fortawesome/fontawesome-free/css/fontawesome.css',
