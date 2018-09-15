@@ -93,8 +93,7 @@ class BlogController extends Controller
         });
 
         return response()->json([
-            'message' => 'Новость удалена.',
-            'blog' => $blog,
+            'message' => 'Новость удалена.'
         ]);
     }
 

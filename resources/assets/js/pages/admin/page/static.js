@@ -7,8 +7,6 @@ $(function () {
         return;
     }
 
-    let pageSettingsLoadingTemplate = $('.page-settings-loading-template').text();
-
     $pageSettings.find('.select2').select2({
         width: '100%',
         language: {

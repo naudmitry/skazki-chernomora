@@ -7,8 +7,6 @@ $(function () {
         return;
     }
 
-    let blogItemSettingsLoadingTemplate = $('.blog-item-settings-loading-template').text();
-
     tinymce.init({
         selector: '#textarea-editor',
         language: 'ru',
@@ -46,9 +44,6 @@ $(function () {
         let $form = $(this);
         if ($form.data('ajax')) {
             return;
-        }
-        if (!$blogItem.data('new')) {
-            $blogItem.html(blogItemSettingsLoadingTemplate);
         }
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
@@ -102,7 +97,6 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),

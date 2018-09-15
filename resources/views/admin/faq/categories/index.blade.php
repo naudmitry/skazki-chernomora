@@ -8,7 +8,7 @@
     ])
 
     <div class="page-settings">
-        @include('admin.faq.categories.includes.page_settings')
+        @include('admin.page.static.settings')
     </div>
 
     <div class="row">
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 faq-category-settings-container"></div>
+        <div class="col-md-6 faq-categories-settings-container"></div>
     </div>
 
     <script type="text/template" class="faq-category-settings-loading-template">

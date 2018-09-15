@@ -8,7 +8,7 @@
     ])
 
     <div class="page-settings">
-        @include('admin.blog.categories.includes.page_settings')
+        @include('admin.page.static.settings')
     </div>
 
     <div class="row">

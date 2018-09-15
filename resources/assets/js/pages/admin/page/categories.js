@@ -7,7 +7,7 @@ $(function () {
         return;
     }
 
-    let $pageCategorySettingsContainer = $('.page-category-settings-container');
+    let $pageCategoriesSettingsContainer = $('.page-categories-settings-container');
     let pageCategorySettingsLoadingTemplate = $('.page-category-settings-loading-template').text();
     let $pageCategoriesList = $('.page-categories-list');
     let isChange = false;
@@ -39,26 +39,26 @@ $(function () {
     });
 
     function edit(href) {
-        if ($pageCategorySettingsContainer.data('ajax')) {
-            $pageCategorySettingsContainer.data('ajax').abort();
+        if ($pageCategoriesSettingsContainer.data('ajax')) {
+            $pageCategoriesSettingsContainer.data('ajax').abort();
         }
-        $pageCategorySettingsContainer.html(pageCategorySettingsLoadingTemplate);
-        $pageCategorySettingsContainer.data('ajax', $.ajax({
+        $pageCategoriesSettingsContainer.html(pageCategorySettingsLoadingTemplate);
+        $pageCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: response => {
-                $pageCategorySettingsContainer.html(response);
+                $pageCategoriesSettingsContainer.html(response);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
                     return;
                 }
                 console.error(xhr);
-                $pageCategorySettingsContainer.empty();
+                $pageCategoriesSettingsContainer.empty();
             },
             complete: () => {
-                $pageCategorySettingsContainer.removeData('ajax');
+                $pageCategoriesSettingsContainer.removeData('ajax');
             },
         }));
     }
@@ -82,7 +82,7 @@ $(function () {
                 else {
                     $pageCategoriesList.append(response.row);
                 }
-                $pageCategorySettingsContainer.html(response.settings);
+                $pageCategoriesSettingsContainer.html(response.settings);
                 notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
@@ -125,7 +125,10 @@ $(function () {
                     success: response => {
                         let $pageCategoriesListItem =
                             $pageCategoriesList.find('.page-categories-list-item[data-page-category-id="' + response.category.id + '"]');
-                        $pageCategorySettingsContainer.empty();
+                        let $pageCategorySettingsContainer = $('.page-category-settings-container');
+                        if ($pageCategorySettingsContainer.data('category-id') == response.category.id) {
+                            $pageCategoriesSettingsContainer.empty();
+                        }
                         $pageCategoriesListItem.remove();
                         isChange = false;
                         notifyService.showMessage('danger', 'Успех!', response.message);
@@ -199,9 +202,9 @@ $(function () {
     });
 
     $(document).on('change keyup', '.page-category-settings-form input[id=name]', function () {
-        let title = $pageCategorySettingsContainer.find('#name').val();
-        $pageCategorySettingsContainer.find('#address').val(slug(title).toLowerCase());
-        $pageCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
-        $pageCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
+        let title = $pageCategoriesSettingsContainer.find('#name').val();
+        $pageCategoriesSettingsContainer.find('#address').val(slug(title).toLowerCase());
+        $pageCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $pageCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
 });

@@ -79,8 +79,7 @@ class FaqController extends Controller
         });
 
         return response()->json([
-            'message' => 'Вопрос удален.',
-            'blog' => $faq,
+            'message' => 'Вопрос удален.'
         ]);
     }
 

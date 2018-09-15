@@ -8,7 +8,7 @@
     ])
 
     <div class="row">
-        <div class="col-md-12 blog-item" data-new="true">
+        <div class="col-md-12 blog-item">
             <div class="tile">
                 <h3 class="tile-title">Добавление статьи</h3>
 

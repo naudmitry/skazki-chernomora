@@ -8,20 +8,10 @@
     ])
 
     <div class="page-settings">
-        @include('admin.contacts.page_settings')
+        @include('admin.page.static.settings')
     </div>
-
-    <script type="text/template" class="page-settings-loading-template">
-        @include('admin.contacts.loading')
-    </script>
 @endsection
 
 @section('footer__script')
     <script type="text/javascript" src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
-
-    <script type="text/javascript">
-        let backendPageConfig = {
-            saveCategorySequence: '{{ route('admin.blog.category.sequence') }}',
-        };
-    </script>
 @endsection

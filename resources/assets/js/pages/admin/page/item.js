@@ -7,8 +7,6 @@ $(function () {
         return;
     }
 
-    let pageItemSettingsLoadingTemplate = $('.page-item-settings-loading-template').text();
-
     $pageItem.find('.select2').select2({
         width: '100%'
     });
@@ -30,9 +28,6 @@ $(function () {
         let $form = $(this);
         if ($form.data('ajax')) {
             return;
-        }
-        if (!$pageItem.data('new')) {
-            $pageItem.html(pageItemSettingsLoadingTemplate);
         }
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),

@@ -42752,8 +42752,6 @@ $(function () {
         return;
     }
 
-    var blogItemSettingsLoadingTemplate = $('.blog-item-settings-loading-template').text();
-
     tinymce.init({
         selector: '#textarea-editor',
         language: 'ru',
@@ -42785,9 +42783,6 @@ $(function () {
         var $form = $(this);
         if ($form.data('ajax')) {
             return;
-        }
-        if (!$blogItem.data('new')) {
-            $blogItem.html(blogItemSettingsLoadingTemplate);
         }
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
@@ -42837,7 +42832,6 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        $form.find('.is-invalid').removeClass('is-invalid');
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -43074,7 +43068,7 @@ $(function () {
         return;
     }
 
-    var $faqCategorySettingsContainer = $('.faq-category-settings-container');
+    var $faqCategoriesSettingsContainer = $('.faq-categories-settings-container');
     var faqCategorySettingsLoadingTemplate = $('.faq-category-settings-loading-template').text();
     var $faqCategoriesList = $('.faq-categories-list');
     var isChange = false;
@@ -43105,26 +43099,26 @@ $(function () {
     });
 
     function edit(href) {
-        if ($faqCategorySettingsContainer.data('ajax')) {
-            $faqCategorySettingsContainer.data('ajax').abort();
+        if ($faqCategoriesSettingsContainer.data('ajax')) {
+            $faqCategoriesSettingsContainer.data('ajax').abort();
         }
-        $faqCategorySettingsContainer.html(faqCategorySettingsLoadingTemplate);
-        $faqCategorySettingsContainer.data('ajax', $.ajax({
+        $faqCategoriesSettingsContainer.html(faqCategorySettingsLoadingTemplate);
+        $faqCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: function success(response) {
-                $faqCategorySettingsContainer.html(response);
+                $faqCategoriesSettingsContainer.html(response);
             },
             error: function error(xhr) {
                 if (xhr.statusText == 'abort') {
                     return;
                 }
                 console.error(xhr);
-                $faqCategorySettingsContainer.empty();
+                $faqCategoriesSettingsContainer.empty();
             },
             complete: function complete() {
-                $faqCategorySettingsContainer.removeData('ajax');
+                $faqCategoriesSettingsContainer.removeData('ajax');
             }
         }));
     }
@@ -43146,7 +43140,7 @@ $(function () {
                 } else {
                     $faqCategoriesList.append(response.row);
                 }
-                $faqCategorySettingsContainer.html(response.settings);
+                $faqCategoriesSettingsContainer.html(response.settings);
                 notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
@@ -43186,7 +43180,10 @@ $(function () {
                     url: $this.attr('href'),
                     success: function success(response) {
                         var $faqCategoriesListItem = $faqCategoriesList.find('.faq-categories-list-item[data-faq-category-id="' + response.category.id + '"]');
-                        $faqCategorySettingsContainer.empty();
+                        var $faqCategorySettingsContainer = $('.faq-category-settings-container');
+                        if ($faqCategorySettingsContainer.data('category-id') == response.category.id) {
+                            $faqCategoriesSettingsContainer.empty();
+                        }
                         $faqCategoriesListItem.remove();
                         isChange = false;
                         notifyService.showMessage('danger', 'Успех!', response.message);
@@ -43257,10 +43254,10 @@ $(function () {
     });
 
     $(document).on('change keyup', '.faq-category-settings-form input[id=name]', function () {
-        var title = $faqCategorySettingsContainer.find('#name').val();
-        $faqCategorySettingsContainer.find('#address').val(__WEBPACK_IMPORTED_MODULE_0_slug___default()(title).toLowerCase());
-        $faqCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + (title.length > 27 ? '...' : ''));
-        $faqCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + (title.length > 57 ? '...' : ''));
+        var title = $faqCategoriesSettingsContainer.find('#name').val();
+        $faqCategoriesSettingsContainer.find('#address').val(__WEBPACK_IMPORTED_MODULE_0_slug___default()(title).toLowerCase());
+        $faqCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + (title.length > 27 ? '...' : ''));
+        $faqCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + (title.length > 57 ? '...' : ''));
     });
 });
 
@@ -43303,9 +43300,6 @@ $(function () {
         var $form = $(this);
         if ($form.data('ajax')) {
             return;
-        }
-        if (!$faqItem.data('new')) {
-            $faqItem.html(faqItemSettingsLoadingTemplate);
         }
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
@@ -43385,7 +43379,7 @@ $(function () {
         return;
     }
 
-    var $pageCategorySettingsContainer = $('.page-category-settings-container');
+    var $pageCategoriesSettingsContainer = $('.page-categories-settings-container');
     var pageCategorySettingsLoadingTemplate = $('.page-category-settings-loading-template').text();
     var $pageCategoriesList = $('.page-categories-list');
     var isChange = false;
@@ -43416,26 +43410,26 @@ $(function () {
     });
 
     function edit(href) {
-        if ($pageCategorySettingsContainer.data('ajax')) {
-            $pageCategorySettingsContainer.data('ajax').abort();
+        if ($pageCategoriesSettingsContainer.data('ajax')) {
+            $pageCategoriesSettingsContainer.data('ajax').abort();
         }
-        $pageCategorySettingsContainer.html(pageCategorySettingsLoadingTemplate);
-        $pageCategorySettingsContainer.data('ajax', $.ajax({
+        $pageCategoriesSettingsContainer.html(pageCategorySettingsLoadingTemplate);
+        $pageCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: function success(response) {
-                $pageCategorySettingsContainer.html(response);
+                $pageCategoriesSettingsContainer.html(response);
             },
             error: function error(xhr) {
                 if (xhr.statusText == 'abort') {
                     return;
                 }
                 console.error(xhr);
-                $pageCategorySettingsContainer.empty();
+                $pageCategoriesSettingsContainer.empty();
             },
             complete: function complete() {
-                $pageCategorySettingsContainer.removeData('ajax');
+                $pageCategoriesSettingsContainer.removeData('ajax');
             }
         }));
     }
@@ -43457,7 +43451,7 @@ $(function () {
                 } else {
                     $pageCategoriesList.append(response.row);
                 }
-                $pageCategorySettingsContainer.html(response.settings);
+                $pageCategoriesSettingsContainer.html(response.settings);
                 notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
@@ -43496,7 +43490,10 @@ $(function () {
                     url: $this.attr('href'),
                     success: function success(response) {
                         var $pageCategoriesListItem = $pageCategoriesList.find('.page-categories-list-item[data-page-category-id="' + response.category.id + '"]');
-                        $pageCategorySettingsContainer.empty();
+                        var $pageCategorySettingsContainer = $('.page-category-settings-container');
+                        if ($pageCategorySettingsContainer.data('category-id') == response.category.id) {
+                            $pageCategoriesSettingsContainer.empty();
+                        }
                         $pageCategoriesListItem.remove();
                         isChange = false;
                         notifyService.showMessage('danger', 'Успех!', response.message);
@@ -43567,10 +43564,10 @@ $(function () {
     });
 
     $(document).on('change keyup', '.page-category-settings-form input[id=name]', function () {
-        var title = $pageCategorySettingsContainer.find('#name').val();
-        $pageCategorySettingsContainer.find('#address').val(__WEBPACK_IMPORTED_MODULE_0_slug___default()(title).toLowerCase());
-        $pageCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + (title.length > 27 ? '...' : ''));
-        $pageCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + (title.length > 57 ? '...' : ''));
+        var title = $pageCategoriesSettingsContainer.find('#name').val();
+        $pageCategoriesSettingsContainer.find('#address').val(__WEBPACK_IMPORTED_MODULE_0_slug___default()(title).toLowerCase());
+        $pageCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + (title.length > 27 ? '...' : ''));
+        $pageCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + (title.length > 57 ? '...' : ''));
     });
 });
 
@@ -43771,8 +43768,6 @@ $(function () {
         return;
     }
 
-    var pageItemSettingsLoadingTemplate = $('.page-item-settings-loading-template').text();
-
     $pageItem.find('.select2').select2({
         width: '100%'
     });
@@ -43791,9 +43786,6 @@ $(function () {
         var $form = $(this);
         if ($form.data('ajax')) {
             return;
-        }
-        if (!$pageItem.data('new')) {
-            $pageItem.html(pageItemSettingsLoadingTemplate);
         }
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
@@ -43866,8 +43858,6 @@ $(function () {
     if (!$pageSettings.length) {
         return;
     }
-
-    var pageSettingsLoadingTemplate = $('.page-settings-loading-template').text();
 
     $pageSettings.find('.select2').select2({
         width: '100%',

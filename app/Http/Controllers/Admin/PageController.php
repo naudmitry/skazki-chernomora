@@ -83,7 +83,7 @@ class PageController extends Controller
             }
         });
 
-        $settings = view('admin.blog.categories.includes.page_settings', compact(
+        $settings = view('admin.page.static.settings', compact(
             'staticPage'
         ))->render();
 

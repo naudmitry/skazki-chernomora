@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 page-category-settings-container"></div>
+        <div class="col-md-6 page-categories-settings-container"></div>
     </div>
 
     <script type="text/template" class="page-category-settings-loading-template">

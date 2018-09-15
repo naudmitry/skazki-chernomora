@@ -31,9 +31,6 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
-        if (!$faqItem.data('new')) {
-            $faqItem.html(faqItemSettingsLoadingTemplate);
-        }
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),

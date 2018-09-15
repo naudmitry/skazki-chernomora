@@ -7,7 +7,7 @@ $(function () {
         return;
     }
 
-    let $faqCategorySettingsContainer = $('.faq-category-settings-container');
+    let $faqCategoriesSettingsContainer = $('.faq-categories-settings-container');
     let faqCategorySettingsLoadingTemplate = $('.faq-category-settings-loading-template').text();
     let $faqCategoriesList = $('.faq-categories-list');
     let isChange = false;
@@ -39,26 +39,26 @@ $(function () {
     });
 
     function edit(href) {
-        if ($faqCategorySettingsContainer.data('ajax')) {
-            $faqCategorySettingsContainer.data('ajax').abort();
+        if ($faqCategoriesSettingsContainer.data('ajax')) {
+            $faqCategoriesSettingsContainer.data('ajax').abort();
         }
-        $faqCategorySettingsContainer.html(faqCategorySettingsLoadingTemplate);
-        $faqCategorySettingsContainer.data('ajax', $.ajax({
+        $faqCategoriesSettingsContainer.html(faqCategorySettingsLoadingTemplate);
+        $faqCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: response => {
-                $faqCategorySettingsContainer.html(response);
+                $faqCategoriesSettingsContainer.html(response);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
                     return;
                 }
                 console.error(xhr);
-                $faqCategorySettingsContainer.empty();
+                $faqCategoriesSettingsContainer.empty();
             },
             complete: () => {
-                $faqCategorySettingsContainer.removeData('ajax');
+                $faqCategoriesSettingsContainer.removeData('ajax');
             },
         }));
     }
@@ -82,7 +82,7 @@ $(function () {
                 else {
                     $faqCategoriesList.append(response.row);
                 }
-                $faqCategorySettingsContainer.html(response.settings);
+                $faqCategoriesSettingsContainer.html(response.settings);
                 notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
@@ -126,7 +126,10 @@ $(function () {
                     success: response => {
                         let $faqCategoriesListItem =
                             $faqCategoriesList.find('.faq-categories-list-item[data-faq-category-id="' + response.category.id + '"]');
-                        $faqCategorySettingsContainer.empty();
+                        let $faqCategorySettingsContainer = $('.faq-category-settings-container');
+                        if ($faqCategorySettingsContainer.data('category-id') == response.category.id) {
+                            $faqCategoriesSettingsContainer.empty();
+                        }
                         $faqCategoriesListItem.remove();
                         isChange = false;
                         notifyService.showMessage('danger', 'Успех!', response.message);
@@ -200,9 +203,9 @@ $(function () {
     });
 
     $(document).on('change keyup', '.faq-category-settings-form input[id=name]', function () {
-        let title = $faqCategorySettingsContainer.find('#name').val();
-        $faqCategorySettingsContainer.find('#address').val(slug(title).toLowerCase());
-        $faqCategorySettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
-        $faqCategorySettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
+        let title = $faqCategoriesSettingsContainer.find('#name').val();
+        $faqCategoriesSettingsContainer.find('#address').val(slug(title).toLowerCase());
+        $faqCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
+        $faqCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
 });

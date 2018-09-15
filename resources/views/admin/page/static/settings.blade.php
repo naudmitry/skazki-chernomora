@@ -1,5 +1,5 @@
 <div class="tile">
-    <h3 class="tile-title">Настройки главной страницы</h3>
+    <h3 class="tile-title">Настройки страницы</h3>
 
     <div class="row">
         <div class="col-md-8">
@@ -13,6 +13,22 @@
                             <input class="form-control" id="name" name="name" value="{{ $staticPage->name ?? '' }}">
                         </div>
                     </div>
+
+                    @if ($staticPage->static_page_type != \App\Classes\StaticPageTypesEnum::MAIN_PAGE)
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">Адрес страницы:</label>
+                            <div class="input-group col-md-9">
+                                <input id="address" name="address" class="form-control" type="text" value="{{ $staticPage->getSlug() ?? '' }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <a href="{{ $staticPage->getShowcaseUrl() }}" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
                     <div class="form-group row">
                         <label class="control-label col-md-3">Навигационная цепочка:</label>
