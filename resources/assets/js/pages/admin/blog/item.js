@@ -60,6 +60,9 @@ $(function () {
                 }
             },
             error: xhr => {
+                if (xhr.responseJSON.errors.address) {
+                    notifyService.showMessage('danger', 'Ошибка!', 'Данный адрес уже существует.');
+                }
                 if ('object' === typeof xhr.responseJSON) {
                     for (let key in xhr.responseJSON['errors']) {
                         $form.find('[name="' + key + '"]').addClass('is-invalid');

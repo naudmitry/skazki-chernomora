@@ -42798,6 +42798,9 @@ $(function () {
                 }
             },
             error: function error(xhr) {
+                if (xhr.responseJSON.errors.address) {
+                    notifyService.showMessage('danger', 'Ошибка!', 'Данный адрес уже существует.');
+                }
                 if ('object' === _typeof(xhr.responseJSON)) {
                     for (var key in xhr.responseJSON['errors']) {
                         $form.find('[name="' + key + '"]').addClass('is-invalid');
@@ -43315,6 +43318,9 @@ $(function () {
                 }
             },
             error: function error(xhr) {
+                if (xhr.responseJSON.errors.address) {
+                    notifyService.showMessage('danger', 'Ошибка!', 'Данный адрес уже существует.');
+                }
                 if ('object' === _typeof(xhr.responseJSON)) {
                     for (var key in xhr.responseJSON['errors']) {
                         $form.find('[name="' + key + '"]').addClass('is-invalid');

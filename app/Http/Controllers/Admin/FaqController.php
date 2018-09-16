@@ -106,6 +106,16 @@ class FaqController extends Controller
      */
     public function save(FaqRequest $request, Faq $faq = null, $isNew = false)
     {
+        $slugUniqueValidationRule = $this
+            ->slugRepository
+            ->getSlugUniqueValidationRule
+            (
+                Faq::class,
+                $faq->id ?? null
+            );
+
+        $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
+
         if (!isset($faq)) {
             $isNew = true;
         }

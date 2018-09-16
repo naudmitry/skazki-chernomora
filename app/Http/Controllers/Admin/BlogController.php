@@ -106,6 +106,16 @@ class BlogController extends Controller
      */
     public function save(BlogRequest $request, Blog $blog = null, $isNew = false)
     {
+        $slugUniqueValidationRule = $this
+            ->slugRepository
+            ->getSlugUniqueValidationRule
+            (
+                Blog::class,
+                $blog->id ?? null
+            );
+
+        $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
+
         if (!isset($blog)) {
             $isNew = true;
         }
