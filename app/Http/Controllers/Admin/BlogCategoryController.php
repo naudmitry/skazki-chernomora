@@ -9,6 +9,7 @@ use App\Repositories\BlogRepository;
 use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BlogCategoryController extends Controller
 {
@@ -66,6 +67,16 @@ class BlogCategoryController extends Controller
      */
     public function save(BlogCategoryRequest $request, BlogCategory $category = null)
     {
+        $this->validate($request, [
+            'title' => Rule::unique('blog_categories')->where(function ($query) use ($category) {
+                $query->whereNull('deleted_at');
+                if (isset($category->id)) {
+                    $query->where('id', '!=', $category->id);
+                }
+                return $query;
+            }),
+        ]);
+
         $slugUniqueValidationRule = $this
             ->slugRepository
             ->getSlugUniqueValidationRule
