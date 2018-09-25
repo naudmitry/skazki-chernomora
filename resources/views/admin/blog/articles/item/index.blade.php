@@ -21,6 +21,6 @@
 @endsection
 
 @section('footer__script')
-    <script type="text/javascript" src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/TinyMCE/tinymce.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
 @endsection
