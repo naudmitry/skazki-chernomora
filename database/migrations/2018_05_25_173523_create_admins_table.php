@@ -16,11 +16,12 @@ class CreateAdminsTable extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('company_id')->unsigned();
             $table->boolean('super')->default(false);
             $table->string('name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('surname');
-            $table->string('position');
+            $table->string('position')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->index();
             $table->string('password')->nullable();
@@ -30,6 +31,8 @@ class CreateAdminsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

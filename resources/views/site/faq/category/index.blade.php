@@ -1,5 +1,11 @@
 @extends('site.layouts.master')
 
+@section('header__meta')
+    <meta name="description" content="{{ $currentCategory->meta_description ?? '' }}"/>
+    <meta name="keywords" content="{{ $currentCategory->meta_keywords ?? '' }}"/>
+    <title>{{ $currentCategory->meta_title ?? 'Категория' }}</title>
+@endsection
+
 @section('content')
     @include('site.vendor.pageHeader', [
         'page' => 'FAQ',

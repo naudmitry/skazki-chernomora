@@ -16,7 +16,7 @@ mix.js('resources/assets/js/app.js', 'public/js/admin')
 
 mix.scripts([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/popper.js/dist/umd/popper.min.js',
+        'node_modules/popper.js/dist/popper.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'resources/assets/js/main.js'
     ],

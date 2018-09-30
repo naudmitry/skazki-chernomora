@@ -19,8 +19,6 @@ class CreateFaqFaqCategoryTable extends Migration
             $table->integer('faq_id')->unsigned();
             $table->integer('faq_category_id')->unsigned();
 
-            $table->timestamps();
-
             $table->foreign('faq_id')->references('id')->on('faqs');
             $table->foreign('faq_category_id')->references('id')->on('faq_categories');
         });

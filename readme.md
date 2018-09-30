@@ -34,7 +34,6 @@ npm install
 npm install -g bower
 bower install
 php artisan key:generate
-gulp
 ```
 
 ## Refresh Commands

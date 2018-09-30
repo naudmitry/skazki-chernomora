@@ -14114,7 +14114,7 @@ be a descendant of the grid when it is being dragged.
   cursor: pointer;
 }
 
-.btn:not([disabled]):not(.disabled):not(.btn-link):hover, .btn:not([disabled]):not(.disabled):not(.btn-link):focus {
+.btn:not([disabled]):not(.disabled):not(.btn-link):hover {
   text-decoration: none;
   -webkit-transform: translate3d(0, -1px, 0);
           transform: translate3d(0, -1px, 0);

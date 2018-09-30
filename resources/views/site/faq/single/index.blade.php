@@ -1,5 +1,11 @@
 @extends('site.layouts.master')
 
+@section('header__meta')
+    <meta name="description" content="{{ $faq->meta_description ?? '' }}"/>
+    <meta name="keywords" content="{{ $faq->meta_keywords ?? '' }}"/>
+    <title>{{ $faq->meta_title ?? 'Новости' }}</title>
+@endsection
+
 @section('content')
     @include('site.vendor.pageHeader', [
         'page' => 'Вопрос',

@@ -5,12 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
-
-    {{--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--}}
     <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
-
-
-    <title>Вход</title>
+    <title>Вход | Sacave</title>
 </head>
 <body>
 <section class="material-half-bg">
@@ -18,7 +14,7 @@
 </section>
 <section class="login-content">
     <div class="logo">
-        <h1>Salt Cave</h1>
+        <h1>Sacave</h1>
     </div>
     <div class="login-box">
         <form class="login-form" method="POST" action="{{ route('account.adminLoginPost') }}">
