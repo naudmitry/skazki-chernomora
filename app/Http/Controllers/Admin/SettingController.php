@@ -18,6 +18,6 @@ class SettingController extends Controller
      */
     public function index($tab = null)
     {
-        return view('admin.settings.index');
+        return view('main_admin.settings.index');
     }
 }

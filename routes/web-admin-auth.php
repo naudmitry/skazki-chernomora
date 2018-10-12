@@ -308,4 +308,18 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'uses' => 'Admin\PageController@contacts',
             'as' => 'admin.contacts.index',
         ]);
+
+    // COMPANIES
+    Route::get('/companies',
+        [
+            'uses' => 'Admin\CompanyController@index',
+            'as' => 'admin.companies.lists.index'
+        ]);
+
+    // SITES
+    Route::get('/showcases',
+        [
+            'uses' => 'Admin\ShowcaseController@index',
+            'as' => 'admin.showcases.index'
+        ]);
 });

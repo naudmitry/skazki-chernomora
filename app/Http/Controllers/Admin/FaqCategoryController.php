@@ -43,7 +43,7 @@ class FaqCategoryController extends Controller
 
         $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::FAQ_PAGE);
 
-        return view('admin.faq.categories.index', compact(
+        return view('main_admin.faq.categories.index', compact(
             'categories', 'staticPage'
         ));
     }
@@ -55,7 +55,7 @@ class FaqCategoryController extends Controller
     {
         $category = new FaqCategory();
 
-        return view('admin.faq.categories.includes.settings', compact([
+        return view('main_admin.faq.categories.includes.settings', compact([
             'category'
         ]));
     }
@@ -102,7 +102,7 @@ class FaqCategoryController extends Controller
      */
     public function edit(FaqCategory $category)
     {
-        return view('admin.faq.categories.includes.settings', compact(
+        return view('main_admin.faq.categories.includes.settings', compact(
             'category'
         ));
     }
@@ -157,11 +157,11 @@ class FaqCategoryController extends Controller
             $this->slugRepository->updateSlug($category, $request['address']);
         });
 
-        $row = view('admin.faq.categories.includes.item', compact(
+        $row = view('main_admin.faq.categories.includes.item', compact(
             'category'
         ))->render();
 
-        $settings = view('admin.faq.categories.includes.settings', compact(
+        $settings = view('main_admin.faq.categories.includes.settings', compact(
             'category'
         ))->render();
 

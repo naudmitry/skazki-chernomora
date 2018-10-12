@@ -49,7 +49,7 @@ class FaqController extends Controller
                 ->make(true);
         }
 
-        return view('admin.faq.questions.index', compact(
+        return view('main_admin.faq.questions.index', compact(
             'counters'
         ));
     }
@@ -62,7 +62,7 @@ class FaqController extends Controller
     {
         $categories = FaqCategory::all();
 
-        return view('admin.faq.questions.item.index', compact(
+        return view('main_admin.faq.questions.item.index', compact(
             'faq', 'categories'
         ));
     }
@@ -127,7 +127,7 @@ class FaqController extends Controller
 
         $categories = FaqCategory::all();
 
-        $settings = $isNew ? null : $settings = view('admin.faq.questions.item.settings', compact(
+        $settings = $isNew ? null : $settings = view('main_admin.faq.questions.item.settings', compact(
             'faq', 'categories'
         ))->render();
 
@@ -145,7 +145,7 @@ class FaqController extends Controller
     {
         $categories = FaqCategory::all();
 
-        return view('admin.faq.questions.item.create', compact(
+        return view('main_admin.faq.questions.item.create', compact(
             'categories'
         ));
     }

@@ -1,8 +1,8 @@
 {
-    "/js/admin/app.js": "/js/admin/app.js",
-    "/css/admin/app.css": "/css/admin/app.css",
-    "/js/admin/scripts.js": "/js/admin/scripts.js",
-    "/css/admin/style.css": "/css/admin/style.css",
-    "/css/site/style.css": "/css/site/style.css",
-    "/css/fontawesome.css": "/css/fontawesome.css"
+    "/main_admin/js/app.js": "/main_admin/js/app.js",
+    "/main_admin/js/scripts.js": "/main_admin/js/scripts.js",
+    "/main_admin/css/style.css": "/main_admin/css/style.css",
+    "/main_theme/css/style.css": "/main_theme/css/style.css",
+    "/css/fontawesome.css": "/css/fontawesome.css",
+    "/main_theme/js/scripts.js": "/main_theme/js/scripts.js"
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
 /**
  * Class Admin
@@ -12,12 +13,16 @@ use Illuminate\Notifications\Notifiable;
  * @property integer $id
  * @property boolean $super
  * @property string $name
- * @property string $firstname
+ * @property string $middle_name
  * @property string $surname
  * @property string $position
  * @property string $phone
  * @property string $email
  * @property string $password
+ * @property-read Company $company
+ * @property-read Role $role
+ * @property-read Collection|Company[] $companies
+ * @property-read Collection|Showcase[] $showcases
  */
 class Admin extends Authenticatable
 {
@@ -40,4 +45,36 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'admin_company');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function showcases()
+    {
+        return $this->belongsToMany(Showcase::class, 'admin_showcase', 'admin_id', 'showcase_id')->withTimestamps();
+    }
 }

@@ -11,28 +11,28 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js/admin')
-    .sass('resources/assets/sass/app.scss', 'public/css/admin');
+mix.js('resources/assets/js/app.js', 'public/main_admin/js');
 
 mix.scripts([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/popper.js/dist/popper.min.js',
+        // 'node_modules/popper.js/dist/popper.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
-        'resources/assets/js/main.js'
+        'resources/assets/js/main.js',
+        'node_modules/bootstrap-notify/bootstrap-notify.min.js'
     ],
-    'public/js/admin/scripts.js'
+    'public/main_admin/js/scripts.js'
 );
 
 mix.styles([
-        'resources/assets/css/main.css',
+        'resources/assets/css/main_admin.css',
         'node_modules/dragula/dist/dragula.min.css',
     ],
-    'public/css/admin/style.css');
+    'public/main_admin/css/style.css');
 
 mix.styles([
         'resources/assets/css/style.css',
     ],
-    'public/css/site/style.css');
+    'public/main_theme/css/style.css');
 
 mix.styles([
         'node_modules/@fortawesome/fontawesome-free/css/fontawesome.css',
@@ -41,3 +41,9 @@ mix.styles([
         'node_modules/@fortawesome/fontawesome-free/css/brands.css',
     ],
     'public/css/fontawesome.css');
+
+mix.scripts([
+        'resources/assets/js/scripts.js',
+    ],
+    'public/main_theme/js/scripts.js'
+);

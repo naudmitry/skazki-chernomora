@@ -17,11 +17,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $email
  * @property string $setting
  * @property bool $enable
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  *
  */
 class Showcase extends Model
 {
     use SoftDeletes;
+
+    protected $appends =
+        [
+            'formatCreatedAt',
+        ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -53,5 +60,13 @@ class Showcase extends Model
     public function domains()
     {
         return $this->hasMany(ShowcaseDomain::class, 'showcase_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormatCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y H:i');
     }
 }

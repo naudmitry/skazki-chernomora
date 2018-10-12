@@ -53,7 +53,7 @@ class PageController extends Controller
                 ->make(true);
         }
 
-        return view('admin.page.lists.index', compact(
+        return view('main_admin.page.lists.index', compact(
             'counters'
         ));
     }
@@ -83,7 +83,7 @@ class PageController extends Controller
             }
         });
 
-        $settings = view('admin.page.static.settings', compact(
+        $settings = view('main_admin.page.static.settings', compact(
             'staticPage'
         ))->render();
 
@@ -100,7 +100,7 @@ class PageController extends Controller
     {
         $categories = PageCategory::all();
 
-        return view('admin.page.lists.item.create', compact(
+        return view('main_admin.page.lists.item.create', compact(
             'categories'
         ));
     }
@@ -113,7 +113,7 @@ class PageController extends Controller
     {
         $categories = PageCategory::all();
 
-        return view('admin.page.lists.item.index', compact(
+        return view('main_admin.page.lists.item.index', compact(
             'page', 'categories'
         ));
     }
@@ -179,7 +179,7 @@ class PageController extends Controller
 
         $categories = PageCategory::all();
 
-        $settings = $isNew ? null : $settings = view('admin.page.lists.item.settings', compact(
+        $settings = $isNew ? null : $settings = view('main_admin.page.lists.item.settings', compact(
             'page', 'categories'
         ))->render();
 
@@ -197,7 +197,7 @@ class PageController extends Controller
     {
         $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::MAIN_PAGE);
 
-        return view('admin.main.index', compact(
+        return view('main_admin.main.index', compact(
             'staticPage'
         ));
     }
@@ -209,7 +209,7 @@ class PageController extends Controller
     {
         $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::CONTACTS_PAGE);
 
-        return view('admin.contacts.index', compact(
+        return view('main_admin.contacts.index', compact(
             'staticPage'
         ));
     }
@@ -221,7 +221,7 @@ class PageController extends Controller
     {
         $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::ABOUT_PAGE);
 
-        return view('admin.about.index', compact(
+        return view('main_admin.about.index', compact(
             'staticPage'
         ));
     }

@@ -49,7 +49,7 @@ class BlogController extends Controller
         $staticPage = $this->pagesRepository->getStaticPage(StaticPageTypesEnum::BLOG_PAGE);
         $staticPage->incrementViewsCount();
 
-        return view('site.blog.index', compact([
+        return view('main_theme.blog.index', compact([
             'categories', 'blogs', 'staticPage'
         ]));
     }
@@ -74,7 +74,7 @@ class BlogController extends Controller
 
         $blog->incrementViewsCount();
 
-        return view('site.blog.single.index', compact([
+        return view('main_theme.blog.single.index', compact([
             'blog', 'categories', 'currentCategory'
         ]));
     }
@@ -101,7 +101,7 @@ class BlogController extends Controller
 
         $currentCategory = $category;
 
-        return view('site.blog.category.index', compact([
+        return view('main_theme.blog.category.index', compact([
             'blogs', 'categories', 'currentCategory'
         ]));
 

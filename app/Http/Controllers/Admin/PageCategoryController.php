@@ -36,7 +36,7 @@ class PageCategoryController extends Controller
             ->orderBy('position')
             ->get();
 
-        return view('admin.page.categories.index', compact(
+        return view('main_admin.page.categories.index', compact(
             'categories'
         ));
     }
@@ -48,7 +48,7 @@ class PageCategoryController extends Controller
     {
         $category = new PageCategory();
 
-        return view('admin.page.categories.includes.settings', compact([
+        return view('main_admin.page.categories.includes.settings', compact([
             'category'
         ]));
     }
@@ -95,7 +95,7 @@ class PageCategoryController extends Controller
      */
     public function edit(PageCategory $category)
     {
-        return view('admin.page.categories.includes.settings', compact(
+        return view('main_admin.page.categories.includes.settings', compact(
             'category'
         ));
     }
@@ -150,11 +150,11 @@ class PageCategoryController extends Controller
             $this->slugRepository->updateSlug($category, $request['address']);
         });
 
-        $row = view('admin.page.categories.includes.item', compact(
+        $row = view('main_admin.page.categories.includes.item', compact(
             'category'
         ))->render();
 
-        $settings = view('admin.page.categories.includes.settings', compact(
+        $settings = view('main_admin.page.categories.includes.settings', compact(
             'category'
         ))->render();
 

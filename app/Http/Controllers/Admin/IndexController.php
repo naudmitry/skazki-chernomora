@@ -9,6 +9,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        return view('main_admin.dashboard.index');
     }
 }

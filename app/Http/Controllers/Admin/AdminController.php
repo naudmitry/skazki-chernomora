@@ -38,7 +38,7 @@ class AdminController extends Controller
                 ->make(true);
         }
 
-        return view('admin.administrator.lists.index', compact(
+        return view('main_admin.staff.lists.index', compact(
             'counters'
         ));
     }

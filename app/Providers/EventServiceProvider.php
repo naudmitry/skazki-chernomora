@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
+use App\Listeners;
+use App\Models;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -12,11 +13,11 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
-    ];
+    protected $listen =
+        [
+            'eloquent.creating: ' . Models\Admin::class => [Listeners\AdminCreatingEventListener::class],
+            'eloquent.created: ' . Models\Admin::class => [Listeners\AdminCreatedEventListener::class, Listeners\AdminsCountEventListener::class],
+        ];
 
     /**
      * Register any events for your application.

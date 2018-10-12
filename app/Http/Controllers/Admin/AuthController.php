@@ -17,7 +17,7 @@ class AuthController extends BaseController
             return redirect()->route('admin.index');
         }
 
-        return view('admin.auth.login');
+        return view('main_admin.auth.login');
     }
 
     /**

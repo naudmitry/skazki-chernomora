@@ -24,7 +24,7 @@ class IndexController extends Controller
             ->where('favorite', true)
             ->get();
 
-        return view('site.index', compact([
+        return view('main_theme.index', compact([
             'faqs', 'staticPage'
         ]));
     }
@@ -39,7 +39,7 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        return view('site.blog.index', compact([
+        return view('main_theme.blog.index', compact([
             'staticPage'
         ]));
     }
@@ -54,7 +54,7 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        return view('site.contacts.index', compact([
+        return view('main_theme.contacts.index', compact([
             'staticPage'
         ]));
     }
@@ -69,7 +69,7 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        return view('site.about.index', compact([
+        return view('main_theme.about.index', compact([
             'staticPage'
         ]));
     }
@@ -79,7 +79,7 @@ class IndexController extends Controller
      */
     public function service()
     {
-        return view('site.service.index');
+        return view('main_theme.service.index');
     }
 
     /**
@@ -87,7 +87,7 @@ class IndexController extends Controller
      */
     public function gallery()
     {
-        return view('site.gallery.index');
+        return view('main_theme.gallery.index');
     }
 
     /**
@@ -95,7 +95,7 @@ class IndexController extends Controller
      */
     public function team()
     {
-        return view('site.team.index');
+        return view('main_theme.team.index');
     }
 
     /**
@@ -103,6 +103,6 @@ class IndexController extends Controller
      */
     public function appointment()
     {
-        return view('site.appointment.index');
+        return view('main_theme.appointment.index');
     }
 }

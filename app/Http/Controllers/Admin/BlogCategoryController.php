@@ -43,7 +43,7 @@ class BlogCategoryController extends Controller
 
         $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::BLOG_PAGE);
 
-        return view('admin.blog.categories.index', compact(
+        return view('main_admin.blog.categories.index', compact(
             'categories', 'staticPage'
         ));
     }
@@ -54,7 +54,7 @@ class BlogCategoryController extends Controller
      */
     public function edit(BlogCategory $category)
     {
-        return view('admin.blog.categories.includes.settings', compact(
+        return view('main_admin.blog.categories.includes.settings', compact(
             'category'
         ));
     }
@@ -92,11 +92,11 @@ class BlogCategoryController extends Controller
             $this->slugRepository->updateSlug($category, $request['address']);
         });
 
-        $row = view('admin.blog.categories.includes.item', compact(
+        $row = view('main_admin.blog.categories.includes.item', compact(
             'category'
         ))->render();
 
-        $settings = view('admin.blog.categories.includes.settings', compact(
+        $settings = view('main_admin.blog.categories.includes.settings', compact(
             'category'
         ))->render();
 
@@ -132,7 +132,7 @@ class BlogCategoryController extends Controller
     {
         $category = new BlogCategory();
 
-        return view('admin.blog.categories.includes.settings', compact([
+        return view('main_admin.blog.categories.includes.settings', compact([
             'category'
         ]));
     }

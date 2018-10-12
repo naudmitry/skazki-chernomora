@@ -9,7 +9,7 @@ class ErrorHandlerController extends Controller
      */
     public function errorCode404()
     {
-        return view('admin.errors.404');
+        return view('main_admin.errors.404');
     }
 
     /**
@@ -17,6 +17,6 @@ class ErrorHandlerController extends Controller
      */
     public function errorCode405()
     {
-        return view('admin.errors.405');
+        return view('main_admin.errors.405');
     }
 }

@@ -22,6 +22,8 @@ class CreateCompaniesTable extends Migration
             $table->integer('admin_id')->unsigned()->nullable();
             $table->boolean('enable')->default(true);
 
+            $table->integer('stat_admins_count')->unsigned()->default(0);
+
             $table->timestamps();
             $table->softDeletes();
         });

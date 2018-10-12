@@ -11,13 +11,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property integer $id
+ * @property boolean $super
  * @property string $slug
  * @property string $title
  * @property integer $admin_id
  * @property boolean $enable
+ * @property integer $stat_admins_count
  * @property-read Admin $admin
  * @property-read Collection|Admin[] $admins
  * @property-read Collection|Showcase[] $showcases
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Company extends Model
 {
@@ -26,6 +30,11 @@ class Company extends Model
     protected $with =
         [
             'admin',
+        ];
+
+    protected $appends =
+        [
+            'formatCreatedAt',
         ];
 
     /**
@@ -63,5 +72,13 @@ class Company extends Model
     public function showcases()
     {
         return $this->hasMany(Showcase::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormatCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y H:i');
     }
 }

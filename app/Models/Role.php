@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $company_id
  * @property string $title
  * @property array $components
- * @property boolean $locked
+ * @property boolean $enable
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon|null $deleted_at

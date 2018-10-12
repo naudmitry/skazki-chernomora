@@ -49,7 +49,7 @@ class BlogController extends Controller
                 ->make(true);
         }
 
-        return view('admin.blog.articles.index', compact(
+        return view('main_admin.blog.articles.index', compact(
             'counters'
         ));
     }
@@ -76,7 +76,7 @@ class BlogController extends Controller
     {
         $categories = BlogCategory::all();
 
-        return view('admin.blog.articles.item.index', compact(
+        return view('main_admin.blog.articles.item.index', compact(
             'blog', 'categories'
         ));
     }
@@ -127,7 +127,7 @@ class BlogController extends Controller
 
         $categories = BlogCategory::all();
 
-        $settings = $isNew ? null : $settings = view('admin.blog.articles.item.settings', compact(
+        $settings = $isNew ? null : $settings = view('main_admin.blog.articles.item.settings', compact(
             'blog', 'categories'
         ))->render();
 
@@ -161,7 +161,7 @@ class BlogController extends Controller
     {
         $categories = BlogCategory::all();
 
-        return view('admin.blog.articles.item.create', compact(
+        return view('main_admin.blog.articles.item.create', compact(
             'categories'
         ));
     }

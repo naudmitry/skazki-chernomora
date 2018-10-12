@@ -17,8 +17,9 @@ class RolesSeeder extends Seeder
 
         foreach ($companies as $company) {
             Role::create([
+                'super' => $company->super ? 1 : 0,
                 'company_id' => $company->id,
-                'title' => 'admin',
+                'title' => $company->super ? 'Super-administrator' : 'Administrator',
                 'enable' => true,
             ]);
         }
