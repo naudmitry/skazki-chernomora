@@ -44463,6 +44463,11 @@ $(function () {
             $('#adminListsTable').DataTable().search(this.value).draw();
         }
     });
+
+    $('#modal-staff-add').find('.select2').select2({
+        minimumResultsForSearch: Infinity,
+        width: '100%'
+    });
 });
 
 /***/ }),

@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Панель администрирования</title>
+        <title>Dashboard | Sacave</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +20,8 @@
         <main class="app-content">
             @yield('content')
         </main>
+
+        @yield('modal')
 
         <script src="{{ mix('main_admin/js/scripts.js') }}"></script>
         <script src="{{ mix('main_admin/js/app.js') }}"></script>

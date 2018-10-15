@@ -13,7 +13,7 @@
                 <div class="tile-body">
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="#" class="btn btn-primary open-create-form" type="button">
+                            <button data-toggle="modal" data-target="#modal-staff-add" class="btn btn-primary open-create-form" type="button">
                                 <i class="fas fa-plus-circle"></i> Добавить
                             </button>
                         </div>
@@ -91,6 +91,10 @@
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-actions">
         @include('main_admin.staff.lists.columns.actions')
     </script>
+@endsection
+
+@section('modal')
+    @include('main_admin.staff.lists.modals.add')
 @endsection
 
 @section('footer__script')
