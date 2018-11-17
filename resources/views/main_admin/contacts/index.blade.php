@@ -3,7 +3,6 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Контакты',
-        'description' => 'Добавление и редактирование сведений страницы контактов',
         'page' => 'Страница контактов'
     ])
 

@@ -3,7 +3,6 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Новости',
-        'description' => 'Добавление и редактирование статьи',
         'page' => 'Статья в новостях'
     ])
 

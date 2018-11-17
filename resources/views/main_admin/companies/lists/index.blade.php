@@ -3,8 +3,7 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Компании',
-        'description' => 'Добавление и редактирование компаний',
-        'page' => 'Список компаний'
+        'page' => 'Список'
     ])
 
     <div class="row">

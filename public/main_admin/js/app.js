@@ -44352,6 +44352,8 @@ __webpack_require__(43);
 /* 43 */
 /***/ (function(module, exports) {
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 $(function () {
     var $adminLists = $('.admin-lists');
 
@@ -44464,9 +44466,68 @@ $(function () {
         }
     });
 
-    $('#modal-staff-add').find('.select2').select2({
-        minimumResultsForSearch: Infinity,
-        width: '100%'
+    $(document).on('click', '.open-add-admin-modal', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        var $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.attr('href'),
+            success: function success(response) {
+                $divForModal.html(response.view);
+                var $modalStaff = $('#modal-staff');
+                $modalStaff.find('.select2').select2({
+                    minimumResultsForSearch: Infinity,
+                    width: '100%'
+                });
+                $modalStaff.modal('show');
+                $modalStaff.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: function error(xhr) {
+                console.error(xhr);
+            },
+            complete: function complete() {
+                return $this.removeData('ajax');
+            }
+        }));
+    });
+
+    $(document).on('submit', '.admin-list-edit-form', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var $modal = $form.closest('.modal');
+        if ($form.data('ajax')) {
+            $form.data('ajax').abort();
+        }
+        $form.find('.has-error').removeClass('has-error');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function success(response) {
+                $adminListsTable.DataTable().ajax.reload();
+                $modal.modal('hide');
+            },
+            error: function error(xhr) {
+                if (xhr.statusText == 'abort') {
+                    return;
+                }
+                if ('object' === _typeof(xhr.responseJSON)) {
+                    for (var key in xhr.responseJSON) {
+                        $form.find('[name="' + key + '"]').closest('.form-group').addClass('has-error');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: function complete() {
+                $form.removeData('ajax');
+            }
+        }));
     });
 });
 

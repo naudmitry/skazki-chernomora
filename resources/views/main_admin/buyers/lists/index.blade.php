@@ -3,8 +3,7 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Пользователи',
-        'description' => 'Добавление и редактирование пользователей',
-        'page' => 'Список пользователей'
+        'page' => 'Клиенты'
     ])
 
     <div class="row">

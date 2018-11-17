@@ -28,6 +28,20 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'as' => 'admin.admin.list.index',
         ]);
 
+    Route::post('/admin/lists/save/{admin?}',
+        [
+            'uses' => 'Admin\AdminController@save',
+            'as' => 'admin.admin.list.save',
+        ])
+        ->where('admin', '[0-9]+');
+
+    Route::get('/admin/lists/edit/{admin?}',
+        [
+            'uses' => 'Admin\AdminController@edit',
+            'as' => 'admin.admin.list.edit',
+        ])
+        ->where('admin', '[0-9]+');
+
     /*
      * BLOG
      */

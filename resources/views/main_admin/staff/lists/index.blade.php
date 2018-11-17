@@ -2,9 +2,8 @@
 
 @section('content')
     @include('main_admin.vendor.pageHeader', [
-        'section' => 'Администраторы',
-        'description' => 'Добавление и редактирование списка администраторов',
-        'page' => 'Список администраторов'
+        'section' => 'Персонал',
+        'page' => 'Список'
     ])
 
     <div class="row">
@@ -13,9 +12,11 @@
                 <div class="tile-body">
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-md-6 col-lg-3">
-                            <button data-toggle="modal" data-target="#modal-staff-add" class="btn btn-primary open-create-form" type="button">
-                                <i class="fas fa-plus-circle"></i> Добавить
-                            </button>
+                            <button
+                                    class="btn btn-primary open-add-admin-modal"
+                                    type="button"
+                                    href="{{ route('admin.admin.list.edit') }}"
+                            ><i class="fas fa-plus-circle"></i> Добавить</button>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
@@ -70,6 +71,8 @@
         </div>
     </div>
 
+    <div class="div-for-modal"></div>
+
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-ip">
         @include('main_admin.staff.lists.columns.ip')
     </script>
@@ -91,10 +94,6 @@
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-actions">
         @include('main_admin.staff.lists.columns.actions')
     </script>
-@endsection
-
-@section('modal')
-    @include('main_admin.staff.lists.modals.add')
 @endsection
 
 @section('footer__script')

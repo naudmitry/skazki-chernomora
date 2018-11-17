@@ -3,7 +3,6 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Настройки',
-        'description' => 'Различные настройки сайта',
         'page' => 'Настройки сайта'
     ])
 

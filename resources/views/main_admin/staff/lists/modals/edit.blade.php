@@ -1,9 +1,8 @@
-<div class="col-lg-6 modal" id="modal-staff-add">
+<div class="col-lg-6 modal" id="modal-staff">
     <div class="bs-component">
         <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
             <div class="modal-dialog" role="document">
-                <form class="modal-content">
-
+                <form class="modal-content admin-list-edit-form" method="post" action="{{ route('admin.admin.list.save', $admin) }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Добавление администратора</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -83,7 +82,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="button">Сохранить</button>
+                        <button class="btn btn-primary" type="submit">Сохранить</button>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Отменить</button>
                     </div>
                 </form>

@@ -105,8 +105,65 @@ $(function () {
         }
     });
 
-    $('#modal-staff-add').find('.select2').select2({
-        minimumResultsForSearch: Infinity,
-        width: '100%'
+    $(document).on('click', '.open-add-admin-modal', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        let $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.attr('href'),
+            success: response => {
+                $divForModal.html(response.view);
+                let $modalStaff = $('#modal-staff');
+                $modalStaff.find('.select2').select2({
+                    minimumResultsForSearch: Infinity,
+                    width: '100%'
+                });
+                $modalStaff.modal('show');
+                $modalStaff.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: xhr => {
+                console.error(xhr);
+            },
+            complete: () => $this.removeData('ajax'),
+        }));
+    });
+
+    $(document).on('submit', '.admin-list-edit-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        let $modal = $form.closest('.modal');
+        if ($form.data('ajax')) {
+            $form.data('ajax').abort();
+        }
+        $form.find('.has-error').removeClass('has-error');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                $adminListsTable.DataTable().ajax.reload();
+                $modal.modal('hide');
+            },
+            error: xhr => {
+                if (xhr.statusText == 'abort') {
+                    return;
+                }
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON) {
+                        $form.find('[name="' + key + '"]').closest('.form-group').addClass('has-error');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+            },
+        }));
     });
 });
