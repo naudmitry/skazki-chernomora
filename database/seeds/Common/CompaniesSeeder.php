@@ -2,6 +2,7 @@
 
 use App\Models\Admin;
 use App\Models\Company;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class CompaniesSeeder extends Seeder
@@ -28,9 +29,25 @@ class CompaniesSeeder extends Seeder
                 'title' => 'Super company',
                 'enable' => true,
                 'created_at' => $faker->dateTimeBetween('-12 month', '-11 month'),
-                'slug' => 'admin.skazki-chernomora.test'
             ]);
 
+        /** @var Role $superAdminRole */
+        $superAdminRole = $superCompany->roles()->where('enable', true)->firstOrFail();
+
+        $superAdmin = Admin::create(
+            [
+                'company_id' => $superCompany->id,
+                'super' => true,
+                'role_id' => $superAdminRole->id,
+                'name' => 'Elga',
+                'surname' => 'Egorova',
+                'position' => $superAdminRole->title,
+                'email' => 'boss@mail.com',
+                'password' => bcrypt('123456'),
+                'remember_token' => str_random(10),
+            ]);
+
+        $superCompany->admin()->associate($superAdmin);
         $superCompany->save();
     }
 
@@ -38,12 +55,45 @@ class CompaniesSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        Company::create(
+        $company = Company::create(
             [
                 'title' => 'Skazki Chernomora',
                 'enable' => true,
                 'created_at' => $faker->dateTimeBetween('-10 month', '-9 month'),
-                'slug' => 'admin1.skazki-chernomora.test'
             ]);
+
+        /** @var Role $companyAdminRole */
+        $companyAdminRole = $company->roles()->where('enable', true)->first();
+
+        foreach (
+            [
+                [
+                    'company_id' => $company->id,
+                    'role_id' => $companyAdminRole->id,
+                    'name' => 'Dmitry',
+                    'surname' => 'Naumov',
+                    'position' => $companyAdminRole->title,
+                    'email' => 'd.naumov@mail.com',
+                    'password' => bcrypt('123456'),
+                    'remember_token' => str_random(10),
+                ],
+                [
+                    'company_id' => $company->id,
+                    'role_id' => $companyAdminRole->id,
+                    'name' => 'Ludmila',
+                    'surname' => 'Rakovich',
+                    'position' => $companyAdminRole->title,
+                    'email' => 'l.rakovich@mail.com',
+                    'password' => bcrypt('123456'),
+                    'remember_token' => str_random(10),
+                ],
+            ] as $adminData) {
+            $admin = Admin::create($adminData);
+
+            if (empty($company->admin)) {
+                $company->admin()->associate($admin);
+                $company->save();
+            }
+        }
     }
 }

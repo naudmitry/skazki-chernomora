@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Company;
+use App\Classes\AdminComponentEnum;
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class RolesSeeder extends Seeder
@@ -13,15 +14,11 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        $companies = Company::all();
-
-        foreach ($companies as $company) {
-            Role::create([
-                'super' => $company->super ? 1 : 0,
-                'company_id' => $company->id,
-                'title' => $company->super ? 'Super-administrator' : 'Administrator',
-                'enable' => true,
+        Role::query()
+            ->where('enable', true)
+            ->update([
+                'components' => \DB::raw('IF(`super`, "' . addslashes(json_encode(array_values(AdminComponentEnum::listsSuper()))) . '", "' . addslashes(json_encode(array_values(AdminComponentEnum::listsCompany()))) . '")'),
+                'updated_at' => Carbon::now(),
             ]);
-        }
     }
 }

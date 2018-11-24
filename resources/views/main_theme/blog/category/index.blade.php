@@ -20,13 +20,13 @@
                             <div class="item-holder">
                                 <div class="image-box">
                                     <figure>
-                                        <a href="{{ $blog->getShowcaseUrl() }}">
+                                        <a href="{{ $blog->getRoute() }}">
                                             <img src="{{ $blog->link }}" alt="{{ $blog->name }}">
                                         </a>
                                     </figure>
                                 </div>
                                 <div class="content-text">
-                                    <a href="{{ $blog->getShowcaseUrl() }}">
+                                    <a href="{{ $blog->getRoute() }}">
                                         <h6>{{ $blog->name }}</h6>
                                     </a>
                                     <span>{{ $blog->author->surname }} {{ $blog->author->name }} / {{ $blog->updated_at }}</span>

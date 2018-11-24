@@ -16,6 +16,8 @@ class CreateFaqsTable extends Migration
         Schema::create('faqs', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('company_id')->unsigned();
+            $table->integer('showcase_id')->unsigned();
             $table->string('title')->index();
             $table->string('name');
             $table->boolean('enable')->default(false);
@@ -26,15 +28,16 @@ class CreateFaqsTable extends Migration
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
-
             $table->integer('author_id')->unsigned()->nullable();
-            $table->foreign('author_id')->references('id')->on('admins');
-
             $table->integer('updater_id')->unsigned()->nullable();
-            $table->foreign('updater_id')->references('id')->on('admins');
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('showcase_id')->references('id')->on('showcases');
+            $table->foreign('author_id')->references('id')->on('admins');
+            $table->foreign('updater_id')->references('id')->on('admins');
         });
     }
 

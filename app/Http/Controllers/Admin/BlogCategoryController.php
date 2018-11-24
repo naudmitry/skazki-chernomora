@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\StaticPageTypesEnum;
 use App\Http\Requests\Blog\BlogCategoryRequest;
 use App\Models\BlogCategory;
+use App\Models\Company;
+use App\Models\Showcase;
 use App\Repositories\BlogRepository;
 use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
@@ -33,15 +35,22 @@ class BlogCategoryController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Company $administeredCompany, Showcase $administeredShowcase)
     {
         $categories = BlogCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
             ->orderBy('position')
             ->get();
 
-        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::BLOG_PAGE);
+        $staticPage = $this->pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::BLOG_PAGE
+        );
 
         return view('main_admin.blog.categories.index', compact(
             'categories', 'staticPage'
@@ -60,16 +69,18 @@ class BlogCategoryController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param BlogCategoryRequest $request
      * @param BlogCategory|null $category
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function save(BlogCategoryRequest $request, BlogCategory $category = null)
+    public function save(Company $administeredCompany, Showcase $administeredShowcase, BlogCategoryRequest $request, BlogCategory $category = null)
     {
         $this->validate($request, [
-            'title' => Rule::unique('blog_categories')->where(function ($query) use ($category) {
-                $query->whereNull('deleted_at');
+            'title' => Rule::unique('blog_categories')->where(function ($query) use ($category, $administeredShowcase) {
+                $query->where('showcase_id', $administeredShowcase->id)->whereNull('deleted_at');
                 if (isset($category->id)) {
                     $query->where('id', '!=', $category->id);
                 }
@@ -81,15 +92,20 @@ class BlogCategoryController extends Controller
             ->slugRepository
             ->getSlugUniqueValidationRule
             (
+                $administeredShowcase,
                 BlogCategory::class,
                 $category->id ?? null
             );
 
         $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
 
-        \DB::transaction(function () use (&$category, $request) {
-            $category = $this->blogRepository->saveCategory($category, $request->all());
-            $this->slugRepository->updateSlug($category, $request['address']);
+        $data = $request->all();
+        $data['company_id'] = $administeredCompany->id;
+        $data['showcase_id'] = $administeredShowcase->id;
+
+        \DB::transaction(function () use (&$category, $data) {
+            $category = $this->blogRepository->saveCategory($category, $data);
+            $this->slugRepository->updateSlug($category, $data['address']);
         });
 
         $row = view('main_admin.blog.categories.includes.item', compact(
@@ -111,11 +127,12 @@ class BlogCategoryController extends Controller
     /**
      * @param BlogCategory $category
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function delete(BlogCategory $category)
     {
         \DB::transaction(function () use (&$category) {
-            $category->slug()->delete();
+            $this->slugRepository->deleteSlug($category);
             $category->delete();
         });
 
@@ -140,11 +157,14 @@ class BlogCategoryController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      */
     public function sequence(Request $request)
     {
         $categories = $request->get('categories');
-        $items = BlogCategory::query()->whereIn('id', $categories)->get();
+        $items = BlogCategory::query()
+            ->whereIn('id', $categories)
+            ->get();
 
         \DB::transaction(function () use ($items, $categories) {
             /** @var BlogCategory $item */

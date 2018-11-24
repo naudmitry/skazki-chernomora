@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSlugsTable extends Migration
 {
@@ -16,11 +16,14 @@ class CreateSlugsTable extends Migration
         Schema::create('slugs', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('showcase_id')->unsigned();
             $table->string('slug');
             $table->string('entity_type')->nullable();
             $table->integer('entity_id')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('showcase_id')->references('id')->on('showcases');
         });
     }
 

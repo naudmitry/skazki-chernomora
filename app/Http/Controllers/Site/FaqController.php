@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Classes\StaticPageTypesEnum;
 use App\Models\Faq;
 use App\Models\FaqCategory;
+use App\Models\Showcase;
 use App\Repositories\PageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -30,12 +31,17 @@ class FaqController extends Controller
      */
     public function index(Request $request)
     {
+        /** @var Showcase $showcase */
+        $showcase = $this->showcase;
+
         $categories = FaqCategory::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('position')
             ->get();
 
         $faqs = Faq::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true);
 
         if ($request->has('category')) {
@@ -46,7 +52,7 @@ class FaqController extends Controller
 
         $faqs = $faqs->paginate(5);
 
-        $staticPage = $this->pagesRepository->getStaticPage(StaticPageTypesEnum::FAQ_PAGE);
+        $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::FAQ_PAGE);
         $staticPage->incrementViewsCount();
 
         return view('main_theme.faq.index', compact([
@@ -64,10 +70,14 @@ class FaqController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
 
+        /** @var Showcase $showcase */
+        $showcase = $this->showcase;
+
         /** @var FaqCategory $currentCategory */
         $currentCategory = $faq->categories()->find(request()->get('category_id', null));
 
         $categories = FaqCategory::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('position')
             ->get();
@@ -89,12 +99,17 @@ class FaqController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
 
+        /** @var Showcase $showcase */
+        $showcase = $this->showcase;
+
         $categories = FaqCategory::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('position')
             ->get();
 
         $faqs = $category->faqs()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('created_at', 'desc')
             ->paginate(10);

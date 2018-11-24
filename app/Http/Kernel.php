@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Admin as AdminMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -48,6 +49,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \App\Http\Middleware\RedirectIfNotAdmin::class,
+            AdminMiddleware\SetAdministeredScope::class,
+//            AdminMiddleware\VerifyAccessToComponents::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 

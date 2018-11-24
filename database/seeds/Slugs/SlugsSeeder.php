@@ -3,10 +3,12 @@
 use App\Classes\StaticPageTypesEnum;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Company;
 use App\Models\Faq;
 use App\Models\FaqCategory;
 use App\Models\Page;
 use App\Models\PageCategory;
+use App\Models\Showcase;
 use App\Models\Slug;
 use Illuminate\Database\Seeder;
 
@@ -21,67 +23,95 @@ class SlugsSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $blogs = Blog::all();
-        $blogCategories = BlogCategory::all();
+        $companies = Company::all();
 
-        /** @var Blog $blog */
-        foreach ($blogs as $blog) {
-            Slug::create([
-                'slug' => $faker->unique()->slug(),
-                'entity_type' => Blog::class,
-                'entity_id' => $blog->id,
-            ]);
-        }
+        foreach ($companies as $company) {
+            /** @var Showcase $showcase */
+            foreach ($company->showcases as $showcase) {
+                $blogs = Blog::query()
+                    ->where('showcase_id', $showcase->id)
+                    ->get();
 
-        /** @var BlogCategory $blogCategory */
-        foreach ($blogCategories as $blogCategory) {
-            Slug::create([
-                'slug' => $faker->unique()->slug(),
-                'entity_type' => BlogCategory::class,
-                'entity_id' => $blogCategory->id,
-            ]);
-        }
+                foreach ($blogs as $blog) {
+                    Slug::create([
+                        'slug' => $faker->unique()->slug(),
+                        'entity_type' => Blog::class,
+                        'entity_id' => $blog->id,
+                        'showcase_id' => $showcase->id
+                    ]);
+                }
 
-        $faqs = Faq::all();
-        $faqCategories = FaqCategory::all();
+                $blogCategories = BlogCategory::query()
+                    ->where('showcase_id', $showcase->id)
+                    ->get();
 
-        /** @var Faq $faq */
-        foreach ($faqs as $faq) {
-            Slug::create([
-                'slug' => $faker->unique()->slug(),
-                'entity_type' => Faq::class,
-                'entity_id' => $faq->id,
-            ]);
-        }
+                foreach ($blogCategories as $blogCategory) {
+                    Slug::create([
+                        'slug' => $faker->unique()->slug(),
+                        'entity_type' => BlogCategory::class,
+                        'entity_id' => $blogCategory->id,
+                        'showcase_id' => $showcase->id
+                    ]);
+                }
 
-        /** @var FaqCategory $faqCategory */
-        foreach ($faqCategories as $faqCategory) {
-            Slug::create([
-                'slug' => $faker->unique()->slug(),
-                'entity_type' => FaqCategory::class,
-                'entity_id' => $faqCategory->id,
-            ]);
-        }
+                $faqs = Faq::query()
+                    ->where('company_id', $company->id)
+                    ->where('showcase_id', $showcase->id)
+                    ->get();
 
-        $pages = Page::all();
-        $pageCategories = PageCategory::all();
+                foreach ($faqs as $faq) {
+                    Slug::create([
+                        'slug' => $faker->unique()->slug(),
+                        'entity_type' => Faq::class,
+                        'entity_id' => $faq->id,
+                        'showcase_id' => $showcase->id
+                    ]);
+                }
 
-        /** @var Page $page */
-        foreach ($pages as $page) {
-            Slug::create([
-                'slug' => $page->static_page_type == StaticPageTypesEnum::MAIN_PAGE ? '' : $faker->unique()->slug(),
-                'entity_type' => Page::class,
-                'entity_id' => $page->id,
-            ]);
-        }
+                $faqCategories = FaqCategory::query()
+                    ->where('company_id', $company->id)
+                    ->where('showcase_id', $showcase->id)
+                    ->get();
 
-        /** @var PageCategory $pageCategory */
-        foreach ($pageCategories as $pageCategory) {
-            Slug::create([
-                'slug' => $faker->unique()->slug(),
-                'entity_type' => PageCategory::class,
-                'entity_id' => $pageCategory->id,
-            ]);
+                foreach ($faqCategories as $faqCategory) {
+                    Slug::create([
+                        'slug' => $faker->unique()->slug(),
+                        'entity_type' => FaqCategory::class,
+                        'entity_id' => $faqCategory->id,
+                        'showcase_id' => $showcase->id
+                    ]);
+                }
+
+                $pages = Page::query()
+                    ->where('company_id', $company->id)
+                    ->where('showcase_id', $showcase->id)
+                    ->get();
+
+                /** @var Page $page */
+                foreach ($pages as $page) {
+                    Slug::create([
+                        'slug' => $page->static_page_type == StaticPageTypesEnum::MAIN_PAGE ? '' : $faker->unique()->slug(),
+                        'entity_type' => Page::class,
+                        'entity_id' => $page->id,
+                        'showcase_id' => $showcase->id
+                    ]);
+                }
+
+                $pageCategories = PageCategory::query()
+                    ->where('company_id', $company->id)
+                    ->where('showcase_id', $showcase->id)
+                    ->get();
+
+                /** @var PageCategory $pageCategory */
+                foreach ($pageCategories as $pageCategory) {
+                    Slug::create([
+                        'slug' => $faker->unique()->slug(),
+                        'entity_type' => PageCategory::class,
+                        'entity_id' => $pageCategory->id,
+                        'showcase_id' => $showcase->id
+                    ]);
+                }
+            }
         }
     }
 }

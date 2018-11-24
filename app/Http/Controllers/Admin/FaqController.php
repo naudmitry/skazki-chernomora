@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Faq\FaqRequest;
+use App\Models\Company;
 use App\Models\Faq;
 use App\Models\FaqCategory;
+use App\Models\Showcase;
 use App\Repositories\FaqRepository;
 use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
@@ -30,12 +32,17 @@ class FaqController extends Controller
 
     /**
      * @param Request $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
-    public function index(Request $request)
+    public function index(Request $request, Company $administeredCompany, Showcase $administeredShowcase)
     {
-        $faqQuery = Faq::all();
+        $faqQuery = Faq::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         $counters =
             [
@@ -50,17 +57,22 @@ class FaqController extends Controller
         }
 
         return view('main_admin.faq.questions.index', compact(
-            'counters'
+            'counters', 'administeredShowcase'
         ));
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param Faq $faq
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Faq $faq)
+    public function edit(Company $administeredCompany, Showcase $administeredShowcase, Faq $faq)
     {
-        $categories = FaqCategory::all();
+        $categories = FaqCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         return view('main_admin.faq.questions.item.index', compact(
             'faq', 'categories'
@@ -70,11 +82,12 @@ class FaqController extends Controller
     /**
      * @param Faq $faq
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function delete(Faq $faq)
     {
         \DB::transaction(function () use (&$faq) {
-            $faq->slug()->delete();
+            $this->slugRepository->deleteSlug($faq);
             $faq->delete();
         });
 
@@ -99,17 +112,20 @@ class FaqController extends Controller
 
     /**
      * @param FaqRequest $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param Faq|null $faq
      * @param bool $isNew
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function save(FaqRequest $request, Faq $faq = null, $isNew = false)
+    public function save(FaqRequest $request, Company $administeredCompany, Showcase $administeredShowcase, Faq $faq = null, $isNew = false)
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
             ->getSlugUniqueValidationRule
             (
+                $administeredShowcase,
                 Faq::class,
                 $faq->id ?? null
             );
@@ -120,15 +136,22 @@ class FaqController extends Controller
             $isNew = true;
         }
 
-        \DB::transaction(function () use (&$faq, $request) {
-            $faq = $this->faqRepository->saveFaq($faq, $request->all());
-            $this->slugRepository->updateSlug($faq, $request['address']);
+        $data = $request->all();
+        $data['company_id'] = $administeredCompany->id;
+        $data['showcase_id'] = $administeredShowcase->id;
+
+        \DB::transaction(function () use (&$faq, $data) {
+            $faq = $this->faqRepository->saveFaq($faq, $data);
+            $this->slugRepository->updateSlug($faq, $data['address']);
         });
 
-        $categories = FaqCategory::all();
+        $categories = FaqCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         $settings = $isNew ? null : $settings = view('main_admin.faq.questions.item.settings', compact(
-            'faq', 'categories'
+            'faq', 'categories', 'administeredShowcase'
         ))->render();
 
         return response()->json([
@@ -139,11 +162,16 @@ class FaqController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Company $administeredCompany, Showcase $administeredShowcase)
     {
-        $categories = FaqCategory::all();
+        $categories = FaqCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         return view('main_admin.faq.questions.item.create', compact(
             'categories'

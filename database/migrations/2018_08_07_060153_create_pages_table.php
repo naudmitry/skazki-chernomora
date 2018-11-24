@@ -17,6 +17,8 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('company_id')->unsigned();
+            $table->integer('showcase_id')->unsigned();
             $table->string('static_page_type')->nullable();
             $table->string('type')->default(PageTypesEnum::CUSTOM_PAGE);
             $table->string('title')->index()->nullable();
@@ -38,6 +40,8 @@ class CreatePagesTable extends Migration
             $table->foreign('category_id')->references('id')->on('page_categories');
             $table->foreign('author_id')->references('id')->on('admins');
             $table->foreign('updater_id')->references('id')->on('admins');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('showcase_id')->references('id')->on('showcases');
         });
     }
 

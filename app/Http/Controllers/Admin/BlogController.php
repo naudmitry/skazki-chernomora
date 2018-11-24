@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Blog\BlogRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Company;
+use App\Models\Showcase;
 use App\Repositories\BlogRepository;
 use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
@@ -30,12 +32,17 @@ class BlogController extends Controller
 
     /**
      * @param Request $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
-    public function index(Request $request)
+    public function index(Request $request, Company $administeredCompany, Showcase $administeredShowcase)
     {
-        $blogQuery = Blog::all();
+        $blogQuery = Blog::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         $counters =
             [
@@ -50,7 +57,7 @@ class BlogController extends Controller
         }
 
         return view('main_admin.blog.articles.index', compact(
-            'counters'
+            'counters', 'administeredShowcase'
         ));
     }
 
@@ -69,12 +76,17 @@ class BlogController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param Blog $blog
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Blog $blog)
+    public function edit(Company $administeredCompany, Showcase $administeredShowcase, Blog $blog)
     {
-        $categories = BlogCategory::all();
+        $categories = BlogCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         return view('main_admin.blog.articles.item.index', compact(
             'blog', 'categories'
@@ -84,11 +96,12 @@ class BlogController extends Controller
     /**
      * @param Blog $blog
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function delete(Blog $blog)
     {
         \DB::transaction(function () use (&$blog) {
-            $blog->slug()->delete();
+            $this->slugRepository->deleteSlug($blog);
             $blog->delete();
         });
 
@@ -99,17 +112,20 @@ class BlogController extends Controller
 
     /**
      * @param BlogRequest $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param Blog|null $blog
      * @param bool $isNew
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function save(BlogRequest $request, Blog $blog = null, $isNew = false)
+    public function save(BlogRequest $request, Company $administeredCompany, Showcase $administeredShowcase, Blog $blog = null, $isNew = false)
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
             ->getSlugUniqueValidationRule
             (
+                $administeredShowcase,
                 Blog::class,
                 $blog->id ?? null
             );
@@ -120,15 +136,22 @@ class BlogController extends Controller
             $isNew = true;
         }
 
-        \DB::transaction(function () use (&$blog, $request) {
-            $blog = $this->blogRepository->saveBlog($blog, $request->all());
-            $this->slugRepository->updateSlug($blog, $request['address']);
+        $data = $request->all();
+        $data['company_id'] = $administeredCompany->id;
+        $data['showcase_id'] = $administeredShowcase->id;
+
+        \DB::transaction(function () use (&$blog, $data) {
+            $blog = $this->blogRepository->saveBlog($blog, $data);
+            $this->slugRepository->updateSlug($blog, $data['address']);
         });
 
-        $categories = BlogCategory::all();
+        $categories = BlogCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         $settings = $isNew ? null : $settings = view('main_admin.blog.articles.item.settings', compact(
-            'blog', 'categories'
+            'blog', 'categories', 'administeredShowcase'
         ))->render();
 
         return response()->json([
@@ -155,11 +178,16 @@ class BlogController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Company $administeredCompany, Showcase $administeredShowcase)
     {
-        $categories = BlogCategory::all();
+        $categories = BlogCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         return view('main_admin.blog.articles.item.create', compact(
             'categories'

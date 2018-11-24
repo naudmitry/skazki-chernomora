@@ -28,6 +28,15 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
     }
 
+    public function register()
+    {
+        parent::register();
+
+        $this->app->bind('url', function ($app) {
+            return new \App\Classes\Routing\UrlGenerator($app->make('router')->getRoutes(), $app->make('request'));
+        });
+    }
+
     /**
      * Define the routes for the application.
      *

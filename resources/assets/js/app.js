@@ -1,5 +1,6 @@
 require('./bootstrap');
 
+require('./pages/admin/swith-companies');
 require('./pages/admin/blog');
 require('./pages/admin/faq');
 require('./pages/admin/page');

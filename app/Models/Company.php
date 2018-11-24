@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Collection|Showcase[] $showcases
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ *
+ * @mixin \Eloquent
  */
 class Company extends Model
 {
@@ -60,11 +62,14 @@ class Company extends Model
     {
         return $this->hasMany(Role::class);
     }
-//
-//    public function groups()
-//    {
-//        return $this->hasMany(Group::class);
-//    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -80,5 +85,13 @@ class Company extends Model
     public function getFormatCreatedAtAttribute()
     {
         return $this->created_at->format('d/m/Y H:i');
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

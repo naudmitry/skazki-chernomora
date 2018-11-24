@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Showcase\ShowcasableTrait;
 use App\Repositories\Slug\SlugableInterface;
 use App\Repositories\Slug\SlugableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property integer $id
+ * @property integer $company_id
+ * @property integer $showcase_id
  * @property string $static_page_type
  * @property string $type
  * @property string $title
@@ -36,6 +39,7 @@ class Page extends Model implements SlugableInterface
 {
     use SoftDeletes;
     use SlugableTrait;
+    use ShowcasableTrait;
 
     protected $with =
         [

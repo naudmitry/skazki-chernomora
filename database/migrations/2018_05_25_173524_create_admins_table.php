@@ -25,17 +25,24 @@ class CreateAdminsTable extends Migration
             $table->string('position')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->index();
+            $table->string('token')->nullable();
             $table->string('password')->nullable();
 
-            $table->string('ip')->nullable()->index();
-            $table->string('last_ip')->nullable();
+            $table->timestamp('registered_at')->nullable()->index();
+            $table->timestamp('login_at')->nullable()->index();
+
+            $table->string('registered_from')->nullable();
+            $table->string('login_from')->nullable();
+            $table->string('created_from')->nullable();
 
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');;
             $table->foreign('role_id')->references('id')->on('roles');
+
+            $table->unique(['email', 'deleted_at']);
         });
     }
 

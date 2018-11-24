@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Classes\StaticPageTypesEnum;
 use App\Http\Requests\Faq\FaqCategoryRequest;
+use App\Models\Company;
 use App\Models\FaqCategory;
+use App\Models\Showcase;
 use App\Repositories\FaqRepository;
 use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
@@ -33,18 +35,25 @@ class FaqCategoryController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Company $administeredCompany, Showcase $administeredShowcase)
     {
         $categories = FaqCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
             ->orderBy('position')
             ->get();
 
-        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::FAQ_PAGE);
+        $staticPage = $this->pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::FAQ_PAGE
+        );
 
         return view('main_admin.faq.categories.index', compact(
-            'categories', 'staticPage'
+            'categories', 'staticPage', 'administeredShowcase'
         ));
     }
 
@@ -63,11 +72,14 @@ class FaqCategoryController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      */
     public function sequence(Request $request)
     {
         $categories = $request->get('categories');
-        $items = FaqCategory::whereIn('id', $categories)->get();
+        $items = FaqCategory::query()
+            ->whereIn('id', $categories)
+            ->get();
 
         \DB::transaction(function () use ($items, $categories) {
             /** @var FaqCategory $item */
@@ -97,24 +109,26 @@ class FaqCategoryController extends Controller
     }
 
     /**
+     * @param Showcase $administeredShowcase
      * @param FaqCategory $category
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(FaqCategory $category)
+    public function edit(Showcase $administeredShowcase, FaqCategory $category)
     {
         return view('main_admin.faq.categories.includes.settings', compact(
-            'category'
+            'category', 'administeredShowcase'
         ));
     }
 
     /**
      * @param FaqCategory $category
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function delete(FaqCategory $category)
     {
         \DB::transaction(function () use (&$category) {
-            $category->slug()->delete();
+            $this->slugRepository->deleteSlug($category);
             $category->delete();
         });
 
@@ -125,16 +139,18 @@ class FaqCategoryController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param FaqCategoryRequest $request
      * @param FaqCategory|null $category
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function save(FaqCategoryRequest $request, FaqCategory $category = null)
+    public function save(Company $administeredCompany, Showcase $administeredShowcase, FaqCategoryRequest $request, FaqCategory $category = null)
     {
         $this->validate($request, [
-            'title' => Rule::unique('faq_categories')->where(function ($query) use ($category) {
-                $query->whereNull('deleted_at');
+            'title' => Rule::unique('faq_categories')->where(function ($query) use ($category, $administeredShowcase) {
+                $query->where('showcase_id', $administeredShowcase->id)->whereNull('deleted_at');
                 if (isset($category->id)) {
                     $query->where('id', '!=', $category->id);
                 }
@@ -146,15 +162,20 @@ class FaqCategoryController extends Controller
             ->slugRepository
             ->getSlugUniqueValidationRule
             (
+                $administeredShowcase,
                 FaqCategory::class,
                 $category->id ?? null
             );
 
         $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
 
-        \DB::transaction(function () use (&$category, $request) {
-            $category = $this->faqRepository->saveCategory($category, $request->all());
-            $this->slugRepository->updateSlug($category, $request['address']);
+        $data = $request->all();
+        $data['company_id'] = $administeredCompany->id;
+        $data['showcase_id'] = $administeredShowcase->id;
+
+        \DB::transaction(function () use (&$category, $data) {
+            $category = $this->faqRepository->saveCategory($category, $data);
+            $this->slugRepository->updateSlug($category, $data['address']);
         });
 
         $row = view('main_admin.faq.categories.includes.item', compact(

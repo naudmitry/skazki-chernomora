@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Classes\StaticPageTypesEnum;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Showcase;
 use App\Repositories\PageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -30,12 +31,17 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
+        /** @var Showcase $showcase */
+        $showcase = $this->showcase;
+
         $categories = BlogCategory::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('position')
             ->get();
 
         $blogs = Blog::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true);
 
         if ($request->has('category')) {
@@ -46,7 +52,7 @@ class BlogController extends Controller
 
         $blogs = $blogs->paginate(3);
 
-        $staticPage = $this->pagesRepository->getStaticPage(StaticPageTypesEnum::BLOG_PAGE);
+        $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::BLOG_PAGE);
         $staticPage->incrementViewsCount();
 
         return view('main_theme.blog.index', compact([
@@ -64,10 +70,14 @@ class BlogController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
 
+        /** @var Showcase $showcase */
+        $showcase = $this->showcase;
+
         /** @var BlogCategory $currentCategory */
         $currentCategory = $blog->categories()->find(request()->get('category_id', null));
 
         $categories = BlogCategory::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('position')
             ->get();
@@ -89,7 +99,11 @@ class BlogController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
 
+        /** @var Showcase $showcase */
+        $showcase = $this->showcase;
+
         $categories = BlogCategory::query()
+            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('position')
             ->get();
@@ -104,6 +118,5 @@ class BlogController extends Controller
         return view('main_theme.blog.category.index', compact([
             'blogs', 'categories', 'currentCategory'
         ]));
-
     }
 }

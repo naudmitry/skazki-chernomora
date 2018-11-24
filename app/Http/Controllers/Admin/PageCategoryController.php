@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PageCategoryRequest;
+use App\Models\Company;
 use App\Models\PageCategory;
+use App\Models\Showcase;
 use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
@@ -28,11 +30,15 @@ class PageCategoryController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Company $administeredCompany, Showcase $administeredShowcase)
     {
         $categories = PageCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
             ->orderBy('position')
             ->get();
 
@@ -56,11 +62,14 @@ class PageCategoryController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      */
     public function sequence(Request $request)
     {
         $categories = $request->get('categories');
-        $items = PageCategory::whereIn('id', $categories)->get();
+        $items = PageCategory::query()
+            ->whereIn('id', $categories)
+            ->get();
 
         \DB::transaction(function () use ($items, $categories) {
             /** @var PageCategory $item */
@@ -90,44 +99,48 @@ class PageCategoryController extends Controller
     }
 
     /**
+     * @param Showcase $administeredShowcase
      * @param PageCategory $category
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(PageCategory $category)
+    public function edit(Showcase $administeredShowcase, PageCategory $category)
     {
         return view('main_admin.page.categories.includes.settings', compact(
-            'category'
+            'category', 'administeredShowcase'
         ));
     }
 
     /**
      * @param PageCategory $category
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function delete(PageCategory $category)
     {
         \DB::transaction(function () use (&$category) {
-            $category->slug()->delete();
+            $this->slugRepository->deleteSlug($category);
             $category->delete();
         });
 
         return response()->json([
-            'message' => 'Категория новости удалена.',
+            'message' => 'Категория страницы удалена.',
             'category' => $category,
         ]);
     }
 
     /**
      * @param PageCategoryRequest $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param PageCategory|null $category
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function save(PageCategoryRequest $request, PageCategory $category = null)
+    public function save(PageCategoryRequest $request, Company $administeredCompany, Showcase $administeredShowcase, PageCategory $category = null)
     {
         $this->validate($request, [
-            'title' => Rule::unique('page_categories')->where(function ($query) use ($category) {
-                $query->whereNull('deleted_at');
+            'title' => Rule::unique('page_categories')->where(function ($query) use ($category, $administeredShowcase) {
+                $query->where('showcase_id', $administeredShowcase->id)->whereNull('deleted_at');
                 if (isset($category->id)) {
                     $query->where('id', '!=', $category->id);
                 }
@@ -139,15 +152,20 @@ class PageCategoryController extends Controller
             ->slugRepository
             ->getSlugUniqueValidationRule
             (
+                $administeredShowcase,
                 PageCategory::class,
                 $category->id ?? null
             );
 
         $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
 
-        \DB::transaction(function () use (&$category, $request) {
-            $category = $this->pageRepository->saveCategory($category, $request->all());
-            $this->slugRepository->updateSlug($category, $request['address']);
+        $data = $request->all();
+        $data['company_id'] = $administeredCompany->id;
+        $data['showcase_id'] = $administeredShowcase->id;
+
+        \DB::transaction(function () use (&$category, $data) {
+            $category = $this->pageRepository->saveCategory($category, $data);
+            $this->slugRepository->updateSlug($category, $data['address']);
         });
 
         $row = view('main_admin.page.categories.includes.item', compact(

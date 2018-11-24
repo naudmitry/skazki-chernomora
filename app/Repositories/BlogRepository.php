@@ -2,14 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Models\Admin;
 use App\Models\Blog;
 use App\Models\BlogCategory;
-use Illuminate\Support\Facades\Auth;
 
 class BlogRepository
 {
     /**
-     * @param BlogCategory $category
+     * @param BlogCategory|null $category
      * @param $data
      * @return BlogCategory
      */
@@ -17,6 +17,8 @@ class BlogRepository
     {
         if (!isset($category)) {
             $category = new BlogCategory();
+            $category->company_id = array_get($data, 'company_id');
+            $category->showcase_id = array_get($data, 'showcase_id');
         }
 
         $category->title = array_get($data, 'title');
@@ -37,11 +39,14 @@ class BlogRepository
      */
     public function saveBlog(Blog $blog = null, $data)
     {
-        $admin = Auth::guard('admin')->user();
+        /** @var Admin $admin */
+        $admin = \Auth::guard('admin')->user();
 
         if (!isset($blog)) {
             $blog = new Blog();
             $blog->author_id = $admin->id;
+            $blog->company_id = array_get($data, 'company_id');
+            $blog->showcase_id = array_get($data, 'showcase_id');
         }
 
         $blog->title = array_get($data, 'title');

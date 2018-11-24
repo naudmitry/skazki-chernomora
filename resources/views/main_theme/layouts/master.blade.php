@@ -47,9 +47,7 @@
     <script src="{{ asset('js/wow.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/jquery.ptTimeSelect.js') }}"></script>
-
-    <script src="{{ asset('main_theme/js/script.js') }}"></script>
-
+    <script src="{{ asset('main_theme/js/scripts.js') }}"></script>
 
     @yield('footer__script')
 </body>

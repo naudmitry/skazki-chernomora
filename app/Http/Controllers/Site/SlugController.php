@@ -19,6 +19,8 @@ class SlugController extends Controller
      */
     public function __construct(SlugRepository $slugRepository)
     {
+        parent::__construct();
+
         $this->slugRepository = $slugRepository;
     }
 
@@ -30,7 +32,7 @@ class SlugController extends Controller
      */
     public function index(Request $request, $slug)
     {
-        $obj = $this->slugRepository->getSlug($slug);
+        $obj = $this->slugRepository->getSlug($this->showcase, $slug);
 
         if (is_null($obj)) {
             abort(Response::HTTP_NOT_FOUND);

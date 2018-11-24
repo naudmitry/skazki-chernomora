@@ -15,11 +15,13 @@ class IndexController extends Controller
     public function index()
     {
         $staticPage = Page::query()
+            ->where('showcase_id', $this->showcase->id)
             ->where('static_page_type', StaticPageTypesEnum::MAIN_PAGE)
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
         $faqs = Faq::query()
+            ->where('showcase_id', $this->showcase->id)
             ->where('enable', true)
             ->where('favorite', true)
             ->get();
@@ -35,6 +37,7 @@ class IndexController extends Controller
     public function blog()
     {
         $staticPage = Page::query()
+            ->where('showcase_id', $this->showcase->id)
             ->where('static_page_type', StaticPageTypesEnum::BLOG_PAGE)
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
@@ -50,6 +53,7 @@ class IndexController extends Controller
     public function contacts()
     {
         $staticPage = Page::query()
+            ->where('showcase_id', $this->showcase->id)
             ->where('static_page_type', StaticPageTypesEnum::CONTACTS_PAGE)
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
@@ -65,6 +69,7 @@ class IndexController extends Controller
     public function about()
     {
         $staticPage = Page::query()
+            ->where('showcase_id', $this->showcase->id)
             ->where('static_page_type', StaticPageTypesEnum::ABOUT_PAGE)
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();

@@ -18,6 +18,8 @@ class ShowcasesSeeder extends Seeder
 
     private function defaultHandler()
     {
+        $faker = Faker\Factory::create();
+
         /** @var Company $superCompany */
         $superCompany = Company::query()
             ->where('super', true)
@@ -31,44 +33,39 @@ class ShowcasesSeeder extends Seeder
         $showcasesMap = [
             [
                 'company_id' => $superCompany->id,
-                'name' => 'Super',
+                'title' => 'Super',
                 'domain' => env('DOMAIN_CLIENT'),
-                'theme' => 'site',
+                'theme' => 'main_theme',
                 'email' => 'boss@' . env('DOMAIN_CLIENT'),
                 'enable' => true,
-                'slug' => env('DOMAIN_CLIENT'),
             ],
             [
                 'company_id' => $company->id,
-                'name' => 'Alfa',
+                'title' => 'Alfa',
                 'domain' => env('DOMAIN_CLIENT1'),
-                'theme' => 'site',
+                'theme' => 'main_theme',
                 'email' => 'boss@' . env('DOMAIN_CLIENT1'),
                 'enable' => true,
-                'slug' => env('DOMAIN_CLIENT1'),
             ],
             [
                 'company_id' => $company->id,
-                'name' => 'Beta',
+                'title' => 'Beta',
                 'domain' => env('DOMAIN_CLIENT2'),
-                'theme' => 'site',
+                'theme' => 'main_theme',
                 'email' => 'boss@' . env('DOMAIN_CLIENT2'),
                 'enable' => true,
-                'slug' => env('DOMAIN_CLIENT2'),
             ],
             [
                 'company_id' => $company->id,
-                'name' => 'Omega',
+                'title' => 'Omega',
                 'domain' => env('DOMAIN_CLIENT3'),
-                'theme' => 'site',
+                'theme' => 'main_theme',
                 'email' => 'boss@' . env('DOMAIN_CLIENT3'),
                 'enable' => true,
-                'slug' => env('DOMAIN_CLIENT3'),
             ],
         ];
 
-        foreach($showcasesMap as $showcaseData)
-        {
+        foreach ($showcasesMap as $showcaseData) {
             /** @var Showcase $showcaseObj */
             $showcaseObj = Showcase::create($showcaseData);
             $showcaseObj->domains()->create(['name' => $showcaseData['domain']]);

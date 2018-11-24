@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $enable
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- *
  */
 class Showcase extends Model
 {
@@ -68,5 +67,13 @@ class Showcase extends Model
     public function getFormatCreatedAtAttribute()
     {
         return $this->created_at->format('d/m/Y H:i');
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

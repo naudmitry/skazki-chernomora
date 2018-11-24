@@ -11,6 +11,8 @@ use Illuminate\Support\Collection;
  * @package App\Models
  *
  * @property integer $id
+ * @property integer $company_id
+ * @property integer $role_id
  * @property boolean $super
  * @property string $name
  * @property string $middle_name
@@ -18,21 +20,29 @@ use Illuminate\Support\Collection;
  * @property string $position
  * @property string $phone
  * @property string $email
+ * @property string $token
  * @property string $password
+ * @property \Carbon\Carbon $registered_at
+ * @property \Carbon\Carbon $login_at
+ * @property string $registered_from
+ * @property string $login_from
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_from
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
+ *
  * @property-read Company $company
  * @property-read Role $role
  * @property-read Collection|Company[] $companies
  * @property-read Collection|Showcase[] $showcases
+ *
+ * @mixin \Eloquent
  */
 class Admin extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -76,5 +86,48 @@ class Admin extends Authenticatable
     public function showcases()
     {
         return $this->belongsToMany(Showcase::class, 'admin_showcase', 'admin_id', 'showcase_id')->withTimestamps();
+    }
+
+    /**
+     * @param Company $company
+     * @return bool
+     */
+    public function hasAccessToCompany(Company $company)
+    {
+        return (($this->company_id == $company->id) ||
+            ($this->super && $this->companies()->getQuery()->where('companies.id', $company->id)->exists()));
+    }
+
+    /**
+     * @param Showcase $showcase
+     * @return bool
+     */
+    public function hasAccessToShowcase(Showcase $showcase)
+    {
+        return ($this->super || $this->showcases()->getQuery()->where('showcases.id', $showcase->id)->exists());
+    }
+
+    /**
+     * @param $verifiableComponents
+     * @param Company $administeredCompany
+     * @return bool
+     */
+    public function hasAccessTo($verifiableComponents, Company $administeredCompany)
+    {
+        if (!is_array($verifiableComponents)) {
+            $verifiableComponents = [$verifiableComponents];
+        }
+
+        $allowedComponents = ($this->company->is($administeredCompany)) ?
+            ($this->company->enable ? $this->role->components : []) :
+            ($this->super ? $administeredCompany->roles->where('enable', true)->first()->components : []);
+
+        foreach ($verifiableComponents as $verifiableComponent) {
+            if (in_array($verifiableComponent, $allowedComponents)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

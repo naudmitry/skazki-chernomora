@@ -33,20 +33,20 @@
     <ul class="treeview-menu">
         <li>
             <a
-                class="treeview-item"
+                class="treeview-item @if (Route::is('admin.admin.list.*')) active @endif"
                 href="{{ route('admin.admin.list.index') }}"
             ><i class="icon far fa-circle"></i>Список</a>
         </li>
         <li>
             <a
                 class="treeview-item"
-                href=""
+                href="#"
             ><i class="icon far fa-circle"></i>Роли</a>
         </li>
         <li>
             <a
                 class="treeview-item"
-                href=""
+                href="#"
             ><i class="icon far fa-circle"></i>Группы</a>
         </li>
     </ul>

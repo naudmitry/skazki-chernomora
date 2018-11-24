@@ -16,6 +16,8 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('company_id')->unsigned();
+            $table->integer('showcase_id')->unsigned();
             $table->string('title')->index();
             $table->string('name');
             $table->boolean('enable')->default(false);
@@ -35,8 +37,8 @@ class CreateBlogsTable extends Migration
 
             $table->foreign('author_id')->references('id')->on('admins');
             $table->foreign('updater_id')->references('id')->on('admins');
-
-
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('showcase_id')->references('id')->on('showcases');
         });
     }
 

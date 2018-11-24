@@ -42,7 +42,7 @@
                             <input id="address" name="address" class="form-control" type="text" value="{{ $page->getSlug() }}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
-                                    <a href="{{ $page->getShowcaseUrl() }}" target="_blank">
+                                    <a href="{{ $page->getShowcaseUrl($administeredShowcase) }}" target="_blank">
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
                                 </span>

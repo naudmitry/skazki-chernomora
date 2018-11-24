@@ -16,6 +16,8 @@ class CreateBlogCategoriesTable extends Migration
         Schema::create('blog_categories', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('company_id')->unsigned();
+            $table->integer('showcase_id')->unsigned();
             $table->string('title');
             $table->string('name');
             $table->boolean('enable')->default(false);
@@ -27,6 +29,9 @@ class CreateBlogCategoriesTable extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('showcase_id')->references('id')->on('showcases');
         });
     }
 

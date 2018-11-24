@@ -6,6 +6,7 @@ use App\Classes\PageTypesEnum;
 use App\Models\Admin;
 use App\Models\Page;
 use App\Models\PageCategory;
+use App\Models\Showcase;
 use Illuminate\Support\Facades\Auth;
 
 class PageRepository
@@ -22,6 +23,8 @@ class PageRepository
         if (!isset($faq)) {
             $page = new Page();
             $page->author_id = $admin->id;
+            $page->company_id = array_get($data, 'company_id');
+            $page->showcase_id = array_get($data, 'showcase_id');
         }
 
         $fields =
@@ -57,6 +60,8 @@ class PageRepository
     {
         if (!isset($category)) {
             $category = new PageCategory();
+            $category->company_id = array_get($data, 'company_id');
+            $category->showcase_id = array_get($data, 'showcase_id');
         }
 
         $fields =
@@ -81,25 +86,29 @@ class PageRepository
     }
 
     /**
+     * @param Showcase $showcase
      * @param $pageType
-     * @return Page|\Illuminate\Database\Eloquent\Model|null|static
+     * @return Page|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
      */
-    public function getStaticPage($pageType)
+    public function getStaticPage(Showcase $showcase, $pageType)
     {
         $page = Page::query()
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->where('static_page_type', $pageType)
+            ->where('showcase_id', $showcase->id)
             ->first();
 
         if (!isset($page)) {
             /** @var Admin $admin */
-            $admin = Auth::guard('admin')->user();
+            $admin = \Auth::guard('admin')->user();
 
             $page = new Page();
             $page->static_page_type = $pageType;
             $page->type = PageTypesEnum::STATIC_PAGE;
             $page->author_id = $admin->id;
             $page->updater_id = $admin->id;
+            $page->showcase_id = $showcase->id;
+            $page->company_id = $showcase->company_id;
             $page->save();
         }
 
@@ -113,10 +122,12 @@ class PageRepository
     public function updateStaticPage(Page $staticPage, array $data)
     {
         /** @var Admin $admin */
-        $admin = Auth::guard('admin')->user();
+        $admin = \Auth::guard('admin')->user();
 
         $fields =
             [
+                'company_id',
+                'showcase_id',
                 'name',
                 'breadcrumbs',
                 'meta_title',

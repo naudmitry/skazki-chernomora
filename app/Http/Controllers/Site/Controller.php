@@ -11,8 +11,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $showcase;
+
     public function __construct()
     {
-
+        $this->showcase = config('front.showcase');
     }
 }

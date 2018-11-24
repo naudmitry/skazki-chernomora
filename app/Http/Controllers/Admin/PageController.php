@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\PageTypesEnum;
 use App\Classes\StaticPageTypesEnum;
 use App\Http\Requests\PageRequest;
+use App\Models\Company;
 use App\Models\Page;
 use App\Models\PageCategory;
+use App\Models\Showcase;
 use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
@@ -32,12 +34,16 @@ class PageController extends Controller
 
     /**
      * @param Request $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
-    public function index(Request $request)
+    public function index(Request $request, Company $administeredCompany, Showcase $administeredShowcase)
     {
         $pageQuery = Page::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
             ->where('type', PageTypesEnum::CUSTOM_PAGE)
             ->get();
 
@@ -60,26 +66,33 @@ class PageController extends Controller
 
     /**
      * @param Request $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param Page $staticPage
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function saveStaticPage(Request $request, Page $staticPage)
+    public function saveStaticPage(Request $request, Company $administeredCompany, Showcase $administeredShowcase, Page $staticPage)
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
             ->getSlugUniqueValidationRule
             (
+                $administeredShowcase,
                 Page::class,
                 $staticPage->id ?? null
             );
 
         $this->validate($request, ['address' => [$slugUniqueValidationRule]]);
 
-        \DB::transaction(function () use (&$staticPage, $request) {
-            $this->pageRepository->updateStaticPage($staticPage, $request->all());
+        $data = $request->all();
+        $data['company_id'] = $administeredCompany->id;
+        $data['showcase_id'] = $administeredShowcase->id;
+
+        \DB::transaction(function () use (&$staticPage, $data) {
+            $this->pageRepository->updateStaticPage($staticPage, $data);
             if ($staticPage->static_page_type != StaticPageTypesEnum::MAIN_PAGE) {
-                $this->slugRepository->updateSlug($staticPage, $request['address']);
+                $this->slugRepository->updateSlug($staticPage, $data['address']);
             }
         });
 
@@ -94,11 +107,16 @@ class PageController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Company $administeredCompany, Showcase $administeredShowcase)
     {
-        $categories = PageCategory::all();
+        $categories = PageCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         return view('main_admin.page.lists.item.create', compact(
             'categories'
@@ -106,12 +124,17 @@ class PageController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param Page $page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Page $page)
+    public function edit(Company $administeredCompany, Showcase $administeredShowcase, Page $page)
     {
-        $categories = PageCategory::all();
+        $categories = PageCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         return view('main_admin.page.lists.item.index', compact(
             'page', 'categories'
@@ -121,11 +144,12 @@ class PageController extends Controller
     /**
      * @param Page $page
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function delete(Page $page)
     {
         \DB::transaction(function () use (&$page) {
-            $page->slug()->delete();
+            $this->slugRepository->deleteSlug($page);
             $page->delete();
         });
 
@@ -151,17 +175,20 @@ class PageController extends Controller
 
     /**
      * @param PageRequest $request
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
      * @param Page|null $page
      * @param bool $isNew
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function save(PageRequest $request, Page $page = null, $isNew = false)
+    public function save(PageRequest $request, Company $administeredCompany, Showcase $administeredShowcase, Page $page = null, $isNew = false)
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
             ->getSlugUniqueValidationRule
             (
+                $administeredShowcase,
                 Page::class,
                 $page->id ?? null
             );
@@ -172,12 +199,19 @@ class PageController extends Controller
             $isNew = true;
         }
 
-        \DB::transaction(function () use (&$page, $request) {
-            $page = $this->pageRepository->savePage($page, $request->all());
-            $this->slugRepository->updateSlug($page, $request['address']);
+        $data = $request->all();
+        $data['company_id'] = $administeredCompany->id;
+        $data['showcase_id'] = $administeredShowcase->id;
+
+        \DB::transaction(function () use (&$page, $data) {
+            $page = $this->pageRepository->savePage($page, $data);
+            $this->slugRepository->updateSlug($page, $data['address']);
         });
 
-        $categories = PageCategory::all();
+        $categories = PageCategory::query()
+            ->where('company_id', $administeredCompany->id)
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         $settings = $isNew ? null : $settings = view('main_admin.page.lists.item.settings', compact(
             'page', 'categories'
@@ -191,11 +225,15 @@ class PageController extends Controller
     }
 
     /**
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function main()
+    public function main(Showcase $administeredShowcase)
     {
-        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::MAIN_PAGE);
+        $staticPage = $this->pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::MAIN_PAGE
+        );
 
         return view('main_admin.main.index', compact(
             'staticPage'
@@ -203,11 +241,15 @@ class PageController extends Controller
     }
 
     /**
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function contacts()
+    public function contacts(Showcase $administeredShowcase)
     {
-        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::CONTACTS_PAGE);
+        $staticPage = $this->pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::CONTACTS_PAGE
+        );
 
         return view('main_admin.contacts.index', compact(
             'staticPage'
@@ -215,11 +257,15 @@ class PageController extends Controller
     }
 
     /**
+     * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function about()
+    public function about(Showcase $administeredShowcase)
     {
-        $staticPage = $this->pageRepository->getStaticPage(StaticPageTypesEnum::ABOUT_PAGE);
+        $staticPage = $this->pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::ABOUT_PAGE
+        );
 
         return view('main_admin.about.index', compact(
             'staticPage'

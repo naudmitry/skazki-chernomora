@@ -3,18 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 
-class AuthController extends BaseController
+class AuthController extends Controller
 {
+    protected $guard = 'admin';
+    protected $redirectTo = '/';
+    protected $broker = 'admins'; //For letting laravel know which config you're going to use for resetting password
+
+    public function __construct()
+    {
+        parent::__construct();
+
+//        $this->middleware(function (Request $request, Closure $next) {
+//            $this->redirectTo = $request->input('backurl');
+//            return $next($request);
+//        });
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function login()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.index');
+            return redirect($this->redirectTo);
         }
 
         return view('main_admin.auth.login');
@@ -35,7 +48,7 @@ class AuthController extends BaseController
 //            $admin = Auth::guard('admin')->user();
 //            $admin->save();
 
-            return redirect()->route('admin.index', $request->route()->parameters());
+            return redirect($this->redirectTo);
         }
 
         $request->session()->flash('error', trans('Wrong login or password!'));
@@ -50,6 +63,7 @@ class AuthController extends BaseController
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();
+
         return redirect()->route('account.adminLoginPost', $request->route()->parameters());
     }
 }
