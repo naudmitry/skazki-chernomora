@@ -11385,8 +11385,8 @@ __webpack_require__(32);
 __webpack_require__(36);
 __webpack_require__(41);
 __webpack_require__(43);
-__webpack_require__(45);
-__webpack_require__(47);
+__webpack_require__(46);
+__webpack_require__(48);
 
 /***/ }),
 /* 7 */
@@ -44369,6 +44369,7 @@ $(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(44);
+__webpack_require__(45);
 
 /***/ }),
 /* 44 */
@@ -44385,11 +44386,11 @@ $(function () {
 
     var $adminListsTable = $('#adminListsTable');
 
-    var mustacheTemplateAdminListsTableColumnIp = $('.template-admin-lists-table-column-ip').text();
+    var mustacheTemplateAdminListsTableColumnRegisteredAt = $('.template-admin-lists-table-column-registered-at').text();
     var mustacheTemplateAdminListsTableColumnUser = $('.template-admin-lists-table-column-user').text();
     var mustacheTemplateAdminListsTableColumnPhone = $('.template-admin-lists-table-column-phone').text();
     var mustacheTemplateAdminListsTableColumnEmail = $('.template-admin-lists-table-column-email').text();
-    var mustacheTemplateAdminListsTableColumnLastIp = $('.template-admin-lists-table-column-last-ip').text();
+    var mustacheTemplateAdminListsTableColumnLoginFrom = $('.template-admin-lists-table-column-login-from').text();
     var mustacheTemplateAdminListsTableColumnStatus = $('.template-admin-lists-table-column-status').text();
     var mustacheTemplateAdminListsTableColumnActions = $('.template-admin-lists-table-column-actions').text();
 
@@ -44408,9 +44409,9 @@ $(function () {
         },
         columnDefs: [{
             targets: 0,
-            data: 'ip',
+            data: 'registered_at',
             render: function render(data, type, admin) {
-                return Mustache.render(mustacheTemplateAdminListsTableColumnIp, { admin: admin });
+                return Mustache.render(mustacheTemplateAdminListsTableColumnRegisteredAt, { admin: admin });
             }
         }, {
             targets: 1,
@@ -44436,7 +44437,7 @@ $(function () {
             data: 'last_ip',
             sortable: false,
             render: function render(data, type, admin) {
-                return Mustache.render(mustacheTemplateAdminListsTableColumnLastIp, { admin: admin });
+                return Mustache.render(mustacheTemplateAdminListsTableColumnLoginFrom, { admin: admin });
             }
         }, {
             targets: 5,
@@ -44555,12 +44556,167 @@ $(function () {
 
 /***/ }),
 /* 45 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-__webpack_require__(46);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+$(function () {
+    var $staffGroups = $('.staff-groups');
+
+    if (!$staffGroups.length) {
+        return;
+    }
+
+    var $staffGroupsSettingsContainer = $('.staff-groups-settings-container');
+    var staffGroupSettingsLoadingTemplate = $('.staff-group-settings-loading-template').text();
+    var $staffGroupsList = $('.staff-groups-list');
+    var isChange = false;
+
+    $(document).on('click', '.staff-group-settings-open', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+
+        if (isChange) {
+            swal({
+                title: "Вы действительно уверены?",
+                text: "Данные, которые не были сохранены, будут удалены.",
+                icon: "warning",
+                buttons: ["Отмена", "Ок"],
+                dangerMode: true
+            }).then(function (value) {
+                if (value) {
+                    swal("Изменение подтверждено!", "Данные будут изменены.", "success");
+                    isChange = false;
+                    edit($this.attr('href'));
+                } else {
+                    swal("Изменение отменено!", "Данные не будут изменены.", "error");
+                }
+            });
+        } else {
+            edit($this.attr('href'));
+        }
+    });
+
+    function edit(href) {
+        if ($staffGroupsSettingsContainer.data('ajax')) {
+            $staffGroupsSettingsContainer.data('ajax').abort();
+        }
+        $staffGroupsSettingsContainer.html(staffGroupSettingsLoadingTemplate);
+        $staffGroupsSettingsContainer.data('ajax', $.ajax({
+            type: 'get',
+            url: href,
+            cache: false,
+            success: function success(response) {
+                $staffGroupsSettingsContainer.html(response);
+            },
+            error: function error(xhr) {
+                if (xhr.statusText == 'abort') {
+                    return;
+                }
+                console.error(xhr);
+                $staffGroupsSettingsContainer.empty();
+            },
+            complete: function complete() {
+                $staffGroupsSettingsContainer.removeData('ajax');
+            }
+        }));
+    }
+
+    $(document).on('click', '.staff-group-delete', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить группу?",
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true
+        }).then(function (willDelete) {
+            if (willDelete) {
+                $.ajax({
+                    type: 'delete',
+                    url: $this.attr('href'),
+                    success: function success(response) {
+                        var $staffGroupsListItem = $staffGroupsList.find('.staff-groups-list-item[data-staff-group-id="' + response.group.id + '"]');
+                        var $staffGroupSettingsContainer = $('.staff-group-settings-container');
+                        if ($staffGroupSettingsContainer.data('group-id') == response.group.id) {
+                            $staffGroupsSettingsContainer.empty();
+                        }
+                        $staffGroupsListItem.remove();
+                        isChange = false;
+                        notifyService.showMessage('danger', 'Успех!', response.message);
+                    },
+                    error: function error(xhr) {
+                        console.error(xhr);
+                    }
+                });
+
+                swal("Удаление подтверждено!", "Категория будет удалена.", "success");
+            } else {
+                swal("Удаление отменено!", "Категория не будет удалена.", "error");
+            }
+        });
+    });
+
+    $(document).on('input', '.staff-group-settings-form', function (e) {
+        var $form = $(this);
+        var $input = $(e.target);
+        isChange = true;
+        if (!$input.is('input')) {
+            return;
+        }
+        if (e.type == 'keyup' && $input.attr('type') != 'text') {
+            return;
+        }
+        $form.find('[type=submit]').removeClass('btn-default').addClass('btn-primary').prop('disabled', false);
+    });
+
+    $(document).on('submit', '.staff-group-settings-form', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function success(response) {
+                var $staffGroupsListItem = $staffGroupsList.find('.staff-groups-list-item[data-staff-group-id="' + response.group.id + '"]');
+                if ($staffGroupsListItem.length) {
+                    $staffGroupsListItem.replaceWith(response.row);
+                } else {
+                    $staffGroupsList.append(response.row);
+                }
+                $staffGroupsSettingsContainer.html(response.settings);
+                notifyService.showMessage('info', 'Успех!', response.message);
+                isChange = false;
+            },
+            error: function error(xhr) {
+                if ('object' === _typeof(xhr.responseJSON)) {
+                    for (var key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: function complete() {
+                $form.removeData('ajax');
+                $form.find('[type=submit]').removeClass('btn-primary').addClass('btn-default').prop('disabled', true);
+            }
+        }));
+    });
+});
 
 /***/ }),
 /* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(47);
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports) {
 
 $(function () {
@@ -44681,7 +44837,7 @@ $(function () {
 });
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 $(function () {

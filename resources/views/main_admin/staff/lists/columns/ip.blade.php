@@ -1,3 +1,0 @@
-<span>
-    @{{admin.ip}}
-</span>

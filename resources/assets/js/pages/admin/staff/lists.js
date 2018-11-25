@@ -7,11 +7,11 @@ $(function () {
 
     let $adminListsTable = $('#adminListsTable');
 
-    let mustacheTemplateAdminListsTableColumnIp = $('.template-admin-lists-table-column-ip').text();
+    let mustacheTemplateAdminListsTableColumnRegisteredAt = $('.template-admin-lists-table-column-registered-at').text();
     let mustacheTemplateAdminListsTableColumnUser = $('.template-admin-lists-table-column-user').text();
     let mustacheTemplateAdminListsTableColumnPhone = $('.template-admin-lists-table-column-phone').text();
     let mustacheTemplateAdminListsTableColumnEmail = $('.template-admin-lists-table-column-email').text();
-    let mustacheTemplateAdminListsTableColumnLastIp = $('.template-admin-lists-table-column-last-ip').text();
+    let mustacheTemplateAdminListsTableColumnLoginFrom = $('.template-admin-lists-table-column-login-from').text();
     let mustacheTemplateAdminListsTableColumnStatus = $('.template-admin-lists-table-column-status').text();
     let mustacheTemplateAdminListsTableColumnActions = $('.template-admin-lists-table-column-actions').text();
 
@@ -32,8 +32,8 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                data: 'ip',
-                render: (data, type, admin) => Mustache.render(mustacheTemplateAdminListsTableColumnIp, {admin}),
+                data: 'registered_at',
+                render: (data, type, admin) => Mustache.render(mustacheTemplateAdminListsTableColumnRegisteredAt, {admin}),
             },
             {
                 targets: 1,
@@ -55,7 +55,7 @@ $(function () {
                 targets: 4,
                 data: 'last_ip',
                 sortable: false,
-                render: (data, type, admin) => Mustache.render(mustacheTemplateAdminListsTableColumnLastIp, {admin}),
+                render: (data, type, admin) => Mustache.render(mustacheTemplateAdminListsTableColumnLoginFrom, {admin}),
             },
             {
                 targets: 5,

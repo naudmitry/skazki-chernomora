@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -22,15 +23,15 @@ use Illuminate\Support\Collection;
  * @property string $email
  * @property string $token
  * @property string $password
- * @property \Carbon\Carbon $registered_at
- * @property \Carbon\Carbon $login_at
+ * @property Carbon $registered_at
+ * @property Carbon $login_at
  * @property string $registered_from
  * @property string $login_from
  * @property string $remember_token
- * @property \Carbon\Carbon $created_from
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $deleted_at
+ * @property Carbon $created_from
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  *
  * @property-read Company $company
  * @property-read Role $role

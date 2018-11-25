@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon $updated_at
  * @property-read Company $company
  * @property-read Collection|Admin[] $admins
+ *
+ * @mixin \Eloquent
  */
 class Group extends Model
 {

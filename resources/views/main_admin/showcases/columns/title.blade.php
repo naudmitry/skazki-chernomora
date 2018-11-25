@@ -1,3 +1,3 @@
 <a href="#">
-    @{{showcase.name}}
+    @{{showcase.title}}
 </a>

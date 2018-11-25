@@ -15,7 +15,7 @@
                             <button
                                     class="btn btn-primary open-add-admin-modal"
                                     type="button"
-                                    href="{{ route('admin.admin.list.edit') }}"
+                                    href="{{ route('admin.staff.list.edit') }}"
                             ><i class="fas fa-plus-circle"></i> Добавить</button>
                         </div>
                         <div class="col-md-6 col-lg-3">
@@ -50,12 +50,12 @@
                     <table
                             class="table table-hover"
                             id="adminListsTable"
-                            data-href="{{ route('admin.admin.list.index') }}"
+                            data-href="{{ route('admin.staff.list.index') }}"
                             width="100%"
                     >
                         <thead>
                         <tr>
-                            <th>IP</th>
+                            <th>Дата регистрации</th>
                             <th>Пользователь</th>
                             <th>Телефон</th>
                             <th>Email</th>
@@ -73,8 +73,8 @@
 
     <div class="div-for-modal"></div>
 
-    <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-ip">
-        @include('main_admin.staff.lists.columns.ip')
+    <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-registered-at">
+        @include('main_admin.staff.lists.columns.registered_at')
     </script>
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-user">
         @include('main_admin.staff.lists.columns.user')
@@ -85,8 +85,8 @@
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-email">
         @include('main_admin.staff.lists.columns.email')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-last-ip">
-        @include('main_admin.staff.lists.columns.last_ip')
+    <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-login-from">
+        @include('main_admin.staff.lists.columns.login_from')
     </script>
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-status">
         @include('main_admin.staff.lists.columns.status')

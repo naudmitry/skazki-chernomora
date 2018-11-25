@@ -149,9 +149,9 @@ class BlogCategoryController extends Controller
     {
         $category = new BlogCategory();
 
-        return view('main_admin.blog.categories.includes.settings', compact([
+        return view('main_admin.blog.categories.includes.settings', compact(
             'category'
-        ]));
+        ));
     }
 
     /**
