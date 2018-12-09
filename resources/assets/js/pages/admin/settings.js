@@ -1,1 +1,1 @@
-require('./settings/contacts');
+require('./settings/general');

@@ -1,5 +1,5 @@
 <div class="tile">
-    <h3 class="tile-title">Настройки страницы</h3>
+    <h4 class="line-head">Настройки страницы</h4>
 
     <div class="row">
         <div class="col-md-8">

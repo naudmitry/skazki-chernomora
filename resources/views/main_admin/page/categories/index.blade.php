@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-6 page-categories">
             <div class="tile">
-                <h3 class="tile-title">Категории страницы</h3>
+                <h4 class="line-head">Категории страницы</h4>
 
                 <div class="page-categories-list" id="container">
                     @foreach ($categories as $category)

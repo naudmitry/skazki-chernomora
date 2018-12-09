@@ -1,5 +1,5 @@
 <div class="tile page-category-settings-container" data-category-id="{{ $category->id ?? '' }}">
-    <h3 class="tile-title">Настройки категории</h3>
+    <h4 class="line-head">Настройки категории</h4>
 
     <div class="tile-body">
         <form class="form-horizontal page-category-settings-form" action="{{ route('admin.page.category.save', $category) }}" method="post">

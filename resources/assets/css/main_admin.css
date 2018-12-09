@@ -13578,6 +13578,8 @@ be a descendant of the grid when it is being dragged.
 .line-head {
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+  font-size: 18px;
 }
 
 /*----- Componant: Top Navigation Bar ----- */
@@ -15314,4 +15316,12 @@ be a descendant of the grid when it is being dragged.
 
 .circle-icon i {
   color: #009688;
+}
+
+.accordion .card {
+  margin-bottom: 5px;
+}
+
+.accordion .card-body {
+  border-bottom: 1px solid #ddd;
 }

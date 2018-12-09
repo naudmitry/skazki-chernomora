@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-6 blog-categories">
             <div class="tile">
-                <h3 class="tile-title">Категории новости</h3>
+                <h4 class="line-head">Категории новости</h4>
 
                 <div class="blog-categories-list" id="container">
                     @foreach ($categories as $category)

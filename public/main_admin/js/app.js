@@ -11384,9 +11384,9 @@ __webpack_require__(19);
 __webpack_require__(32);
 __webpack_require__(36);
 __webpack_require__(41);
-__webpack_require__(43);
-__webpack_require__(46);
-__webpack_require__(48);
+__webpack_require__(44);
+__webpack_require__(47);
+__webpack_require__(49);
 
 /***/ }),
 /* 7 */
@@ -42760,7 +42760,7 @@ $(function () {
             url: $(this).data('href'),
             type: 'POST',
             success: function success(response) {
-                notifyService.showMessage('info', 'Успех!', response.message);
+                notifyService.showMessage('с', 'Успех!', response.message);
             },
             error: function error(data) {
                 console.log(data);
@@ -44309,70 +44309,232 @@ __webpack_require__(42);
 
 /***/ }),
 /* 42 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var PageService = {
+    save: function save(form) {
+        var $form = $(form);
+
+        if ($form.data('ajax')) {
+            $form.data('ajax').abort();
+        }
+
+        var formData = new FormData($form[0]);
+
+        $form.data('ajax', $.ajax({
+            method: 'POST',
+            url: $form.attr('action'),
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            complete: function complete() {
+                $form.removeData('ajax');
+                $form.find('[type=submit]').removeClass('btn-primary').addClass('btn-default');
+
+                setTimeout(function () {
+                    return $form.find('[type=submit]').prop('disabled', true);
+                }, 0);
+            }
+        }));
+    },
+    unlockSaveBtn: function unlockSaveBtn(btnEl) {
+        var btn = btnEl ? btnEl : $('form.settings-general-form button[type=submit]');
+        if (btn.attr('disabled')) {
+            btn.removeAttr('disabled').removeClass('btn-default').addClass('btn-primary');
+        }
+    },
+    init: function init() {
+        $(document).on('submit', '.settings-general-form', function (e) {
+            e.preventDefault();
+            PageService.save(this);
+            return false;
+        });
+
+        $(document).on('select2:select input switchChange.bootstrapSwitch change', 'form.settings-general-form', function (e) {
+            var $btn = $(e.target).closest('form.settings-general-form').find('button[type=submit]');
+            PageService.unlockSaveBtn($btn);
+        });
+    }
+};
 
 $(function () {
-    var $contactsTab = $('.contacts-tab');
-
-    if (!$contactsTab.length) {
+    if ('settings.general' != $('body').data('page')) {
         return;
     }
 
-    $(document).on('click', '.contacts-address-add', function (e) {
-        e.preventDefault();
-        var $this = $(this);
+    __webpack_require__(43);
 
-        var $addressContainer = $contactsTab.find('.address-container');
-        var itemTemplate = $contactsTab.find('.template-contacts-address-item').text();
-        $addressContainer.append(itemTemplate);
-
-        updateBlockAddress();
-    });
-
-    $(document).on('click', '.contacts-phone-add', function (e) {
-        e.preventDefault();
-        var $this = $(this);
-
-        var $phoneContainer = $contactsTab.find('.phone-container');
-        var itemTemplate = $contactsTab.find('.template-contacts-phone-item').text();
-        $phoneContainer.append(itemTemplate);
-
-        updateBlockPhone();
-    });
-
-    var updateBlockAddress = function updateBlockAddress() {
-        $(".address-container").each(function () {
-            var k = 1;
-            $(this).find(".address-number").each(function () {
-                $(this).html(k);
-                k = k + 1;
-            });
-        });
-    };
-
-    var updateBlockPhone = function updateBlockPhone() {
-        $(".phone-container").each(function () {
-            var k = 1;
-            $(this).find(".phone-number").each(function () {
-                $(this).html(k);
-                k = k + 1;
-            });
-        });
-    };
-
-    updateBlockPhone();
-    updateBlockAddress();
+    PageService.init();
 });
 
 /***/ }),
 /* 43 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-__webpack_require__(44);
-__webpack_require__(45);
+$(function () {
+    var $geoIpTab = $('.geo-ip-tab');
+
+    if (!$geoIpTab.length) {
+        return;
+    }
+
+    var namePanel = function namePanel(country, region, city) {
+        return country ? region ? city ? country + '-' + region + '-' + city : country + '-' + region : country : 'Настройка geo-ip';
+    };
+
+    var changeNamePanel = function changeNamePanel($panel) {
+        var $region = $panel.find('[data-field="general:geo-ip-region"]');
+
+        var country = $panel.find('[data-field="general:geo-ip-country"]').val(),
+            region = $region.find('option[value="' + $region.val() + '"]').data('value-name'),
+            city = $panel.find('[data-field="general:geo-ip-city"]').val();
+
+        $panel.find('.geo-ip-panel-title').text(namePanel(country, region, city));
+    };
+
+    var syncFormWithGeoIpFieldsValues = function syncFormWithGeoIpFieldsValues() {
+        var $settingsGeneralForm = $('.settings-general-form');
+
+        var isEnabled = $settingsGeneralForm.find('[name="general:is-use-geo-ip"]').prop('checked');
+
+        var $components = $settingsGeneralForm.find('[data-field="general:geo-ip-items"], [data-field="general:create-geo-ip-rule"]');
+
+        isEnabled ? $components.show() : $components.hide();
+    };
+
+    var init = function init() {
+        syncFormWithGeoIpFieldsValues();
+
+        $geoIpTab.find('.select2').select2({ minimumResultsForSearch: Infinity, width: '100%' });
+        $geoIpTab.find('.select2-with-search').select2({ minimumInputLength: 2, width: '100%' });
+
+        $geoIpTab.find('.card').each(function () {
+            changeNamePanel($(this));
+        });
+    };
+
+    init();
+
+    $(document).on('change', '.checkbox', function (e) {
+        syncFormWithGeoIpFieldsValues();
+    });
+
+    var $accordion = $('.accordion');
+    var position = $accordion.find('.card').length;
+
+    $(document).on('click', '[data-field="general:create-geo-ip-rule"]', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            type: 'get',
+            data: {
+                position: position
+            },
+            success: function success(response) {
+                $accordion.append(response);
+
+                $accordion.find('.card').last().find('.select2').select2({
+                    minimumResultsForSearch: Infinity,
+                    width: '100%'
+                });
+
+                $accordion.find('.card').last().find('.select2-with-search').select2({
+                    minimumInputLength: 2,
+                    width: '100%'
+                });
+
+                var btn = $('form.settings-general-form button[type=submit]');
+                btn.removeAttr('disabled').removeClass('btn-default').addClass('btn-primary');
+
+                position++;
+            },
+            error: function error(xhr) {
+                console.error(xhr);
+            }
+        });
+    });
+
+    $(document).on('click', '#accordionExample [data-action=close]', function (e) {
+        e.preventDefault();
+        var $panel = $(this).closest('.card');
+
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить настройку geo-ip?",
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true
+        }).then(function (value) {
+            if (value) {
+                $panel.remove();
+                var btn = $('form.settings-general-form button[type=submit]');
+                btn.removeAttr('disabled').removeClass('btn-default').addClass('btn-primary');
+            }
+        });
+    });
+
+    $(document).on('select2:select', '[data-field="general:geo-ip-country"]', function () {
+        var $panel = $(this).closest('.card');
+        var $regionFormGroup = $panel.find('[data-field="general:geo-ip-region"]').closest('.form-group');
+        var $cityFormGroup = $panel.find('[data-field="general:geo-ip-city"]').closest('.form-group');
+        $.ajax({
+            url: $(this).attr('href') + '/' + $(this).find('option[value="' + $(this).val() + '"]').data('country-id'),
+            type: 'GET',
+            success: function success(response) {
+                $regionFormGroup.replaceWith(response.region);
+                $cityFormGroup.replaceWith(response.city);
+            },
+            complete: function complete() {
+                $panel.find('.select2-with-search').select2({ minimumInputLength: 2, width: '100%' });
+
+                changeNamePanel($panel);
+            },
+            error: function error(data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $(document).on('select2:select', '[data-field="general:geo-ip-region"]', function () {
+        var $panel = $(this).closest('.card');
+        var $cityFormGroup = $panel.find('[data-field="general:geo-ip-city"]').closest('.form-group');
+        $.ajax({
+            url: $(this).attr('href') + '/' + $(this).find('option[value="' + $(this).val() + '"]').data('region-id'),
+            type: 'get',
+            success: function success(response) {
+                $cityFormGroup.replaceWith(response);
+            },
+            complete: function complete() {
+                $panel.find('.select2-with-search').select2({ minimumInputLength: 2, width: '100%' });
+                changeNamePanel($panel);
+            },
+            error: function error(data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $(document).on('select2:select', '[data-field="general:geo-ip-city"]', function () {
+        changeNamePanel($(this).closest('.card'));
+    });
+
+    $(document).on('click', '.link-open', function () {
+        window.open($(this).closest('.form-group').find('.geo-ip-redirect-link').val().toString(), '_blank');
+    });
+});
 
 /***/ }),
 /* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(45);
+__webpack_require__(46);
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -44555,7 +44717,7 @@ $(function () {
 });
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -44651,9 +44813,9 @@ $(function () {
                     }
                 });
 
-                swal("Удаление подтверждено!", "Категория будет удалена.", "success");
+                swal("Удаление подтверждено!", "Группа будет удалена.", "success");
             } else {
-                swal("Удаление отменено!", "Категория не будет удалена.", "error");
+                swal("Удаление отменено!", "Группа не будет удалена.", "error");
             }
         });
     });
@@ -44710,13 +44872,13 @@ $(function () {
 });
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(47);
+__webpack_require__(48);
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 $(function () {
@@ -44837,7 +44999,7 @@ $(function () {
 });
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 $(function () {

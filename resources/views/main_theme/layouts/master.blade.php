@@ -12,8 +12,6 @@
     <link href="{{ asset('css/site/jquery.fancybox.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/site/style.css') }}" rel="stylesheet"/>
 
-
-
     <link rel="shortcut icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
 

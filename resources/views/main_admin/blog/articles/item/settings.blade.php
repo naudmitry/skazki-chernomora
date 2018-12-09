@@ -1,8 +1,7 @@
 <div class="tile">
-    <h3 class="tile-title">Настройка статьи</h3>
+    <h4 class="line-head">Настройка статьи</h4>
 
     <div class="row">
-
         <div class="col-md-8">
             <div class="bs-component">
                 <form class="tab-content blog-item-form" action="{{ route('admin.blog.article.save', $blog ?? '') }}" method="post">

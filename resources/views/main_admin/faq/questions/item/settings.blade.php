@@ -1,5 +1,5 @@
 <div class="tile">
-    <h3 class="tile-title">Настройка вопроса</h3>
+    <h4 class="line-head">Настройка вопроса</h4>
 
     <div class="row">
         <div class="col-md-8">

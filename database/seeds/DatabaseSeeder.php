@@ -28,5 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StaticPagesSeeder::class);
 
         $this->call(SlugsSeeder::class);
+
+        $this->call(CountriesSeeder::class);
+        $this->call(RegionsSeeder::class);
+        $this->call(CitiesSeeder::class);
     }
 }

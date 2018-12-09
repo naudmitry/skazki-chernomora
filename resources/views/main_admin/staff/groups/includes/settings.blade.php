@@ -1,5 +1,5 @@
 <div class="tile staff-group-settings-container" data-group-id="{{ $group->id ?? '' }}">
-    <h3 class="tile-title">Настройки группы</h3>
+    <h4 class="line-head">Настройки группы</h4>
 
     <div class="tile-body">
         <form class="form-horizontal staff-group-settings-form" action="{{ route('admin.staff.group.save', $group) }}" method="post">

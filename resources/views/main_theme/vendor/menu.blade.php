@@ -18,11 +18,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, []) }}">Главная</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, [], $currentShowcase->id) }}">Главная</a>
                 </li>
 
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, []) }}">О нас</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, [], $currentShowcase->id) }}">О нас</a>
                 </li>
 
                 {{--<li class="{{ (Route::is('front.service.*') ? 'active' : '') }}">--}}
@@ -42,15 +42,15 @@
                 {{--</li>--}}
 
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::BLOG_PAGE, []) }}">Новости</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::BLOG_PAGE, [], $currentShowcase->id) }}">Новости</a>
                 </li>
 
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::FAQ_PAGE, []) }}">FAQ</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::FAQ_PAGE, [], $currentShowcase->id) }}">FAQ</a>
                 </li>
 
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, []) }}">Контакты</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, [], $currentShowcase->id) }}">Контакты</a>
                 </li>
             </ul>
         </div>

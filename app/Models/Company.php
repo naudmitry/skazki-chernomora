@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Company extends Model
 {
     use SoftDeletes;
+    use SettingsAvailability;
 
     protected $with =
         [

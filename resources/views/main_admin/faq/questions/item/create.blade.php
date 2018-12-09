@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 faq-item">
             <div class="tile">
-                <h3 class="tile-title">Добавление вопроса</h3>
+                <h4 class="line-head">Добавление вопроса</h4>
 
                 <form class="tab-content faq-item-form" action="{{ route('admin.faq.question.save', '') }}" method="post">
                     {{ csrf_field() }}

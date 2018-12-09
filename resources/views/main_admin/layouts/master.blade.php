@@ -13,7 +13,7 @@
         @yield('header__sc')
     </head>
 
-    <body class="app sidebar-mini rtl">
+    <body class="app sidebar-mini rtl" @yield('body-data')>
         @include('main_admin.includes.navbar')
         @include('main_admin.includes.sidebar')
 

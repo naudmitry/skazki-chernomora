@@ -16,10 +16,14 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('object_type');
+            $table->integer('object_id');
             $table->string('name');
             $table->text('value')->nullable()->default(null);
 
             $table->timestamps();
+
+            $table->index(['object_type', 'object_id'], 'settings_object_index');
         });
     }
 

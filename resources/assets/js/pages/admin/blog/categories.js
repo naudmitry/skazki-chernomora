@@ -191,7 +191,7 @@ $(function () {
             url: $(this).data('href'),
             type: 'POST',
             success: (response) => {
-                notifyService.showMessage('info', 'Успех!', response.message);
+                notifyService.showMessage('с', 'Успех!', response.message);
             },
             error: function (data) {
                 console.log(data);

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-6 staff-groups">
             <div class="tile">
-                <h3 class="tile-title">Список групп</h3>
+                <h4 class="line-head">Список групп</h4>
 
                 <div class="staff-groups-list" id="container">
                     @foreach ($groups as $group)

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 blog-item">
             <div class="tile">
-                <h3 class="tile-title">Добавление статьи</h3>
+                <h4 class="line-head">Добавление статьи</h4>
 
                 <form class="tab-content blog-item-form" action="{{ route('admin.blog.article.save', '') }}" method="post">
                     {{ csrf_field() }}

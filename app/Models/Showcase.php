@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Showcase extends Model
 {
     use SoftDeletes;
+    use SettingsAvailability;
 
     protected $appends =
         [

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 page-item">
             <div class="tile">
-                <h3 class="tile-title">Добавление страницы</h3>
+                <h4 class="line-head">Добавление страницы</h4>
 
                 <form class="tab-content page-item-form" action="{{ route('admin.page.list.save', '') }}" method="post">
                     {{ csrf_field() }}
