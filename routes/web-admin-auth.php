@@ -12,6 +12,10 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         Route::get('/', ['uses' => 'Admin\IndexController@index', 'as' => 'admin.index',]);
 
         Route::get('/companies', ['uses' => 'Admin\CompanyController@index', 'as' => 'admin.companies.lists.index']);
+        Route::post('/companies/enable/{company}', ['uses' => 'Admin\CompanyController@enable', 'as' => 'admin.company.enable']);
+        Route::get('/companies/lists/open-modal', ['uses' => 'Admin\CompanyController@openModal', 'as' => 'admin.company.list.open-modal']);
+        Route::post('/companies', ['uses' => 'Admin\CompanyController@create', 'as' => 'admin.company.create']);
+
         Route::get('companies/enter-as-admin/{company}', ['uses' => 'Admin\CompanyController@enterAsAdmin', 'as' => 'admin.companies.enter-as-admin']);
         Route::get('companies/leave-from-admin', ['uses' => 'Admin\CompanyController@leaveFromAdmin', 'as' => 'admin.companies.leave-from-admin']);
 
@@ -19,6 +23,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         Route::get('405', ['as' => '405', 'uses' => 'Admin\ErrorHandlerController@errorCode405']);
 
         Route::get('/showcases', ['uses' => 'Admin\ShowcaseController@index', 'as' => 'admin.showcases.index']);
+        Route::post('/showcases/enable/{showcase}', ['uses' => 'Admin\ShowcaseController@enable', 'as' => 'admin.showcase.enable']);
+        Route::get('/showcases/open-modal', ['uses' => 'Admin\ShowcaseController@openModal', 'as' => 'admin.showcase.open-modal']);
+        Route::post('/showcases', ['uses' => 'Admin\ShowcaseController@create', 'as' => 'admin.showcase.create']);
 
         Route::group([
             'prefix' => 'showcase-{administeredShowcase}',

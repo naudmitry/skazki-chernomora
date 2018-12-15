@@ -21,8 +21,10 @@
                             <i class="far fa-map"></i>
                             <div class="media-body">
                                 <h3>Расположение</h3>
-                                <p>PO Box 16122 Collins Street West
-                                    <br>Victoria 8007 Canada</p>
+                                <p>Витебск, ул. Коммунистическая, 16</p>
+                                <p>Витебск, ул. Чкалова, 14в<br/>детский клинический центр, 2 этаж</p>
+                                <p>Витебск, пр-т Фрунзе, 81, корп. 33<br/>этаж 4, возле ТЦ «Эвиком»</p>
+                                <p>Витебск, ул. Гончарная, 3</p>
                             </div>
                         </div>
                         <!-- Phone -->
@@ -80,9 +82,5 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="map">
-        <div id="map"></div>
     </section>
 @endsection

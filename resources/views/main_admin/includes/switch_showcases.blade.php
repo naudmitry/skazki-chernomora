@@ -28,7 +28,7 @@
         </div>
 
         <li class="app-notification__footer">
-            <a href="javascript:;">Посмотреть все</a>
+            <a href="{{ route('admin.showcases.index') }}">Посмотреть все</a>
         </li>
     </ul>
 </li>

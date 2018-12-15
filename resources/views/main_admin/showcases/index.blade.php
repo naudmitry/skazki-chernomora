@@ -12,9 +12,11 @@
                 <div class="tile-body">
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="#" class="btn btn-primary open-create-form" type="button">
-                                <i class="fas fa-plus-circle"></i> Добавить
-                            </button>
+                            <button
+                                    href="{{ route('admin.showcase.open-modal') }}"
+                                    class="btn btn-primary open-showcase-add-modal"
+                                    type="button"
+                            ><i class="fas fa-plus-circle"></i> Добавить</button>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
@@ -22,8 +24,8 @@
                                     <i class="far fa-file-alt"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="sites-count"><b>0</b></p>
-                                    <p>сайтов</p>
+                                    <p class="sites-count"><b>{{ array_get($counters, 'sites_count', 0) }}</b></p>
+                                    <p>сайт(a)(ов)</p>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +35,7 @@
                                     <i class="fas fa-eye"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="enabled-total"><b>0</b></p>
+                                    <p class="sites-enable"><b>{{ array_get($counters, 'sites_enable', 0) }}</b></p>
                                     <p>доступно</p>
                                 </div>
                             </div>
@@ -53,7 +55,7 @@
                     >
                         <thead>
                         <tr>
-                            <th>Создан</th>
+                            <th>Дата создания</th>
                             <th>Наименование сайта</th>
                             <th>Веб-адрес</th>
                             <th>Доступность</th>
@@ -66,6 +68,8 @@
             </div>
         </div>
     </div>
+
+    <div class="div-for-modal"></div>
 
     <script type="application/x-tmpl-mustache" class="template-showcases-table-column-created">
         @include('main_admin.showcases.columns.created')

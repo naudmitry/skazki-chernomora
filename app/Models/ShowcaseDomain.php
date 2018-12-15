@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShowcaseDomain extends Model
 {
+    protected $fillable =
+        [
+            'name',
+        ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

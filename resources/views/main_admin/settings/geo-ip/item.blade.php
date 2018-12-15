@@ -8,7 +8,7 @@
                     data-target="#collapse-{{ $position }}"
                     aria-expanded="false"
                     aria-controls="collapse-{{ $position }}"
-            ><span class="geo-ip-panel-title">Настройка geo-ip</span></button>
+            ><span class="geo-ip-panel-title"></span></button>
         </h5>
         <a href="javascript:;" data-action="close" style="margin-right: 12px;"><i class="fas fa-times"></i></a>
     </div>

@@ -3,7 +3,7 @@
     <div class="container clearfix">
         <div class="logo">
             <figure>
-                <a href="index.html">
+                <a href="{{ route('site.index') }}">
                     <img src="{{ URL::to('/images/logo.png') }}" alt="logo" width="130">
                 </a>
             </figure>
@@ -11,27 +11,26 @@
         <div class="right-side">
             <ul class="contact-info">
                 <li class="item">
-                    <div class="icon-box">
-                        <i class="far fa-envelope"></i>
-                    </div>
-                    <strong>Email</strong>
+                    <strong>Коммунистическая, 16</strong>
                     <br>
-                    <a href="#">
-                        <span>info@medic.com</span>
-                    </a>
+                    <span>+375 (29) 894-45-17</span>
                 </li>
                 <li class="item">
-                    <div class="icon-box">
-                        <i class="fa fa-phone"></i>
-                    </div>
-                    <strong>Call Now</strong>
+                    <strong>Чкалова, 14в</strong>
                     <br>
-                    <span>+ (88017) - 123 - 4567</span>
+                    <span>+375 (33) 300-82-36</span>
+                </li>
+                <li class="item">
+                    <strong>Фрунзе, 81, корп. 33</strong>
+                    <br>
+                    <span>+375 (29) 738-98-48</span>
+                </li>
+                <li class="item">
+                    <strong>Гончарная, 3</strong>
+                    <br>
+                    <span>+375 (29) 768-78-00</span>
                 </li>
             </ul>
-            <div class="link-btn">
-                <a href="#" class="btn-style-one">Запись на прием</a>
-            </div>
         </div>
     </div>
 </section>

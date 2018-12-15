@@ -105,20 +105,21 @@
             </div>
         </div>
     </div>
+
     <div class="footer-bottom">
         <div class="container clearfix">
             <div class="copyright-text">
-                <p>&copy; "Черноморская сказка" 2018. Все права защищены</p>
+                <p>&copy; "Сказки Черномора" 2018. Все права защищены</p>
             </div>
             <ul class="footer-bottom-link">
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, []) }}">Главная</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, [], $currentShowcase->id) }}">Главная</a>
                 </li>
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, []) }}">О нас</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, [], $currentShowcase->id) }}">О нас</a>
                 </li>
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, []) }}">Контакты</a>
+                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, [], $currentShowcase->id) }}">Контакты</a>
                 </li>
             </ul>
         </div>

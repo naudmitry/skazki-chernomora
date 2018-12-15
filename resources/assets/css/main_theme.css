@@ -1,4 +1,4 @@
-@import url("../fontawesome.css");
+@import url("fontawesome.css");
 @import url("animate.min.css");
 @import url("bootstrap.min.css");
 @import url("bootstrap-select.min.css");
@@ -69,6 +69,7 @@ p {
   color: #222222;
   font-weight: 700;
   font-family: "Source Sans Pro", sans-serif;
+  padding-bottom: 15px;
 }
 
 .section-title span {
@@ -361,8 +362,8 @@ li {
 .header-uper .contact-info .item {
   position: relative;
   display: inline-block;
-  padding-left: 70px;
-  margin-right: 40px;
+  padding-left: 40px;
+  margin-right: 15px;
 }
 
 .header-uper .contact-info .item .icon-box {
@@ -387,7 +388,6 @@ li {
   line-height: 26px;
   font-weight: 600;
   color: #222222;
-  text-transform: capitalize;
   font-family: "Roboto", sans-serif;
 }
 
@@ -595,7 +595,6 @@ li {
 
 .hero-slider .content h2 {
   font-size: 35px;
-  text-transform: capitalize;
   font-weight: 600;
   font-family: "Roboto", sans-serif;
   color: #fff;
@@ -2486,7 +2485,6 @@ li {
   font-weight: bold;
   margin-bottom: 30px;
   font-size: 40px;
-  text-transform: capitalize;
 }
 
 .story .story-content .tagline {
@@ -3071,7 +3069,6 @@ li {
   line-height: 26px;
   margin-bottom: 0px;
   letter-spacing: .5px;
-  text-transform: capitalize;
 }
 
 .footer-bottom .copyright-text a {

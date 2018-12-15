@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Validator::extend('domainname', \App\Validators\DomainName::class . '@validate');
     }
 
     /**

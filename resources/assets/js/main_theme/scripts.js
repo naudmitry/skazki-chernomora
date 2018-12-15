@@ -76,10 +76,14 @@
 
     //26.Date picker
     function datepicker() {
-        if ($('#datepicker').length) {
-            $('#datepicker').datepicker();
+        let $datePicker = $('#datepicker');
+
+        if ($datePicker.length) {
+            $datePicker.datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+            });
         }
-        ;
     }
 
     //27.Select menu

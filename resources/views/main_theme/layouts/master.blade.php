@@ -10,7 +10,7 @@
     <link href="{{ asset('css/site/slick.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/site/slick-theme.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/site/jquery.fancybox.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/site/style.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('main_theme/css/style.css') }}" rel="stylesheet"/>
 
     <link rel="shortcut icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::to('/images/favicon.ico') }}" type="image/x-icon">
@@ -23,7 +23,6 @@
         {{--<div class="preloader"></div>--}}
         <!-- Preloader -->
 
-        @include('main_theme.vendor.social')
         @include('main_theme.vendor.contact')
         @include('main_theme.vendor.menu')
 

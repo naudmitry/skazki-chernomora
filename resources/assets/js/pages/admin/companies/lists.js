@@ -107,4 +107,94 @@ $(function () {
             $('#companiesListsTable').DataTable().search(this.value).draw();
         }
     });
+
+    $(document).on('change', '.company-enable-checkbox', function () {
+        $.ajax({
+            url: $(this).data('href'),
+            type: 'post',
+            success: (response) => {
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $(document).on('click', '.open-company-add-modal', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        let $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.attr('href'),
+            success: response => {
+                $divForModal.html(response.view);
+                let $modalCompany = $('#modal-add-company');
+                $modalCompany.find('.select2').select2({
+                    width: '100%'
+                });
+                $modalCompany.modal('show');
+                $modalCompany.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: xhr => {
+                console.error(xhr);
+            },
+            complete: () => $this.removeData('ajax'),
+        }));
+    });
+
+    $(document).on('submit', '.company-add-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        let $modal = $form.closest('#modal-add-company');
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                $companiesListsTable.DataTable().ajax.reload();
+                $modal.modal('hide');
+                notifyService.showMessage('info', 'topRight', response.message);
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
+            },
+        }));
+    });
+
+    $(document).on('input', '.company-add-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
 });

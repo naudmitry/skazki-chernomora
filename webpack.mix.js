@@ -30,7 +30,7 @@ mix.styles([
     'public/main_admin/css/style.css');
 
 mix.styles([
-        'resources/assets/css/style.css',
+        'resources/assets/css/main_theme.css',
     ],
     'public/main_theme/css/style.css');
 
@@ -43,7 +43,8 @@ mix.styles([
     'public/css/fontawesome.css');
 
 mix.scripts([
-        'resources/assets/js/scripts.js',
+        'resources/assets/js/main_theme/scripts.js',
+        'resources/assets/js/main_theme/datepicker-ru.js',
     ],
     'public/main_theme/js/scripts.js'
 );

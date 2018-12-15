@@ -11,74 +11,16 @@
         'page' => 'Галерея',
     ])
 
-    <section class="video-gallery">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title text-center">
-                        <h3>Collected Media
-                            <span>of Our Hospital</span>
-                        </h3>
-                        <p>Leverage agile frameworks to provide a robust synopsis for high level overv-
-                            <br>iews. Iterative approaches to corporate strategy...</p>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="video-gallery-item">
-                        <div class="image-holder">
-                            <img src="images/gallery/video-thumb-01.jpg" class="img-responsive" alt="video-gallery">
-                            <a data-fancybox href="https://www.youtube.com/watch?v=h-h5Mhlt6O0"><i class="fa fa-play"></i></a>
-                        </div>
-                        <h3>January 2018 Florida Conference</h3>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="video-gallery-item">
-                        <div class="image-holder">
-                            <img src="images/gallery/video-thumb-02.jpg" class="img-responsive" alt="video-gallery">
-                            <a data-fancybox href="https://www.youtube.com/watch?v=h-h5Mhlt6O0">
-                                <i class="fa fa-play"></i>
-                            </a>
-                        </div>
-                        <h3>December 2017 los angeles Conference</h3>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="video-gallery-item">
-                        <div class="image-holder">
-                            <img src="images/gallery/video-thumb-03.jpg" class="img-responsive" alt="video-gallery">
-                            <a data-fancybox href="https://www.youtube.com/watch?v=h-h5Mhlt6O0">
-                                <i class="fa fa-play"></i>
-                            </a>
-                        </div>
-                        <h3>November 2017 Texas Conference</h3>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="video-gallery-item">
-                        <div class="image-holder">
-                            <img src="images/gallery/video-thumb-04.jpg" class="img-responsive" alt="video-gallery">
-                            <a data-fancybox href="https://www.youtube.com/watch?v=h-h5Mhlt6O0">
-                                <i class="fa fa-play"></i>
-                            </a>
-                        </div>
-                        <h3>October 2017 san francisco Conference</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="gallery bg-gray">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-center">
-                        <h3>Collected Shots
-                            <span>of Our Hospital</span>
+                        <h3>Коллекция фотографий
+                            <span>соляных пещер</span>
                         </h3>
-                        <p>Leverage agile frameworks to provide a robust synopsis for high level overv-
-                            <br>iews. Iterative approaches to corporate strategy...</p>
+                        <p>Посмотрите наш дизайн соляных пещер и начните думать о своём здоровье прямо сейчас.
+                            <br>Уют, комфорт и ошеломительный интерьер будет гарантирован.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">

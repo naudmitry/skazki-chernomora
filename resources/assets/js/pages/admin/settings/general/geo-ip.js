@@ -6,7 +6,7 @@ $(function () {
     }
 
     let namePanel = function (country, region, city) {
-        return country ? (region ? (city ? (country + '-' + region + '-' + city) : (country + '-' + region)) : country) : 'Настройка geo-ip';
+        return country ? (region ? (city ? (country + '-' + region + '-' + city) : (country + '-' + region)) : country) : 'Все страны-Все регионы-Все города';
     };
 
     let changeNamePanel = function($panel) {
@@ -63,16 +63,19 @@ $(function () {
                 },
                 success: (response) => {
                     $accordion.append(response);
+                    let $panel = $accordion.find('.card').last();
 
-                    $accordion.find('.card').last().find('.select2').select2({
+                    $panel.find('.select2').select2({
                         minimumResultsForSearch: Infinity,
                         width: '100%'
                     });
 
-                    $accordion.find('.card').last().find('.select2-with-search').select2({
+                    $panel.find('.select2-with-search').select2({
                         minimumInputLength: 2,
                         width: '100%',
                     });
+
+                    changeNamePanel($panel);
 
                     let btn = $('form.settings-general-form button[type=submit]');
                     btn.removeAttr('disabled').removeClass('btn-default').addClass('btn-primary');

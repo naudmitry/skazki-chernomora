@@ -4,7 +4,7 @@
             <h1>{{ $page }}</h1>
             <ul class="title-menu clearfix">
                 <li>
-                    <a href="{{ route('front.index') }}">Главная &nbsp;/</a>
+                    <a href="{{ route('site.index') }}">Главная &nbsp;/</a>
                 </li>
                 <li style="text-transform: none;">{{ $page }}</li>
             </ul>

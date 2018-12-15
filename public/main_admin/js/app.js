@@ -44382,7 +44382,7 @@ $(function () {
     }
 
     var namePanel = function namePanel(country, region, city) {
-        return country ? region ? city ? country + '-' + region + '-' + city : country + '-' + region : country : 'Настройка geo-ip';
+        return country ? region ? city ? country + '-' + region + '-' + city : country + '-' + region : country : 'Все страны-Все регионы-Все города';
     };
 
     var changeNamePanel = function changeNamePanel($panel) {
@@ -44435,16 +44435,19 @@ $(function () {
             },
             success: function success(response) {
                 $accordion.append(response);
+                var $panel = $accordion.find('.card').last();
 
-                $accordion.find('.card').last().find('.select2').select2({
+                $panel.find('.select2').select2({
                     minimumResultsForSearch: Infinity,
                     width: '100%'
                 });
 
-                $accordion.find('.card').last().find('.select2-with-search').select2({
+                $panel.find('.select2-with-search').select2({
                     minimumInputLength: 2,
                     width: '100%'
                 });
+
+                changeNamePanel($panel);
 
                 var btn = $('form.settings-general-form button[type=submit]');
                 btn.removeAttr('disabled').removeClass('btn-default').addClass('btn-primary');
@@ -44881,6 +44884,8 @@ __webpack_require__(48);
 /* 48 */
 /***/ (function(module, exports) {
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 $(function () {
     var $companiesLists = $('.companies-lists');
 
@@ -44996,11 +45001,99 @@ $(function () {
             $('#companiesListsTable').DataTable().search(this.value).draw();
         }
     });
+
+    $(document).on('change', '.company-enable-checkbox', function () {
+        $.ajax({
+            url: $(this).data('href'),
+            type: 'post',
+            success: function success(response) {
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            error: function error(data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $(document).on('click', '.open-company-add-modal', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        var $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.attr('href'),
+            success: function success(response) {
+                $divForModal.html(response.view);
+                var $modalCompany = $('#modal-add-company');
+                $modalCompany.find('.select2').select2({
+                    width: '100%'
+                });
+                $modalCompany.modal('show');
+                $modalCompany.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: function error(xhr) {
+                console.error(xhr);
+            },
+            complete: function complete() {
+                return $this.removeData('ajax');
+            }
+        }));
+    });
+
+    $(document).on('submit', '.company-add-form', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var $modal = $form.closest('#modal-add-company');
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function success(response) {
+                $companiesListsTable.DataTable().ajax.reload();
+                $modal.modal('hide');
+                notifyService.showMessage('info', 'topRight', response.message);
+            },
+            error: function error(xhr) {
+                if ('object' === _typeof(xhr.responseJSON)) {
+                    for (var key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: function complete() {
+                $form.removeData('ajax');
+                $form.find('[type=submit]').removeClass('btn-primary').addClass('btn-default').prop('disabled', true);
+            }
+        }));
+    });
+
+    $(document).on('input', '.company-add-form', function (e) {
+        var $form = $(this);
+        var $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        if (e.type == 'keyup' && $input.attr('type') != 'text') {
+            return;
+        }
+        $form.find('[type=submit]').removeClass('btn-default').addClass('btn-primary').prop('disabled', false);
+    });
 });
 
 /***/ }),
 /* 49 */
 /***/ (function(module, exports) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 $(function () {
     var $showcases = $('.showcases');
@@ -45082,7 +45175,7 @@ $(function () {
         displayLength: 15,
         drawCallback: function drawCallback(settings) {
             $('.sites-count').text(settings.json.sites_count);
-            // $('.amount-total').text(settings.json.amount_total);
+            $('.sites-enable').text(settings.json.sites_enable);
         }
     });
 
@@ -45095,6 +45188,89 @@ $(function () {
         if (e.keyCode == 13) {
             $('#showcasesTable').DataTable().search(this.value).draw();
         }
+    });
+
+    $(document).on('change', '.showcase-enable-checkbox', function () {
+        $.ajax({
+            url: $(this).data('href'),
+            type: 'post',
+            success: function success(response) {
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            error: function error(data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $(document).on('click', '.open-showcase-add-modal', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        var $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.attr('href'),
+            success: function success(response) {
+                $divForModal.html(response.view);
+                var $modal = $('#modal-add-showcase');
+                $modal.modal('show');
+                $modal.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: function error(xhr) {
+                console.error(xhr);
+            },
+            complete: function complete() {
+                return $this.removeData('ajax');
+            }
+        }));
+    });
+
+    $(document).on('submit', '.showcase-add-form', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var $modal = $form.closest('#modal-add-showcase');
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function success(response) {
+                $showcasesTable.DataTable().ajax.reload();
+                $modal.modal('hide');
+                notifyService.showMessage('info', 'topRight', response.message);
+            },
+            error: function error(xhr) {
+                if ('object' === _typeof(xhr.responseJSON)) {
+                    for (var key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: function complete() {
+                $form.removeData('ajax');
+                $form.find('[type=submit]').removeClass('btn-primary').addClass('btn-default').prop('disabled', true);
+            }
+        }));
+    });
+
+    $(document).on('input', '.showcase-add-form', function (e) {
+        var $form = $(this);
+        var $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        if (e.type == 'keyup' && $input.attr('type') != 'text') {
+            return;
+        }
+        $form.find('[type=submit]').removeClass('btn-default').addClass('btn-primary').prop('disabled', false);
     });
 });
 

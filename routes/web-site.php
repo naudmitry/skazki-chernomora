@@ -3,7 +3,7 @@
 Route::get('/',
     [
         'uses' => 'Site\IndexController@index',
-        'as' => 'front.index',
+        'as' => 'site.index',
     ])->middleware('geoIpRedirect');
 
 Route::get('/service',
@@ -15,7 +15,7 @@ Route::get('/service',
 Route::get('/gallery',
     [
         'uses' => 'Site\IndexController@gallery',
-        'as' => 'front.gallery.index',
+        'as' => 'site.gallery.index',
     ]);
 
 Route::get('/team',

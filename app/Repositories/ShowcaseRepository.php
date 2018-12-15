@@ -27,4 +27,19 @@ class ShowcaseRepository
 
         return $this;
     }
+
+    /**
+     * @param $domainArray
+     * @throws \Throwable
+     */
+    public function syncDomains($domainArray)
+    {
+        \DB::transaction(function () use ($domainArray) {
+            $this->showcase->domains()->delete();
+
+            foreach ($domainArray as $domainItem) {
+                $this->showcase->domains()->create(['name' => $domainItem]);
+            }
+        });
+    }
 }
