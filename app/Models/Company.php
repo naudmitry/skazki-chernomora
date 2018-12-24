@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Admin $admin
  * @property-read Collection|Admin[] $admins
  * @property-read Collection|Showcase[] $showcases
+ * @property-read Collection|Role[] $roles
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *

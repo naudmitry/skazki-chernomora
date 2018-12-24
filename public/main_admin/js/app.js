@@ -11387,6 +11387,7 @@ __webpack_require__(41);
 __webpack_require__(44);
 __webpack_require__(47);
 __webpack_require__(49);
+__webpack_require__(50);
 
 /***/ }),
 /* 7 */
@@ -45271,6 +45272,161 @@ $(function () {
             return;
         }
         $form.find('[type=submit]').removeClass('btn-default').addClass('btn-primary').prop('disabled', false);
+    });
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+$(function () {
+    var $adminRoles = $('.admin-roles');
+
+    if (!$adminRoles.length) {
+        return;
+    }
+
+    var $adminRolesSettingsContainer = $('.admin-roles-settings-container');
+    var adminRoleSettingsLoadingTemplate = $('.admin-role-settings-loading-template').text();
+    var $adminRolesList = $('.admin-roles-list');
+    var isChange = false;
+
+    $(document).on('click', '.admin-role-settings-open', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+
+        if (isChange) {
+            swal({
+                title: "Вы действительно уверены?",
+                text: "Данные, которые не были сохранены, будут удалены.",
+                icon: "warning",
+                buttons: ["Отмена", "Ок"],
+                dangerMode: true
+            }).then(function (value) {
+                if (value) {
+                    swal("Изменение подтверждено!", "Данные будут изменены.", "success");
+                    isChange = false;
+                    edit($this.attr('href'));
+                } else {
+                    swal("Изменение отменено!", "Данные не будут изменены.", "error");
+                }
+            });
+        } else {
+            edit($this.attr('href'));
+        }
+    });
+
+    function edit(href) {
+        if ($adminRolesSettingsContainer.data('ajax')) {
+            $adminRolesSettingsContainer.data('ajax').abort();
+        }
+        $adminRolesSettingsContainer.html(adminRoleSettingsLoadingTemplate);
+        $adminRolesSettingsContainer.data('ajax', $.ajax({
+            type: 'get',
+            url: href,
+            cache: false,
+            success: function success(response) {
+                $adminRolesSettingsContainer.html(response);
+            },
+            error: function error(xhr) {
+                if (xhr.statusText == 'abort') {
+                    return;
+                }
+                console.error(xhr);
+                $adminRolesSettingsContainer.empty();
+            },
+            complete: function complete() {
+                $adminRolesSettingsContainer.removeData('ajax');
+            }
+        }));
+    }
+
+    $(document).on('change keyup switchChange.bootstrapSwitch', '.admin-role-settings-form', function (e) {
+        var $form = $(this);
+        var $input = $(e.target);
+        if (!$input.is('input')) {
+            return;
+        }
+        if (e.type == 'keyup' && $input.attr('type') != 'text') {
+            return;
+        }
+        $input.closest('.form-group').removeClass('has-error');
+        $form.find('[type=submit]').removeClass('btn-default').addClass('btn-primary').prop('disabled', false);
+    });
+
+    $(document).on('submit', '.admin-role-settings-form', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function success(response) {
+                var $adminRolesListItem = $adminRolesList.find('.admin-roles-list-item[data-admin-role-id="' + response.role.id + '"]');
+                if ($adminRolesListItem.length) {
+                    $adminRolesListItem.replaceWith(response.row);
+                } else {
+                    $adminRolesList.append(response.row);
+                }
+                $adminRolesSettingsContainer.html(response.settings);
+                isChange = false;
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            error: function error(xhr) {
+                if ('object' === _typeof(xhr.responseJSON)) {
+                    for (var key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: function complete() {
+                $form.removeData('ajax');
+                $form.find('[type=submit]').removeClass('btn-primary').addClass('btn-default').prop('disabled', true);
+            }
+        }));
+    });
+
+    $(document).on('click', '.admin-role-delete', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить роль?",
+            icon: "warning",
+            buttons: ["Отмена", "Удалить"],
+            dangerMode: true
+        }).then(function (willDelete) {
+            if (willDelete) {
+                $.ajax({
+                    type: 'delete',
+                    url: $this.attr('href'),
+                    success: function success(response) {
+                        var $adminRolesListItem = $adminRolesList.find('.admin-roles-list-item[data-admin-role-id="' + response.role.id + '"]');
+                        var $adminRoleSettingsContainer = $('.admin-role-settings-container');
+                        if ($adminRoleSettingsContainer.data('admin-role-id') == response.role.id) {
+                            $adminRolesSettingsContainer.empty();
+                        }
+                        $adminRolesListItem.remove();
+                        isChange = false;
+                        notifyService.showMessage('danger', 'Успех!', response.message);
+                    },
+                    error: function error(xhr) {
+                        console.error(xhr);
+                    }
+                });
+
+                swal("Удаление подтверждено!", "Категория будет удалена.", "success");
+            } else {
+                swal("Удаление отменено!", "Категория не будет удалена.", "error");
+            }
+        });
     });
 });
 

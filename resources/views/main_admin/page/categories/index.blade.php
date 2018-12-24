@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-6 page-categories">
             <div class="tile">
-                <h4 class="line-head">Категории страницы</h4>
+                <h4 class="line-head">Категории</h4>
 
                 <div class="page-categories-list" id="container">
                     @foreach ($categories as $category)
@@ -22,7 +22,7 @@
                         class="btn btn-primary page-category-settings-open"
                         type="button"
                         href="{{ route('admin.page.category.create') }}"
-                    ><i class="fa fa-fw fa-lg fa-plus-circle" aria-hidden="true"></i>Добавить категорию</button>
+                    ><i class="fa fa-fw fa-lg fa-plus-circle" aria-hidden="true"></i>Добавить</button>
                 </div>
             </div>
         </div>

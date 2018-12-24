@@ -8,3 +8,4 @@ require('./pages/admin/settings');
 require('./pages/admin/staff');
 require('./pages/admin/companies');
 require('./pages/admin/showcases');
+require('./pages/admin/roles');

@@ -2,7 +2,7 @@
     <div class="app-menu__header"><span class="app-menu__label">Администратор</span></div>
 </li>
 
-<li class="treeview @if (Route::is('admin.staff.*')) is-expanded @endif">
+<li class="treeview @if (Route::is('admin.staff.*') || Route::is('admin.roles')) is-expanded @endif">
     <a class="app-menu__item" href="#" data-toggle="treeview">
         <i class="app-menu__icon far fa-file-alt"></i>
         <span class="app-menu__label">Персонал</span>
@@ -12,20 +12,20 @@
     <ul class="treeview-menu">
         <li>
             <a
-                    class="treeview-item @if (Route::is('admin.staff.list.*')) active @endif"
-                    href="{{ route('admin.staff.list.index') }}"
+                class="treeview-item @if (Route::is('admin.staff.list.*')) active @endif"
+                href="{{ route('admin.staff.list.index') }}"
             ><i class="icon far fa-circle"></i>Список</a>
         </li>
         <li>
             <a
-                    class="treeview-item"
-                    href="#"
+                class="treeview-item @if (Route::is('admin.roles')) active @endif"
+                href="{{ route('admin.roles') }}"
             ><i class="icon far fa-circle"></i>Роли</a>
         </li>
         <li>
             <a
-                    class="treeview-item @if (Route::is('admin.staff.group.*')) active @endif"
-                    href="{{ route('admin.staff.group.index') }}"
+                class="treeview-item @if (Route::is('admin.staff.group.*')) active @endif"
+                href="{{ route('admin.staff.group.index') }}"
             ><i class="icon far fa-circle"></i>Группы</a>
         </li>
     </ul>

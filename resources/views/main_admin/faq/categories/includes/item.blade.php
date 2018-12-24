@@ -1,10 +1,9 @@
 <div
-        class="faq-categories-list-item"
+        class="faq-categories-list-item list-items-container"
         data-faq-category-id="{{ $category->id }}"
-        style="margin-bottom: 10px;display: flex;justify-content: space-between;flex-wrap: wrap;"
 >
-    <div class="toggle-flip" style="display: flex;justify-content: flex-start;flex-wrap: wrap;">
-        <label style="margin-right: 15px;">
+    <div class="toggle-flip title-center">
+        <label class="checkbox-left">
             <input
                     class="checkbox"
                     type="checkbox"
@@ -13,7 +12,7 @@
             ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
         </label>
 
-        <p class="title dragula-handle">{{ $category->title }}</p>
+        <p class="title dragula-handle" style="margin-bottom: 0;">{{ $category->title }}</p>
     </div>
 
     <div class="btn-group">

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-6 staff-groups">
             <div class="tile">
-                <h4 class="line-head">Список групп</h4>
+                <h4 class="line-head">Список</h4>
 
                 <div class="staff-groups-list" id="container">
                     @foreach ($groups as $group)
@@ -22,7 +22,7 @@
                             class="btn btn-primary staff-group-settings-open"
                             type="button"
                             href="{{ route('admin.staff.group.create') }}"
-                    ><i class="fa fa-fw fa-lg fa-plus-circle" aria-hidden="true"></i>Добавить группу</button>
+                    ><i class="fa fa-fw fa-lg fa-plus-circle" aria-hidden="true"></i>Добавить</button>
                 </div>
             </div>
         </div>

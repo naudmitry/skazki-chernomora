@@ -31,6 +31,14 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'prefix' => 'showcase-{administeredShowcase}',
         ], function () {
 
+            Route::get('roles', ['uses' => 'Admin\RoleController@index', 'as' => 'admin.roles']);
+            Route::get('/roles/edit/{role?}', ['uses' => 'Admin\RoleController@edit', 'as' => 'admin.role.edit'])
+                ->where('category', '[0-9]+');
+            Route::post('roles/save/{role?}', ['uses' => 'Admin\RoleController@save', 'as' => 'admin.role.save',])
+                ->where('role', '[0-9]+');
+            Route::delete('roles/delete/{role?}', ['uses' => 'Admin\RoleController@delete', 'as' => 'admin.role.delete',])
+                ->where('role', '[0-9]+');
+
             Route::get('/staff/lists', ['uses' => 'Admin\AdminController@index', 'as' => 'admin.staff.list.index',]);
             Route::post('/staff/lists/save/{admin?}', ['uses' => 'Admin\AdminController@save', 'as' => 'admin.staff.list.save'])
                 ->where('admin', '[0-9]+');
