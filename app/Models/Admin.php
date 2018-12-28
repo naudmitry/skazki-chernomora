@@ -37,6 +37,8 @@ use Illuminate\Support\Collection;
  * @property-read Role $role
  * @property-read Collection|Company[] $companies
  * @property-read Collection|Showcase[] $showcases
+ * @property-read Collection|Group[] $groups
+ * @property-read bool $isCompanyAdmin
  *
  * @mixin \Eloquent
  */
@@ -45,16 +47,19 @@ class Admin extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password',
+        'password'
+    ];
+
+    protected $with = [
+        'groups'
+    ];
+
+    protected $appends = [
+        'isCompanyAdmin', 'showcasesIds', 'groupsIds', 'companiesIds'
     ];
 
     /**
@@ -71,6 +76,14 @@ class Admin extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'admins_groups');
     }
 
     /**
@@ -130,5 +143,40 @@ class Admin extends Authenticatable
         }
 
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsCompanyAdminAttribute()
+    {
+        return Company::query()
+            ->where('id', $this->company_id)
+            ->where('admin_id', $this->id)
+            ->exists();
+    }
+
+    /**
+     * @return Collection|int[]
+     */
+    public function getShowcasesIdsAttribute()
+    {
+        return $this->showcases()->pluck('showcase_id');
+    }
+
+    /**
+     * @return Collection|int[]
+     */
+    public function getGroupsIdsAttribute()
+    {
+        return $this->groups()->pluck('group_id');
+    }
+
+    /**
+     * @return Collection|int[]
+     */
+    public function getCompaniesIdsAttribute()
+    {
+        return $this->companies()->pluck('company_id');
     }
 }

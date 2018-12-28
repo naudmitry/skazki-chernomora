@@ -2,7 +2,7 @@
     <div class="bs-component">
         <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
             <div class="modal-dialog" role="document">
-                <form class="modal-content admin-list-edit-form" method="post" action="{{ route('admin.staff.list.save', $admin) }}">
+                <form autocomplete="off" class="modal-content admin-list-edit-form" method="post" action="{{ route('admin.staff.list.save', $admin) }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Добавление администратора</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -12,43 +12,48 @@
                         <div class="form-group row">
                             <label class="control-label col-md-3">Имя:</label>
                             <div class="col-md-8">
-                                <input name="name" class="form-control" type="text" placeholder="Введите имя">
+                                <input name="name" class="form-control" type="text" placeholder="Введите имя" value="{{ $admin->name ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Фамилия:</label>
                             <div class="col-md-8">
-                                <input name="surname" class="form-control" type="text" placeholder="Введите фамилию">
+                                <input name="surname" class="form-control" type="text" placeholder="Введите фамилию" value="{{ $admin->surname ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Должность:</label>
                             <div class="col-md-8">
-                                <input name="position" class="form-control" type="text" placeholder="Введите должность">
+                                <input name="position" class="form-control" type="text" placeholder="Введите должность" value="{{ $admin->position ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Телефон:</label>
                             <div class="col-md-8">
-                                <input name="phone" class="form-control" type="text" placeholder="Введите номер телефона">
+                                <input name="phone" class="form-control" type="text" placeholder="Введите номер телефона" value="{{ $admin->phone ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Email:</label>
                             <div class="col-md-8">
-                                <input name="email" class="form-control" type="email" placeholder="Введите email">
+                                <input name="email" class="form-control" type="email" placeholder="Введите email" value="{{ $admin->email ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Роль:</label>
                             <div class="col-md-8">
-                                <select class="select2" name="role">
-                                    <option>No</option>
+                                <select class="select2" name="role_id">
+                                    @foreach ($administeredCompany->roles as $role)
+                                        <option
+                                                value="{{ $role->id }}"
+                                                @if ($admin->role_id == $role->id) selected @endif
+                                        >{{ $role->title }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -57,7 +62,13 @@
                             <label class="control-label col-md-3">Сайты:</label>
                             <div class="col-md-8">
                                 <select class="select2" multiple name="showcases[]">
-                                    <option>No</option>
+                                    <option value="all">Все</option>
+                                    @foreach ($administeredCompany->showcases as $showcase)
+                                        <option
+                                                @if (array_search($showcase->id, array_column($adminShowcases, 'id')) != false) selected @endif
+                                                value="{{ $showcase->id }}"
+                                        >{{ $showcase->domain }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -66,7 +77,12 @@
                             <label class="control-label col-md-3">Группы:</label>
                             <div class="col-md-8">
                                 <select class="select2" multiple name="groups[]">
-                                    <option>No</option>
+                                    @foreach ($administeredCompany->groups as $group)
+                                        <option
+                                                @if (array_search($group->id, array_column($adminGroups, 'id'))) selected @endif
+                                                value="{{ $group->id }}"
+                                        >{{ $group->title }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -75,7 +91,12 @@
                             <label class="control-label col-md-3">Компании:</label>
                             <div class="col-md-8">
                                 <select class="select2" multiple name="companies[]">
-                                    <option>No</option>
+                                    <option value="all">Все</option>
+                                    @foreach ($companies as $company)
+                                        <option
+                                                value="{{ $company->id }}"
+                                        >{{ $company->title }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

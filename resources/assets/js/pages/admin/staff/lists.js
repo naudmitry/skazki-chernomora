@@ -136,7 +136,7 @@ $(function () {
     $(document).on('submit', '.admin-list-edit-form', function (e) {
         e.preventDefault();
         let $form = $(this);
-        let $modal = $form.closest('.modal');
+        let $modal = $form.closest('#modal-staff');
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }

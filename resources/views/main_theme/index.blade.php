@@ -8,7 +8,7 @@
 
 @section('content')
     @include('main_theme.vendor.sections.slider')
-    @include('main_theme.vendor.sections.contact')
+    @include('main_theme.vendor.sections.visit')
     @include('main_theme.vendor.sections.about')
     @include('main_theme.vendor.sections.service')
     @include('main_theme.vendor.sections.review')

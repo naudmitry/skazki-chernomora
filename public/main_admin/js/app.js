@@ -44688,7 +44688,7 @@ $(function () {
     $(document).on('submit', '.admin-list-edit-form', function (e) {
         e.preventDefault();
         var $form = $(this);
-        var $modal = $form.closest('.modal');
+        var $modal = $form.closest('#modal-staff');
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }

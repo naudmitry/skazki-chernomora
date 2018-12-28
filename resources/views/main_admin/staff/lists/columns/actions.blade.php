@@ -1,7 +1,7 @@
 <div class="btn-group">
     <a
-        href="#"
-        class="btn btn-primary"
+        href="{{ route('admin.staff.list.edit') }}/@{{admin.id}}"
+        class="btn btn-primary open-add-admin-modal"
     ><i class="fa fa-lg fa-edit" style="color: #FFF"></i></a>
 
     <a
