@@ -41,7 +41,7 @@
                                         <h6>{{ $blog->name }}</h6>
                                     </a>
                                     <span>{{ $blog->updater->surname }} {{ $blog->updater->name }} / {{ $blog->updated_at->format('d-m-Y H:i') }}</span>
-                                    {!! $blog->reduction($blog->content, 300) !!}
+                                    <p>{!! $blog->reduction($blog->content, 300) !!}</p>
                                     <div class="link-btn">
                                         <a href="{{ $blog->getRoute() }}" class="btn-style-one">Подробнее</a>
                                     </div>

@@ -8,7 +8,7 @@
 
 @section('content')
     @include('main_theme.vendor.pageHeader', [
-        'page' => 'FAQ',
+        'page' => 'Вопросы и ответы',
     ])
 
     <section class="blog-section style-four section">

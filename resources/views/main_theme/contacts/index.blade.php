@@ -14,45 +14,7 @@
     <section class="section contact">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="address-block">
-                        <!-- Location -->
-                        <div class="media">
-                            <i class="far fa-map"></i>
-                            <div class="media-body">
-                                <h3>Расположение</h3>
-                                <p>Витебск, ул. Коммунистическая, 16</p>
-                                <p>Витебск, ул. Чкалова, 14в<br/>детский клинический центр, 2 этаж</p>
-                                <p>Витебск, пр-т Фрунзе, 81, корп. 33<br/>этаж 4, возле ТЦ «Эвиком»</p>
-                                <p>Витебск, ул. Гончарная, 3</p>
-                            </div>
-                        </div>
-                        <!-- Phone -->
-                        <div class="media">
-                            <i class="fa fa-phone"></i>
-                            <div class="media-body">
-                                <h3>Телефон</h3>
-                                <p>
-                                    (+48) 564-334-21-22-34
-                                    <br>(+48) 564-334-21-22-38
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Email -->
-                        <div class="media">
-                            <i class="far fa-envelope"></i>
-                            <div class="media-body">
-                                <h3>Почта</h3>
-                                <p>
-                                    info@templatepath.com
-                                    <br>info@cleanxer.com
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- address end -->
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="contact-form">
                         <!-- contact form start -->
                         <form action="#" class="row">
@@ -82,5 +44,9 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="map">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af4bd7f8a6f29ad2345e9a79ffe041a979eaa13cde7bccc2c9b22cdcee87e92db&amp;source=constructor" width="100%" height="600" frameborder="0"></iframe>
     </section>
 @endsection

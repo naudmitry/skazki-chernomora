@@ -14,12 +14,14 @@
             </div>
             <ul class="categorise-list">
                 @foreach ($categories as $category)
+                    @if ($category->countFaqs)
                     <li>
                         <a
                             href="{{ $category->getRoute() }}"
                             @if (isset($currentCategory) && $category->id == $currentCategory->id) style="color: #48bdc5;" @endif
                         >{{ $category->name }} <span>({{ $category->countFaqs }})</span></a>
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>

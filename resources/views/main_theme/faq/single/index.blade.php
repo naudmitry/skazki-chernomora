@@ -8,7 +8,7 @@
 
 @section('content')
     @include('main_theme.vendor.pageHeader', [
-        'page' => 'Вопрос',
+        'page' => 'Вопросы и ответы',
     ])
 
     <section class="blog-section section style-four style-five">
@@ -21,7 +21,7 @@
                                 <a href="javascript:;">
                                     <h5>{{ $faq->name }}</h5>
                                 </a>
-                                <span>{{ $faq->author->surname }} {{ $faq->author->name }} / {{ $faq->updated_at }}</span>
+                                <span>{{ $faq->updater->surname }} {{ $faq->updater->name }} / {{ $faq->updated_at }}</span>
                                 <p>{{ $faq->answer }}</p>
                             </div>
                         </div>
