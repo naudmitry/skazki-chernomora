@@ -29,12 +29,10 @@
                                     <h5>{{ $blog->name }}</h5>
                                 </a>
                                 <span>{{ $blog->author->surname }} {{ $blog->author->name }} / {{ $blog->updated_at }}</span>
-                                <p>{{ $blog->content }}</p>
+                                {!! $blog->content !!}
                             </div>
                         </div>
                     </div>
-
-                    @include('main_theme.blog.comments.index')
                 </div>
 
                 @include('main_theme.blog.right_side')
