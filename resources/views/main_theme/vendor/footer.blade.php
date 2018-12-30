@@ -68,34 +68,31 @@
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="social-links">
-                        <h6>Последние новости</h6>
+                        <h6>Важные новости</h6>
                         <ul>
                             <li class="item">
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object" src="{{ URL::to('/images/blog/post-thumb-small.jpg') }}" alt="post-thumb">
+                                        <a href="javascript:;">
+                                            <img height="80" width="80" class="media-object" src="https://galoportal.ru/wp-content/uploads/2017/03/doctor-sol-5.jpg" alt="post-thumb">
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">Post Title</a></h4>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                                        <h4 class="media-heading"><a href="javascript:;">Открытие соляной пещеры</a></h4>
+                                        <p>Открытие четвёртой соляной пещеры «Черноморская сказка» 28 августа.</p>
                                     </div>
                                 </div>
                             </li>
-
                             <li class="item">
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object" src="{{ URL::to('images/blog/post-thumb-small.jpg') }}" alt="post-thumb">
+                                        <a href="javascript:;">
+                                            <img height="80" width="80" class="media-object" src="https://vitebsk.biz/source/photos/2018/10/10/2.jpeg" alt="post-thumb">
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <a href="#">Post Title</a>
-                                        </h4>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                                        <h4 class="media-heading"><a href="javascript:;">Светильники</a></h4>
+                                        <p>Теперь можно приобрести светильники из гималайской соли!</p>
                                     </div>
                                 </div>
                             </li>

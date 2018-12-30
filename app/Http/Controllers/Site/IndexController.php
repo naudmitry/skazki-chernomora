@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Site;
 
 use App\Classes\PageTypesEnum;
 use App\Classes\StaticPageTypesEnum;
-use App\Models\Faq;
 use App\Models\Page;
 
 class IndexController extends Controller
@@ -20,14 +19,8 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        $faqs = Faq::query()
-            ->where('showcase_id', $this->showcase->id)
-            ->where('enable', true)
-            ->where('favorite', true)
-            ->get();
-
         return view('main_theme.index', compact([
-            'faqs', 'staticPage'
+            'staticPage'
         ]));
     }
 
