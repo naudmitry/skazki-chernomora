@@ -154,6 +154,12 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('settings/regions/{country?}', ['uses' => 'Admin\SettingController@regionsByCountry', 'as' => 'admin.settings.regions']);
                 Route::get('settings/cities/{region?}', ['uses' => 'Admin\SettingController@citiesByRegion', 'as' => 'admin.settings.cities']);
             });
+
+            Route::group(['components' => AdminComponentEnum::COMPANY_ORDERS_LIST], function () {
+                Route::get('/order/lists', ['uses' => 'Admin\OrderController@index', 'as' => 'admin.order.list.index']);
+                Route::delete('/order/lists/{order}', ['uses' => 'Admin\OrderController@delete', 'as' => 'admin.order.list.delete'])
+                    ->where('order', '[0-9]+');
+            });
         });
 
 

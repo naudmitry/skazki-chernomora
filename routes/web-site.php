@@ -30,6 +30,12 @@ Route::get('/appointment',
         'as' => 'front.appointment.index',
     ]);
 
+Route::post('orders/save',
+    [
+        'uses' => 'Site\OrderController@save',
+        'as'   => 'front.orders.save'
+    ]);
+
 Route::get('{slug}',
     [
         'uses' => 'Site\SlugController@index',

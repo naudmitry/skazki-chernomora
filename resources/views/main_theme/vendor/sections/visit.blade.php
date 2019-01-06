@@ -175,9 +175,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -187,45 +184,46 @@
                     <div class="section-title">
                         <h3>Запись <span>на прием</span></h3>
                     </div>
-                    <form name="contact_form" class="default-form contact-form" action="#" method="post">
+                    <form class="default-form order-form" action="{{ route('front.orders.save') }}" method="post">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" name="Name" placeholder="Имя" required="">
+                                    <input type="text" name="name" placeholder="Имя" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="Email" placeholder="Email" required="">
+                                    <input type="email" name="email" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <select name="subject">
-                                        <option>Коммунистическая, 16</option>
-                                        <option>Чкалова, 14в</option>
-                                        <option>Фрунзе, 81, корп. 33</option>
-                                        <option>Гончарная, 3</option>
+                                    <select name="salt_cave">
+                                        <option value="Коммунистическая, 16">Коммунистическая, 16</option>
+                                        <option value="Чкалова, 14в">Чкалова, 14в</option>
+                                        <option value="Фрунзе, 81, корп. 33">Фрунзе, 81, корп. 33</option>
+                                        <option value="Гончарная, 3">Гончарная, 3</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" name="Phone" placeholder="Телефон" required="">
+                                    <input type="text" name="phone_number" placeholder="Телефон" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="Date" placeholder="Дата" required="" id="datepicker">
+                                    <input type="text" name="desired_date" placeholder="Дата" required id="datepicker">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                 </div>
                                 <div class="form-group">
-                                    <select name="subject">
-                                        <option>Первое посещение</option>
-                                        <option>Повторное</option>
+                                    <select name="type">
+                                        <option value="Первое посещение">Первое посещение</option>
+                                        <option value="Повторное">Повторное</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <textarea name="form_message" placeholder="Ваше сообщение" required=""></textarea>
+                                    <textarea name="message" placeholder="Ваше сообщение" required></textarea>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn-style-one">записаться</button>
+                                    <button type="submit" class="btn-style-one">Записаться</button>
                                 </div>
                             </div>
                         </div>

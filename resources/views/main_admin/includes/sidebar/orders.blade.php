@@ -10,7 +10,7 @@
         <li>
             <a
                 class="app-menu__item"
-                href=""
+                href="{{ route('admin.order.list.index') }}"
             ><i class="app-menu__icon fas fa-shopping-cart"></i><span class="app-menu__label">Список заказов</span></a>
         </li>
     @endif

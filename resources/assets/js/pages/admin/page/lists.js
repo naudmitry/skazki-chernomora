@@ -160,7 +160,6 @@ $(function () {
         });
     });
 
-
     $('.open-create-form').bind('click', function () {
         location.href = $(this).data('href');
     });

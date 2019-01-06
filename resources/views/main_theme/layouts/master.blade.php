@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -45,6 +46,7 @@
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/jquery.ptTimeSelect.js') }}"></script>
     <script src="{{ asset('main_theme/js/scripts.js') }}"></script>
+    <script src="{{ elixir('main_admin/js/app.js') }}"></script>
 
     @yield('footer__script')
 </body>
