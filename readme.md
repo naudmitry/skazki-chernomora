@@ -44,3 +44,8 @@ php artisan migrate:refresh --seed
 npm run dev
 npm run watch-poll (optional)
 ```
+
+## Development Commands
+```
+php artisan db:seed --class=RolesSeeder
+```

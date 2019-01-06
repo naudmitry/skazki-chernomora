@@ -3,6 +3,7 @@
     App\Classes\AdminComponentEnum::COMPANY_CONTENT_PAGES,
     App\Classes\AdminComponentEnum::COMPANY_CONTENT_BLOG,
     App\Classes\AdminComponentEnum::COMPANY_CONTENT_FAQ,
+    App\Classes\AdminComponentEnum::COMPANY_CONTENT_BLOCKS
 ], $administeredCompany))
     <li>
         <div class="app-menu__header"><span class="app-menu__label">Контент</span></div>
@@ -35,7 +36,6 @@
     @endif
 
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_CONTENT_FAQ, $administeredCompany))
-
         <li class="treeview @if (Route::is('admin.faq.*')) is-expanded @endif">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fas fa-question"></i>
@@ -85,9 +85,7 @@
                 </li>
             </ul>
         </li>
-    @endif
 
-    @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_CONTENT_PAGES, $administeredCompany))
         <li>
             <a
                 class="app-menu__item @if (Route::is('admin.main.*')) active @endif"

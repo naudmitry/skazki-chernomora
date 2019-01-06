@@ -42,7 +42,7 @@ class BlogsSeeder extends Seeder
                             'enable' => $faker->boolean(50),
                             'link' => $faker->imageUrl(),
                             'img_or_video' => LinkTypesEnum::IMAGE,
-                            'content' => $faker->text(1000),
+                            'content' => '<p>' . $faker->text(1000) . '</p>',
                             'view_count' => $faker->randomNumber(2),
                             'breadcrumbs' => $faker->text(10),
                             'meta_title' => $faker->text(15),

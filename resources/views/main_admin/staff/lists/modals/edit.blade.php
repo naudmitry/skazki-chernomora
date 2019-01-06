@@ -2,9 +2,18 @@
     <div class="bs-component">
         <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
             <div class="modal-dialog" role="document">
-                <form autocomplete="off" class="modal-content admin-list-edit-form" method="post" action="{{ route('admin.staff.list.save', $admin) }}">
+                <form
+                        autocomplete="off"
+                        class="modal-content admin-list-edit-form"
+                        method="post"
+                        @if (isset($admin->id))
+                            action="{{ route('admin.staff.list.save', $admin) }}"
+                        @else
+                            action="{{ route('admin.staff.list.create') }}"
+                        @endif
+                >
                     <div class="modal-header">
-                        <h5 class="modal-title">Добавление администратора</h5>
+                        <h5 class="modal-title">Администратор</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     </div>
 
@@ -65,7 +74,7 @@
                                     <option value="all">Все</option>
                                     @foreach ($administeredCompany->showcases as $showcase)
                                         <option
-                                                @if (array_search($showcase->id, array_column($adminShowcases, 'id')) != false) selected @endif
+                                                @if (array_search($showcase->id, array_column($adminShowcases, 'id')) !== false) selected @endif
                                                 value="{{ $showcase->id }}"
                                         >{{ $showcase->domain }}</option>
                                     @endforeach
@@ -79,7 +88,7 @@
                                 <select class="select2" multiple name="groups[]">
                                     @foreach ($administeredCompany->groups as $group)
                                         <option
-                                                @if (array_search($group->id, array_column($adminGroups, 'id'))) selected @endif
+                                                @if (array_search($group->id, array_column($adminGroups, 'id')) !== false) selected @endif
                                                 value="{{ $group->id }}"
                                         >{{ $group->title }}</option>
                                     @endforeach
@@ -95,6 +104,7 @@
                                     @foreach ($companies as $company)
                                         <option
                                                 value="{{ $company->id }}"
+                                                @if (array_search($company->id, array_column($adminCompanies, 'id')) !== false) selected @endif
                                         >{{ $company->title }}</option>
                                     @endforeach
                                 </select>
@@ -103,7 +113,9 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="submit">Сохранить</button>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить
+                        </button>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Отменить</button>
                     </div>
                 </form>

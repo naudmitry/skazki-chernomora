@@ -1,3 +1,3 @@
 <span>
-    @{{blog.author.name}}
+    @{{blog.author.full_name}}
 </span>

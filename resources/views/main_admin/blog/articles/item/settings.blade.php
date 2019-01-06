@@ -1,12 +1,11 @@
 <div class="tile">
     <h4 class="line-head">Настройка статьи</h4>
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="bs-component">
-                <form class="tab-content blog-item-form" action="{{ route('admin.blog.article.save', $blog ?? '') }}" method="post">
-                    {{ csrf_field() }}
-
+    <form class="tab-content blog-item-form" action="{{ route('admin.blog.article.save', $blog ?? '') }}" method="post">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="bs-component">
                     <div class="form-group row">
                         <label class="control-label col-md-3">Категории:</label>
                         <div class="col-md-9">
@@ -76,75 +75,74 @@
                             <input class="form-control" id="metaKeywords" name="meta_keywords" value="{{ $blog->meta_keywords ?? '' }}">
                         </div>
                     </div>
-
-                    <div class="tile-footer">
-                        <button class="btn btn-default" type="submit" disabled>
-                            <i class="fa fa-fw fa-lg fa-check-circle"></i> Сохранить
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="bs-component">
-                <div class="card">
-                    <div class="card-body">
-                        <label class="control-label">Информация о статье</label>
-
-                        <div style="display: flex;flex-direction: column;padding:15px;">
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;">
-                                <div>
-                                    <i class="far fa-check-circle"></i> Опубликовано:
+            <div class="col-md-4">
+                <div class="bs-component">
+                    <div class="card">
+                        <div class="card-body">
+                            <label class="control-label">Информация о статье</label>
+                            <div class="information-container">
+                                <div class="information-row">
+                                    <div>
+                                        <i class="far fa-check-circle"></i> Опубликовано:
+                                    </div>
+                                    <div class="toggle-flip" style="height: 21px;">
+                                        <label>
+                                            <input
+                                                    data-href="{{ isset($blog) ? route('admin.blog.article.enable', $blog) : '' }}"
+                                                    @if ($blog->enable) checked @endif
+                                                    type="checkbox"
+                                                    class="checkbox"
+                                            ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="toggle-flip" style="height: 21px;">
-                                    <label>
-                                        <input
-                                                data-href="{{ isset($blog) ? route('admin.blog.article.enable', $blog) : '' }}"
-                                                @if ($blog->enable) checked @endif
-                                                type="checkbox"
-                                                class="checkbox"
-                                        ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
-                                    </label>
+                                <div class="information-row">
+                                    <div>
+                                        <i class="far fa-calendar-check"></i> Создано:
+                                    </div>
+                                    <div>
+                                        {{ $blog->created_at->format('d/m/Y H:i') ?? '' }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
-                                <div>
-                                    <i class="far fa-calendar-check"></i> Создано:
+                                <div class="information-row">
+                                    <div>
+                                        <i class="far fa-calendar-plus"></i> Обновлено:
+                                    </div>
+                                    <div>
+                                        {{ $blog->updated_at->format('d/m/Y H:i') ?? '' }}
+                                    </div>
                                 </div>
-                                <div>
-                                    {{ $blog->created_at->format('d/m/Y H:i') ?? '' }}
+                                <div class="information-row">
+                                    <div>
+                                        <i class="far fa-plus-square"></i> Обновлен:
+                                    </div>
+                                    <div>
+                                        {{ $blog->updater->name ?? '' }} {{ $blog->updater->surname ?? '' }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
-                                <div>
-                                    <i class="far fa-calendar-plus"></i> Обновлено:
-                                </div>
-                                <div>
-                                    {{ $blog->updated_at->format('d/m/Y H:i') ?? '' }}
-                                </div>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
-                                <div>
-                                    <i class="far fa-plus-square"></i> Обновлен:
-                                </div>
-                                <div>
-                                    {{ $blog->updater->name ?? '' }} {{ $blog->updater->surname ?? '' }}
-                                </div>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
-                                <div>
-                                    <i class="fas fa-street-view"></i> Просмотрено:
-                                </div>
-                                <div>
-                                    {{ $blog->view_count ?? '' }}
+                                <div class="information-row">
+                                    <div>
+                                        <i class="fas fa-street-view"></i> Просмотрено:
+                                    </div>
+                                    <div>
+                                        {{ $blog->view_count ?? '' }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="tile-footer">
+            <button class="btn btn-default" type="submit" disabled>
+                <i class="fa fa-fw fa-lg fa-check-circle"></i> Сохранить
+            </button>
+        </div>
+    </form>
 </div>

@@ -201,6 +201,7 @@ $(function () {
 
     $(document).on('change keyup', '.blog-category-settings-form input[id=name]', function () {
         let title = $blogCategoriesSettingsContainer.find('#name').val();
+        $blogCategoriesSettingsContainer.find('#breadcrumbs').val(title.slice(0, 30));
         $blogCategoriesSettingsContainer.find('#address').val(slug(title).toLowerCase());
         $blogCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
         $blogCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));

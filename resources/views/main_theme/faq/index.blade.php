@@ -18,8 +18,8 @@
 @endsection
 
 @section('content')
-    @include('main_theme.vendor.pageHeader', [
-        'page' => 'Вопросы и ответы',
+    @include('main_theme.vendor.navigation', [
+        'page' => $staticPage->breadcrumbs ?? 'Вопросы и ответы',
     ])
 
     <section class="blog-section style-four section">
@@ -33,7 +33,7 @@
                                     <a href="{{ $faq->getRoute() }}">
                                         <h6>{{ $faq->name }}</h6>
                                     </a>
-                                    <span>{{ $faq->author->surname }} {{ $faq->author->name }} / {{ $faq->updated_at->format('d-m-Y H:i') }}</span>
+                                    <span>{{ $faq->updater->full_name }} / {{ $faq->updated_at->format('d-m-Y H:i') }}</span>
                                     <p>{{ $faq->reduction($faq->answer, 300) }}</p>
                                 </div>
                             </div>

@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-    @include('main_theme.vendor.pageHeader', [
-        'page' => 'Галерея',
+    @include('main_theme.vendor.navigation', [
+        'page' => $staticPage->breadcrumbs ?? 'Галерея',
     ])
 
     <section class="gallery bg-gray">

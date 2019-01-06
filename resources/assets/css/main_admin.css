@@ -15344,3 +15344,16 @@ be a descendant of the grid when it is being dragged.
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.information-container {
+  display: flex;
+  flex-direction: column;
+  padding:15px;
+}
+
+.information-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 15px;
+}

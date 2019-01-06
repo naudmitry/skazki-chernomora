@@ -204,6 +204,7 @@ $(function () {
 
     $(document).on('change keyup', '.faq-category-settings-form input[id=name]', function () {
         let title = $faqCategoriesSettingsContainer.find('#name').val();
+        $faqCategoriesSettingsContainer.find('#breadcrumbs').val(title.slice(0, 30));
         $faqCategoriesSettingsContainer.find('#address').val(slug(title).toLowerCase());
         $faqCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
         $faqCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));

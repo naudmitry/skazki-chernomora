@@ -42,6 +42,7 @@ class PageController extends Controller
     public function index(Request $request, Company $administeredCompany, Showcase $administeredShowcase)
     {
         $pageQuery = Page::query()
+            ->with('updater')
             ->where('company_id', $administeredCompany->id)
             ->where('showcase_id', $administeredShowcase->id)
             ->where('type', PageTypesEnum::CUSTOM_PAGE)
@@ -97,7 +98,7 @@ class PageController extends Controller
         });
 
         $settings = view('main_admin.page.static.settings', compact(
-            'staticPage'
+            'staticPage', 'administeredShowcase'
         ))->render();
 
         return response()->json([

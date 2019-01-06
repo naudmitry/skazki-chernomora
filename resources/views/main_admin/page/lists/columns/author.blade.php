@@ -1,1 +1,1 @@
-@{{page.author.name}}
+@{{page.author.full_name}}

@@ -42771,6 +42771,7 @@ $(function () {
 
     $(document).on('change keyup', '.blog-category-settings-form input[id=name]', function () {
         var title = $blogCategoriesSettingsContainer.find('#name').val();
+        $blogCategoriesSettingsContainer.find('#breadcrumbs').val(title.slice(0, 30));
         $blogCategoriesSettingsContainer.find('#address').val(__WEBPACK_IMPORTED_MODULE_0_slug___default()(title).toLowerCase());
         $blogCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + (title.length > 27 ? '...' : ''));
         $blogCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + (title.length > 57 ? '...' : ''));
@@ -43632,6 +43633,7 @@ $(function () {
 
     $(document).on('change keyup', '.faq-category-settings-form input[id=name]', function () {
         var title = $faqCategoriesSettingsContainer.find('#name').val();
+        $faqCategoriesSettingsContainer.find('#breadcrumbs').val(title.slice(0, 30));
         $faqCategoriesSettingsContainer.find('#address').val(__WEBPACK_IMPORTED_MODULE_0_slug___default()(title).toLowerCase());
         $faqCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + (title.length > 27 ? '...' : ''));
         $faqCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + (title.length > 57 ? '...' : ''));
@@ -44259,7 +44261,10 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: function success(response) {
-                $pageSettings.html(response.settings);
+
+                console.log(response.settings);
+
+                $pageSettings.replaceWith(response.settings);
                 notifyService.showMessage('info', 'Успех!', response.message);
             },
             error: function error(xhr) {

@@ -1,1 +1,1 @@
-@{{page.updater.name}}
+@{{page.updater.full_name}}

@@ -1,6 +1,6 @@
 @include('main_theme.layouts.header')
 
-@include('main_theme.vendor.pageHeader', [
+@include('main_theme.vendor.navigation', [
     'page' => 'Услуги',
 ])
 

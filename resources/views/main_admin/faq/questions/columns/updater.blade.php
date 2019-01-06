@@ -1,1 +1,1 @@
-@{{faq.updater.name}}
+@{{faq.updater.full_name}}

@@ -41,9 +41,7 @@ class Blog extends Model implements SlugableInterface
 
     protected $with =
         [
-            'categories',
-            'author',
-            'updater',
+            'author'
         ];
 
     protected $appends =

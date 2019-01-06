@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @include('main_theme.vendor.pageHeader', [
+    @include('main_theme.vendor.navigation', [
         'page' => 'Информация о новости',
     ])
 
@@ -28,7 +28,7 @@
                                 <a href="javascript:;">
                                     <h5>{{ $blog->name }}</h5>
                                 </a>
-                                <span>{{ $blog->author->surname }} {{ $blog->author->name }} / {{ $blog->updated_at }}</span>
+                                <span>{{ $blog->updater->full_name }} / {{ $blog->updated_at->format('d-m-Y H:i') }}</span>
                                 {!! $blog->content !!}
                             </div>
                         </div>

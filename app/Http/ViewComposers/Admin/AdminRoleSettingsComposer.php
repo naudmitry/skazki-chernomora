@@ -18,6 +18,16 @@ class AdminRoleSettingsComposer
 
             $groupsComponentsBySuper[$super] =
                 [
+                    'orders' => array_intersect($components,
+                        [
+                            AdminComponentEnum::COMPANY_ORDERS_LIST,
+                        ]),
+                    'users' => array_intersect($components,
+                        [
+                            AdminComponentEnum::COMPANY_USERS_CUSTOMERS,
+                            AdminComponentEnum::COMPANY_USERS_REVIEWS,
+
+                        ]),
                     'marketing' => array_intersect($components,
                         [
                             AdminComponentEnum::COMPANY_MARKETING_DISCOUNTS,
@@ -28,6 +38,19 @@ class AdminRoleSettingsComposer
                             AdminComponentEnum::COMPANY_CONTENT_FAQ,
                             AdminComponentEnum::COMPANY_CONTENT_PAGES,
                             AdminComponentEnum::COMPANY_CONTENT_BLOCKS,
+                        ]),
+                    'settings' => array_intersect($components,
+                        [
+                            AdminComponentEnum::COMPANY_SETTINGS_GENERAL,
+                            AdminComponentEnum::COMPANY_SETTINGS_PRICING,
+                        ]),
+                    'administrator' => array_intersect($components,
+                        [
+                            AdminComponentEnum::COMPANY_ADMIN_LIST,
+                            AdminComponentEnum::COMPANY_ADMIN_ROLES,
+                            AdminComponentEnum::COMPANY_ADMIN_GROUPS,
+                            AdminComponentEnum::COMPANY_ADMIN_COMPANY,
+                            AdminComponentEnum::COMPANY_ADMIN_SHOWCASES,
                         ]),
                 ];
         }

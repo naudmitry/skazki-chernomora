@@ -40,6 +40,8 @@ class BlogController extends Controller
     public function index(Request $request, Company $administeredCompany, Showcase $administeredShowcase)
     {
         $blogQuery = Blog::query()
+            ->with('updater')
+            ->with('categories')
             ->where('company_id', $administeredCompany->id)
             ->where('showcase_id', $administeredShowcase->id)
             ->get();

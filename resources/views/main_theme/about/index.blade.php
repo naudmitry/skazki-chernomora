@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @include('main_theme.vendor.pageHeader', [
+    @include('main_theme.vendor.navigation', [
         'page' => 'О нас',
     ])
 

@@ -27,7 +27,10 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $pageSettings.html(response.settings);
+
+                console.log(response.settings);
+
+                $pageSettings.replaceWith(response.settings);
                 notifyService.showMessage('info', 'Успех!', response.message);
             },
             error: xhr => {

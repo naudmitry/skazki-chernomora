@@ -59,7 +59,11 @@ class Admin extends Authenticatable
     ];
 
     protected $appends = [
-        'isCompanyAdmin', 'showcasesIds', 'groupsIds', 'companiesIds'
+        'isCompanyAdmin',
+        'showcasesIds',
+        'groupsIds',
+        'companiesIds',
+        'full_name'
     ];
 
     /**
@@ -178,5 +182,13 @@ class Admin extends Authenticatable
     public function getCompaniesIdsAttribute()
     {
         return $this->companies()->pluck('company_id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname;
     }
 }

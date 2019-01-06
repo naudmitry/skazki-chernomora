@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @include('main_theme.vendor.pageHeader', [
+    @include('main_theme.vendor.navigation', [
         'page' => 'Вопросы и ответы',
     ])
 
@@ -21,7 +21,7 @@
                                 <a href="javascript:;">
                                     <h5>{{ $faq->name }}</h5>
                                 </a>
-                                <span>{{ $faq->updater->surname }} {{ $faq->updater->name }} / {{ $faq->updated_at }}</span>
+                                <span>{{ $faq->updater->full_name }} / {{ $faq->updated_at->format('d-m-Y H:i') }}</span>
                                 <p>{{ $faq->answer }}</p>
                             </div>
                         </div>

@@ -44,8 +44,7 @@ class Page extends Model implements SlugableInterface
     protected $with =
         [
             'category',
-            'author',
-            'updater',
+            'author'
         ];
 
     protected $appends =

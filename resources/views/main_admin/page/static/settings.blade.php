@@ -1,12 +1,11 @@
 <div class="tile">
     <h4 class="line-head">Настройки страницы</h4>
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="bs-component">
-                <form class="tab-content page-settings-form" action="{{ route('admin.static.page.save', $staticPage) }}" method="post">
-                    {{ csrf_field() }}
-
+    <form class="tab-content page-settings-form" action="{{ route('admin.static.page.save', $staticPage) }}" method="post">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="bs-component">
                     <div class="form-group row">
                         <label class="control-label col-md-3" for="name">Название страницы:</label>
                         <div class="col-md-9">
@@ -57,44 +56,38 @@
                             <input class="form-control" id="metaKeywords" name="meta_keywords" value="{{ $staticPage->meta_keywords ?? '' }}">
                         </div>
                     </div>
-
-                    <div class="tile-footer">
-                        <button class="btn btn-default" type="submit" disabled>
-                            <i class="fa fa-fw fa-lg fa-check-circle"></i> Сохранить
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="bs-component">
-                <div class="card">
-                    <div class="card-body">
-                        <label class="control-label">Информация о странице</label>
-                        <div style="display: flex;flex-direction: column;padding:15px;">
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
-                                <div>
-                                    <i class="far fa-calendar-plus"></i> Обновлено:
+            <div class="col-md-4">
+                <div class="bs-component">
+                    <div class="card">
+                        <div class="card-body">
+                            <label class="control-label">Информация о странице</label>
+                            <div class="information-container">
+                                <div class="information-row">
+                                    <div>
+                                        <i class="far fa-calendar-plus"></i> Обновлено:
+                                    </div>
+                                    <div>
+                                        {{ $staticPage->updated_at->format('d/m/Y H:i') ?? '' }}
+                                    </div>
                                 </div>
-                                <div>
-                                    {{ $staticPage->updated_at->format('d/m/Y H:i') ?? '' }}
+                                <div class="information-row">
+                                    <div>
+                                        <i class="far fa-plus-square"></i> Обновлен:
+                                    </div>
+                                    <div>
+                                        {{ $staticPage->updater->full_name }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
-                                <div>
-                                    <i class="far fa-plus-square"></i> Обновлен:
-                                </div>
-                                <div>
-                                    {{ $staticPage->updater->name ?? '' }} {{ $staticPage->updater->surname ?? '' }}
-                                </div>
-                            </div>
-                            <div style="display: flex;justify-content: space-between;flex-wrap: wrap;padding-top: 15px;">
-                                <div>
-                                    <i class="fas fa-street-view"></i> Просмотрено:
-                                </div>
-                                <div>
-                                    {{ $staticPage->view_count ?? 0 }}
+                                <div class="information-row">
+                                    <div>
+                                        <i class="fas fa-street-view"></i> Просмотрено:
+                                    </div>
+                                    <div>
+                                        {{ $staticPage->view_count ?? 0 }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -102,5 +95,10 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="tile-footer">
+            <button class="btn btn-default" type="submit" disabled>
+                <i class="fa fa-fw fa-lg fa-check-circle"></i> Сохранить
+            </button>
+        </div>
+    </form>
 </div>

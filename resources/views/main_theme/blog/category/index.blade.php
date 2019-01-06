@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @include('main_theme.vendor.pageHeader', [
+    @include('main_theme.vendor.navigation', [
         'page' => 'Новости',
     ])
 
@@ -29,8 +29,8 @@
                                     <a href="{{ $blog->getRoute() }}">
                                         <h6>{{ $blog->name }}</h6>
                                     </a>
-                                    <span>{{ $blog->updater->surname }} {{ $blog->updater->name }} / {{ $blog->updated_at }}</span>
-                                    <p>{!! $blog->reduction($blog->content, 300) !!}</p>
+                                    <span>{{ $blog->updater->full_name }} / {{ $blog->updated_at->format('d-m-Y H:i') }}</span>
+                                    {!! $blog->reduction($blog->content, 300) !!}
                                     <div class="link-btn">
                                         <a href="{{ $blog->getRoute(isset($currentCategory) ? ['category_id' => $currentCategory->id] : ['']) }}" class="btn-style-one">Подробнее</a>
                                     </div>

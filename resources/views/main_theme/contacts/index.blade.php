@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-    @include('main_theme.vendor.pageHeader', [
-        'page' => 'Контакты',
+    @include('main_theme.vendor.navigation', [
+        'page' => $staticPage->breadcrumbs ?? 'Контакты',
     ])
 
     <section class="section contact">

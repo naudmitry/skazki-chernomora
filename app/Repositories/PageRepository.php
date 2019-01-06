@@ -18,9 +18,10 @@ class PageRepository
      */
     public function savePage(Page $page = null, $data)
     {
-        $admin = Auth::guard('admin')->user();
+        /** @var Admin $admin */
+        $admin = \Auth::guard('admin')->user();
 
-        if (!isset($faq)) {
+        if (!isset($page)) {
             $page = new Page();
             $page->author_id = $admin->id;
             $page->company_id = array_get($data, 'company_id');

@@ -39,7 +39,7 @@ class CompaniesSeeder extends Seeder
                 'company_id' => $superCompany->id,
                 'super' => true,
                 'role_id' => $superAdminRole->id,
-                'name' => 'Elga',
+                'name' => 'Olga',
                 'surname' => 'Egorova',
                 'position' => $superAdminRole->title,
                 'email' => 'boss@mail.com',
