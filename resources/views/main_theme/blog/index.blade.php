@@ -49,9 +49,9 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
 
-                @include('main_theme.blog.right_side')
+                    @include('main_theme.blog.right_side')
+                </div>
             </div>
 
             <div class="styled-pagination">
