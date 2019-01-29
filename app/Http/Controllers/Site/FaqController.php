@@ -55,7 +55,7 @@ class FaqController extends Controller
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::FAQ_PAGE);
         $staticPage->incrementViewsCount();
 
-        return view('main_theme.faq.index', compact([
+        return view($this->theme . '.faq.index', compact([
             'categories', 'faqs', 'staticPage'
         ]));
     }
@@ -84,7 +84,7 @@ class FaqController extends Controller
 
         $faq->incrementViewsCount();
 
-        return view('main_theme.faq.single.index', compact([
+        return view($this->theme . '.faq.single.index', compact([
             'faq', 'categories', 'currentCategory'
         ]));
     }
@@ -116,7 +116,7 @@ class FaqController extends Controller
 
         $currentCategory = $category;
 
-        return view('main_theme.faq.category.index', compact([
+        return view($this->theme . '.faq.category.index', compact([
             'faqs', 'categories', 'currentCategory'
         ]));
 

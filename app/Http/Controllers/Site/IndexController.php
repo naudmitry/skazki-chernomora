@@ -19,7 +19,7 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        return view('main_theme.index', compact([
+        return view($this->theme . '.index', compact([
             'staticPage'
         ]));
     }
@@ -35,7 +35,7 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        return view('main_theme.blog.index', compact([
+        return view($this->theme . '.blog.index', compact([
             'staticPage'
         ]));
     }
@@ -43,7 +43,7 @@ class IndexController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function contacts()
+    public function contact()
     {
         $staticPage = Page::query()
             ->where('showcase_id', $this->showcase->id)
@@ -51,7 +51,7 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        return view('main_theme.contacts.index', compact([
+        return view($this->theme . '.contact.index', compact([
             'staticPage'
         ]));
     }
@@ -67,7 +67,7 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
-        return view('main_theme.about.index', compact([
+        return view($this->theme . '.about.index', compact([
             'staticPage'
         ]));
     }
@@ -77,7 +77,7 @@ class IndexController extends Controller
      */
     public function service()
     {
-        return view('main_theme.service.index');
+        return view($this->theme . '.service.index');
     }
 
     /**
@@ -85,7 +85,7 @@ class IndexController extends Controller
      */
     public function gallery()
     {
-        return view('main_theme.gallery.index');
+        return view($this->theme . '.gallery.index');
     }
 
     /**
@@ -93,7 +93,7 @@ class IndexController extends Controller
      */
     public function team()
     {
-        return view('main_theme.team.index');
+        return view($this->theme . '.team.index');
     }
 
     /**
@@ -101,6 +101,6 @@ class IndexController extends Controller
      */
     public function appointment()
     {
-        return view('main_theme.appointment.index');
+        return view($this->theme . '.appointment.index');
     }
 }

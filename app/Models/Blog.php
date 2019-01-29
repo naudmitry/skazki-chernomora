@@ -50,6 +50,12 @@ class Blog extends Model implements SlugableInterface
             'formatUpdatedAt'
         ];
 
+    protected $dates =
+        [
+            'created_at',
+            'updated_at'
+        ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

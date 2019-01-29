@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Repositories\Showcase\ShowcasableTrait;
 use App\Repositories\Slug\SlugableInterface;
 use App\Repositories\Slug\SlugableTrait;
+use App\Repositories\Widgets\WidgetableInterface;
+use App\Repositories\Widgets\WidgetableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,11 +37,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
  */
-class Page extends Model implements SlugableInterface
+class Page extends Model implements SlugableInterface, WidgetableInterface
 {
     use SoftDeletes;
     use SlugableTrait;
     use ShowcasableTrait;
+    use WidgetableTrait;
 
     protected $with =
         [

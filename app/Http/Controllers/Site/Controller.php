@@ -12,6 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $showcase;
+    protected $theme = 'miracle';
 
     public function __construct()
     {

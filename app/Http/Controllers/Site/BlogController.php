@@ -50,12 +50,12 @@ class BlogController extends Controller
             });
         }
 
-        $blogs = $blogs->paginate(3);
+        $blogs = $blogs->paginate(5);
 
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::BLOG_PAGE);
         $staticPage->incrementViewsCount();
 
-        return view('main_theme.blog.index', compact([
+        return view($this->theme . '.blog.index', compact([
             'categories', 'blogs', 'staticPage'
         ]));
     }
@@ -84,7 +84,7 @@ class BlogController extends Controller
 
         $blog->incrementViewsCount();
 
-        return view('main_theme.blog.single.index', compact([
+        return view($this->theme . '.blog.single.index', compact([
             'blog', 'categories', 'currentCategory'
         ]));
     }
@@ -115,7 +115,7 @@ class BlogController extends Controller
 
         $currentCategory = $category;
 
-        return view('main_theme.blog.category.index', compact([
+        return view($this->theme . '.blog.category.index', compact([
             'blogs', 'categories', 'currentCategory'
         ]));
     }

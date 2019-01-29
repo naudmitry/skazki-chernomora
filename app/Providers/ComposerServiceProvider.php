@@ -21,7 +21,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('main_admin.roles.includes.settings', ViewComposers\Admin\AdminRoleSettingsComposer::class);
         View::composer('main_admin.staff.lists.modals.edit', ViewComposers\Admin\SuperAdminsCompaniesComposer::class);
 
-        View::composer('main_theme.*', ViewComposers\Site\CurrentShowcaseComposer::class);
+        View::composer('miracle.*', ViewComposers\Site\CurrentShowcaseComposer::class);
     }
 
     /**

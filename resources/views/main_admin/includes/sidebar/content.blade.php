@@ -104,15 +104,15 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_CONTENT_BLOCKS, $administeredCompany))
         <li>
             <a
-                class="app-menu__item"
-                href="#"
+                class="app-menu__item @if (Route::is('admin.header')) active @endif"
+                href="{{ route('admin.header') }}"
             ><i class="app-menu__icon fas fa-chess-queen"></i><span class="app-menu__label">Header</span></a>
         </li>
 
         <li>
             <a
-                class="app-menu__item"
-                href="#"
+                class="app-menu__item @if (Route::is('admin.footer')) active @endif"
+                href="{{ route('admin.footer') }}"
             ><i class="app-menu__icon fas fa-shoe-prints"></i><span class="app-menu__label">Footer</span></a>
         </li>
     @endif

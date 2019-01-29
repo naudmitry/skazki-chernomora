@@ -115,6 +115,11 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('faq', '[0-9]+');
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_BLOCKS], function () {
+                Route::get('header', ['uses' => 'Admin\WidgetController@header', 'as' => 'admin.header']);
+                Route::get('footer', ['uses' => 'Admin\WidgetController@footer', 'as' => 'admin.footer']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_PAGES], function () {
                 Route::post('/static-page/save/{staticPage}', ['uses' => 'Admin\PageController@saveStaticPage', 'as' => 'admin.static.page.save'])
                     ->where('staticPage', '[0-9]+');
@@ -161,14 +166,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('order', '[0-9]+');
             });
         });
-
-
-        // HEADER
-        //    Route::get('/header',
-        //        [
-        //            'uses' => 'Admin\PageController@header',
-        //            'as' => 'admin.header.index',
-        //        ]);
 
         Route::get('/{any?}',
             function (Request $request) {
