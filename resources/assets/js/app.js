@@ -10,5 +10,6 @@ require('./pages/admin/staff');
 require('./pages/admin/companies');
 require('./pages/admin/showcases');
 require('./pages/admin/roles');
+require('./pages/admin/content');
 
 require('./pages/site/order');
