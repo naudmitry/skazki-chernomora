@@ -27,7 +27,7 @@ let contentCommonService =
             'bottom': '#media-list-target-bottom',
         };
 
-        let $widgetsSelect = $('.select_add_block');
+        let $widgetsSelect = $('.select-add-block');
         $widgetsSelect.prop("disabled", true);
 
         $.ajax(
@@ -126,63 +126,63 @@ let contentCommonService =
     },
     bottonOnOff: function()
     {
-        $('.media-list-container input.switch').bootstrapSwitch().off('switchChange.bootstrapSwitch');
-
-        let actionFn = function(itemId, status)
-        {
-            $.ajax(
-            {
-                url: backendCommonData.widgetOnOffUrl,
-                type: 'POST',
-                data: {
-                    id: itemId,
-                    status: status
-                },
-                success: (data) =>
-                {
-                    notifyService.showMessage('alert', 'topRight', data.success);
-                },
-                error: (data) =>
-                {
-                    notifyService.showMessage('error', 'topRight', data.responseText);
-                }
-            });
-        };
-
-        if (contentPage === 'homepage')
-        {
-            $("#media-list-target-top .switch")
-                .bootstrapSwitch()
-                .on('switchChange.bootstrapSwitch', function (event, state)
-                {
-                    $("#media-list-target-top .switch[data-id!=" + $(this).attr("data-id") + "]").each(function (e)
-                    {
-                        if ($(this).bootstrapSwitch('state'))
-                        {
-                            actionFn($(this).attr("data-id"), false);
-                        }
-
-                        $(this).bootstrapSwitch('state', false, true);
-                    });
-
-                    actionFn($(this).attr("data-id"), state);
-                });
-        } else
-        {
-            $('#media-list-target-top input.switch')
-                .bootstrapSwitch()
-                .on('switchChange.bootstrapSwitch', function ()
-            {
-                actionFn($(this).attr("data-id"), $(this).is(':checked'));
-            });
-        }
-
-        $('#media-list-target-middle input.switch, #media-list-target-bottom input.switch')
-            .bootstrapSwitch()
-            .on('switchChange.bootstrapSwitch', function ()
-        {
-            actionFn($(this).attr("data-id"), $(this).is(':checked'));
-        });
+        // $('.media-list-container input.switch').bootstrapSwitch().off('switchChange.bootstrapSwitch');
+        //
+        // let actionFn = function(itemId, status)
+        // {
+        //     $.ajax(
+        //     {
+        //         url: backendCommonData.widgetOnOffUrl,
+        //         type: 'POST',
+        //         data: {
+        //             id: itemId,
+        //             status: status
+        //         },
+        //         success: (data) =>
+        //         {
+        //             notifyService.showMessage('alert', 'topRight', data.success);
+        //         },
+        //         error: (data) =>
+        //         {
+        //             notifyService.showMessage('error', 'topRight', data.responseText);
+        //         }
+        //     });
+        // };
+        //
+        // if (contentPage === 'homepage')
+        // {
+        //     $("#media-list-target-top .switch")
+        //         .bootstrapSwitch()
+        //         .on('switchChange.bootstrapSwitch', function (event, state)
+        //         {
+        //             $("#media-list-target-top .switch[data-id!=" + $(this).attr("data-id") + "]").each(function (e)
+        //             {
+        //                 if ($(this).bootstrapSwitch('state'))
+        //                 {
+        //                     actionFn($(this).attr("data-id"), false);
+        //                 }
+        //
+        //                 $(this).bootstrapSwitch('state', false, true);
+        //             });
+        //
+        //             actionFn($(this).attr("data-id"), state);
+        //         });
+        // } else
+        // {
+        //     $('#media-list-target-top input.switch')
+        //         .bootstrapSwitch()
+        //         .on('switchChange.bootstrapSwitch', function ()
+        //     {
+        //         actionFn($(this).attr("data-id"), $(this).is(':checked'));
+        //     });
+        // }
+        //
+        // $('#media-list-target-middle input.switch, #media-list-target-bottom input.switch')
+        //     .bootstrapSwitch()
+        //     .on('switchChange.bootstrapSwitch', function ()
+        // {
+        //     actionFn($(this).attr("data-id"), $(this).is(':checked'));
+        // });
     },
     removeWidget: function (id, listItem) {
 
@@ -190,7 +190,7 @@ let contentCommonService =
         // $.vizitkaNotification(backendCommonData.notificationRemoveWidget)
         //     .notification()
         //     .then(function () {
-        //         let $widgetsSelect = $('.select_add_block');
+        //         let $widgetsSelect = $('.select-add-block');
         //         $widgetsSelect.prop("disabled", true);
         //
         //         listItem.slideUp("slow", () => listItem.remove());
@@ -233,19 +233,19 @@ let contentCommonService =
     },
     vizibleOpenSetting: function(id)
     {
-        let current_id_onOffSelection = $('body').data('current_id_onOffSelection');
-        if(current_id_onOffSelection)
-        {
-            $('#' + current_id_onOffSelection + ' > .media-body').css("color", "");
-            $('#' + current_id_onOffSelection + ' > .media-right').css("color", "");
-            $('#' + current_id_onOffSelection + ' > .media-body > .media-heading').css("color", "");
-        }
-
-        $('#' + id + ' > .media-body').css("color", "#2196f3");
-        $('#' + id + ' > .media-right').css("color", "#2196f3");
-        $('#' + id + ' > .media-body > .media-heading').css("color", "#2196f3");
-
-        $('body').data('current_id_onOffSelection', id);
+        // let current_id_onOffSelection = $('body').data('current_id_onOffSelection');
+        // if(current_id_onOffSelection)
+        // {
+        //     $('#' + current_id_onOffSelection + ' > .media-body').css("color", "");
+        //     $('#' + current_id_onOffSelection + ' > .media-right').css("color", "");
+        //     $('#' + current_id_onOffSelection + ' > .media-body > .media-heading').css("color", "");
+        // }
+        //
+        // $('#' + id + ' > .media-body').css("color", "#2196f3");
+        // $('#' + id + ' > .media-right').css("color", "#2196f3");
+        // $('#' + id + ' > .media-body > .media-heading').css("color", "#2196f3");
+        //
+        // $('body').data('current_id_onOffSelection', id);
     },
     init: function (onWidgetOpenCallback)
     {
@@ -259,21 +259,22 @@ let contentCommonService =
 
         this.onWidgetOpenCallback = onWidgetOpenCallback;
 
-        $(".select").select2({
-            minimumResultsForSearch: Infinity
+        $(".select2").select2({
+            minimumResultsForSearch: Infinity,
+            width: '100%'
         });
 
-        $("#media-list-target-middle").sortable({
-            cancel: ".sortable-disabled",
-            zIndex: 10,
-            update: function (event, ui) {
-                var position = $(this).sortable("toArray");
-                if (position.length > 0) {
-                    contentCommonService.saveNewPosition(position);
-                }
-
-            }
-        });
+        // $("#media-list-target-middle").sortable({
+        //     cancel: ".sortable-disabled",
+        //     zIndex: 10,
+        //     update: function (event, ui) {
+        //         var position = $(this).sortable("toArray");
+        //         if (position.length > 0) {
+        //             contentCommonService.saveNewPosition(position);
+        //         }
+        //
+        //     }
+        // });
 
         contentCommonService.bottonOnOff();
     },
@@ -322,7 +323,7 @@ $(function()
     $(document).on('click', '.input-group-btn #add-block-widget', function (e)
     {
         e.preventDefault();
-        var selectedWidget = $('.select_add_block option:selected').val();
+        var selectedWidget = $('.select-add-block option:selected').val();
         var containerId = $(this).data('container-id');
         contentCommonService.addWidget(selectedWidget, containerId);
     });

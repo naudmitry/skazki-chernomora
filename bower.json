@@ -16,12 +16,10 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7",
     "bootstrap-select": "^1.13.1",
     "slick-carousel": "^1.8.1",
     "jquery": "^3.3.1",
     "animate.css": "^3.5.2",
-    "jquery-ui": "^1.12.1",
     "fancybox": "fancyBox#^3.3.5",
     "jquery-validation": "^1.17.0",
     "wow": "wowjs#^1.1.2",

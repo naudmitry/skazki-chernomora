@@ -7,6 +7,12 @@ use App\Repositories\Showcase\ShowcasableInterface;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class WidgetContainer
+ * @package App
+ *
+ * @mixin \Eloquent
+ */
 class WidgetContainer extends Model implements ShowcasableInterface
 {
     use ShowcasableTrait;

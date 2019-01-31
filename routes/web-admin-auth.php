@@ -150,6 +150,10 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/contacts', ['uses' => 'Admin\PageController@contacts', 'as' => 'admin.contacts.index']);
             });
 
+            Route::group(['components' => [AdminComponentEnum::COMPANY_CONTENT_PAGES, AdminComponentEnum::COMPANY_CONTENT_BLOCKS,]], function () {
+                Route::post('widget/add', ['uses' => 'Admin\WidgetController@addWidget', 'as' => 'widget.add']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_SETTINGS_GENERAL], function () {
                 Route::get('/settings/{tab?}', ['uses' => 'Admin\SettingController@index', 'as' => 'admin.settings.index'])
                     ->where('tab', 'general|geo-ip');
