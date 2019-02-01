@@ -2,22 +2,26 @@
     <h4 class="line-head">Виджеты</h4>
 
     <div class="tile-body">
-        <div class="form-group row blog-categories-list" id="container">
-            <div class="col-md-9">
+        <div class="form-group row blog-categories-list">
+            <div class="btn-group col-md-12">
                 <select class="form-control select2 select-add-block">
                     @foreach($allContainerWidgets as $widgetItem)
                         <option value="{{ $widgetItem['class_name'] }}">{{ $widgetItem['class_name'] }}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="col-md-3">
                 <button
                         id="add-block-widget"
                         type="button"
-                        class="btn btn-primary ml-2"
+                        class="btn btn-primary"
                         data-container-id="{{ $widgetContainer->id }}"
                 >Добавить</button>
             </div>
+        </div>
+
+        <div class="media-list media-list-container" id="container">
+            @foreach(array_get($activeWidgets, 'middle', []) as $widget)
+                @include('main_admin.widget.add_widget', ['widget' => $widget, 'dragging' => true])
+            @endforeach
         </div>
     </div>
 </div>
@@ -74,7 +78,7 @@
                 'validationRequiredError' => 'validationRequiredError',
             ],
             'setPositionUrl' => '',
-            'addWidgetUrl' => '',
+            'addWidgetUrl' => route('widget.add'),
             'widgetOnOffUrl' => '',
             'widgetDestroyUrl' => '',
             'widgetSaveUrl' => '',

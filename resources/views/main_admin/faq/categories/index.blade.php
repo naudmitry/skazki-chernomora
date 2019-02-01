@@ -26,7 +26,7 @@
                         class="btn btn-primary faq-category-settings-open"
                         type="button"
                         href="{{ route('admin.faq.category.create') }}"
-                    ><i class="fa fa-fw fa-lg fa-plus-circle" aria-hidden="true"></i>Добавить</button>
+                    ><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Добавить</button>
                 </div>
             </div>
         </div>

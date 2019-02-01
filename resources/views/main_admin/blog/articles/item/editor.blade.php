@@ -16,7 +16,7 @@
 
             <div class="tile-footer">
                 <button class="btn btn-default" type="submit" disabled>
-                    <i class="fa fa-fw fa-lg fa-check-circle"></i> Сохранить
+                    <i class="fas fa-check-circle mr-2"></i>Сохранить
                 </button>
             </div>
         </form>

@@ -2,8 +2,8 @@
 
 @section('content')
     @include('main_admin.vendor.pageHeader', [
-        'section' => 'Контакты',
-        'page' => 'Страница контактов'
+        'section' => 'Контент',
+        'page' => 'Контакты'
     ])
 
     <div class="page-settings">

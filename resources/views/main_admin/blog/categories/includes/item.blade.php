@@ -23,11 +23,11 @@
         <a
             class="btn btn-primary blog-category-settings-open"
             href="{{ route('admin.blog.category.edit', $category) }}"
-        ><i class="fa fa-lg fa-edit"></i></a>
+        ><i class="fas fa-edit"></i></a>
 
         <a
             class="btn btn-primary blog-category-delete"
             href="{{ route('admin.blog.category.delete', $category) }}"
-        ><i class="fa fa-lg fa-trash"></i></a>
+        ><i class="fas fa-trash"></i></a>
     </div>
 </div>

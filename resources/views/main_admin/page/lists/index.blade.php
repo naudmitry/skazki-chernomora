@@ -2,18 +2,18 @@
 
 @section('content')
     @include('main_admin.vendor.pageHeader', [
-        'section' => 'Пользовательские страницы',
+        'section' => 'Страницы',
         'page' => 'Список'
     ])
 
     <div class="row">
         <div class="col-md-12 page-lists">
             <div class="tile">
-                <div class="tile-body">
-                    <div class="row" style="margin-bottom: 20px;">
+                <div class="tile-body mb-4">
+                    <div class="row">
                         <div class="col-md-6 col-lg-3">
                             <button data-href="{{ route('admin.page.list.create') }}" class="btn btn-primary open-create-form" type="button">
-                                <i class="fas fa-plus-circle"></i> Добавить
+                                <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
                         <div class="col-md-6 col-lg-3">
@@ -44,9 +44,9 @@
                     </div>
                 </div>
 
-                <div class="tile-body datatable-scroll-lg">
+                <div class="tile-body">
                     <table
-                            class="table table-hover"
+                            class="table table-lg table-hover"
                             id="pageListsTable"
                             data-href="{{ route('admin.page.list.index') }}"
                             width="100%"
