@@ -8,14 +8,14 @@ let contentCommonService =
         saveNewPosition: function (position) {
             $.ajax(
                 {
-                    url: backendCommonData.setPositionUrl,
+                    url: backendCommonData.sequenceWidgetUrl,
                     type: 'POST',
                     data: {position: position},
-                    success: (data) => notifyService.showMessage('alert', 'topRight', data.success),
+                    success: (data) => notifyService.showMessage('info', 'Успех!', data.success),
                     error: (data) => console.log(data.responseText),
                 });
         },
-        addWidget: function (selectedWidget, containerId) {
+        storeWidget: function (selectedWidget, containerId, storeUrl) {
             let blockMap =
                 {
                     'top': '#media-list-target-top',
@@ -24,11 +24,10 @@ let contentCommonService =
                 };
 
             let $widgetsSelect = $('.select-add-block');
-            $widgetsSelect.prop("disabled", true);
 
             $.ajax(
                 {
-                    url: backendCommonData.addWidgetUrl,
+                    url: storeUrl,
                     type: 'POST',
                     data: {
                         class_name: selectedWidget,
@@ -50,6 +49,8 @@ let contentCommonService =
                             let newElement = $(data.html);
                             newElement.hide();
 
+                            console.log('blockContainer', blockContainer);
+
                             $(blockContainer).append(newElement);
                             $(blockContainer + ' .media:last').slideDown("slow");
 
@@ -59,7 +60,6 @@ let contentCommonService =
                         contentCommonService.init();
                     },
                     error: (data) => {
-                        $widgetsSelect.prop("disabled", false);
                         notifyService.showMessage('danger', 'Ошибка!', data.responseText);
                     }
                 });
@@ -88,7 +88,7 @@ let contentCommonService =
 
                                 $formContext.append('<div class="panel panel-flat setting-widget">' + data.success + '</div>');
                             }
-                            contentCommonService.vizibleOpenSetting(id);
+                            contentCommonService.visibleOpenSetting(id);
 
                             settingsModule.init($formContext);
 
@@ -101,76 +101,46 @@ let contentCommonService =
                         }
                     });
             };
-
-            // if (isChange)
-            // {
-            //     $.vizitkaNotification(backendCommonData.notificationOpenWidgetSetting).notification().then(fn);
-            // } else
-            // {
-            //     fn();
-            // }
         },
-        bottonOnOff: function () {
-            // $('.media-list-container input.switch').bootstrapSwitch().off('switchChange.bootstrapSwitch');
-            //
-            // let actionFn = function(itemId, status)
-            // {
-            //     $.ajax(
-            //     {
-            //         url: backendCommonData.widgetOnOffUrl,
-            //         type: 'POST',
-            //         data: {
-            //             id: itemId,
-            //             status: status
-            //         },
-            //         success: (data) =>
-            //         {
-            //             notifyService.showMessage('alert', 'topRight', data.success);
-            //         },
-            //         error: (data) =>
-            //         {
-            //             notifyService.showMessage('error', 'topRight', data.responseText);
-            //         }
-            //     });
-            // };
-            //
-            // if (contentPage === 'homepage')
-            // {
-            //     $("#media-list-target-top .switch")
-            //         .bootstrapSwitch()
-            //         .on('switchChange.bootstrapSwitch', function (event, state)
-            //         {
-            //             $("#media-list-target-top .switch[data-id!=" + $(this).attr("data-id") + "]").each(function (e)
-            //             {
-            //                 if ($(this).bootstrapSwitch('state'))
-            //                 {
-            //                     actionFn($(this).attr("data-id"), false);
-            //                 }
-            //
-            //                 $(this).bootstrapSwitch('state', false, true);
-            //             });
-            //
-            //             actionFn($(this).attr("data-id"), state);
-            //         });
-            // } else
-            // {
-            //     $('#media-list-target-top input.switch')
-            //         .bootstrapSwitch()
-            //         .on('switchChange.bootstrapSwitch', function ()
-            //     {
-            //         actionFn($(this).attr("data-id"), $(this).is(':checked'));
-            //     });
-            // }
-            //
-            // $('#media-list-target-middle input.switch, #media-list-target-bottom input.switch')
-            //     .bootstrapSwitch()
-            //     .on('switchChange.bootstrapSwitch', function ()
-            // {
-            //     actionFn($(this).attr("data-id"), $(this).is(':checked'));
-            // });
+        enableWidget: function () {
+            $.ajax({
+                url: $(this).data('href'),
+                type: 'POST',
+                success: (response) => {
+                    notifyService.showMessage('info', 'Успех!', response.message);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
         },
-        removeWidget: function (id, listItem) {
+        destroyWidget: function (id, listItem, deleteUrl) {
+            swal({
+                title: "Подтвердите удаление",
+                text: "Вы действительно хотите удалить виджет?",
+                icon: "warning",
+                buttons: ["Отмена", "Да, удалить"],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    let $widgetsSelect = $('.select-add-block');
+                    $.ajax({
+                        type: 'delete',
+                        url: deleteUrl,
+                        success: response => {
+                            $widgetsSelect.find('option').remove();
+                            notifyService.showMessage('danger', 'Успех!', response.message);
+                        },
+                        error: xhr => {
+                            console.error(xhr);
+                        },
+                    });
 
+                    swal("Удаление подтверждено!", "Категория будет удалена.", "success");
+                } else {
+                    swal("Удаление отменено!", "Категория не будет удалена.", "error");
+                }
+            });
 
             // $.vizitkaNotification(backendCommonData.notificationRemoveWidget)
             //     .notification()
@@ -216,7 +186,7 @@ let contentCommonService =
             //         });
             //     });
         },
-        vizibleOpenSetting: function (id) {
+        visibleOpenSetting: function (id) {
             // let current_id_onOffSelection = $('body').data('current_id_onOffSelection');
             // if(current_id_onOffSelection)
             // {
@@ -232,10 +202,7 @@ let contentCommonService =
             // $('body').data('current_id_onOffSelection', id);
         },
         init: function (onWidgetOpenCallback) {
-
-            console.log('init');
-
-            if (0 == $('[data-role=widgets-control-panel]').length) {
+            if (0 === $('[data-role=widgets-control-panel]').length) {
                 return console.log('widgets-control-panel block not found');
             }
 
@@ -246,64 +213,29 @@ let contentCommonService =
                 width: '100%'
             });
 
-            // $("#media-list-target-middle").sortable({
-            //     cancel: ".sortable-disabled",
-            //     zIndex: 10,
-            //     update: function (event, ui) {
-            //         var position = $(this).sortable("toArray");
-            //         if (position.length > 0) {
-            //             contentCommonService.saveNewPosition(position);
-            //         }
-            //
-            //     }
-            // });
-
-            contentCommonService.bottonOnOff();
+            contentCommonService.enableWidget();
         },
     };
 
 
 $(function () {
-    $(document).on('click', '.media-list-container [data-action=widget-remove]', function (e) {
+    $(document).on('click', '.widget-destroy', function (e) {
         e.preventDefault();
-        contentCommonService.removeWidget($(this).data("id"), $(this).closest('li.widgets-list-item'));
+        contentCommonService.destroyWidget($(this).attr('href'));
     });
 
-    $(document).on('click', '.media-list-container .setting', function (e) {
+    $(document).on('click', '.widget-settings-open', function (e) {
         e.preventDefault();
-
         let $this = $(e.target).closest('.setting');
-
         $('body').data('current_setting_widget_id', $this.data('id'));
-
         contentCommonService.openSettingWidget($this.attr('href'), $this.data('id'));
     });
 
-    // $(document).on('click', '#languages-widget .language', function (e)
-    // {
-    //     e.preventDefault();
-    //
-    //     let $this = $(e.target);
-    //     var notificationChangeLanguage = $.vizitkaNotification(backendCommonData.notificationChangeLanguage);
-    //
-    //     let fn = function()
-    //     {
-    //         $('body').data('current_setting_widget_id', $this.data('id'));
-    //         contentCommonService.openSettingWidget($this.attr('href'), $this.data('id'));
-    //     };
-    //
-    //     if ($('body').data('widget-is-change')) {
-    //         notificationChangeLanguage.notification().then(fn);
-    //     } else {
-    //         fn();
-    //     }
-    // });
-
-    $(document).on('click', '#add-block-widget', function (e) {
+    $(document).on('click', '.create-widget', function (e) {
         e.preventDefault();
-        var selectedWidget = $('.select-add-block option:selected').val();
-        var containerId = $(this).data('container-id');
-        contentCommonService.addWidget(selectedWidget, containerId);
+        let selectedWidget = $('.select-add-block option:selected').val();
+        let containerId = $(this).data('container-id');
+        contentCommonService.storeWidget(selectedWidget, containerId, $(this).attr('href'));
     });
 
     settingsModule.listeners();

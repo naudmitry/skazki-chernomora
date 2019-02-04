@@ -4,6 +4,8 @@
             <input
                     class="checkbox"
                     type="checkbox"
+                    @if ($widget->action) checked @endif
+                    data-href="{{ route('widget.enable', $widget) }}"
             ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
         </label>
 
@@ -16,13 +18,13 @@
         </a>
 
         <a
-            class="btn btn-primary blog-category-settings-open"
+            class="btn btn-primary widget-settings-open"
             href="#"
         ><i class="fas fa-edit"></i></a>
 
         <a
-            class="btn btn-primary blog-category-delete"
-            href="#"
+            class="btn btn-primary widget-destroy"
+            href="{{ route('widget.destroy', $widget) }}"
         ><i class="fas fa-trash"></i></a>
     </div>
 </div>

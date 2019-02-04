@@ -9,19 +9,23 @@
                         <option value="{{ $widgetItem['class_name'] }}">{{ $widgetItem['class_name'] }}</option>
                     @endforeach
                 </select>
-                <button
-                        id="add-block-widget"
-                        type="button"
-                        class="btn btn-primary"
-                        data-container-id="{{ $widgetContainer->id }}"
-                >Добавить</button>
             </div>
         </div>
 
-        <div class="media-list media-list-container" id="container">
+        <div class="media-list media-list-container" id="media-list-target-middle">
             @foreach(array_get($activeWidgets, 'middle', []) as $widget)
-                @include('main_admin.widget.add_widget', ['widget' => $widget, 'dragging' => true])
+                @include('main_admin.widget.item', ['widget' => $widget, 'dragging' => true])
             @endforeach
+        </div>
+
+        <div class="tile-footer">
+            <button
+                    id="add-block-widget"
+                    type="button"
+                    class="btn btn-primary create-widget"
+                    href="{{ route('widget.store') }}"
+                    data-container-id="{{ $widgetContainer->id }}"
+            ><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Добавить</button>
         </div>
     </div>
 </div>
@@ -77,13 +81,11 @@
             [
                 'validationRequiredError' => 'validationRequiredError',
             ],
-            'setPositionUrl' => '',
-            'addWidgetUrl' => route('widget.add'),
+            'sequenceWidgetUrl' => route('widget.sequence'),
+            'addWidgetUrl' => route('widget.store'),
             'widgetOnOffUrl' => '',
-            'widgetDestroyUrl' => '',
             'widgetSaveUrl' => '',
             'uploadImageWidgetUrl' => '',
-            'fileinputBrowseLabel' => '',
             'widgetAddBlockUrl' => '',
         ])
      !!}
