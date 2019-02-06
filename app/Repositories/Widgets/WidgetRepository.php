@@ -9,6 +9,7 @@ use App\Models\ShowcaseWidget;
 use App\Models\ShowcaseWidgetDescription;
 use App\WidgetContainer;
 use App\Widgets\Miracle as ContentWidgets;
+use App\Widgets\Miracle\AbstractContentWidget;
 
 class WidgetRepository
 {
@@ -117,6 +118,14 @@ class WidgetRepository
         return $containerItems ? collect($containerItems)->groupBy('location') : [];
     }
 
+    /**
+     * @param WidgetableInterface $mixed
+     * @param $containerType
+     * @param Showcase $showcase
+     * @return mixed
+     * @throws \Exception
+     * @throws \Throwable
+     */
     public function getOrCreateWidgetContainer(WidgetableInterface $mixed, $containerType, Showcase $showcase)
     {
         $container = $mixed->widgetContainer;
@@ -239,10 +248,14 @@ class WidgetRepository
         return $this->getViewWidgetObj($showcaseWidget)->getDefaultSettings();
     }
 
+    /**
+     * @param $mixed
+     * @return AbstractContentWidget
+     */
     public function getViewWidgetObj($mixed)
     {
         $className = $mixed instanceof ShowcaseWidget ? $mixed->class_name : $mixed;
-        return app("App\\Widgets\\ContentWidgets\\" . $className);
+        return app("App\\Widgets\\Miracle\\" . $className);
     }
 
     public function getContainerItemsMap(WidgetContainer $container)

@@ -7,10 +7,15 @@
     ])
 
     <div class="row admin-content-header">
-        <div class="col-md-6 blog-categories">
+        <div class="col-md-6">
             @include('main_admin.widget.control_panel', compact(
                 'allContainerWidgets', 'activeWidgets', 'widgetContainer'
             ))
         </div>
+        <div class="col-md-6 settings-widget-container"></div>
     </div>
+
+    <script type="text/template" class="loading-template">
+        @include('main_admin.includes.loading')
+    </script>
 @endsection

@@ -9,7 +9,7 @@ class OneLevelMenu extends AbstractContentWidget
     protected $defaultSettings =
         [
             'title' => '',
-            'link' => '',
+            'link' => ''
         ];
 
     /**
@@ -22,10 +22,12 @@ class OneLevelMenu extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|max:15',
+                'link' => 'required|url'
             ],
             [],
             [
-                'title' => 'title_field123',
+                'title' => 'Введите название',
+                'link' => 'Введите ссылку'
             ]);
     }
 }

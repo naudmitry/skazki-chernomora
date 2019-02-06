@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\WidgetsContainerTypesEnum;
 use App\Models\Showcase;
 use App\Models\ShowcaseWidget;
+use App\Models\ShowcaseWidgetDescription;
 use App\Repositories\Slug\SlugRepository;
 use App\Repositories\Widgets\WidgetRepository;
 use App\WidgetContainer;
@@ -15,6 +16,11 @@ class WidgetController extends Controller
     protected $widgetRepository;
     protected $slugRepository;
 
+    /**
+     * WidgetController constructor.
+     * @param WidgetRepository $widgetRepository
+     * @param SlugRepository $slugRepository
+     */
     public function __construct(WidgetRepository $widgetRepository, SlugRepository $slugRepository)
     {
         $this->widgetRepository = $widgetRepository;
@@ -23,6 +29,10 @@ class WidgetController extends Controller
         parent::__construct();
     }
 
+    /**
+     * @param Showcase $administeredShowcase
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function header(Showcase $administeredShowcase)
     {
         $widgetContainer = $this->widgetRepository->getContainerByType($administeredShowcase, WidgetsContainerTypesEnum::HEADER);
@@ -41,7 +51,7 @@ class WidgetController extends Controller
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Throwable
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $container = WidgetContainer::find($request->get('container'));
 
@@ -68,6 +78,10 @@ class WidgetController extends Controller
             ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function sequence(Request $request)
     {
         $positionArray = $request->position;
@@ -96,14 +110,15 @@ class WidgetController extends Controller
             ->map(function ($item, $key) {
                 return [
                     'id' => $item['class_name'],
-                    'text' => trans('admin/widgets.' . $item['class_name'] . '.title')
+                    'text' => $item['class_name']
                 ];
             })
             ->values();
 
         return response()->json([
-            'success' => 'Виджет успешно удален.',
+            'message' => 'Виджет успешно удален.',
             'availableWidgets' => $availableWidgets,
+            'showcaseWidget' => $showcaseWidget
         ]);
     }
 
@@ -118,6 +133,63 @@ class WidgetController extends Controller
 
         return response()->json([
             'message' => 'Доступность виджета изменена.',
+        ]);
+    }
+
+    /**
+     * @param ShowcaseWidget $widget
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function settings(ShowcaseWidget $widget)
+    {
+        $widget_container = $widget->container;
+
+        $showcase = $widget_container->showcase;
+
+        $viewWidgetObj = $this->widgetRepository->getViewWidgetObj($widget);
+        $widget_setting = $this->widgetRepository->getWidgetSetting($widget->id);
+
+        $viewData = compact('widget', 'widget_setting', 'widget_container', 'showcase');
+
+        return response()->json([
+            'view' => view($viewWidgetObj->getSettingsTmpl(), $viewData)->render()
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param ShowcaseWidget $widget
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
+     */
+    public function save(Request $request, ShowcaseWidget $widget)
+    {
+        $setting = json_decode($request->setting, true);
+
+        $viewWidgetObj = $this->widgetRepository->getViewWidgetObj($widget);
+        $validator = $viewWidgetObj->getSettingsValidator($setting);
+
+        if (!is_null($validator) && $validator->fails()) {
+            return response([
+                'message' => 'error'
+            ], 400);
+        }
+
+        /** @var ShowcaseWidgetDescription $widgetSetting */
+        $widgetSetting = $widget->showcaseWidgetSettings()->first();
+        $widgetSetting->setting = $setting;
+        $widgetSetting->save();
+
+        $widget_setting = $this->widgetRepository->mutateSettings($widget, $widgetSetting);
+        $widget_container = $widget->container;
+        $showcase = $widget_container->showcase;
+
+        $viewData = compact('widget', 'widget_setting', 'widget_container', 'showcase');
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.',
+            'view' => view($viewWidgetObj->getSettingsTmpl(), $viewData)->render(),
         ]);
     }
 }

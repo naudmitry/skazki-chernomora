@@ -19,7 +19,7 @@
 
         <a
             class="btn btn-primary widget-settings-open"
-            href="#"
+            href="{{ route('widget.settings', $widget) }}"
         ><i class="fas fa-edit"></i></a>
 
         <a

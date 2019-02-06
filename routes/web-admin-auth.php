@@ -151,7 +151,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => [AdminComponentEnum::COMPANY_CONTENT_PAGES, AdminComponentEnum::COMPANY_CONTENT_BLOCKS,]], function () {
-                Route::post('widget/add', ['uses' => 'Admin\WidgetController@store', 'as' => 'widget.store']);
+                Route::get('widget/settings/{widget}', ['uses' => 'Admin\WidgetController@settings', 'as' => 'widget.settings']);
+                Route::post('widget/create', ['uses' => 'Admin\WidgetController@create', 'as' => 'widget.create']);
+                Route::put('widget/save/{widget}', ['uses' => 'Admin\WidgetController@save', 'as' => 'widget.save']);
                 Route::post('widget/sequence', ['uses' => 'Admin\WidgetController@sequence', 'as' => 'widget.sequence']);
                 Route::delete('widget/{showcaseWidget}', ['uses' => 'Admin\WidgetController@destroy', 'as' => 'widget.destroy']);
                 Route::post('widget/enable/{showcaseWidget}', ['uses' => 'Admin\WidgetController@enable', 'as' => 'widget.enable']);
