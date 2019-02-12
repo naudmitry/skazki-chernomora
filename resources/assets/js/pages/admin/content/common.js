@@ -75,9 +75,9 @@ let contentCommonService =
                 }
             }));
         },
-        enableWidget: function () {
+        enableWidget: function (url) {
             $.ajax({
-                url: $(this).data('href'),
+                url: url,
                 type: 'POST',
                 success: (response) => {
                     notifyService.showMessage('info', 'Успех!', response.message);
@@ -163,6 +163,11 @@ $(function () {
         let selectedWidget = $('.select-add-block option:selected').val();
         let containerId = $(this).data('container-id');
         contentCommonService.storeWidget(selectedWidget, containerId, $(this).attr('href'));
+    });
+
+    $(document).on('change', '.widget-enable', function (e) {
+        e.preventDefault();
+        contentCommonService.enableWidget($(this).data('href'));
     });
 
     settingsModule.listeners();

@@ -172,7 +172,7 @@ class WidgetController extends Controller
 
         if (!is_null($validator) && $validator->fails()) {
             return response([
-                'message' => 'error'
+                'message' => 'Ошибка валидации.'
             ], 400);
         }
 

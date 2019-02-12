@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
 use App\Http\ViewComposers;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -21,7 +21,14 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('main_admin.roles.includes.settings', ViewComposers\Admin\AdminRoleSettingsComposer::class);
         View::composer('main_admin.staff.lists.modals.edit', ViewComposers\Admin\SuperAdminsCompaniesComposer::class);
 
-        View::composer('miracle.*', ViewComposers\Site\CurrentShowcaseComposer::class);
+        View::composer([
+            'miracle.*',
+            'miracle.widgets.*.front',
+        ], ViewComposers\Site\CurrentShowcaseComposer::class);
+
+        View::composer([
+            'miracle.vendor.*'
+        ], ViewComposers\Site\WidgetsPositionComposer::class);
     }
 
     /**

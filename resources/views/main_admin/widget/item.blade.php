@@ -2,7 +2,7 @@
     <div class="toggle-flip title-center">
         <label class="checkbox-left">
             <input
-                    class="checkbox"
+                    class="checkbox widget-enable"
                     type="checkbox"
                     @if ($widget->action) checked @endif
                     data-href="{{ route('widget.enable', $widget) }}"

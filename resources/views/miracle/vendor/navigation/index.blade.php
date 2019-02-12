@@ -23,20 +23,11 @@
                 </li>
             </ul>
             <ul id="main-nav" class="hidden-mobile">
-                <li class="menu-item-has-children">
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, [], $currentShowcase->id) }}">Home</a>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::FAQ_PAGE, [], $currentShowcase->id) }}">FAQ</a>
-                </li>
+                @foreach(array_get($widgets_top, 'middle', []) as $widget)
+                    @widget('miracle.' . $widget->class_name, ['widget' => $widget])
+                @endforeach
                 <li class="menu-item-has-children mega-menu-item mega-column-4">
                     <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, [], $currentShowcase->id) }}">About us</a>
-                </li>
-                <li class="menu-item-has-children mega-menu-item mega-column-6">
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::BLOG_PAGE, [], $currentShowcase->id) }}">Blog</a>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, [], $currentShowcase->id) }}">Contact</a>
                 </li>
             </ul>
         </nav>

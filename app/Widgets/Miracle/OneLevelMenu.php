@@ -22,7 +22,7 @@ class OneLevelMenu extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|max:15',
-                'link' => 'required|url'
+                'link' => 'required|string'
             ],
             [],
             [

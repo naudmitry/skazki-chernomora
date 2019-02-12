@@ -34,7 +34,7 @@ let scriptModule =
                 minimumResultsForSearch: Infinity
             });
 
-            $context.find(".switch").bootstrapSwitch();
+            // $context.find(".switch").bootstrapSwitch();
 
             // $context.find("#accordion-target").sortable({
             //     handle: ".handle",
@@ -134,7 +134,7 @@ let scriptModule =
             //     $(this).closest('.panel').find('.select[data-setting=category]').select2("val", "0");
             // });
 
-            $(document).on('click', '#setting-widget-pc #widget-panel .save-setting', function (e) {
+            $(document).on('click', '#setting-widget-pc #widget-panel .save-settings', function (e) {
                 e.preventDefault();
                 scriptModule.saveSetting();
             });
@@ -144,10 +144,10 @@ let scriptModule =
             //     scriptModule.addBlock(name_block);
             // });
             //
-            // $(document).on('input change switchChange.bootstrapSwitch', '#setting-widget-pc #widget-panel', function () {
-            //     scriptModule.updateBtnChange();
-            //     scriptModule.validate(this);
-            // });
+            $(document).on('input change switchChange.bootstrapSwitch', '#setting-widget-pc #widget-panel', function () {
+                scriptModule.updateBtnChange();
+                // scriptModule.validate(this);
+            });
             //
             // $(document).on('select2:select', '[data-action=product-search], [data-action=product-category-search]', function (e) {
             //     let $el = $(e.target);
@@ -237,20 +237,20 @@ let scriptModule =
 
         updateBtnChange: function () {
             if (scriptModule.start_setting == scriptModule.getSettingsArray()) {
-                $('body').data('widget-is-change', false);
+                // $('body').data('widget-is-change', false);
                 scriptModule.blockBtn();
             } else {
-                $('body').data('widget-is-change', true);
+                // $('body').data('widget-is-change', true);
                 scriptModule.unBlockBtn();
             }
         },
 
         blockBtn: function () {
-            $('.save-setting').attr('disabled', 'disabled').removeClass().addClass('btn btn-default save-setting pull-right');
+            $('.save-settings').attr('disabled', 'disabled').removeClass('btn-primary').addClass('btn-default');
         },
 
         unBlockBtn: function () {
-            $('.save-setting').removeAttr('disabled').removeClass().addClass('btn btn-primary save-setting pull-right');
+            $('.save-settings').removeAttr('disabled').removeClass('btn-default').addClass('btn-primary');
         },
 
         validate: function (element) {
@@ -296,28 +296,26 @@ let scriptModule =
         getSettingsArray: function () {
             let obj_all = {};
             let arr_all = [];
-            $('#setting-widget-pc #accordion-target .panel').each(function () {
-                let arr = {};
-                $(this).find(".widget-setting").each(function () {
-                    let setting = $(this).attr('data-setting');
-                    if ($(this).attr('type') == "checkbox") {
-                        arr[setting] = $(this).is(':checked');
-                    } else {
-                        arr[setting] = $(this).val();
-                    }
-                }); //each  setting
-                arr_all.push(arr);
-            }); //each panel
-            if (arr_all.length > 0) {
-                obj_all['items'] = arr_all;
-            }
+
+            // $('#setting-widget-pc .widgets-panel').each(function () {
+            //     let arr = {};
+            //     $(this).find(".widget-setting").each(function () {
+            //         let setting = $(this).attr('data-setting');
+            //         if ($(this).attr('type') == "checkbox") {
+            //             arr[setting] = $(this).is(':checked');
+            //         } else {
+            //             arr[setting] = $(this).val();
+            //         }
+            //     }); //each  setting
+            //     arr_all.push(arr);
+            // }); //each panel
+            //
+            // if (arr_all.length > 0) {
+            //     obj_all['items'] = arr_all;
+            // }
 
             $('#form-widget-panel').each(function () {
                 $(this).find(".widget-setting").each(function () {
-                    if ($(this).closest('#accordion-target').length) {
-                        return;
-                    }
-
                     let setting = $(this).attr('data-setting');
                     if ($(this).attr('type') == "checkbox") {
                         obj_all[setting] = $(this).is(':checked');
@@ -331,43 +329,41 @@ let scriptModule =
                     }
                 });
             });
+
             return JSON.stringify(obj_all);
         },
 
         saveSetting: function () {
-            if (!scriptModule.isValidate) {
-                notifyService.showMessage('danger', 'Ошибка!', 'Данные не прошли валидацию.');
-                return;
-            }
+            // if (!scriptModule.isValidate) {
+            //     notifyService.showMessage('danger', 'Ошибка!', 'Данные не прошли валидацию.');
+            //     return;
+            // }
 
+            let $form = $('.widget-settings-form');
             scriptModule.blockBtn();
 
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'put',
+                data: {
+                    setting: scriptModule.getSettingsArray(),
+                },
+                success: (data) => {
+                    // $('body').data('widget-is-change', false);
+                    notifyService.showMessage('info', 'Успех!', data.message);
 
+                    let $formContext = $('#setting-widget-pc');
+                    $formContext.find('.setting-widget').remove();
+                    $formContext.append('<div class="panel panel-flat setting-widget">' + data.settings_html + '</div>');
 
-            // $.ajax(
-            //     {
-            //         url: backendCommonData.widgetSaveUrl + getWidgetId(),
-            //         type: 'PUT',
-            //         data: {
-            //             setting: scriptModule.getSettingsArray(),
-            //         },
-            //         success: (data) => {
-            //             $('body').data('widget-is-change', false);
-            //             notifyService.showMessage('alert', 'topRight', data.success);
-            //
-            //             let $formContext = $('#setting-widget-pc');
-            //             $formContext.find('.setting-widget').remove();
-            //             $formContext.append('<div class="panel panel-flat setting-widget">' + data.settings_html + '</div>');
-            //
-            //             scriptModule.init($formContext);
-            //         },
-            //         error: (data) => {
-            //             let errorMessage = data.responseJSON.errors_html ? data.responseJSON.errors_html : data.responseText;
-            //             notifyService.showMessage('error', 'topRight', errorMessage);
-            //         }
-            //     });
+                    scriptModule.init($formContext);
+                },
+                error: (data) => {
+                    let errorMessage = data.responseJSON.message ? data.responseJSON.message : data.responseText;
+                    notifyService.showMessage('danger', 'Ошибка!', errorMessage);
+                }
+            });
         },
-
     };
 
 module.exports = scriptModule;

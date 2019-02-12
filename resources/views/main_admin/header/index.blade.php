@@ -12,7 +12,7 @@
                 'allContainerWidgets', 'activeWidgets', 'widgetContainer'
             ))
         </div>
-        <div class="col-md-6 settings-widget-container"></div>
+        <div class="col-md-6 settings-widget-container" id="setting-widget-pc"></div>
     </div>
 
     <script type="text/template" class="loading-template">

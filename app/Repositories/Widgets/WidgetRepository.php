@@ -66,6 +66,11 @@ class WidgetRepository
                 ],
         ];
 
+    /**
+     * @param Showcase $showcase
+     * @param $containerType
+     * @return WidgetContainer
+     */
     public function getContainerByType(Showcase $showcase, $containerType)
     {
         $container = WidgetContainer::whereShowcaseId($showcase->id)->where('type', $containerType)->first();
@@ -80,6 +85,10 @@ class WidgetRepository
         return $container;
     }
 
+    /**
+     * @param WidgetContainer $container
+     * @return static
+     */
     public function getWidgetsForContainer(WidgetContainer $container)
     {
         $containerWidgets = array_get($this->containersConfig, $container->type, null);
@@ -100,6 +109,11 @@ class WidgetRepository
             });
     }
 
+    /**
+     * @param Showcase $showcase
+     * @param $container_type
+     * @return WidgetRepository|array
+     */
     public function getWidgetsBySingleContainerType(Showcase $showcase, $container_type)
     {
         $widgetContainer = $this->getContainerByType($showcase, $container_type);
@@ -107,6 +121,10 @@ class WidgetRepository
         return $this->getWidgetsByContainer($widgetContainer);
     }
 
+    /**
+     * @param WidgetContainer $container
+     * @return array|static
+     */
     public function getWidgetsByContainer(WidgetContainer $container)
     {
         $containerItems = $container
@@ -145,11 +163,22 @@ class WidgetRepository
         return $container;
     }
 
+    /**
+     * @param $id
+     * @param $field
+     * @param $value
+     */
     public function setWidgetIdParameter($id, $field, $value)
     {
         ShowcaseWidget::where('id', $id)->update([$field => $value]);
     }
 
+    /**
+     * @param WidgetContainer $container
+     * @param $widgetClassName
+     * @return ShowcaseWidget
+     * @throws \Exception
+     */
     public function addWidgetToContainer(WidgetContainer $container, $widgetClassName)
     {
         $widgetConfig = collect(array_get($this->containersConfig, $container->type)['widgets'])
@@ -187,27 +216,43 @@ class WidgetRepository
         return $showcaseWidget;
     }
 
+    /**
+     * @param $id
+     */
     public function destroy($id)
     {
         ShowcaseWidget::destroy($id);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+     */
     public function find($id)
     {
         return ShowcaseWidget::find($id);
     }
 
+    /**
+     * @param ShowcaseWidget $showcaseWidget
+     * @return mixed|\stdClass
+     */
     public function getWidgetSettingForShowcase(ShowcaseWidget $showcaseWidget)
     {
         $widgetSetting = $showcaseWidget
             ->showcaseWidgetSettings()
             ->first();
 
-        return $widgetSetting ?
-            $this->mutateSettings($showcaseWidget, $widgetSetting) :
-            json_decode(json_encode($this->getWidgetDefaultSettings($showcaseWidget)));
+        return $widgetSetting
+            ? $this->mutateSettings($showcaseWidget, $widgetSetting)
+            : json_decode(json_encode($this->getWidgetDefaultSettings($showcaseWidget)));
     }
 
+    /**
+     * @param $mixed
+     * @param bool $mutate
+     * @return ShowcaseWidgetDescription|array|\Illuminate\Database\Eloquent\Model|mixed|null|object|\stdClass|string|static
+     */
     public function getWidgetSetting($mixed, $mutate = true)
     {
         $widget = ($mixed instanceof ShowcaseWidget) ? $mixed : $this->find($mixed);
@@ -228,21 +273,38 @@ class WidgetRepository
             ($mutate ? $this->mutateSettings($widget, $widgetSetting) : $widgetSetting->setting);
     }
 
+    /**
+     * @param ShowcaseWidget $showcaseWidget
+     * @param ShowcaseWidgetDescription $widgetDescription
+     * @return \stdClass
+     */
     public function mutateSettings(ShowcaseWidget $showcaseWidget, ShowcaseWidgetDescription $widgetDescription): \stdClass
     {
         return $this->getViewWidgetObj($showcaseWidget)->mutateSettings($showcaseWidget, $widgetDescription);
     }
 
+    /**
+     * @param ShowcaseWidget $showcaseWidget
+     * @return string
+     */
     public function getWidgetSettingsTmpl(ShowcaseWidget $showcaseWidget): string
     {
         return $this->getViewWidgetObj($showcaseWidget)->getSettingsTmpl();
     }
 
+    /**
+     * @param ShowcaseWidget $showcaseWidget
+     * @return string
+     */
     public function getWidgetBlockTmpl(ShowcaseWidget $showcaseWidget): string
     {
         return $this->getViewWidgetObj($showcaseWidget)->getBlockTmpl();
     }
 
+    /**
+     * @param ShowcaseWidget $showcaseWidget
+     * @return array
+     */
     public function getWidgetDefaultSettings(ShowcaseWidget $showcaseWidget): array
     {
         return $this->getViewWidgetObj($showcaseWidget)->getDefaultSettings();
@@ -258,11 +320,22 @@ class WidgetRepository
         return app("App\\Widgets\\Miracle\\" . $className);
     }
 
+    /**
+     * @param WidgetContainer $container
+     * @return static
+     */
     public function getContainerItemsMap(WidgetContainer $container)
     {
         return collect($container->items()->orderBy('position')->get())->groupBy('location');
     }
 
+    /**
+     * @param Page $page
+     * @param $container_type
+     * @return array|static
+     * @throws \Exception
+     * @throws \Throwable
+     */
     public function getWidgetsForStaticPage(Page $page, $container_type)
     {
         $widgetContainer = $this->getOrCreateWidgetContainer($page, $container_type, $page->showcase);

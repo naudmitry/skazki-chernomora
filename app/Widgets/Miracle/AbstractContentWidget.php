@@ -2,7 +2,6 @@
 
 namespace App\Widgets\Miracle;
 
-use App\Models\Showcase;
 use App\Models\ShowcaseWidget;
 use App\Models\ShowcaseWidgetDescription;
 use App\Repositories\Widgets\WidgetRepository;
@@ -85,5 +84,42 @@ abstract class AbstractContentWidget extends AbstractWidget
     public function getSettingsValidator($validatedData)
     {
         return null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontTmpl()
+    {
+        return $this->getTmplFile('front');
+    }
+
+    /**
+     * @return array
+     */
+    protected function getFrontViewData()
+    {
+        return
+            [
+                'widget_class' => class_basename(get_class($this)),
+                'config' => $this->config,
+                'setting' => $this->widgetSetting, // Recursive array to object convert
+            ];
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     * @throws \Exception
+     */
+    public function run()
+    {
+        if (!$this->showcaseWidget) {
+            throw new \Exception('ShowcaseWidget is not defined');
+        }
+        if ($this->blockable && data_get($this->widgetSetting, 'items', []) === []) {
+            return "";
+        } else {
+            return view($this->getFrontTmpl(), $this->getFrontViewData());
+        }
     }
 }
