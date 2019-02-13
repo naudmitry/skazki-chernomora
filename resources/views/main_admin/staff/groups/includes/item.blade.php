@@ -11,11 +11,11 @@
         <a
             class="btn btn-primary staff-group-settings-open"
             href="{{ route('admin.staff.group.edit', $group) }}"
-        ><i class="fa fa-lg fa-edit"></i></a>
+        ><i class="fas fa-edit"></i></a>
 
         <a
             class="btn btn-primary staff-group-delete"
             href="{{ route('admin.staff.group.delete', $group) }}"
-        ><i class="fa fa-lg fa-trash"></i></a>
+        ><i class="fas fa-trash"></i></a>
     </div>
 </div>

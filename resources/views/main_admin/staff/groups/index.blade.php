@@ -22,7 +22,7 @@
                             class="btn btn-primary staff-group-settings-open"
                             type="button"
                             href="{{ route('admin.staff.group.create') }}"
-                    ><i class="fa fa-fw fa-lg fa-plus-circle" aria-hidden="true"></i>Добавить</button>
+                    ><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Добавить</button>
                 </div>
             </div>
         </div>
@@ -31,6 +31,6 @@
     </div>
 
     <script type="text/template" class="staff-group-settings-loading-template">
-        @include('main_admin.staff.groups.includes.loading')
+        @include('main_admin.includes.loading')
     </script>
 @endsection

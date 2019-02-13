@@ -59,7 +59,7 @@
 
         <div class="tile-footer">
             <button class="btn btn-default" disabled type="submit">
-                <i class="fa fa-fw fa-lg fa-check-circle" aria-hidden="true"></i>Сохранить
+                <i class="fas fa-check-circle mr-2" aria-hidden="true"></i>Сохранить
             </button>
         </div>
     </form>

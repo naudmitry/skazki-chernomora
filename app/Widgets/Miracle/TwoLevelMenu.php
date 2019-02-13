@@ -28,8 +28,8 @@ class TwoLevelMenu extends AbstractContentWidget
             ],
             [],
             [
-                'title' => 'menu_name_field123',
-                'items.*.title' => 'link_name_field123',
+                'title' => 'Введите название',
+                'items.*.title' => 'Введите название',
             ]);
     }
 }

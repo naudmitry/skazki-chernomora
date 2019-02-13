@@ -7,9 +7,9 @@
             <div class="col-md-8">
                 <div class="bs-component">
                     <div class="form-group row">
-                        <label class="control-label col-md-3" for="category_id">Категория:</label>
+                        <label class="control-label col-md-3" for="category">Категория:</label>
                         <div class="col-md-9">
-                            <select class="form-control select2" name="category_id">
+                            <select id="category" class="form-control select2" name="category_id">
                                 @foreach ($categories as $category)
                                     <option
                                             @if ($page->category->id == $category->id) selected @endif
@@ -35,8 +35,11 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Адрес категории:</label>
+                        <label class="control-label col-md-3" for="address">Адрес категории:</label>
                         <div class="input-group col-md-9">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>
+                            </div>
                             <input id="address" name="address" class="form-control" type="text" value="{{ $page->getSlug() }}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
@@ -79,9 +82,9 @@
                             <div class="information-container">
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-check-circle"></i> Опубликовано:
+                                        <i class="far fa-check-circle mr-2"></i>Опубликовано:
                                     </div>
-                                    <div class="toggle-flip" style="height: 21px;">
+                                    <div class="toggle-flip" style="height: 30px;">
                                         <label>
                                             <input
                                                     data-href="{{ isset($page) ? route('admin.page.list.enable', $page) : '' }}"
@@ -94,7 +97,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-calendar-check"></i> Создано:
+                                        <i class="far fa-calendar-check mr-2"></i>Создано:
                                     </div>
                                     <div>
                                         {{ $page->created_at->format('d/m/Y H:i') ?? '' }}
@@ -102,7 +105,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-calendar-plus"></i> Обновлено:
+                                        <i class="far fa-calendar-plus mr-2"></i>Обновлено:
                                     </div>
                                     <div>
                                         {{ $page->updated_at->format('d/m/Y H:i') ?? '' }}
@@ -110,7 +113,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-plus-square"></i> Обновлен:
+                                        <i class="far fa-plus-square mr-2"></i>Обновлен:
                                     </div>
                                     <div>
                                         {{ $page->updater->name ?? '' }} {{ $page->updater->surname ?? '' }}
@@ -118,7 +121,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="fas fa-street-view"></i> Просмотрено:
+                                        <i class="fas fa-street-view mr-2"></i>Просмотрено:
                                     </div>
                                     <div>
                                         {{ $page->view_count ?? 0 }}

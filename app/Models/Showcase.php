@@ -77,4 +77,12 @@ class Showcase extends Model
     {
         return 'slug';
     }
+
+    /**
+     * @return string
+     */
+    public function getDomainPath()
+    {
+        return sprintf('%s/', $this->getHttpOriginAttribute());
+    }
 }

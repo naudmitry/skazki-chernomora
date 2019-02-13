@@ -192,4 +192,26 @@ class WidgetController extends Controller
             'view' => view($viewWidgetObj->getSettingsTmpl(), $viewData)->render(),
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param ShowcaseWidget $widget
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function addBlock(Request $request, ShowcaseWidget $widget)
+    {
+        $position = $request->position + 1;
+
+        if ($blockTmpl = $this->widgetRepository->getWidgetBlockTmpl($widget)) {
+            $widget_container = $widget->container;
+            $showcase = $widget_container->showcase;
+
+            return response()->json([
+                'success' => view($blockTmpl, compact('position', 'widget_id', 'widget_container', 'showcase'))->render()
+            ]);
+        } else {
+            abort(404);
+        }
+    }
 }

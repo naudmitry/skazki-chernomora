@@ -157,6 +157,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::post('widget/sequence', ['uses' => 'Admin\WidgetController@sequence', 'as' => 'widget.sequence']);
                 Route::delete('widget/{showcaseWidget}', ['uses' => 'Admin\WidgetController@destroy', 'as' => 'widget.destroy']);
                 Route::post('widget/enable/{showcaseWidget}', ['uses' => 'Admin\WidgetController@enable', 'as' => 'widget.enable']);
+                Route::post('widget/add-block/{widget}', ['uses' => 'Admin\WidgetController@addBlock', 'as' => 'widget.addBlock']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_SETTINGS_GENERAL], function () {

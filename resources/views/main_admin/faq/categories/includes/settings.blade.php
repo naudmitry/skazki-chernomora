@@ -6,23 +6,26 @@
             {{ csrf_field() }}
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Название для списка:</label>
+                <label class="control-label col-md-4" for="categoryTitle">Название для списка:</label>
                 <div class="col-md-8">
-                    <input id="title" name="title" class="form-control" type="text" value="{{ $category->title ?? '' }}">
+                    <input id="categoryTitle" name="title" class="form-control" type="text" value="{{ $category->title ?? '' }}">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Название категории:</label>
+                <label class="control-label col-md-4" for="categoryName">Название категории:</label>
                 <div class="col-md-8">
-                    <input id="name" name="name" class="form-control" type="text" value="{{ $category->name ?? '' }}">
+                    <input id="categoryName" name="name" class="form-control" type="text" value="{{ $category->name ?? '' }}">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Адрес категории:</label>
+                <label class="control-label col-md-4" for="categoryAddress">Адрес категории:</label>
                 <div class="input-group col-md-8">
-                    <input id="address" name="address" class="form-control" type="text" value="{{ $category->getSlug() }}">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>
+                    </div>
+                    <input id="categoryAddress" name="address" class="form-control" type="text" value="{{ $category->getSlug() }}">
                     @if (isset($category->id))
                         <div class="input-group-append">
                             <span class="input-group-text">
@@ -36,30 +39,30 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Навигационная цепочка:</label>
+                <label class="control-label col-md-4" for="categoryBreadcrumbs">Навигационная цепочка:</label>
                 <div class="col-md-8">
-                    <input id="breadcrumbs" name="breadcrumbs" class="form-control" type="text" value="{{ $category->breadcrumbs ?? '' }}">
+                    <input id="categoryBreadcrumbs" name="breadcrumbs" class="form-control" type="text" value="{{ $category->breadcrumbs ?? '' }}">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Тег TITLE:</label>
+                <label class="control-label col-md-4" for="categoryMetaTitle">Тег TITLE:</label>
                 <div class="col-md-8">
-                    <input id="metaTitle" name="meta_title" class="form-control" type="text" value="{{ $category->meta_title ?? '' }}">
+                    <input id="categoryMetaTitle" name="meta_title" class="form-control" type="text" value="{{ $category->meta_title ?? '' }}">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Метатег DESCRIPTION:</label>
+                <label class="control-label col-md-4" for="categoryMetaDescription">Метатег DESCRIPTION:</label>
                 <div class="col-md-8">
-                    <input id="metaDescription" name="meta_description" class="form-control" type="text" value="{{ $category->meta_description ?? '' }}">
+                    <input id="categoryMetaDescription" name="meta_description" class="form-control" type="text" value="{{ $category->meta_description ?? '' }}">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Метатег KEYWORDS:</label>
+                <label class="control-label col-md-4" for="categoryMetaKeywords">Метатег KEYWORDS:</label>
                 <div class="col-md-8">
-                    <input id="metaKeywords" name="meta_keywords" class="form-control" type="text" value="{{ $category->meta_keywords ?? '' }}">
+                    <input id="categoryMetaKeywords" name="meta_keywords" class="form-control" type="text" value="{{ $category->meta_keywords ?? '' }}">
                 </div>
             </div>
 

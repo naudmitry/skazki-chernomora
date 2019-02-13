@@ -15,8 +15,11 @@
 
                     @if ($staticPage->static_page_type != \App\Classes\StaticPageTypesEnum::MAIN_PAGE)
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Адрес страницы:</label>
+                            <label class="control-label col-md-3" for="address">Адрес страницы:</label>
                             <div class="input-group col-md-9">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>
+                                </div>
                                 <input id="address" name="address" class="form-control" type="text" value="{{ $staticPage->getSlug() ?? '' }}">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
@@ -30,7 +33,7 @@
                     @endif
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Навигационная цепочка:</label>
+                        <label class="control-label col-md-3" for="breadcrumbs">Навигационная цепочка:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="breadcrumbs" name="breadcrumbs" value="{{ $staticPage->breadcrumbs ?? '' }}">
                         </div>
@@ -67,7 +70,7 @@
                             <div class="information-container">
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-calendar-plus"></i> Обновлено:
+                                        <i class="far fa-calendar-plus mr-2"></i>Обновлено:
                                     </div>
                                     <div>
                                         {{ $staticPage->updated_at->format('d/m/Y H:i') ?? '' }}
@@ -75,7 +78,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-plus-square"></i> Обновлен:
+                                        <i class="far fa-plus-square mr-2"></i>Обновлен:
                                     </div>
                                     <div>
                                         {{ $staticPage->updater->full_name }}
@@ -83,7 +86,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="fas fa-street-view"></i> Просмотрено:
+                                        <i class="fas fa-street-view mr-2"></i>Просмотрено:
                                     </div>
                                     <div>
                                         {{ $staticPage->view_count ?? 0 }}

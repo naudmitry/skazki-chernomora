@@ -6,7 +6,7 @@
             {{ csrf_field() }}
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Название ссылки:</label>
+                <label class="control-label col-md-4" for="title">Название ссылки:</label>
                 <div class="col-md-8">
                     <input
                             id="title"
@@ -19,10 +19,13 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Адрес ссылки:</label>
+                <label class="control-label col-md-4" for="link">Адрес ссылки:</label>
                 <div class="input-group col-md-8">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{{ $showcase->getDomainPath() }}</span>
+                    </div>
                     <input
-                            id="address"
+                            id="link"
                             name="link"
                             data-setting="link"
                             class="form-control widget-setting"

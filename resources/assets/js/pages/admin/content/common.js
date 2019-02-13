@@ -1,5 +1,4 @@
 let backendCommonData = JSON.parse($('.add-widgets-panel-config').text());
-let contentPage = $('body').data('content-page');
 let settingsModule = require('./settings');
 
 let loadingTemplate = $('.loading-template').text();
@@ -63,8 +62,8 @@ let contentCommonService =
                 type: 'GET',
                 success: (data) => {
                     $settingsWidgetContainer.html(data.view);
-
-                    // settingsModule.init($formContext);
+                    let $formContext = $('#setting-widget-pc');
+                    settingsModule.init($formContext);
 
                     if (contentCommonService.onWidgetOpenCallback) {
                         contentCommonService.onWidgetOpenCallback();

@@ -10,7 +10,7 @@
                     aria-controls="collapse-{{ $position }}"
             ><span class="geo-ip-panel-title"></span></button>
         </h5>
-        <a href="javascript:;" data-action="close" style="margin-right: 12px;"><i class="fas fa-times"></i></a>
+        <a href="javascript:;" class="mr-3" data-action="close"><i class="fas fa-times"></i></a>
     </div>
 
     <div id="collapse-{{ $position }}" class="collapse" aria-labelledby="heading-{{ $position }}" data-parent="#accordionExample">

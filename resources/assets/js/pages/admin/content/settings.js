@@ -1,22 +1,7 @@
-// import tinymceConfig from '../../common/tinymceConfig';
-
-let backendCommonData = JSON.parse($('.add-widgets-panel-config').text());
-
-// current widget id
-let getWidgetId = () => {
-    return $('#widget-setting').data('id')
-};
-
-let getWidgetName = () => {
-    return $('#widget-setting').data('widget-name')
-};
-
 let scriptModule =
     {
         text: undefined,
-
         isValidate: undefined,
-
         start_setting: undefined,
 
         init: function ($context) {
@@ -34,16 +19,12 @@ let scriptModule =
                 minimumResultsForSearch: Infinity
             });
 
-            // $context.find(".switch").bootstrapSwitch();
-
-            // $context.find("#accordion-target").sortable({
-            //     handle: ".handle",
-            //     zIndex: 10,
-            //     update: function (event, ui) {
-            //         console.log('accordion-target unlock');
-            //         scriptModule.unBlockBtn();
-            //     }
-            // });
+            $context.find("#accordionExample").sortable({
+                zIndex: 10,
+                update: function (event, ui) {
+                    scriptModule.unBlockBtn();
+                }
+            });
 
             // $(document).on('input', '[data-field="widget:sites-list-title"]', function () {
             //     let $currentPanel = $(this).closest('.panel'), $formWidgetPanel = $('#form-widget-panel');
@@ -83,48 +64,12 @@ let scriptModule =
         },
 
         listeners: function () {
-            // $(document).on('click', '#setting-widget-pc .panel [data-action=close]', function (e) {
-            //     e.preventDefault();
-            //     let $panel = $(this).closest('.panel');
-            //
-            //     $.vizitkaNotification(backendCommonData.notificationRemoveWidgetItem)
-            //         .notification()
-            //         .then(function () {
-            //             let $formWidgetPanel = $('#form-widget-panel');
-            //             let isSitesList = $formWidgetPanel.data('sites-list');
-            //
-            //             if (isSitesList) {
-            //                 var deleteTitlePanel = $panel.find('.setting-title').text();
-            //             }
-            //
-            //             $panel.slideUp(150, function () {
-            //                 $panel.remove();
-            //                 scriptModule.updateBtnChange();
-            //
-            //                 if (isSitesList) {
-            //                     $formWidgetPanel.find('.panel').each(function () {
-            //                         let data = [];
-            //                         $formWidgetPanel.find('.panel').each(function (index) {
-            //                             data[index] = $(this).find('.setting-title').text();
-            //                         });
-            //                         $formWidgetPanel.find('.panel').each(function () {
-            //                             let text = $(this).find('.setting-title').text();
-            //                             $(this).find('.select').each(function () {
-            //                                 let value = $(this).val();
-            //                                 $(this).select2("destroy").find('option[value="' + deleteTitlePanel + '"]').remove();
-            //                                 $(this).select2({
-            //                                     'data': $.grep(data, function (value) {
-            //                                         return value !== text;
-            //                                     }),
-            //                                     minimumResultsForSearch: Infinity
-            //                                 }).val(value === deleteTitlePanel ? 'no' : value).trigger('change');
-            //                             });
-            //                         });
-            //                     });
-            //                 }
-            //             });
-            //         });
-            // });
+            $(document).on('click', '#setting-widget-pc .card [data-action=close]', function (e) {
+                e.preventDefault();
+                let $panel = $(this).closest('.card');
+                $panel.remove();
+                scriptModule.updateBtnChange();
+            });
 
             // $(document).on('select2:select', '#setting-widget-pc.select[data-setting=category]', function () {
             //     $(this).closest('.panel').find('.select[data-setting=product]').select2("val", "0");
@@ -139,11 +84,10 @@ let scriptModule =
                 scriptModule.saveSetting();
             });
 
-            // $(document).on('click', '#setting-widget-pc #widget-panel #add_block', function () {
-            //     var name_block = $(this).attr('data-name');
-            //     scriptModule.addBlock(name_block);
-            // });
-            //
+            $(document).on('click', '#setting-widget-pc #widget-panel #add_block', function () {
+                scriptModule.addBlock($(this).attr('href'));
+            });
+
             $(document).on('input change switchChange.bootstrapSwitch', '#setting-widget-pc #widget-panel', function () {
                 scriptModule.updateBtnChange();
                 // scriptModule.validate(this);
@@ -188,51 +132,25 @@ let scriptModule =
             // });
         },
 
-        addBlock: function (name_block) {
-            let widgetId = $('body').data('current_setting_widget_id');
-            let position = $('#setting-widget-pc .widget-iterable-panel').length;
+        addBlock: function (url) {
+            let position = $('#setting-widget-pc .card').length;
 
-            $.ajax(
-                {
-                    url: backendCommonData.widgetAddBlockUrl,
-                    type: 'POST',
-                    data: {
-                        position: position,
-                        name_block: name_block,
-                        widget_id: widgetId,
-                    },
-                    success: (data) => {
-                        let blockContext = $(data.success).appendTo("#setting-widget-pc #accordion-target");
-                        scriptModule.init(blockContext);
-                        scriptModule.updateBtnChange();
-                        scriptModule.validate($('#setting-widget-pc #accordion-target'));
-
-                        let $formWidgetPanel = $('#form-widget-panel');
-                        let isSitesList = $formWidgetPanel.data('sites-list');
-
-                        if (isSitesList) {
-                            let data = [];
-                            $formWidgetPanel.find('.panel').each(function (index) {
-                                data[index] = $(this).find('.setting-title').text();
-                            });
-                            $formWidgetPanel.find('.panel').each(function () {
-                                let text = $(this).find('.setting-title').text();
-                                $(this).find('.select').each(function () {
-                                    let value = $(this).val();
-                                    $(this).select2({
-                                        'data': $.grep(data, function (value) {
-                                            return value != text;
-                                        }),
-                                        minimumResultsForSearch: Infinity
-                                    }).val(value).trigger('change');
-                                });
-                            });
-                        }
-                    },
-                    error: (data) => {
-                        console.log(data.responseText);
-                    }
-                });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    position: position
+                },
+                success: (data) => {
+                    let blockContext = $(data.success).appendTo("#setting-widget-pc #accordionExample");
+                    scriptModule.init(blockContext);
+                    scriptModule.updateBtnChange();
+                    // scriptModule.validate($('#setting-widget-pc #accordion-target'));
+                },
+                error: (data) => {
+                    console.log(data.responseText);
+                }
+            });
         },
 
         updateBtnChange: function () {
@@ -297,27 +215,30 @@ let scriptModule =
             let obj_all = {};
             let arr_all = [];
 
-            // $('#setting-widget-pc .widgets-panel').each(function () {
-            //     let arr = {};
-            //     $(this).find(".widget-setting").each(function () {
-            //         let setting = $(this).attr('data-setting');
-            //         if ($(this).attr('type') == "checkbox") {
-            //             arr[setting] = $(this).is(':checked');
-            //         } else {
-            //             arr[setting] = $(this).val();
-            //         }
-            //     }); //each  setting
-            //     arr_all.push(arr);
-            // }); //each panel
-            //
-            // if (arr_all.length > 0) {
-            //     obj_all['items'] = arr_all;
-            // }
+            $('#setting-widget-pc #accordionExample .card').each(function () {
+                let arr = {};
+                $(this).find(".widget-setting").each(function () {
+                    let setting = $(this).attr('data-setting');
+                    if ($(this).attr('type') === "checkbox") {
+                        arr[setting] = $(this).is(':checked');
+                    } else {
+                        arr[setting] = $(this).val();
+                    }
+                });
+                arr_all.push(arr);
+            });
+
+            if (arr_all.length > 0) {
+                obj_all['items'] = arr_all;
+            }
 
             $('#form-widget-panel').each(function () {
                 $(this).find(".widget-setting").each(function () {
+                    if ($(this).closest('#accordionExample').length) {
+                        return;
+                    }
                     let setting = $(this).attr('data-setting');
-                    if ($(this).attr('type') == "checkbox") {
+                    if ($(this).attr('type') === "checkbox") {
                         obj_all[setting] = $(this).is(':checked');
                     } else if (setting === 'text') {
                         obj_all[setting] = scriptModule.text;

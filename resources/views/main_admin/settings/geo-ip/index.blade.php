@@ -29,10 +29,10 @@
 
             <div class="tile-footer">
                 <button type="button" href="{{ route('admin.settings.createGeoIpRule') }}" class="btn btn-primary" data-field="general:create-geo-ip-rule">
-                    <i class="fa fa-fw fa-lg fa-plus-circle"></i>Добавить
+                    <i class="fas fa-plus-circle mr-2"></i>Добавить
                 </button>
                 <button class="btn btn-default" type="submit" disabled>
-                    <i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить
+                    <i class="fas fa-check-circle mr-2"></i>Сохранить
                 </button>
             </div>
         </form>

@@ -14,7 +14,12 @@
                 >
                     <div class="modal-header">
                         <h5 class="modal-title">Администратор</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <button
+                                class="close"
+                                type="button"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                        ><span aria-hidden="true">×</span></button>
                     </div>
 
                     <div class="modal-body">
@@ -54,9 +59,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Роль:</label>
+                            <label class="control-label col-md-3" for="role">Роль:</label>
                             <div class="col-md-8">
-                                <select class="select2" name="role_id">
+                                <select id="role" class="select2" name="role_id">
                                     @foreach ($administeredCompany->roles as $role)
                                         <option
                                                 value="{{ $role->id }}"
@@ -68,9 +73,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Сайты:</label>
+                            <label class="control-label col-md-3" for="showcases">Сайты:</label>
                             <div class="col-md-8">
-                                <select class="select2" multiple name="showcases[]">
+                                <select id="showcases" class="select2" multiple name="showcases[]">
                                     <option value="all">Все</option>
                                     @foreach ($administeredCompany->showcases as $showcase)
                                         <option
@@ -83,9 +88,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Группы:</label>
+                            <label class="control-label col-md-3" for="groups">Группы:</label>
                             <div class="col-md-8">
-                                <select class="select2" multiple name="groups[]">
+                                <select id="groups" class="select2" multiple name="groups[]">
                                     @foreach ($administeredCompany->groups as $group)
                                         <option
                                                 @if (array_search($group->id, array_column($adminGroups, 'id')) !== false) selected @endif
@@ -97,9 +102,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Компании:</label>
+                            <label class="control-label col-md-3" for="companies">Компании:</label>
                             <div class="col-md-8">
-                                <select class="select2" multiple name="companies[]">
+                                <select id="companies" class="select2" multiple name="companies[]">
                                     <option value="all">Все</option>
                                     @foreach ($companies as $company)
                                         <option
@@ -114,9 +119,11 @@
 
                     <div class="modal-footer">
                         <button class="btn btn-primary" type="submit">
-                            <i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить
+                            <i class="fas fa-check-circle mr-2"></i>Сохранить
                         </button>
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Отменить</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                            <i class="fas fa-ban mr-2"></i>Отменить
+                        </button>
                     </div>
                 </form>
             </div>

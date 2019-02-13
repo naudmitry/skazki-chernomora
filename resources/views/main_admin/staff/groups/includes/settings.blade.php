@@ -6,7 +6,7 @@
             {{ csrf_field() }}
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Название:</label>
+                <label class="control-label col-md-4" for="title">Название:</label>
                 <div class="col-md-8">
                     <input id="title" name="title" class="form-control" type="text" value="{{ $group->title ?? '' }}">
                 </div>
@@ -14,7 +14,7 @@
 
             <div class="tile-footer">
                 <button class="btn btn-default" type="submit" disabled>
-                    <i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить
+                    <i class="fas fa-check-circle"></i>Сохранить
                 </button>
             </div>
         </form>

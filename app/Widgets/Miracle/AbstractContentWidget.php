@@ -95,6 +95,14 @@ abstract class AbstractContentWidget extends AbstractWidget
     }
 
     /**
+     * @return null|string
+     */
+    public function getBlockTmpl()
+    {
+        return $this->blockable ? $this->getTmplFile('block') : null;
+    }
+
+    /**
      * @return array
      */
     protected function getFrontViewData()
