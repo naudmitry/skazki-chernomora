@@ -1,16 +1,4 @@
 <footer id="footer" class="style4">
-    <div class="callout-box style2">
-        <div class="container">
-            <div class="callout-content">
-                <div class="callout-text">
-                    <h4>Miracle is premium hand-crafted, pixel perfect and responsive wordpress theme</h4>
-                </div>
-                <div class="callout-action">
-                    <a href="#" class="btn style4">Purchase</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="footer-wrapper">
         <div class="container">
             <div class="row add-clearfix same-height">

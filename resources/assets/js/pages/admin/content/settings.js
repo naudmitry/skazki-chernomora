@@ -8,12 +8,9 @@ let scriptModule =
             $context = $context ? $context : $(document);
 
             scriptModule.start_setting = scriptModule.getSettingsArray();
+            // $('body').data('widget-is-change', false);
 
-            console.log('scriptModule:init');
-
-            $('body').data('widget-is-change', false);
-
-            scriptModule.validate($('#widget-panel'));
+            // scriptModule.validate($('#widget-panel'));
 
             $context.find('.select').select2({
                 minimumResultsForSearch: Infinity
@@ -172,43 +169,43 @@ let scriptModule =
         },
 
         validate: function (element) {
-            let invalidFieldsCount = 0;
-            $(element).find('.validate').closest('.panel-white').removeClass('validate');
-            $(element).find('.required').each(function () {
-                if (this.value.trim() == '') {
-                    invalidFieldsCount++;
-                    $(this).removeClass('validate').addClass('validate');
-                    $(this).closest('.panel-white').removeClass('validate').addClass('validate');
-                } else {
-                    $(this).removeClass('validate');
-                }
-            });
-            $(element).find('.widget-setting-validate-url').each(function () {
-                let isValidUrl;
-                try {
-                    new URL(this.value.trim());
-                    isValidUrl = true;
-                } catch (exception) {
-                    isValidUrl = false;
-                }
-                if (this.value.trim() && !isValidUrl) {
-                    invalidFieldsCount++;
-                    $(this).removeClass('validate').addClass('validate');
-                    $(this).closest('.panel-white').removeClass('validate').addClass('validate');
-                } else {
-                    $(this).removeClass('validate');
-                }
-            });
-
-            scriptModule.isValidate = invalidFieldsCount == 0;
-
-            if (scriptModule.isValidate) {
-                $(element).find('.validate').closest('.panel-white').removeClass('validate');
-            } else {
-                scriptModule.blockBtn();
-            }
-
-            return scriptModule.isValidate;
+            // let invalidFieldsCount = 0;
+            // $(element).find('.validate').closest('.panel-white').removeClass('validate');
+            // $(element).find('.required').each(function () {
+            //     if (this.value.trim() == '') {
+            //         invalidFieldsCount++;
+            //         $(this).removeClass('validate').addClass('validate');
+            //         $(this).closest('.panel-white').removeClass('validate').addClass('validate');
+            //     } else {
+            //         $(this).removeClass('validate');
+            //     }
+            // });
+            // $(element).find('.widget-setting-validate-url').each(function () {
+            //     let isValidUrl;
+            //     try {
+            //         new URL(this.value.trim());
+            //         isValidUrl = true;
+            //     } catch (exception) {
+            //         isValidUrl = false;
+            //     }
+            //     if (this.value.trim() && !isValidUrl) {
+            //         invalidFieldsCount++;
+            //         $(this).removeClass('validate').addClass('validate');
+            //         $(this).closest('.panel-white').removeClass('validate').addClass('validate');
+            //     } else {
+            //         $(this).removeClass('validate');
+            //     }
+            // });
+            //
+            // scriptModule.isValidate = invalidFieldsCount == 0;
+            //
+            // if (scriptModule.isValidate) {
+            //     $(element).find('.validate').closest('.panel-white').removeClass('validate');
+            // } else {
+            //     scriptModule.blockBtn();
+            // }
+            //
+            // return scriptModule.isValidate;
         },
 
         getSettingsArray: function () {
@@ -272,11 +269,9 @@ let scriptModule =
                 success: (data) => {
                     // $('body').data('widget-is-change', false);
                     notifyService.showMessage('info', 'Успех!', data.message);
-
+                    let $widgetPanel = $('#widget-panel');
+                    $widgetPanel.replaceWith(data.view);
                     let $formContext = $('#setting-widget-pc');
-                    $formContext.find('.setting-widget').remove();
-                    $formContext.append('<div class="panel panel-flat setting-widget">' + data.settings_html + '</div>');
-
                     scriptModule.init($formContext);
                 },
                 error: (data) => {

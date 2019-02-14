@@ -36,7 +36,7 @@
                                 <div class="post-action">
                                     <a href="#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>
                                     <a href="#" class="btn btn-sm style3 post-like"><i class="fa fa-heart"></i>480</a>
-                                    <a href="#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Share</a>
+                                    <a href="#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Поделиться</a>
                                     <a href="#" class="btn btn-sm style3 post-read-more">Подробнее</a>
                                 </div>
                             </article>
@@ -45,6 +45,8 @@
                 </div>
                 <a href="#" class="load-more"><i class="fa fa-angle-double-down"></i></a>
             </div>
+
+            @include('miracle.vendor.pagination')
         </div>
     </div>
 @endsection

@@ -4,12 +4,13 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class OneLevelMenu extends AbstractContentWidget
+class CallOutBox extends AbstractContentWidget
 {
     protected $defaultSettings =
         [
             'title' => '',
-            'link' => ''
+            'link' => '',
+            'button' => ''
         ];
 
     /**
@@ -21,13 +22,15 @@ class OneLevelMenu extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'title' => 'required|max:30',
-                'link' => 'required|string'
+                'title' => 'required|max:50',
+                'link' => 'required|string',
+                'button' => 'required|string'
             ],
             [],
             [
                 'title' => 'Введите название.',
-                'link' => 'Введите ссылку.'
+                'link' => 'Введите ссылку.',
+                'button' => 'Введите надпись для кнопки.'
             ]);
     }
 }

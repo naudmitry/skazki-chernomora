@@ -12,6 +12,12 @@
             </div>
         </div>
 
+        <div class="media-list media-list-container" id="media-list-target-top">
+            @foreach(array_get($activeWidgets, 'top', []) as $widget)
+                @include('main_admin.widget.item', ['widget' => $widget, 'dragging' => false])
+            @endforeach
+        </div>
+
         <div class="media-list media-list-container" id="media-list-target-middle">
             @foreach(array_get($activeWidgets, 'middle', []) as $widget)
                 @include('main_admin.widget.item', ['widget' => $widget, 'dragging' => true])

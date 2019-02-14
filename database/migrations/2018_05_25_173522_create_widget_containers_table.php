@@ -17,14 +17,13 @@ class CreateWidgetContainersTable extends Migration
             $table->increments('id');
 
             $table->integer('showcase_id')->unsigned();
-            $table->foreign('showcase_id')->references('id')->on('showcases')->onDelete('cascade');
-
             $table->string('type');
-
             $table->string('widgetable_type')->nullable()->default(null);
             $table->integer('widgetable_id')->nullable()->default(null);
 
             $table->timestamps();
+
+            $table->foreign('showcase_id')->references('id')->on('showcases')->onDelete('cascade');
         });
     }
 

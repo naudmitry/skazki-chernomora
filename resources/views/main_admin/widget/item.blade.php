@@ -14,7 +14,7 @@
 
     <div class="btn-group">
         <a class="btn btn-primary dragula-handle" href="#">
-            <i class="fas fa-arrows-alt dragula-handle" style="vertical-align: middle;"></i>
+            <i class="fas {{ $dragging ? 'fa-arrows-alt' : 'fa-ban' }} dragula-handle" style="vertical-align: middle;"></i>
         </a>
 
         <a

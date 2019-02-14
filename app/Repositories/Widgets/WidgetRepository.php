@@ -8,7 +8,7 @@ use App\Models\Showcase;
 use App\Models\ShowcaseWidget;
 use App\Models\ShowcaseWidgetDescription;
 use App\WidgetContainer;
-use App\Widgets\Miracle as ContentWidgets;
+use App\Widgets\Miracle as MiracleWidgets;
 use App\Widgets\Miracle\AbstractContentWidget;
 
 class WidgetRepository
@@ -20,7 +20,8 @@ class WidgetRepository
                     'type' => 'single',
                     'widgets' =>
                         [
-
+                            MiracleWidgets\CallOutBox::class => ['location' => 'middle'],
+                            MiracleWidgets\Trend::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG =>
@@ -52,8 +53,9 @@ class WidgetRepository
                     'type' => 'single',
                     'widgets' =>
                         [
-                            ContentWidgets\OneLevelMenu::class => ['location' => 'middle'],
-                            ContentWidgets\TwoLevelMenu::class => ['location' => 'middle'],
+                            MiracleWidgets\Logo::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\OneLevelMenu::class => ['location' => 'middle'],
+                            MiracleWidgets\TwoLevelMenu::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::FOOTER =>

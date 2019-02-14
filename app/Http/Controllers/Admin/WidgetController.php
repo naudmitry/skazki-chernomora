@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\StaticPageTypesEnum;
 use App\Classes\WidgetsContainerTypesEnum;
 use App\Models\Showcase;
 use App\Models\ShowcaseWidget;
 use App\Models\ShowcaseWidgetDescription;
+use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
 use App\Repositories\Widgets\WidgetRepository;
 use App\WidgetContainer;
@@ -27,6 +29,34 @@ class WidgetController extends Controller
         $this->slugRepository = $slugRepository;
 
         parent::__construct();
+    }
+
+    /**
+     * @param PageRepository $pageRepository
+     * @param Showcase $administeredShowcase
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function main(PageRepository $pageRepository, Showcase $administeredShowcase)
+    {
+        $staticPage = $pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::MAIN_PAGE
+        );
+
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
+            $staticPage,
+            WidgetsContainerTypesEnum::MAIN_PAGE,
+            $administeredShowcase
+        );
+
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
+        return view('main_admin.main.index', compact(
+            'staticPage', 'allContainerWidgets', 'activeWidgets', 'widgetContainer'
+        ));
     }
 
     /**

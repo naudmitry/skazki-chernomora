@@ -146,7 +146,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::post('/page/categories/save/{category?}', ['uses' => 'Admin\PageCategoryController@save', 'as' => 'admin.page.category.save'])
                     ->where('category', '[0-9]+');
 
-                Route::get('/main', ['uses' => 'Admin\PageController@main', 'as' => 'admin.main.index']);
+                Route::get('/main', ['uses' => 'Admin\WidgetController@main', 'as' => 'admin.main.index']);
                 Route::get('/contacts', ['uses' => 'Admin\PageController@contacts', 'as' => 'admin.contacts.index']);
             });
 

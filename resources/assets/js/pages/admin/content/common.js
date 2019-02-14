@@ -42,7 +42,7 @@ let contentCommonService =
                     if (blockContainer !== undefined) {
                         let newElement = $(data.html);
                         $(blockContainer).append(newElement);
-                        $(blockContainer + ' .media:last').slideDown("slow");
+                        // $(blockContainer + ' .media:last').slideDown("slow");
                         notifyService.showMessage('info', 'Успех!', data.success);
                     }
                     contentCommonService.init();

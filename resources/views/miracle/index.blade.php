@@ -5,12 +5,14 @@
 @endsection
 
 @section('content')
+    @foreach(array_get($pageWidgets, 'middle', []) as $widget)
+        @widget('miracle.' . $widget->class_name, ['widget' => $widget])
+    @endforeach
+
     @include('miracle.vendor.sections.icon_box')
     @include('miracle.vendor.sections.post_wrapper')
-    @include('miracle.vendor.sections.trend')
     @include('miracle.vendor.sections.blog')
     @include('miracle.vendor.sections.colors_section')
-    @include('miracle.vendor.sections.callout_box')
 
     <div class="parallax has-caption parallax-image2" data-stellar-background-ratio="0.5">
         <div class="caption-wrapper">

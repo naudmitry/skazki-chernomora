@@ -4,14 +4,19 @@ namespace App\Http\Controllers\Site;
 
 use App\Classes\PageTypesEnum;
 use App\Classes\StaticPageTypesEnum;
+use App\Classes\WidgetsContainerTypesEnum;
 use App\Models\Page;
+use App\Repositories\Widgets\WidgetRepository;
 
 class IndexController extends Controller
 {
     /**
+     * @param WidgetRepository $widgetRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
      */
-    public function index()
+    public function index(WidgetRepository $widgetRepository)
     {
         $staticPage = Page::query()
             ->where('showcase_id', $this->showcase->id)
@@ -19,8 +24,10 @@ class IndexController extends Controller
             ->where('type', PageTypesEnum::STATIC_PAGE)
             ->first();
 
+        $pageWidgets = $widgetRepository->getWidgetsForStaticPage($staticPage, WidgetsContainerTypesEnum::MAIN_PAGE);
+
         return view($this->theme . '.index', compact([
-            'staticPage'
+            'staticPage', 'pageWidgets'
         ]));
     }
 
