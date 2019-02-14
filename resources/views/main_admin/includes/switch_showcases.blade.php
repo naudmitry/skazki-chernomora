@@ -15,7 +15,7 @@
                     >
                         <span class="app-notification__icon">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-envelope fa-stack-1x fa-globe-asia"></i>
+                                <i class="fas fa-globe-asia"></i>
                             </span>
                         </span>
                         <div>

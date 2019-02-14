@@ -91,7 +91,7 @@ class WidgetController extends Controller
             return response($e->getMessage(), 400);
         }
 
-        $widget->location = 'middle';
+        $dragging = $widget->location == 'middle';
 
         $availableWidgets = collect($this->widgetRepository->getWidgetsForContainer($container))
             ->map(function ($item, $key) {
@@ -102,7 +102,7 @@ class WidgetController extends Controller
         return response()
             ->json([
                 'success' => 'Виджет успешно добавлен.',
-                'html' => view('main_admin.widget.item', compact('widget'))->render(),
+                'html' => view('main_admin.widget.item', compact('widget', 'dragging'))->render(),
                 'type' => $widget->location,
                 'availableWidgets' => $availableWidgets,
             ]);

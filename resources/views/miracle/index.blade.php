@@ -9,7 +9,6 @@
         @widget('miracle.' . $widget->class_name, ['widget' => $widget])
     @endforeach
 
-    @include('miracle.vendor.sections.icon_box')
     @include('miracle.vendor.sections.post_wrapper')
     @include('miracle.vendor.sections.blog')
     @include('miracle.vendor.sections.colors_section')

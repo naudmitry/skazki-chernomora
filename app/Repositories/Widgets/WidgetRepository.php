@@ -22,6 +22,7 @@ class WidgetRepository
                         [
                             MiracleWidgets\CallOutBox::class => ['location' => 'middle'],
                             MiracleWidgets\Trend::class => ['location' => 'middle'],
+                            MiracleWidgets\FeaturesThree::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG =>

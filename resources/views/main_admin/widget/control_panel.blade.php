@@ -36,6 +36,10 @@
     </div>
 </div>
 
+<script type="text/template" class="loading-template">
+    @include('main_admin.includes.loading')
+</script>
+
 <script type="application/json" class="add-widgets-panel-config">
     {!! json_encode(
         [

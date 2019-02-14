@@ -11,22 +11,16 @@ class FeaturesThree extends AbstractContentWidget
             'items' =>
                 [
                     [
-                        'icon' => 'fa-check',
-                        'title' => '',
-                        'subtitle' => '',
-                        'link' => ''
+                        'icon' => 'check',
+                        'animation_delay' => 0
                     ],
                     [
-                        'icon' => 'fa-eye',
-                        'title' => '',
-                        'subtitle' => '',
-                        'link' => ''
+                        'icon' => 'eye',
+                        'animation_delay' => 0.5
                     ],
                     [
-                        'icon' => 'fa-tint',
-                        'title' => '',
-                        'subtitle' => '',
-                        'link' => ''
+                        'icon' => 'tint',
+                        'animation_delay' => 1
                     ]
                 ],
         ];

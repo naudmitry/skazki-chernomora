@@ -13,7 +13,8 @@ let scriptModule =
             // scriptModule.validate($('#widget-panel'));
 
             $context.find('.select').select2({
-                minimumResultsForSearch: Infinity
+                minimumResultsForSearch: Infinity,
+                width: '100%'
             });
 
             $context.find("#accordionExample").sortable({
