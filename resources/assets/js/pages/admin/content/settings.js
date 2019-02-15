@@ -12,7 +12,7 @@ let scriptModule =
 
             // scriptModule.validate($('#widget-panel'));
 
-            $context.find('.select').select2({
+            $context.find('.select2').select2({
                 minimumResultsForSearch: Infinity,
                 width: '100%'
             });

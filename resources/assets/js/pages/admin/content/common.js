@@ -62,6 +62,7 @@ let contentCommonService =
                 type: 'GET',
                 success: (data) => {
                     $settingsWidgetContainer.html(data.view);
+
                     let $formContext = $('#setting-widget-pc');
                     settingsModule.init($formContext);
 

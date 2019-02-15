@@ -75,19 +75,17 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="icon">Иконка:</label>
+                <label class="control-label col-md-4">Иконка:</label>
                 <div class="col-md-8">
                     <select
-                            id="icon"
                             data-setting="icon"
-                            class="select widget-setting required"
-                            required
+                            class="form-control select2 widget-setting"
                     >@include('miracle.widgets.FeaturesThree.select_icons', ['icon' => $setting->icon ?? ''])</select>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="button_link">Задержка анимации:</label>
+                <label class="control-label col-md-4" for="animation_delay">Задержка анимации:</label>
                 <div class="col-md-8">
                     <input
                             id="animation_delay"

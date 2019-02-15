@@ -3,7 +3,7 @@
 
     <div class="tile-body">
         <div class="form-group row">
-            <div class="btn-group col-md-12">
+            <div class="col-md-12">
                 <select class="form-control select2 select-add-block">
                     @foreach($allContainerWidgets as $widgetItem)
                         <option value="{{ $widgetItem['class_name'] }}">{{ $widgetItem['class_name'] }}</option>
