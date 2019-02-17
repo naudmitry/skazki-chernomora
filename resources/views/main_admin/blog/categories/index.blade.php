@@ -6,10 +6,6 @@
         'page' => 'Категории'
     ])
 
-    <div class="page-settings">
-        @include('main_admin.page.static.settings')
-    </div>
-
     <div class="row">
         <div class="col-md-6 blog-categories">
             <div class="tile">

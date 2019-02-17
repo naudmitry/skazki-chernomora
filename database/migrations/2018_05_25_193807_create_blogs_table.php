@@ -31,6 +31,7 @@ class CreateBlogsTable extends Migration
             $table->string('meta_keywords')->nullable();
             $table->integer('author_id')->unsigned()->nullable();
             $table->integer('updater_id')->unsigned()->nullable();
+            $table->integer('widget_container_id')->unsigned()->nullable()->default(null);
 
             $table->timestamps();
             $table->softDeletes();
@@ -39,6 +40,7 @@ class CreateBlogsTable extends Migration
             $table->foreign('updater_id')->references('id')->on('admins');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('showcase_id')->references('id')->on('showcases');
+            $table->foreign('widget_container_id')->references('id')->on('widget_containers');
         });
     }
 

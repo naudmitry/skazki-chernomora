@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\StaticPageTypesEnum;
+use App\Classes\WidgetsContainerTypesEnum;
 use App\Http\Requests\Faq\FaqRequest;
 use App\Models\Company;
 use App\Models\Faq;
 use App\Models\FaqCategory;
 use App\Models\Showcase;
 use App\Repositories\FaqRepository;
+use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
+use App\Repositories\Widgets\WidgetRepository;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -16,16 +20,22 @@ class FaqController extends Controller
 {
     protected $faqRepository;
     protected $slugRepository;
+    protected $pageRepository;
+    protected $widgetRepository;
 
     /**
      * FaqController constructor.
      * @param FaqRepository $faqRepository
      * @param SlugRepository $slugRepository
+     * @param PageRepository $pageRepository
+     * @param WidgetRepository $widgetRepository
      */
-    public function __construct(FaqRepository $faqRepository, SlugRepository $slugRepository)
+    public function __construct(FaqRepository $faqRepository, SlugRepository $slugRepository, PageRepository $pageRepository, WidgetRepository $widgetRepository)
     {
         $this->faqRepository = $faqRepository;
         $this->slugRepository = $slugRepository;
+        $this->pageRepository = $pageRepository;
+        $this->widgetRepository = $widgetRepository;
 
         parent::__construct();
     }
@@ -177,6 +187,32 @@ class FaqController extends Controller
 
         return view('main_admin.faq.questions.item.create', compact(
             'categories'
+        ));
+    }
+
+    /**
+     * @param Showcase $administeredShowcase
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
+     */
+    public function main(Showcase $administeredShowcase)
+    {
+        $staticPage = $this->pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::FAQ_PAGE
+        );
+
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
+            $staticPage,
+            WidgetsContainerTypesEnum::FAQ,
+            $administeredShowcase
+        );
+
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
+        return view('main_admin.faq.main.index', compact(
+            'staticPage', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
         ));
     }
 }

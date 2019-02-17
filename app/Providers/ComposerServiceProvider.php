@@ -27,6 +27,8 @@ class ComposerServiceProvider extends ServiceProvider
         ], ViewComposers\Site\CurrentShowcaseComposer::class);
 
         View::composer([
+            'miracle.blog.*',
+            'miracle.faq.*',
             'miracle.vendor.*'
         ], ViewComposers\Site\WidgetsPositionComposer::class);
     }

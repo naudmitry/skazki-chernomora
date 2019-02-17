@@ -31,6 +31,13 @@
                         href="{{ route('admin.blog.article.index') }}"
                     ><i class="icon far fa-circle"></i>Статьи</a>
                 </li>
+
+                <li>
+                    <a
+                        class="treeview-item @if (Route::is('admin.blog.main.*')) active @endif"
+                        href="{{ route('admin.blog.main.index') }}"
+                    ><i class="icon far fa-circle"></i>Главная</a>
+                </li>
             </ul>
         </li>
     @endif
@@ -56,6 +63,13 @@
                         class="treeview-item @if (Route::is('admin.faq.question.*')) active @endif"
                         href="{{ route('admin.faq.question.index') }}"
                     ><i class="icon far fa-circle"></i>Вопросы</a>
+                </li>
+
+                <li>
+                    <a
+                        class="treeview-item @if (Route::is('admin.faq.main.*')) active @endif"
+                        href="{{ route('admin.faq.main.index') }}"
+                    ><i class="icon far fa-circle"></i>Главная</a>
                 </li>
             </ul>
         </li>

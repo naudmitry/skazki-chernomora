@@ -20,9 +20,12 @@ class WidgetRepository
                     'type' => 'single',
                     'widgets' =>
                         [
+                            MiracleWidgets\Slider::class => ['location' => 'top', 'single' => true],
+
                             MiracleWidgets\CallOutBox::class => ['location' => 'middle'],
                             MiracleWidgets\Trend::class => ['location' => 'middle'],
                             MiracleWidgets\FeaturesThree::class => ['location' => 'middle'],
+                            MiracleWidgets\PostWrapper::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG =>
@@ -30,7 +33,17 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
-
+                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+                        ],
+                ],
+            WidgetsContainerTypesEnum::FAQ =>
+                [
+                    'type' => 'multi',
+                    'widgets' =>
+                        [
+                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::CUSTOM_PAGE =>

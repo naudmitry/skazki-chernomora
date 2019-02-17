@@ -88,6 +88,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::post('/blog/categories/sequence', ['uses' => 'Admin\BlogCategoryController@sequence', 'as' => 'admin.blog.category.sequence']);
                 Route::post('/blog/categories/{category}/enable', ['uses' => 'Admin\BlogCategoryController@enable', 'as' => 'admin.blog.category.enable'])
                     ->where('category', '[0-9]+');
+
+                Route::get('/blog/main', ['uses' => 'Admin\BlogController@main', 'as' => 'admin.blog.main.index']);
+
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_FAQ], function () {
@@ -113,6 +116,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('faq', '[0-9]+');
                 Route::post('/faq/questions/save/{faq?}', ['uses' => 'Admin\FaqController@save', 'as' => 'admin.faq.question.save'])
                     ->where('faq', '[0-9]+');
+
+                Route::get('/faq/main', ['uses' => 'Admin\FaqController@main', 'as' => 'admin.faq.main.index']);
+
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_BLOCKS], function () {
@@ -127,11 +133,13 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/page/lists/create', ['uses' => 'Admin\PageController@create', 'as' => 'admin.page.list.create']);
                 Route::get('/page/lists/edit/{page}', ['uses' => 'Admin\PageController@edit', 'as' => 'admin.page.list.edit'])
                     ->where('page', '[0-9]+');
-                Route::delete('/page/lists/{faq}', ['uses' => 'Admin\PageController@delete', 'as' => 'admin.page.list.delete'])
+                Route::delete('/page/lists/{page}', ['uses' => 'Admin\PageController@delete', 'as' => 'admin.page.list.delete'])
                     ->where('page', '[0-9]+');
                 Route::post('/page/lists/enable/{page}', ['uses' => 'Admin\PageController@enable', 'as' => 'admin.page.list.enable'])
                     ->where('page', '[0-9]+');
                 Route::post('/page/lists/save/{page?}', ['uses' => 'Admin\PageController@save', 'as' => 'admin.page.list.save'])
+                    ->where('page', '[0-9]+');
+                Route::post('/page/content/save/{page}', ['uses' => 'Admin\PageController@saveContent', 'as' => 'admin.page.content.save',])
                     ->where('page', '[0-9]+');
 
                 Route::get('/page/categories', ['uses' => 'Admin\PageCategoryController@index', 'as' => 'admin.page.category.index']);

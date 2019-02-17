@@ -1,7 +1,9 @@
 @extends('miracle.layouts.master')
 
 @section('slider')
-    @include('miracle.vendor.breadcrumbs')
+    @foreach(array_get($pageWidgets, 'top', []) as $widget)
+        @widget('miracle.' . $widget->class_name, ['widget' => $widget])
+    @endforeach
 @endsection
 
 @section('content')

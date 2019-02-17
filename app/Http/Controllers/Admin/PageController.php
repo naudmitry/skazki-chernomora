@@ -256,4 +256,19 @@ class PageController extends Controller
             'staticPage'
         ));
     }
+
+    /**
+     * @param Request $request
+     * @param Page $page
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function saveContent(Request $request, Page $page)
+    {
+        $page->content = $request->get('content');
+        $page->update();
+
+        return response()->json([
+            'message' => 'Статья успешно сохранена.',
+        ]);
+    }
 }

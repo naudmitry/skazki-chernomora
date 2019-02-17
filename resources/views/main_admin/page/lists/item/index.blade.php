@@ -12,6 +12,8 @@
         </div>
     </div>
 
+    @include('main_admin.page.lists.item.editor')
+
     <script type="text/template" class="page-item-settings-loading-template">
         @include('main_admin.page.lists.item.loading')
     </script>

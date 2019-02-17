@@ -84,4 +84,52 @@ $(function () {
         $pageItem.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
         $pageItem.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
+
+    tinymce.init({
+        selector: '#textarea-editor',
+        language: 'ru',
+        height: 500,
+        toolbar: "image",
+        plugins: "image imagetools",
+        setup: function (editor) {
+            editor.on('keyup change', function (e) {
+                $('.page-item-editor-form').find('[type=submit]')
+                    .removeClass('btn-default')
+                    .addClass('btn-primary')
+                    .prop('disabled', false);
+            });
+        }
+    });
+
+    $(document).on('submit', '.page-item-editor-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
+            },
+        }));
+    });
 });

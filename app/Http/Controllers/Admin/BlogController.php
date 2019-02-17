@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\StaticPageTypesEnum;
+use App\Classes\WidgetsContainerTypesEnum;
 use App\Http\Requests\Blog\BlogRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Company;
 use App\Models\Showcase;
 use App\Repositories\BlogRepository;
+use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
+use App\Repositories\Widgets\WidgetRepository;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -16,16 +20,22 @@ class BlogController extends Controller
 {
     protected $blogRepository;
     protected $slugRepository;
+    protected $pageRepository;
+    protected $widgetRepository;
 
     /**
      * BlogController constructor.
      * @param BlogRepository $blogRepository
      * @param SlugRepository $slugRepository
+     * @param PageRepository $pageRepository
+     * @param WidgetRepository $widgetRepository
      */
-    public function __construct(BlogRepository $blogRepository, SlugRepository $slugRepository)
+    public function __construct(BlogRepository $blogRepository, SlugRepository $slugRepository, PageRepository $pageRepository, WidgetRepository $widgetRepository)
     {
         $this->blogRepository = $blogRepository;
         $this->slugRepository = $slugRepository;
+        $this->pageRepository = $pageRepository;
+        $this->widgetRepository = $widgetRepository;
 
         parent::__construct();
     }
@@ -193,6 +203,32 @@ class BlogController extends Controller
 
         return view('main_admin.blog.articles.item.create', compact(
             'categories'
+        ));
+    }
+
+    /**
+     * @param Showcase $administeredShowcase
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
+     */
+    public function main(Showcase $administeredShowcase)
+    {
+        $staticPage = $this->pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::BLOG_PAGE
+        );
+
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
+            $staticPage,
+            WidgetsContainerTypesEnum::BLOG,
+            $administeredShowcase
+        );
+
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
+        return view('main_admin.blog.main.index', compact(
+            'staticPage', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
         ));
     }
 }

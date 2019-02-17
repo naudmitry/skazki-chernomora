@@ -3,24 +3,29 @@
 namespace App\Http\Controllers\Site;
 
 use App\Classes\StaticPageTypesEnum;
+use App\Classes\WidgetsContainerTypesEnum;
 use App\Models\Faq;
 use App\Models\FaqCategory;
 use App\Models\Showcase;
 use App\Repositories\PageRepository;
+use App\Repositories\Widgets\WidgetRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class FaqController extends Controller
 {
     protected $pagesRepository;
+    protected $widgetRepository;
 
     /**
      * FaqController constructor.
      * @param PageRepository $pagesRepository
+     * @param WidgetRepository $widgetRepository
      */
-    public function __construct(PageRepository $pagesRepository)
+    public function __construct(PageRepository $pagesRepository, WidgetRepository $widgetRepository)
     {
         $this->pagesRepository = $pagesRepository;
+        $this->widgetRepository = $widgetRepository;
 
         parent::__construct();
     }
@@ -55,8 +60,10 @@ class FaqController extends Controller
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::FAQ_PAGE);
         $staticPage->incrementViewsCount();
 
+        $pageWidgets = $this->widgetRepository->getWidgetsForStaticPage($staticPage, WidgetsContainerTypesEnum::FAQ);
+
         return view($this->theme . '.faq.index', compact([
-            'categories', 'faqs', 'staticPage'
+            'categories', 'faqs', 'staticPage', 'pageWidgets'
         ]));
     }
 

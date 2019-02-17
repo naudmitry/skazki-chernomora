@@ -1,7 +1,9 @@
 @extends('miracle.layouts.master')
 
 @section('slider')
-    @include('miracle.vendor.sections.slideshow')
+    @foreach(array_get($pageWidgets, 'top', []) as $widget)
+        @widget('miracle.' . $widget->class_name, ['widget' => $widget])
+    @endforeach
 @endsection
 
 @section('content')
@@ -9,7 +11,6 @@
         @widget('miracle.' . $widget->class_name, ['widget' => $widget])
     @endforeach
 
-    @include('miracle.vendor.sections.post_wrapper')
     @include('miracle.vendor.sections.blog')
     @include('miracle.vendor.sections.colors_section')
 

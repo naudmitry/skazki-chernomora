@@ -3,31 +3,38 @@
 namespace App\Http\Controllers\Site;
 
 use App\Classes\StaticPageTypesEnum;
+use App\Classes\WidgetsContainerTypesEnum;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Showcase;
 use App\Repositories\PageRepository;
+use App\Repositories\Widgets\WidgetRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class BlogController extends Controller
 {
     protected $pagesRepository;
+    protected $widgetRepository;
 
     /**
      * BlogController constructor.
      * @param PageRepository $pagesRepository
+     * @param WidgetRepository $widgetRepository
      */
-    public function __construct(PageRepository $pagesRepository)
+    public function __construct(PageRepository $pagesRepository, WidgetRepository $widgetRepository)
     {
         $this->pagesRepository = $pagesRepository;
+        $this->widgetRepository = $widgetRepository;
 
         parent::__construct();
     }
 
     /**
      * @param Request $request
+     * @param WidgetRepository $widgetRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function index(Request $request)
     {
@@ -55,8 +62,10 @@ class BlogController extends Controller
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::BLOG_PAGE);
         $staticPage->incrementViewsCount();
 
+        $pageWidgets = $this->widgetRepository->getWidgetsForStaticPage($staticPage, WidgetsContainerTypesEnum::BLOG);
+
         return view($this->theme . '.blog.index', compact([
-            'categories', 'blogs', 'staticPage'
+            'categories', 'blogs', 'staticPage', 'pageWidgets'
         ]));
     }
 
@@ -84,7 +93,7 @@ class BlogController extends Controller
 
         $blog->incrementViewsCount();
 
-        return view($this->theme . '.blog.single.index', compact([
+        return view($this->theme . '.blog.single', compact([
             'blog', 'categories', 'currentCategory'
         ]));
     }
