@@ -165,6 +165,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        // Widgets
+        // https://github.com/arrilot/laravel-widgets
+        Arrilot\Widgets\ServiceProvider::class,
+
         /*
          * Setting Service Provider
          */
