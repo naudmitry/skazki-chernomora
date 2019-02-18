@@ -60,6 +60,34 @@ class WidgetController extends Controller
     }
 
     /**
+     * @param PageRepository $pageRepository
+     * @param Showcase $administeredShowcase
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function contacts(PageRepository $pageRepository, Showcase $administeredShowcase)
+    {
+        $staticPage = $pageRepository->getStaticPage(
+            $administeredShowcase,
+            StaticPageTypesEnum::CONTACTS_PAGE
+        );
+
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
+            $staticPage,
+            WidgetsContainerTypesEnum::CONTACTS_PAGE,
+            $administeredShowcase
+        );
+
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
+        return view('main_admin.contacts.index', compact(
+            'staticPage', 'allContainerWidgets', 'activeWidgets', 'widgetContainer'
+        ));
+    }
+
+    /**
      * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -70,9 +98,22 @@ class WidgetController extends Controller
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.header.index', compact(
-            'widgetContainer',
-            'allContainerWidgets',
-            'activeWidgets'
+            'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+        ));
+    }
+
+    /**
+     * @param Showcase $administeredShowcase
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function footer(Showcase $administeredShowcase)
+    {
+        $widgetContainer = $this->widgetRepository->getContainerByType($administeredShowcase, WidgetsContainerTypesEnum::FOOTER);
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
+        return view('main_admin.footer.index', compact(
+            'widgetContainer', 'allContainerWidgets', 'activeWidgets'
         ));
     }
 

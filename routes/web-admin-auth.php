@@ -155,7 +155,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('category', '[0-9]+');
 
                 Route::get('/main', ['uses' => 'Admin\WidgetController@main', 'as' => 'admin.main.index']);
-                Route::get('/contacts', ['uses' => 'Admin\PageController@contacts', 'as' => 'admin.contacts.index']);
+                Route::get('/contacts', ['uses' => 'Admin\WidgetController@contacts', 'as' => 'admin.contacts.index']);
             });
 
             Route::group(['components' => [AdminComponentEnum::COMPANY_CONTENT_PAGES, AdminComponentEnum::COMPANY_CONTENT_BLOCKS,]], function () {

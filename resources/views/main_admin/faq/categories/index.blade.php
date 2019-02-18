@@ -7,7 +7,7 @@
     ])
 
     <div class="row">
-        <div class="col-md-6 faq-categories">
+        <div class="col-5 faq-categories">
             <div class="tile">
                 <h4 class="line-head">Категории</h4>
 
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 faq-categories-settings-container"></div>
+        <div class="col-7 faq-categories-settings-container"></div>
     </div>
 
     <script type="text/template" class="faq-category-settings-loading-template">

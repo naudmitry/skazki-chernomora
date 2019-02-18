@@ -14,6 +14,17 @@
 
     @include('main_admin.page.lists.item.editor')
 
+    @if (isset($page->id))
+        <div class="row admin-content-header">
+            <div class="col-5">
+                @include('main_admin.widget.control_panel', compact(
+                    'allContainerWidgets', 'activeWidgets', 'widgetContainer'
+                ))
+            </div>
+            <div class="col-7 settings-widget-container" id="setting-widget-pc"></div>
+        </div>
+    @endif
+
     <script type="text/template" class="page-item-settings-loading-template">
         @include('main_admin.page.lists.item.loading')
     </script>

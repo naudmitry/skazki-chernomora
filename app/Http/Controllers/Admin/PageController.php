@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Classes\PageTypesEnum;
 use App\Classes\StaticPageTypesEnum;
+use App\Classes\WidgetsContainerTypesEnum;
 use App\Http\Requests\PageRequest;
 use App\Models\Company;
 use App\Models\Page;
@@ -11,6 +12,7 @@ use App\Models\PageCategory;
 use App\Models\Showcase;
 use App\Repositories\PageRepository;
 use App\Repositories\Slug\SlugRepository;
+use App\Repositories\Widgets\WidgetRepository;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -18,16 +20,19 @@ class PageController extends Controller
 {
     protected $pageRepository;
     protected $slugRepository;
+    protected $widgetRepository;
 
     /**
      * PageController constructor.
      * @param PageRepository $pageRepository
      * @param SlugRepository $slugRepository
+     * @param WidgetRepository $widgetRepository
      */
-    public function __construct(PageRepository $pageRepository, SlugRepository $slugRepository)
+    public function __construct(PageRepository $pageRepository, SlugRepository $slugRepository, WidgetRepository $widgetRepository)
     {
         $this->pageRepository = $pageRepository;
         $this->slugRepository = $slugRepository;
+        $this->widgetRepository = $widgetRepository;
 
         parent::__construct();
     }
@@ -129,6 +134,8 @@ class PageController extends Controller
      * @param Showcase $administeredShowcase
      * @param Page $page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function edit(Company $administeredCompany, Showcase $administeredShowcase, Page $page)
     {
@@ -137,8 +144,12 @@ class PageController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer($page, WidgetsContainerTypesEnum::CUSTOM_PAGE_ITEM, $administeredShowcase);
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
         return view('main_admin.page.lists.item.index', compact(
-            'page', 'categories'
+            'page', 'categories', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
         ));
     }
 
@@ -223,22 +234,6 @@ class PageController extends Controller
             'redirectUrl' => $isNew ? route('admin.page.list.edit', $page) : null,
             'settings' => $settings,
         ]);
-    }
-
-    /**
-     * @param Showcase $administeredShowcase
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function contacts(Showcase $administeredShowcase)
-    {
-        $staticPage = $this->pageRepository->getStaticPage(
-            $administeredShowcase,
-            StaticPageTypesEnum::CONTACTS_PAGE
-        );
-
-        return view('main_admin.contacts.index', compact(
-            'staticPage'
-        ));
     }
 
     /**

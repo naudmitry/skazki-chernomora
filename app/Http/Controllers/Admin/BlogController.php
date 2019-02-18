@@ -92,6 +92,8 @@ class BlogController extends Controller
      * @param Showcase $administeredShowcase
      * @param Blog $blog
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function edit(Company $administeredCompany, Showcase $administeredShowcase, Blog $blog)
     {
@@ -100,8 +102,12 @@ class BlogController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer($blog, WidgetsContainerTypesEnum::BLOG_ITEM, $administeredShowcase);
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
         return view('main_admin.blog.articles.item.index', compact(
-            'blog', 'categories'
+            'blog', 'categories', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
         ));
     }
 
