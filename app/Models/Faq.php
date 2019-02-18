@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\FaqCategory $categories
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
+ *
+ * @mixin \Eloquent
  */
 class Faq extends Model implements SlugableInterface
 {

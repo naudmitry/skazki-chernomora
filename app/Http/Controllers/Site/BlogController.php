@@ -62,7 +62,9 @@ class BlogController extends Controller
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::BLOG_PAGE);
         $staticPage->incrementViewsCount();
 
-        $pageWidgets = $this->widgetRepository->getWidgetsForStaticPage($staticPage, WidgetsContainerTypesEnum::BLOG);
+        $pageWidgets = $this->widgetRepository->getWidgetsForStaticPage(
+            $staticPage, WidgetsContainerTypesEnum::BLOG_MAIN_PAGE
+        );
 
         return view($this->theme . '.blog.index', compact([
             'categories', 'blogs', 'staticPage', 'pageWidgets'

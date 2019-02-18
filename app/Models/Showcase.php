@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $enable
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property Company $company
+ *
+ * @mixin \Eloquent
  */
 class Showcase extends Model
 {

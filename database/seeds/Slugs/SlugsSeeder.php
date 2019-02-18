@@ -32,6 +32,7 @@ class SlugsSeeder extends Seeder
                     ->where('showcase_id', $showcase->id)
                     ->get();
 
+                /** @var Blog $blog */
                 foreach ($blogs as $blog) {
                     Slug::create([
                         'slug' => $faker->unique()->slug(),
@@ -45,6 +46,7 @@ class SlugsSeeder extends Seeder
                     ->where('showcase_id', $showcase->id)
                     ->get();
 
+                /** @var BlogCategory $blogCategory */
                 foreach ($blogCategories as $blogCategory) {
                     Slug::create([
                         'slug' => $faker->unique()->slug(),
@@ -59,6 +61,7 @@ class SlugsSeeder extends Seeder
                     ->where('showcase_id', $showcase->id)
                     ->get();
 
+                /** @var Faq $faq */
                 foreach ($faqs as $faq) {
                     Slug::create([
                         'slug' => $faker->unique()->slug(),
@@ -73,6 +76,7 @@ class SlugsSeeder extends Seeder
                     ->where('showcase_id', $showcase->id)
                     ->get();
 
+                /** @var FaqCategory $faqCategory */
                 foreach ($faqCategories as $faqCategory) {
                     Slug::create([
                         'slug' => $faker->unique()->slug(),

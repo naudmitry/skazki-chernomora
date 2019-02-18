@@ -102,7 +102,10 @@ class BlogController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
-        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer($blog, WidgetsContainerTypesEnum::BLOG_ITEM, $administeredShowcase);
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
+            $blog, WidgetsContainerTypesEnum::BLOG_PAGE, $administeredShowcase
+        );
+
         $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
@@ -226,7 +229,7 @@ class BlogController extends Controller
 
         $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
             $staticPage,
-            WidgetsContainerTypesEnum::BLOG,
+            WidgetsContainerTypesEnum::BLOG_MAIN_PAGE,
             $administeredShowcase
         );
 

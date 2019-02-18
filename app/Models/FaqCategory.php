@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\Faq $faqs
+ *
+ * @mixin \Eloquent
  */
 class FaqCategory extends Model implements SlugableInterface
 {

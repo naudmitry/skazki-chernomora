@@ -57,7 +57,7 @@ class CompaniesSeeder extends Seeder
 
         $company = Company::create(
             [
-                'title' => 'Skazki Chernomora',
+                'title' => 'Сказки Черномора',
                 'enable' => true,
                 'created_at' => $faker->dateTimeBetween('-10 month', '-9 month'),
             ]);

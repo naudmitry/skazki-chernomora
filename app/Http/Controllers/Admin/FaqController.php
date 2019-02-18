@@ -204,7 +204,7 @@ class FaqController extends Controller
 
         $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
             $staticPage,
-            WidgetsContainerTypesEnum::FAQ,
+            WidgetsContainerTypesEnum::FAQ_MAIN_PAGE,
             $administeredShowcase
         );
 

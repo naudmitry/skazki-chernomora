@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read Model|SlugableInterface $entity
+ *
+ * @mixin \Eloquent
  */
 class Slug extends Model
 {

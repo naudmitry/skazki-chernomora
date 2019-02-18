@@ -62,7 +62,9 @@ class FaqController extends Controller
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::FAQ_PAGE);
         $staticPage->incrementViewsCount();
 
-        $pageWidgets = $this->widgetRepository->getWidgetsForStaticPage($staticPage, WidgetsContainerTypesEnum::FAQ);
+        $pageWidgets = $this->widgetRepository->getWidgetsForStaticPage(
+            $staticPage, WidgetsContainerTypesEnum::FAQ_MAIN_PAGE
+        );
 
         return view($this->theme . '.faq.index', compact([
             'categories', 'faqs', 'staticPage', 'pageWidgets'

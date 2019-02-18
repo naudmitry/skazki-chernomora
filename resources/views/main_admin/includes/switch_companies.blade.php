@@ -13,7 +13,7 @@
                         <a class="app-notification__item switch-companies-perform" href="{{ route('admin.companies.leave-from-admin') }}">
                             <span class="app-notification__icon">
                                 <span class="fa-stack fa-lg">
-                                    <i class="far fa-arrow-alt-circle-left fa-stack-1x"></i>
+                                    <i class="far fa-arrow-alt-circle-left"></i>
                                 </span>
                             </span>
                             <div style="display: flex">
@@ -32,7 +32,7 @@
                         >
                             <span class="app-notification__icon">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-envelope fa-stack-1x fa-globe"></i>
+                                    <i class="fas fa-globe"></i>
                                 </span>
                             </span>
                             <div>

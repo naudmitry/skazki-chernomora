@@ -36,6 +36,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\PageCategory $category
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
+ *
+ * @mixin \Eloquent
  */
 class Page extends Model implements SlugableInterface, WidgetableInterface
 {

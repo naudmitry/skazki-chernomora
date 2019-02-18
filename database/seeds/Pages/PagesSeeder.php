@@ -32,7 +32,6 @@ class PagesSeeder extends Seeder
                 /** @var PageCategory $category */
                 foreach ($categories as $category) {
                     for ($i = 0; $i < 10; $i++) {
-                        /** @var Page $page */
                         Page::create([
                             'company_id' => $company->id,
                             'showcase_id' => $showcase->id,

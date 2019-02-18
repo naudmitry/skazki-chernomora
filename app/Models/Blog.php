@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\BlogCategory $categories
  * @property-read \App\Models\Admin $author
  * @property-read \App\Models\Admin $updater
+ *
+ * @mixin \Eloquent
  */
 class Blog extends Model implements SlugableInterface, WidgetableInterface
 {

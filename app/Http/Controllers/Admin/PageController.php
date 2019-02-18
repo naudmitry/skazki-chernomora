@@ -144,7 +144,10 @@ class PageController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
-        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer($page, WidgetsContainerTypesEnum::CUSTOM_PAGE_ITEM, $administeredShowcase);
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
+            $page, WidgetsContainerTypesEnum::CUSTOM_PAGE, $administeredShowcase
+        );
+
         $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 

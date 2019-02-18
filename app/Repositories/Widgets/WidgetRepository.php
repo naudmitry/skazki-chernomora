@@ -28,7 +28,7 @@ class WidgetRepository
                             MiracleWidgets\PostWrapper::class => ['location' => 'middle'],
                         ],
                 ],
-            WidgetsContainerTypesEnum::BLOG =>
+            WidgetsContainerTypesEnum::BLOG_MAIN_PAGE =>
                 [
                     'type' => 'multi',
                     'widgets' =>
@@ -36,7 +36,7 @@ class WidgetRepository
                             MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true]
                         ],
                 ],
-            WidgetsContainerTypesEnum::BLOG_ITEM =>
+            WidgetsContainerTypesEnum::BLOG_PAGE =>
                 [
                     'type' => 'multi',
                     'widgets' =>
@@ -44,7 +44,7 @@ class WidgetRepository
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
                         ],
                 ],
-            WidgetsContainerTypesEnum::FAQ =>
+            WidgetsContainerTypesEnum::FAQ_MAIN_PAGE =>
                 [
                     'type' => 'multi',
                     'widgets' =>
@@ -52,7 +52,7 @@ class WidgetRepository
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
                         ],
                 ],
-            WidgetsContainerTypesEnum::CUSTOM_PAGE_ITEM =>
+            WidgetsContainerTypesEnum::CUSTOM_PAGE =>
                 [
                     'type' => 'multi',
                     'widgets' =>
