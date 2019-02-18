@@ -29,6 +29,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer([
             'miracle.blog.*',
             'miracle.faq.*',
+            'miracle.page.*',
             'miracle.vendor.*'
         ], ViewComposers\Site\WidgetsPositionComposer::class);
     }

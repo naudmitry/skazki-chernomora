@@ -33,6 +33,8 @@ class FaqController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function index(Request $request)
     {

@@ -37,6 +37,9 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3">Адрес категории:</label>
                         <div class="input-group col-md-9">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>
+                            </div>
                             <input id="address" name="address" class="form-control" type="text" value="{{ $blog->getSlug() }}">
                             <div class="input-group-append">
                                 <span class="input-group-text">

@@ -33,8 +33,15 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
-                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
-                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true]
+                        ],
+                ],
+            WidgetsContainerTypesEnum::BLOG_ITEM =>
+                [
+                    'type' => 'multi',
+                    'widgets' =>
+                        [
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ =>
@@ -42,16 +49,15 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
-                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
-                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
                         ],
                 ],
-            WidgetsContainerTypesEnum::CUSTOM_PAGE =>
+            WidgetsContainerTypesEnum::CUSTOM_PAGE_ITEM =>
                 [
                     'type' => 'multi',
                     'widgets' =>
                         [
-
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::CONTACTS_PAGE =>

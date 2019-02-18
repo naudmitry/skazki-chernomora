@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Site;
 
 use App\Classes\StaticPageTypesEnum;
-use App\Http\Controllers\Admin\PageController;
 use App\Models;
 use App\Repositories\Slug\SlugRepository;
 use Illuminate\Http\Request;
