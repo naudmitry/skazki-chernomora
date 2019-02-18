@@ -27,6 +27,7 @@ class ComposerServiceProvider extends ServiceProvider
         ], ViewComposers\Site\CurrentShowcaseComposer::class);
 
         View::composer([
+            'miracle.index',
             'miracle.blog.*',
             'miracle.faq.*',
             'miracle.page.*',
