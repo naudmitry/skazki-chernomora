@@ -1,8 +1,5 @@
 {
-    "/main_admin/js/app.js": "/main_admin/js/app.js",
-    "/main_admin/js/scripts.js": "/main_admin/js/scripts.js",
-    "/main_admin/css/style.css": "/main_admin/css/style.css",
+    "/vali-admin/js/app.js": "/vali-admin/js/app.js",
     "/main_theme/css/style.css": "/main_theme/css/style.css",
-    "/css/fontawesome.css": "/css/fontawesome.css",
     "/main_theme/js/scripts.js": "/main_theme/js/scripts.js"
 }

@@ -1,8 +1,6 @@
 window._ = require('lodash');
 
-import $ from 'jquery';
-
-window.$ = window.jQuery = $;
+window.$ = window.jQuery = require("jquery");
 
 require('jquery-ui/ui/core');
 require('jquery-ui/ui/effect');
