@@ -18,6 +18,11 @@
         </a>
 
         <a
+            class="btn btn-primary"
+            href="#"
+        ><i class="fas fa-eye"></i></a>
+
+        <a
             class="btn btn-primary widget-settings-open"
             href="{{ route('widget.settings', $widget) }}"
         ><i class="fas fa-edit"></i></a>

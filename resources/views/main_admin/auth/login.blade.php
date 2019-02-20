@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ asset('main_admin/css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('vali-admin/css/font-awesome.min.css') }}">
         <title>Вход | Sacave</title>
     </head>
     <body>
@@ -37,7 +37,7 @@
                                     <input type="checkbox" name="remember"><span class="label-text">Запомнить</span>
                                 </label>
                             </div>
-                            <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Забыли пароль?</a></p>
+                            {{--<p class="semibold-text mb-2"><a href="#" data-toggle="flip">Забыли пароль?</a></p>--}}
                         </div>
                     </div>
                     <div class="form-group btn-container">
@@ -63,15 +63,15 @@
             </div>
         </section>
 
-        <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
+        {{--<script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>--}}
 
-        <script type="text/javascript">
-            // Login Page Flipbox control
-            $('.login-content [data-toggle="flip"]').click(function() {
-                $('.login-box').toggleClass('flipped');
-                return false;
-            });
-        </script>
+        {{--<script type="text/javascript">--}}
+            {{--// // Login Page Flipbox control--}}
+            {{--// $('.login-content [data-toggle="flip"]').click(function() {--}}
+            {{--//     $('.login-box').toggleClass('flipped');--}}
+            {{--//     return false;--}}
+            {{--// });--}}
+        {{--</script>--}}
     </body>
 </html>
 
