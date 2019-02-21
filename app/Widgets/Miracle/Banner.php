@@ -19,7 +19,7 @@ class Banner extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|string',
-                'subtitle' => 'required|max:50',
+                'subtitle' => 'required|string',
                 'image_link' => 'required|url'
             ],
             [],

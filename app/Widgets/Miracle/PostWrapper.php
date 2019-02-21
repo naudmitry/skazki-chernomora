@@ -20,9 +20,9 @@ class PostWrapper extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|string',
-                'items.*.title' => 'required|max:20',
+                'items.*.title' => 'required|string',
                 'items.*.image_link' => 'required|url',
-                'items.*.category' => 'required|max:10'
+                'items.*.category' => 'required|string'
             ],
             [],
             [

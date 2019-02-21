@@ -23,8 +23,8 @@ class TwoLevelMenu extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'title' => 'required|max:30',
-                'items.*.title' => 'required|max:30',
+                'title' => 'required|string',
+                'items.*.title' => 'required|string',
             ],
             [],
             [

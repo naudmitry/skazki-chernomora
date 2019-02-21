@@ -28,7 +28,6 @@
                             class="form-control widget-setting required"
                             required
                             data-setting="title"
-                            maxlength="20"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>

@@ -19,14 +19,12 @@ class Slider extends AbstractContentWidget
             $validatedData,
             [
                 'items.*.transition' => 'required|string',
-                'items.*.slot_amount' => 'required|integer',
                 'items.*.speed' => 'required|integer',
                 'items.*.image_link' => 'required|url'
             ],
             [],
             [
                 'items.*.transition' => 'Выберите переход.',
-                'items.*.slot_amount' => 'Введите количество слотов.',
                 'items.*.speed' => 'Введите скорость перехода.',
                 'items.*.image_link' => 'Введите ссылку картинки для слайдера.',
             ]);

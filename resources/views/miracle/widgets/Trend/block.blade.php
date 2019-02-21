@@ -28,7 +28,6 @@
                             class="form-control widget-setting required"
                             required
                             data-setting="title"
-                            maxlength="20"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>
@@ -42,7 +41,6 @@
                             class="form-control widget-setting required"
                             required
                             data-setting="percent"
-                            maxlength="20"
                             value="{{ $setting->percent ?? '' }}">
                 </div>
             </div>

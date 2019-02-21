@@ -25,11 +25,11 @@ class Trend extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'title' => 'required|max:150',
-                'sub_title' => 'required',
+                'title' => 'required|string',
+                'sub_title' => 'required|string',
                 'image' => 'string',
                 'items.*.percent' => 'required|integer',
-                'items.*.title' => 'required|max:30',
+                'items.*.title' => 'required|string',
             ],
             [],
             [

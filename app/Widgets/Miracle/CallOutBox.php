@@ -22,7 +22,7 @@ class CallOutBox extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'title' => 'required|max:50',
+                'title' => 'required|string',
                 'link' => 'required|string',
                 'button' => 'required|string'
             ],

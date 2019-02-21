@@ -21,7 +21,7 @@ class OneLevelMenu extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'title' => 'required|max:30',
+                'title' => 'required|string',
                 'link' => 'required|string'
             ],
             [],

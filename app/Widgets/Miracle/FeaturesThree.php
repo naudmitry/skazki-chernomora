@@ -2,6 +2,8 @@
 
 namespace App\Widgets\Miracle;
 
+use Validator;
+
 class FeaturesThree extends AbstractContentWidget
 {
     protected $blockable = true;
@@ -24,4 +26,21 @@ class FeaturesThree extends AbstractContentWidget
                     ]
                 ],
         ];
+
+    public function getSettingsValidator($validatedData)
+    {
+        return Validator::make(
+            $validatedData,
+            [
+                'items.*.title' => 'required|string',
+                'items.*.subtitle' => 'required|string',
+                'items.*.button_title' => 'required|string'
+            ],
+            [],
+            [
+                'items.*.title' => 'Введите заголовок.',
+                'items.*.subtitle' => 'Введите подзаголовок',
+                'items.*.button_title' => 'Введите надпись на кнопке.'
+            ]);
+    }
 }

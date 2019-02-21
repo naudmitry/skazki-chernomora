@@ -28,7 +28,6 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
-                            maxlength="20"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>
@@ -55,7 +54,6 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
-                            maxlength="20"
                             value="{{ $setting->button_title ?? '' }}">
                 </div>
             </div>
@@ -69,7 +67,6 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
-                            maxlength="20"
                             value="{{ $setting->link ?? '' }}">
                 </div>
             </div>
@@ -93,7 +90,6 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
-                            maxlength="20"
                             value="{{ $setting->animation_delay ?? '' }}">
                 </div>
             </div>
