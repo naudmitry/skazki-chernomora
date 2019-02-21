@@ -93,7 +93,7 @@
                             <div class="information-container">
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-check-circle"></i> Опубликовано:
+                                        <i class="far fa-check-circle mr-2"></i>Опубликовано:
                                     </div>
                                     <div class="toggle-flip" style="height: 21px;">
                                         <label>
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-calendar-check"></i> Создано:
+                                        <i class="far fa-calendar-check mr-2"></i>Создано:
                                     </div>
                                     <div>
                                         {{ $faq->created_at->format('d/m/Y H:i') ?? '' }}
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-calendar-plus"></i> Обновлено:
+                                        <i class="far fa-calendar-plus mr-2"></i>Обновлено:
                                     </div>
                                     <div>
                                         {{ $faq->updated_at->format('d/m/Y H:i') ?? '' }}
@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-plus-square"></i> Обновлен:
+                                        <i class="far fa-plus-square mr-2"></i>Обновлен:
                                     </div>
                                     <div>
                                         {{ $faq->updater->name ?? '' }} {{ $faq->updater->surname ?? '' }}
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="fas fa-street-view"></i> Просмотрено:
+                                        <i class="fas fa-street-view mr-2"></i>Просмотрено:
                                     </div>
                                     <div>
                                         {{ $faq->view_count ?? '' }}
@@ -147,7 +147,7 @@
 
         <div class="tile-footer">
             <button class="btn btn-default" type="submit" disabled>
-                <i class="fa fa-fw fa-lg fa-check-circle"></i> Сохранить
+                <i class="fa fa-check-circle mr-2"></i>Сохранить
             </button>
         </div>
     </form>

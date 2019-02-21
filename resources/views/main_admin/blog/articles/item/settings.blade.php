@@ -89,7 +89,7 @@
                             <div class="information-container">
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-check-circle"></i> Опубликовано:
+                                        <i class="far fa-check-circle mr-2"></i>Опубликовано:
                                     </div>
                                     <div class="toggle-flip" style="height: 21px;">
                                         <label>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-calendar-check"></i> Создано:
+                                        <i class="far fa-calendar-check mr-2"></i>Создано:
                                     </div>
                                     <div>
                                         {{ $blog->created_at->format('d/m/Y H:i') ?? '' }}
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-calendar-plus"></i> Обновлено:
+                                        <i class="far fa-calendar-plus mr-2"></i>Обновлено:
                                     </div>
                                     <div>
                                         {{ $blog->updated_at->format('d/m/Y H:i') ?? '' }}
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="far fa-plus-square"></i> Обновлен:
+                                        <i class="far fa-plus-square mr-2"></i>Обновлен:
                                     </div>
                                     <div>
                                         {{ $blog->updater->name ?? '' }} {{ $blog->updater->surname ?? '' }}
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="information-row">
                                     <div>
-                                        <i class="fas fa-street-view"></i> Просмотрено:
+                                        <i class="fas fa-street-view mr-2"></i>Просмотрено:
                                     </div>
                                     <div>
                                         {{ $blog->view_count ?? '' }}
