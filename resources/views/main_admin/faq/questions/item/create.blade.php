@@ -94,5 +94,5 @@
 @endsection
 
 @section('footer__script')
-    <script type="text/javascript" src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vali-admin/plugins/tinymce/tinymce.min.js') }}"></script>
 @endsection

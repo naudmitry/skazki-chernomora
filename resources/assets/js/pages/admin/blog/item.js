@@ -11,7 +11,6 @@ $(function () {
         selector: '#textarea-editor',
         language: 'ru',
         height: 500,
-        toolbar: "image",
         plugins: "image imagetools",
         setup: function (editor) {
             editor.on('keyup change', function (e) {
