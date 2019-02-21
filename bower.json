@@ -26,8 +26,5 @@
     "jQuery.ptTimeSelect": "^0.8.2",
     "components-font-awesome": "5.0.6",
     "mustache.js": "mustache#^2.3.0"
-  },
-  "devDependencies": {
-    "tinymce": "tinymce-dist#^4.8.3"
   }
 }
