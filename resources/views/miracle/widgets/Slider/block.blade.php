@@ -30,19 +30,6 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="slot_amount">Количество слотов:</label>
-                <div class="col-md-8">
-                    <input
-                            id="slot_amount"
-                            data-setting="slot_amount"
-                            type="text"
-                            class="form-control widget-setting required"
-                            required
-                            value="{{ $setting->slot_amount ?? '' }}">
-                </div>
-            </div>
-
-            <div class="form-group row">
                 <label class="control-label col-md-4" for="speed">Скорость перехода (мс):</label>
                 <div class="col-md-8">
                     <input
