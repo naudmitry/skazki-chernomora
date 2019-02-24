@@ -57,8 +57,6 @@ class FaqController extends Controller
             });
         }
 
-        $faqs = $faqs->paginate(5);
-
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::FAQ_PAGE);
         $staticPage->incrementViewsCount();
 
