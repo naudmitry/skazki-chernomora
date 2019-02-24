@@ -26,6 +26,9 @@ class WidgetRepository
                             MiracleWidgets\Trend::class => ['location' => 'middle'],
                             MiracleWidgets\FeaturesThree::class => ['location' => 'middle'],
                             MiracleWidgets\PostWrapper::class => ['location' => 'middle'],
+                            MiracleWidgets\Parallax::class => ['location' => 'middle'],
+                            MiracleWidgets\MultiBox::class => ['location' => 'middle'],
+                            MiracleWidgets\Blog::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_MAIN_PAGE =>
