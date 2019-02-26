@@ -19,28 +19,41 @@
 
         <div class="flex-right">
             <li class="dropdown">
-                <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
-                    <i class="far fa-user"></i>
+                <a class="app-nav__item" href="javascript:;" data-toggle="dropdown">
+                    <i class="fas fa-user"></i>
+                    <span>{{ auth('admin')->user()->full_name }}</span>
+                    <i class="fas fa-caret-down"></i>
                 </a>
 
-                <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-cog fas-lg"></i> Настройки
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fas-lg"></i> Профиль
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="{{ route('account.logout') }}">
-                            <i class="fas fa-sign-out-alt fas-lg"></i> Выйти
-                        </a>
-                    </li>
+                <ul class="app-notification dropdown-menu dropdown-menu-rigth">
+                    <div class="app-notification__content">
+                        <li>
+                            <a class="app-notification__item" href="#">
+                                <span class="app-notification__icon">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-users-cog"></i>
+                                    </span>
+                                </span>
+                                <div>
+                                    <p class="app-notification__message">Профиль</p>
+                                    <p class="app-notification__meta">Открыть настройки</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="app-notification__item" href="{{ route('account.logout') }}">
+                                    <span class="app-notification__icon">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </span>
+                                    </span>
+                                <div>
+                                    <p class="app-notification__message">Выйти</p>
+                                    <p class="app-notification__meta">Завершить текущий сеанс</p>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
                 </ul>
             </li>
         </div>
