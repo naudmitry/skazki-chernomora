@@ -8,7 +8,7 @@
                     data-target="#collapse-{{ $position }}"
                     aria-expanded="false"
                     aria-controls="collapse-{{ $position }}"
-            ><i class="fas fa-caret-down mr-2"></i><span class="geo-ip-panel-title"></span></button>
+            ><span class="geo-ip-panel-title"></span></button>
         </h5>
         <a href="javascript:;" class="mr-3" data-action="close"><i class="fas fa-times"></i></a>
     </div>
