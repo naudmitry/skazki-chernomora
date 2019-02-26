@@ -8,7 +8,7 @@
                     data-target="#collapse-{{ $position }}"
                     aria-expanded="false"
                     aria-controls="collapse-{{ $position }}"
-            ><span class="widget-title">{{ 'Слайдер' }}</span></button>
+            ><i class="fas fa-caret-down mr-2"></i><span class="widget-title">{{ 'Слайдер' }}</span></button>
         </h5>
 
         <div class="mr-3">

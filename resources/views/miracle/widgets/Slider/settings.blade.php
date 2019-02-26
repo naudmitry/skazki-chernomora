@@ -2,8 +2,6 @@
     <h4 class="line-head">Настройки виджета</h4>
 
     <div class="tile-body">
-        <p class="text-danger">Добавьте настройки для слайдера.</p>
-
         <form class="form-horizontal widget-settings-form" id="form-widget-panel" action="{{ route('widget.save', $widget) }}">
             {{ csrf_field() }}
 
