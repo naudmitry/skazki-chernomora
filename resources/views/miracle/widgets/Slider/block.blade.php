@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header" id="heading-{{ $position }}" style="display: flex; align-items: center; justify-content: space-between;">
+    <div class="card-header collapse-header" id="heading-{{ $position }}">
         <h5 class="mb-0">
             <button
                     class="btn btn-link"
