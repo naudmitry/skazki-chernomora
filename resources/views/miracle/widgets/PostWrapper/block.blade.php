@@ -8,7 +8,7 @@
                     data-target="#collapse-{{ $position }}"
                     aria-expanded="false"
                     aria-controls="collapse-{{ $position }}"
-            ><i class="fas fa-caret-down mr-2"></i><span class="widget-title">{{ $setting->title ?? 'Введите название' }}</span></button>
+            ><span class="widget-title">{{ $setting->title ?? 'Введите название' }}</span></button>
         </h5>
 
         <div class="mr-3">

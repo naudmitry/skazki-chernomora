@@ -15360,16 +15360,20 @@ be a descendant of the grid when it is being dragged.
   justify-content: space-between;
 }
 
-[data-toggle="collapse"]:before {
+button.btn-link[aria-expanded="false"]:before {
   display: inline-block;
   content: "\f105";
   font-family: Font Awesome\ 5 Free;
   font-weight:900;
   transition: all linear 0.25s;
-  transform: rotate(90deg);
   margin-right: 10px;
 }
 
-[data-toggle="collapse"].collapsed:before {
-  transform: rotate(0deg);
+button.btn-link[aria-expanded="true"]:before {
+  display: inline-block;
+  content: "\f107";
+  font-family: Font Awesome\ 5 Free;
+  font-weight:900;
+  transition: all linear 0.25s;
+  margin-right: 10px;
 }
