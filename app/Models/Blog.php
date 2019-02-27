@@ -86,26 +86,6 @@ class Blog extends Model implements SlugableInterface, WidgetableInterface
     }
 
     /**
-     * @param $text
-     * @param int $length
-     * @return null|string|string[]
-     */
-    function reduction($text, $length = 70)
-    {
-        if (mb_strlen($text, 'UTF-8') > $length) {
-            $substr = mb_substr($text, 0, $length, 'UTF-8');
-
-            $text = strpos($substr, ' ') !== false
-                ? preg_replace('~(\s)?(?(1)\S+$|\s$)~', '', $substr)
-                : strstr($text, ' ', true);
-
-            $text .= ' ... ';
-        }
-
-        return $text;
-    }
-
-    /**
      * @param int $value
      */
     public function incrementViewsCount($value = 1)

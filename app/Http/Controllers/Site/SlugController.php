@@ -57,9 +57,6 @@ class SlugController extends Controller
 
                     case StaticPageTypesEnum::CONTACTS_PAGE :
                         return app(IndexController::class)->contact();
-
-                    case StaticPageTypesEnum::ABOUT_PAGE :
-                        return app(IndexController::class)->about();
                 }
 
                 return app(PageController::class)->single($entity);

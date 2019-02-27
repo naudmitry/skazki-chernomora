@@ -10,9 +10,6 @@
     <div class="container">
         <div id="main">
             <div class="blog-posts layout-timeline layout-fullwidth">
-                <div class="timeline-author">
-                    <img src="http://placehold.it/100x100" alt="">
-                </div>
                 <div class="iso-container iso-col-2 style-masonry has-column-width">
                     @foreach ($blogs as $blog)
                         <div class="iso-item">
@@ -32,14 +29,14 @@
                                         <span class="entry-time"><span class="published">{{ $blog->created_at->format('d M, Y') }}</span></span>
                                         <span class="post-category">in <a href="#">Web Design</a></span>
                                     </div>
-                                    <h3 class="entry-title"><a href="#">{{ $blog->name }}</a></h3>
-                                    <p>{!! $blog->content !!}</p>
+                                    <h3 class="entry-title"><a href="{{ $blog->getRoute() }}">{{ $blog->name }}</a></h3>
+                                    <p>{!! mb_strimwidth($blog->content, 0, 200, "...") !!}</p>
                                 </div>
                                 <div class="post-action">
-                                    <a href="#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>
-                                    <a href="#" class="btn btn-sm style3 post-like"><i class="fa fa-heart"></i>480</a>
-                                    <a href="#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Поделиться</a>
-                                    <a href="#" class="btn btn-sm style3 post-read-more">Подробнее</a>
+                                    {{--<a href="#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>--}}
+                                    {{--<a href="#" class="btn btn-sm style3 post-like"><i class="fa fa-heart"></i>480</a>--}}
+                                    {{--<a href="#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Поделиться</a>--}}
+                                    <a href="{{ $blog->getRoute() }}" class="btn btn-sm style3 post-read-more">Подробнее</a>
                                 </div>
                             </article>
                         </div>

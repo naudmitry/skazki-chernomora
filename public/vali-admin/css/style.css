@@ -15365,7 +15365,6 @@ button.btn-link[aria-expanded="false"]:before {
   content: "\f105";
   font-family: Font Awesome\ 5 Free;
   font-weight:900;
-  transition: all linear 0.25s;
   margin-right: 10px;
 }
 
@@ -15374,6 +15373,5 @@ button.btn-link[aria-expanded="true"]:before {
   content: "\f107";
   font-family: Font Awesome\ 5 Free;
   font-weight:900;
-  transition: all linear 0.25s;
   margin-right: 10px;
 }

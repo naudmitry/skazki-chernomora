@@ -21,10 +21,6 @@
                     <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, [], $currentShowcase->id) }}">Главная</a>
                 </li>
 
-                <li class="{{ (Request::url() == static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, [], $currentShowcase->id) ? 'active' : '') }}">
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, [], $currentShowcase->id) }}">О нас</a>
-                </li>
-
                 {{--<li class="{{ (Route::is('front.service.*') ? 'active' : '') }}">--}}
                     {{--<a href="{{ route('front.service.index') }}">Услуги</a>--}}
                 {{--</li>--}}

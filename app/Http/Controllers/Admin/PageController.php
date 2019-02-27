@@ -240,22 +240,6 @@ class PageController extends Controller
     }
 
     /**
-     * @param Showcase $administeredShowcase
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function about(Showcase $administeredShowcase)
-    {
-        $staticPage = $this->pageRepository->getStaticPage(
-            $administeredShowcase,
-            StaticPageTypesEnum::ABOUT_PAGE
-        );
-
-        return view('main_admin.about.index', compact(
-            'staticPage'
-        ));
-    }
-
-    /**
      * @param Request $request
      * @param Page $page
      * @return \Illuminate\Http\JsonResponse

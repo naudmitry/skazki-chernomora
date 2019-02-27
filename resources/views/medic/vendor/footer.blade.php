@@ -113,9 +113,6 @@
                     <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, [], $currentShowcase->id) }}">Главная</a>
                 </li>
                 <li>
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, [], $currentShowcase->id) }}">О нас</a>
-                </li>
-                <li>
                     <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::CONTACTS_PAGE, [], $currentShowcase->id) }}">Контакты</a>
                 </li>
             </ul>

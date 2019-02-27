@@ -26,9 +26,6 @@
                 @foreach(array_get($widgets_top, 'middle', []) as $widget)
                     @widget('miracle.' . $widget->class_name, ['widget' => $widget])
                 @endforeach
-                <li class="menu-item-has-children mega-menu-item mega-column-4">
-                    <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::ABOUT_PAGE, [], $currentShowcase->id) }}">About us</a>
-                </li>
             </ul>
         </nav>
     </div>
