@@ -1,6 +1,6 @@
 <li class="dropdown">
     <a class="app-nav__item" href="javascript:;" data-toggle="dropdown">
-        <i class="fas fa-globe-asia"></i>
+        <i class="fas fa-globe-asia button-link-target-blank" data-href="{{ $administeredShowcase->http_origin }}"></i>
         <span>{{ $administeredShowcase->title }}</span>
         <i class="fas fa-caret-down"></i>
     </a>
@@ -15,7 +15,7 @@
                     >
                         <span class="app-notification__icon">
                             <span class="fa-stack fa-lg">
-                                <i class="fas fa-globe-asia"></i>
+                                <i class="fas fa-globe-asia button-link-target-blank" data-href="{{ $showcase->http_origin }}"></i>
                             </span>
                         </span>
                         <div>
