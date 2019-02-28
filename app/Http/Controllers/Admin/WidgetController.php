@@ -136,7 +136,7 @@ class WidgetController extends Controller
 
         $availableWidgets = collect($this->widgetRepository->getWidgetsForContainer($container))
             ->map(function ($item, $key) {
-                return ['id' => $item['class_name'], 'text' => $item['class_name']];
+                return ['id' => $item['class_name'], 'text' => trans('widgets.' . $item['class_name'] . '.title')];
             })
             ->values();
 

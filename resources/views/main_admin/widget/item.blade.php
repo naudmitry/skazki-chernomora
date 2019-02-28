@@ -9,7 +9,7 @@
             ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
         </label>
 
-        <p class="title dragula-handle" style="margin-bottom: 0;">{{ $widget->class_name }}</p>
+        <p class="title dragula-handle" style="margin-bottom: 0;">{{ trans('widgets.' . $widget->class_name . '.title') }}</p>
     </div>
 
     <div class="btn-group">
@@ -17,10 +17,10 @@
             <i class="fas {{ $dragging ? 'fa-arrows-alt' : 'fa-ban' }} dragula-handle" style="vertical-align: middle;"></i>
         </a>
 
-        <a
-            class="btn btn-primary"
-            href="#"
-        ><i class="fas fa-eye"></i></a>
+        {{--<a--}}
+            {{--class="btn btn-primary"--}}
+            {{--href="#"--}}
+        {{--><i class="fas fa-eye"></i></a>--}}
 
         <a
             class="btn btn-primary widget-settings-open"

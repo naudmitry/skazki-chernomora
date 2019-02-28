@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 <select class="form-control select2 select-add-block">
                     @foreach($allContainerWidgets as $widgetItem)
-                        <option value="{{ $widgetItem['class_name'] }}">{{ $widgetItem['class_name'] }}</option>
+                        <option
+                                value="{{ $widgetItem['class_name'] }}"
+                        >{{ trans('widgets.' . $widgetItem['class_name'] . '.title') }}</option>
                     @endforeach
                 </select>
             </div>
