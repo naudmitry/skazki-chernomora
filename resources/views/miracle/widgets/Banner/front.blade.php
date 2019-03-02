@@ -3,8 +3,8 @@
         <div class="container">
             <div class="caption-wrapper position-right">
                 <div class="caption">
-                    <h2 class="caption-lg">{{ $setting->title }}</h2>
-                    <h5 class="caption-sm">{{ $setting->subtitle }}</h5>
+                    <h2 class="caption-lg" style="color:{{ $setting->title_color ?? '' }}">{{ $setting->title }}</h2>
+                    <h5 class="caption-sm" style="color:{{ $setting->subtitle_color ?? '' }}">{{ $setting->subtitle }}</h5>
                 </div>
             </div>
         </div>

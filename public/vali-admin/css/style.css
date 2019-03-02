@@ -15375,3 +15375,7 @@ button.btn-link[aria-expanded="true"]:before {
   font-weight:900;
   margin-right: 10px;
 }
+
+input[type=color] {
+  height: 37px;
+}

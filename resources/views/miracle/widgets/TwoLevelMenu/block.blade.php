@@ -35,9 +35,6 @@
             <div class="form-group row">
                 <label class="control-label col-md-4" for="link">Адрес ссылки:</label>
                 <div class="input-group col-md-8">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">{{ $showcase->getDomainPath() }}</span>
-                    </div>
                     <input
                             id="link"
                             name="link"
@@ -45,13 +42,6 @@
                             class="form-control widget-setting"
                             type="text"
                             value="{{ $setting->link ?? '' }}">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            <a href="#" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </span>
-                    </div>
                 </div>
             </div>
         </div>

@@ -6,22 +6,22 @@
             </h1>
         </div>
         <nav id="nav">
-            <ul class="header-top-nav">
-                <li class="mini-search">
-                    <a href="#"><i class="fa fa-search has-circle"></i></a>
-                    <div class="main-nav-search-form">
-                        <form method="get" role="search">
-                            <div class="search-box">
-                                <input type="text" id="s" name="s" value="">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-                <li class="visible-mobile">
-                    <a href="#mobile-nav-wrapper" data-toggle="collapse"><i class="fa fa-bars has-circle"></i></a>
-                </li>
-            </ul>
+            {{--<ul class="header-top-nav">--}}
+                {{--<li class="mini-search">--}}
+                    {{--<a href="#"><i class="fa fa-search has-circle"></i></a>--}}
+                    {{--<div class="main-nav-search-form">--}}
+                        {{--<form method="get" role="search">--}}
+                            {{--<div class="search-box">--}}
+                                {{--<input type="text" id="s" name="s" value="">--}}
+                                {{--<button type="submit"><i class="fa fa-search"></i></button>--}}
+                            {{--</div>--}}
+                        {{--</form>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
+                {{--<li class="visible-mobile">--}}
+                    {{--<a href="#mobile-nav-wrapper" data-toggle="collapse"><i class="fa fa-bars has-circle"></i></a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
             <ul id="main-nav" class="hidden-mobile">
                 @foreach(array_get($widgets_top, 'middle', []) as $widget)
                     @widget('miracle.' . $widget->class_name, ['widget' => $widget])

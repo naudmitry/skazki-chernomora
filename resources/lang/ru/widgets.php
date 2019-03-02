@@ -9,7 +9,7 @@ return [
     'Logo.title' => 'Логотип',
     'MultiBox.title' => 'Блок элементов в виде таблицы',
     'OneLevelMenu.title' => 'Односсылочное меню',
-    'Parallax.title' => 'Картинка с надписью с эффектом движения',
+    'Parallax.title' => 'Картинка с надписями',
     'PostWrapper.title' => 'Строка картинок',
     'Slider.title' => 'Слайдер',
     'Trend.title' => 'Диаграмма',

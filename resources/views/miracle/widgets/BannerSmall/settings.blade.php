@@ -14,7 +14,20 @@
                             data-setting="title"
                             class="form-control widget-setting"
                             type="text"
-                            value="{{ $widget_setting->title }}">
+                            value="{{ $widget_setting->title ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="title_color">Цвет текста заголовка:</label>
+                <div class="col-md-8">
+                    <input
+                            id="title_color"
+                            name="title_color"
+                            data-setting="title_color"
+                            class="form-control widget-setting"
+                            type="color"
+                            value="{{ $widget_setting->title_color ?? '' }}">
                 </div>
             </div>
 
@@ -27,7 +40,7 @@
                             data-setting="image_link"
                             class="form-control widget-setting"
                             type="text"
-                            value="{{ $widget_setting->image_link }}">
+                            value="{{ $widget_setting->image_link ?? '' }}">
                 </div>
             </div>
 

@@ -9,6 +9,7 @@ class BannerSmall extends AbstractContentWidget
     protected $defaultSettings =
         [
             'title' => '',
+            'title_color' => '#000',
             'image_link' => ''
         ];
 
@@ -18,11 +19,13 @@ class BannerSmall extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|string',
+                'title_color' => 'required|string',
                 'image_link' => 'required|url'
             ],
             [],
             [
                 'title' => 'Введите заголовок.',
+                'title_color' => 'Введите цвет заголовка.',
                 'image_link' => 'Введите ссылку на картинку.'
             ]);
     }

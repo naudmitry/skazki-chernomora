@@ -8918,6 +8918,7 @@ ul.filter-categories > li li:last-child {
 .faqs .panel-content {
     padding: 30px 40px;
     background: #edf6ff;
+    color: black;
 }
 
 /* terms and conditions */
