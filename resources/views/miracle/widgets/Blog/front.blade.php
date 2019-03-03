@@ -26,7 +26,7 @@
                                 <span class="post-category">in <a href="#">Web Design</a></span>
                             </div>
                             <h3 class="entry-title"><a href="#">{{ $blog->name }}</a></h3>
-                            {!! mb_strimwidth($blog->content, 0, 100, "...") !!}
+                            {!! mb_strimwidth(strip_tags($blog->content), 0, 100, "...") !!}
                         </div>
                         <div class="post-action">
                             <a href="#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>
