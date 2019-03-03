@@ -67,7 +67,7 @@ $(function () {
         }));
     });
 
-    $(document).on('change', '.checkbox', function () {
+    $(document).on('change', 'input.entity-availability', function () {
         $.ajax({
             url: $(this).data('href'),
             type: 'post',

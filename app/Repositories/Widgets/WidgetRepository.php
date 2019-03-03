@@ -55,6 +55,14 @@ class WidgetRepository
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
                         ],
                 ],
+            WidgetsContainerTypesEnum::FAQ_PAGE =>
+                [
+                    'type' => 'multi',
+                    'widgets' =>
+                        [
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
+                        ],
+                ],
             WidgetsContainerTypesEnum::CUSTOM_PAGE =>
                 [
                     'type' => 'multi',

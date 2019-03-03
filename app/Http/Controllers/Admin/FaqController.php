@@ -78,6 +78,7 @@ class FaqController extends Controller
      * @param Showcase $administeredShowcase
      * @param Faq $faq
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function edit(Company $administeredCompany, Showcase $administeredShowcase, Faq $faq)
     {
@@ -86,8 +87,15 @@ class FaqController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
+        $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
+            $faq, WidgetsContainerTypesEnum::FAQ_PAGE, $administeredShowcase
+        );
+
+        $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
+        $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
+
         return view('main_admin.faq.questions.item.index', compact(
-            'faq', 'categories'
+            'faq', 'categories', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
         ));
     }
 

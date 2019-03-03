@@ -84,8 +84,11 @@ class BlogController extends Controller
         /** @var Showcase $showcase */
         $showcase = $this->showcase;
 
-        /** @var BlogCategory $currentCategory */
-        $currentCategory = $blog->categories()->find(request()->get('category_id', null));
+        if ($categoryId = request()->get('category_id', null))
+        {
+            /** @var BlogCategory $currentCategory */
+            $currentCategory = $blog->categories()->find($categoryId);
+        }
 
         $categories = BlogCategory::query()
             ->where('showcase_id', $showcase->id)
@@ -95,8 +98,14 @@ class BlogController extends Controller
 
         $blog->incrementViewsCount();
 
+        $widgetContainer = $blog->widgetContainer;
+
+        $pageWidgets = $widgetContainer ?
+            app(WidgetRepository::class)->getWidgetsByContainer($blog->widgetContainer) :
+            [];
+
         return view($this->theme . '.blog.single', compact([
-            'blog', 'categories', 'currentCategory'
+            'blog', 'categories', 'currentCategory', 'pageWidgets'
         ]));
     }
 

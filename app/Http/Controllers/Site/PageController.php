@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Classes\StaticPageTypesEnum;
 use App\Models\Page;
+use App\Repositories\PageRepository;
 use App\Repositories\Widgets\WidgetRepository;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,6 +43,10 @@ class PageController extends Controller
             app(WidgetRepository::class)->getWidgetsByContainer($page->widgetContainer) :
             [];
 
-        return view($this->theme . '.page.single', compact(['page', 'pageWidgets']));
+        $staticPage = app(PageRepository::class)->getStaticPage($this->showcase, StaticPageTypesEnum::BLOG_PAGE);
+
+        return view($this->theme . '.page.single', compact([
+            'page', 'pageWidgets', 'staticPage'
+        ]));
     }
 }

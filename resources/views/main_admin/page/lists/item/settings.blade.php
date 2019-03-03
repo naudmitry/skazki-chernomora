@@ -90,7 +90,7 @@
                                                     data-href="{{ isset($page) ? route('admin.page.list.enable', $page) : '' }}"
                                                     @if ($page->enable) checked @endif
                                                     type="checkbox"
-                                                    class="checkbox"
+                                                    class="checkbox entity-availability"
                                             ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                                         </label>
                                     </div>

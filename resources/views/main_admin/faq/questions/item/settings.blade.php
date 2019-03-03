@@ -35,8 +35,11 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Адрес категории:</label>
+                        <label class="control-label col-md-3">Адрес вопроса:</label>
                         <div class="input-group col-md-9">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>
+                            </div>
                             <input id="address" name="address" class="form-control" type="text" value="{{ $faq->getSlug() }}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
@@ -101,7 +104,7 @@
                                                     data-href="{{ isset($faq) ? route('admin.faq.question.enable', $faq) : '' }}"
                                                     @if ($faq->enable) checked @endif
                                                     type="checkbox"
-                                                    class="checkbox"
+                                                    class="checkbox entity-availability"
                                             ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                                         </label>
                                     </div>
