@@ -94,7 +94,10 @@ class WidgetRepository
                     'type' => 'single',
                     'widgets' =>
                         [
-
+                            MiracleWidgets\CallOutBox2::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\PopularTags::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\UsefulLinks::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\RecentPosts::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
         ];

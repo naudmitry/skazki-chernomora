@@ -32,8 +32,8 @@ class WidgetsPositionComposer
             $showcase, WidgetsContainerTypesEnum::HEADER
         ));
 
-//        $view->with('widgets_bottom', $this->widgetRepository->getWidgetsBySingleContainerType(
-//            $showcase, WidgetsContainerTypesEnum::FOOTER
-//        ));
+        $view->with('widgets_bottom', $this->widgetRepository->getWidgetsBySingleContainerType(
+            $showcase, WidgetsContainerTypesEnum::FOOTER
+        ));
     }
 }

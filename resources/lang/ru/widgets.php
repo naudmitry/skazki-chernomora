@@ -5,6 +5,7 @@ return [
     'BannerSmall.title' => 'Баннер (маленький)',
     'Blog.title' => 'Новости',
     'CallOutBox.title' => 'Строка с надписью и кнопкой',
+    'CallOutBox2.title' => 'Строка с надписью и кнопкой',
     'FeaturesThree.title' => 'Блок элементов в 3 столбцах',
     'Logo.title' => 'Логотип',
     'MultiBox.title' => 'Блок элементов в виде таблицы',
@@ -14,4 +15,7 @@ return [
     'Slider.title' => 'Слайдер',
     'Trend.title' => 'Диаграмма',
     'TwoLevelMenu.title' => 'Мультиссылочное меню',
+    'PopularTags.title' => 'Популярные теги',
+    'UsefulLinks.title' => 'Полезные ссылки',
+    'RecentPosts.title' => 'Недавние новости',
 ];

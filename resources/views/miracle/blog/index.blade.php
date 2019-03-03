@@ -19,7 +19,7 @@
                                     <div class="image">
                                         <img src="{{ $blog->link }}" alt="{{ $blog->title }}">
                                         <div class="image-extras">
-                                            <a href="#" class="post-gallery"></a>
+                                            <a href="{{ $blog->getRoute() }}" class="post-gallery"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -33,9 +33,6 @@
                                     <p>{!! mb_strimwidth(strip_tags($blog->content), 0, 200, "...") !!}</p>
                                 </div>
                                 <div class="post-action">
-                                    {{--<a href="#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>--}}
-                                    {{--<a href="#" class="btn btn-sm style3 post-like"><i class="fa fa-heart"></i>480</a>--}}
-                                    {{--<a href="#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Поделиться</a>--}}
                                     <a href="{{ $blog->getRoute() }}" class="btn btn-sm style3 post-read-more">Подробнее</a>
                                 </div>
                             </article>

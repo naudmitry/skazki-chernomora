@@ -10,9 +10,9 @@
                     <article class="post post-masonry">
                         <div class="post-image">
                             <div class="image">
-                                <img src="http://placehold.it/780x390" alt="">
+                                <img src="{{ $blog->link }}" alt="{{ $blog->title }}">
                                 <div class="image-extras">
-                                    <a href="#" class="post-gallery"></a>
+                                    <a href="{{ $blog->getRoute() }}" class="post-gallery"></a>
                                 </div>
                             </div>
                         </div>
@@ -29,10 +29,7 @@
                             {!! mb_strimwidth(strip_tags($blog->content), 0, 100, "...") !!}
                         </div>
                         <div class="post-action">
-                            <a href="#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>
-                            <a href="#" class="btn btn-sm style3 post-like"><i class="fa fa-heart"></i>480</a>
-                            <a href="#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Share</a>
-                            <a href="#" class="btn btn-sm style3 post-read-more">More</a>
+                            <a href="{{ $blog->getRoute() }}" class="btn btn-sm style3 post-read-more">Подробнее</a>
                         </div>
                     </article>
                 </div>

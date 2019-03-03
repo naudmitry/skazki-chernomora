@@ -1,63 +1,14 @@
 <footer id="footer" class="style4">
+    @foreach(array_get($widgets_bottom, 'top', []) as $widget)
+        @widget('miracle.' . $widget->class_name, ['widget' => $widget])
+    @endforeach
     <div class="footer-wrapper">
         <div class="container">
             <div class="row add-clearfix same-height">
-                <div class="col-sm-6 col-md-3">
-                    <h5 class="section-title box">Recent Posts</h5>
-                    <ul class="recent-posts">
-                        <li>
-                            <a href="#" class="post-author-avatar"><span><img src="http://placehold.it/50x50" alt=""></span></a>
-                            <div class="post-content">
-                                <a href="#" class="post-title">Website design trends for 2014</a>
-                                <p class="post-meta">By <a href="#">Admin</a>  .  12 Nov, 2014</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" class="post-author-avatar"><span><img src="http://placehold.it/50x50" alt=""></span></a>
-                            <div class="post-content">
-                                <a href="#" class="post-title">UI experts and modern designs</a>
-                                <p class="post-meta">By <a href="#">Admin</a>  .  12 Nov, 2014</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" class="post-author-avatar"><span><img src="http://placehold.it/50x50" alt=""></span></a>
-                            <div class="post-content">
-                                <a href="#" class="post-title">Mircale is available in wordpress</a>
-                                <p class="post-meta">By <a href="#">Admin</a>  .  12 Nov, 2014</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <h5 class="section-title box">Popular Tags</h5>
-                    <div class="tags">
-                        <a href="#" class="tag">masonry</a>
-                        <a href="#" class="tag">responsive</a>
-                        <a href="#" class="tag">Ecommerce</a>
-                        <a href="#" class="tag">web design</a>
-                        <a href="#" class="tag">wordpres</a>
-                        <a href="#" class="tag">mobile</a>
-                        <a href="#" class="tag">retina</a>
-                        <a href="#" class="tag">multi-purpose</a>
-                        <a href="#" class="tag">blog posts</a>
-                        <a href="#" class="tag">new sliders</a>
-                        <a href="#" class="tag">popular</a>
-                        <a href="#" class="tag">recent</a>
-                        <a href="#" class="tag">modern</a>
-                        <a href="#" class="tag">themeforest</a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <h5 class="section-title box">Useful Links</h5>
-                    <ul class="arrow useful-links">
-                        <li><a href="#">About SoapTheme</a></li>
-                        <li><a href="#">Video Overview</a></li>
-                        <li><a href="#">Customer Support</a></li>
-                        <li><a href="#">Theme Features</a></li>
-                        <li><a href="#">Breaking News</a></li>
-                        <li><a href="#">Upcoming Updates</a></li>
-                    </ul>
-                </div>
+                @foreach(array_get($widgets_bottom, 'middle', []) as $widget)
+                    @widget('miracle.' . $widget->class_name, ['widget' => $widget])
+                @endforeach
+
                 <div class="col-sm-6 col-md-3">
                     <h5 class="section-title box">About Miracle</h5>
                     <p>Mircale is a Hand Crafted Pexil Perfect - Responsive - Multi-Purpose & Retina Ready Premium Wordpress Theme which sets new standards for the web design in 2014.</p>
