@@ -19,6 +19,9 @@ require('bootstrap');
 require('select2/dist/js/select2.full');
 require('bootstrap-notify');
 
+window.Mustache = require('mustache');
+window.DataTable = require('datatables.net');
+
 import swal from 'sweetalert';
 window.swal = swal;
 

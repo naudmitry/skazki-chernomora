@@ -95,9 +95,3 @@
         @include('main_admin.companies.lists.columns.actions')
     </script>
 @endsection
-
-@section('footer__script')
-    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/mustache.js') }}"></script>
-@endsection
