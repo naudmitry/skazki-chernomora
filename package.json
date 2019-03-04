@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.1.1",
-    "datatables.net-dt": "^1.10.19",
+    "datatables.net-bs4": "^1.10.19",
     "dragula": "^3.7.2",
     "jquery-ui": "^1.12.1",
     "mustache": "^3.0.1",
