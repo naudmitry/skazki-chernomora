@@ -32,8 +32,8 @@ class BlogController extends Controller
 
     /**
      * @param Request $request
-     * @param WidgetRepository $widgetRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      * @throws \Throwable
      */
     public function index(Request $request)

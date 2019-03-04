@@ -41,6 +41,8 @@
 
         <!-- Responsive Styles -->
         <link rel="stylesheet" href="{{ asset('miracle/css/responsive.css') }}">
+
+        @yield('header__ss')
     </head>
     <body>
         <div id="page-wrapper">

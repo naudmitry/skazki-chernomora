@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Classes\PageTypesEnum;
 use App\Classes\StaticPageTypesEnum;
 use App\Classes\WidgetsContainerTypesEnum;
-use App\Models\Page;
+use App\Repositories\PageRepository;
 use App\Repositories\Widgets\WidgetRepository;
 
 class IndexController extends Controller
@@ -18,13 +17,11 @@ class IndexController extends Controller
      */
     public function index(WidgetRepository $widgetRepository)
     {
-        $staticPage = Page::query()
-            ->where('showcase_id', $this->showcase->id)
-            ->where('static_page_type', StaticPageTypesEnum::MAIN_PAGE)
-            ->where('type', PageTypesEnum::STATIC_PAGE)
-            ->first();
+        $staticPage = app(PageRepository::class)->getStaticPage($this->showcase, StaticPageTypesEnum::MAIN_PAGE);
 
-        $pageWidgets = $widgetRepository->getWidgetsForStaticPage($staticPage, WidgetsContainerTypesEnum::MAIN_PAGE);
+        $pageWidgets = $widgetRepository->getWidgetsForStaticPage(
+            $staticPage, WidgetsContainerTypesEnum::MAIN_PAGE
+        );
 
         return view($this->theme . '.index', compact([
             'staticPage', 'pageWidgets'
@@ -34,32 +31,17 @@ class IndexController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function blog()
-    {
-        $staticPage = Page::query()
-            ->where('showcase_id', $this->showcase->id)
-            ->where('static_page_type', StaticPageTypesEnum::BLOG_PAGE)
-            ->where('type', PageTypesEnum::STATIC_PAGE)
-            ->first();
-
-        return view($this->theme . '.blog.index', compact([
-            'staticPage'
-        ]));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function contact()
     {
-        $staticPage = Page::query()
-            ->where('showcase_id', $this->showcase->id)
-            ->where('static_page_type', StaticPageTypesEnum::CONTACTS_PAGE)
-            ->where('type', PageTypesEnum::STATIC_PAGE)
-            ->first();
+        $staticPage = app(PageRepository::class)->getStaticPage($this->showcase, StaticPageTypesEnum::CONTACTS_PAGE);
+        $staticPage->incrementViewsCount();
+
+        $pageWidgets = app(WidgetRepository::class)->getWidgetsForStaticPage(
+            $staticPage, WidgetsContainerTypesEnum::BLOG_MAIN_PAGE
+        );
 
         return view($this->theme . '.contact.index', compact([
-            'staticPage'
+            'staticPage', 'pageWidgets'
         ]));
     }
 }

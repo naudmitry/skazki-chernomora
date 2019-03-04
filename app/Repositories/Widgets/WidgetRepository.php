@@ -75,7 +75,7 @@ class WidgetRepository
                     'type' => 'single',
                     'widgets' =>
                         [
-
+                            MiracleWidgets\YandexMap::class => ['location' => 'top', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::HEADER =>

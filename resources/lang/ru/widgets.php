@@ -20,4 +20,5 @@ return [
     'RecentPosts.title' => 'Недавние новости',
     'CopyrightArea.title' => 'Авторские права и меню',
     'About.title' => 'О нас',
+    'YandexMap.title' => 'Яндекс карта',
 ];
