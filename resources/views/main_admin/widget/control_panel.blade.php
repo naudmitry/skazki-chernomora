@@ -26,6 +26,12 @@
             @endforeach
         </div>
 
+        <div class="media-list media-list-container" id="media-list-target-middle">
+            @foreach(array_get($activeWidgets, 'bottom', []) as $widget)
+                @include('main_admin.widget.item', ['widget' => $widget, 'dragging' => false])
+            @endforeach
+        </div>
+
         <div class="tile-footer">
             <button
                     id="add-block-widget"

@@ -18,4 +18,6 @@ return [
     'PopularTags.title' => 'Популярные теги',
     'UsefulLinks.title' => 'Полезные ссылки',
     'RecentPosts.title' => 'Недавние новости',
+    'CopyrightArea.title' => 'Авторские права и меню',
+    'About.title' => 'О нас',
 ];

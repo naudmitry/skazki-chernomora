@@ -21,7 +21,6 @@ class WidgetRepository
                     'widgets' =>
                         [
                             MiracleWidgets\Slider::class => ['location' => 'top', 'single' => true],
-
                             MiracleWidgets\CallOutBox::class => ['location' => 'middle'],
                             MiracleWidgets\Trend::class => ['location' => 'middle'],
                             MiracleWidgets\FeaturesThree::class => ['location' => 'middle'],
@@ -98,6 +97,8 @@ class WidgetRepository
                             MiracleWidgets\PopularTags::class => ['location' => 'middle', 'single' => true],
                             MiracleWidgets\UsefulLinks::class => ['location' => 'middle', 'single' => true],
                             MiracleWidgets\RecentPosts::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\About::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\CopyrightArea::class => ['location' => 'bottom', 'single' => true],
                         ],
                 ],
         ];

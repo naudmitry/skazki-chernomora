@@ -4,13 +4,13 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class TwoLevelMenu extends AbstractContentWidget
+class CopyrightArea extends AbstractContentWidget
 {
     protected $blockable = true;
 
     protected $defaultSettings =
         [
-            'title' => '',
+            'copyright' => '',
             'items' => []
         ];
 
@@ -23,13 +23,15 @@ class TwoLevelMenu extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'title' => 'required|string',
+                'copyright' => 'required|string',
                 'items.*.title' => 'required|string',
+                'items.*.link' => 'required|url',
             ],
             [],
             [
-                'title' => 'Введите название.',
+                'copyright' => 'Введите название.',
                 'items.*.title' => 'Введите название.',
+                'items.*.link' => 'Введите ссылку.',
             ]);
     }
 }
