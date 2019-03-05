@@ -10,37 +10,38 @@ class FeaturesThree extends AbstractContentWidget
 
     protected $defaultSettings =
         [
-            'items' =>
+            'items' => [
                 [
-                    [
-                        'icon' => 'check',
-                        'animation_delay' => 0
-                    ],
-                    [
-                        'icon' => 'eye',
-                        'animation_delay' => 0.5
-                    ],
-                    [
-                        'icon' => 'tint',
-                        'animation_delay' => 1
-                    ]
+                    'icon' => 'check',
+                    'animation_delay' => 0
                 ],
+                [
+                    'icon' => 'eye',
+                    'animation_delay' => 0.5
+                ],
+                [
+                    'icon' => 'tint',
+                    'animation_delay' => 1
+                ]
+            ]
         ];
 
+    /**
+     * @param $validatedData
+     * @return \Illuminate\Validation\Validator|null
+     */
     public function getSettingsValidator($validatedData)
     {
         return Validator::make(
             $validatedData,
             [
-                'items.*.title' => 'required|string',
-                'items.*.subtitle' => 'required|string',
-                'items.*.button_title' => 'required|string'
+                'items.*.title' => 'required|max:30',
+                'items.*.subtitle' => 'required|max:180',
             ],
             [],
             [
                 'items.*.title' => 'Введите заголовок.',
                 'items.*.subtitle' => 'Введите подзаголовок',
-                'items.*.button_title' => 'Введите надпись на кнопке.'
             ]);
     }
 }

@@ -28,6 +28,7 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
+                            maxlength="30"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>
@@ -41,20 +42,8 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
+                            maxlength="180"
                             value="{{ $setting->subtitle ?? '' }}">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="control-label col-md-4" for="button_title">Надпись на кнопке:</label>
-                <div class="col-md-8">
-                    <input
-                            id="button_title"
-                            data-setting="button_title"
-                            type="text"
-                            class="form-control widget-setting required"
-                            required
-                            value="{{ $setting->button_title ?? '' }}">
                 </div>
             </div>
 

@@ -8,7 +8,6 @@
                         <div class="box-content">
                             <h4 class="box-title"><a href="{{ url($item->link) }}">{{ $item->title }}</a></h4>
                             <p>{{ $item->subtitle }}</p>
-                            <a href="{{ url($item->link) }}" class="btn btn-sm style4 hover-blue">{{ $item->button_title }}</a>
                         </div>
                     </div>
                 </div>
