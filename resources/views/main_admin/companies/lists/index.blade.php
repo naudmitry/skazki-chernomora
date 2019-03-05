@@ -16,7 +16,7 @@
                                     class="btn btn-primary open-company-add-modal"
                                     type="button"
                                     href="{{ route('admin.company.list.open-modal') }}"
-                            ><i class="fas fa-plus-circle"></i> Добавить</button>
+                            ><i class="fas fa-plus-circle mr-2"></i>Добавить</button>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">

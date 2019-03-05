@@ -25,8 +25,8 @@
                                 <span class="entry-time"><span class="updated no-display">2014-09-09T15:57:08+00:00</span><span class="published">12 Nov, 2014</span></span>
                                 <span class="post-category">in <a href="#">Web Design</a></span>
                             </div>
-                            <h3 class="entry-title"><a href="#">{{ $blog->name }}</a></h3>
-                            {!! mb_strimwidth(strip_tags($blog->content), 0, 100, "...") !!}
+                            <h3 class="entry-title"><a href="#">{{ mb_strimwidth($blog->name, 0, 24, "...") }}</a></h3>
+                            <p>{!! mb_strimwidth(strip_tags($blog->content), 0, 110, "...") !!}</p>
                         </div>
                         <div class="post-action">
                             <a href="{{ $blog->getRoute() }}" class="btn btn-sm style3 post-read-more">Подробнее</a>

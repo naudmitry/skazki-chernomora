@@ -28,7 +28,7 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
-                            maxlength="30"
+                            maxlength="32"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>

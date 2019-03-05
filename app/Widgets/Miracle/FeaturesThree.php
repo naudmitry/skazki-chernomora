@@ -35,7 +35,7 @@ class FeaturesThree extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'items.*.title' => 'required|max:30',
+                'items.*.title' => 'required|max:32',
                 'items.*.subtitle' => 'required|max:180',
             ],
             [],

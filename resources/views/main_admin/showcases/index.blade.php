@@ -16,7 +16,7 @@
                                     href="{{ route('admin.showcase.open-modal') }}"
                                     class="btn btn-primary open-showcase-add-modal"
                                     type="button"
-                            ><i class="fas fa-plus-circle"></i> Добавить</button>
+                            ><i class="fas fa-plus-circle mr-2"></i>Добавить</button>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
