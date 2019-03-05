@@ -28,6 +28,7 @@
                             type="text"
                             class="form-control widget-setting required"
                             required
+                            maxlength="25"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>
@@ -40,6 +41,7 @@
                             data-setting="subtitle"
                             class="form-control widget-setting"
                             type="text"
+                            maxlength="180"
                             value="{{ $setting->subtitle ?? '' }}">
                 </div>
             </div>

@@ -22,8 +22,8 @@ class MultiBox extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'items.*.title' => 'required|string',
-                'items.*.subtitle' => 'required|string',
+                'items.*.title' => 'required|max:25',
+                'items.*.subtitle' => 'required|max:180',
                 'items.*.icon' => 'required|string',
                 'items.*.link' => 'required|string',
             ],
