@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $title
  * @property string $name
  * @property boolean $enable
+ * @property boolean $favorite
  * @property string $link
  * @property string $content
  * @property integer $view_count

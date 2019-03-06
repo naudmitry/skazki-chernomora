@@ -21,6 +21,7 @@ class CreateBlogsTable extends Migration
             $table->string('title')->index();
             $table->string('name');
             $table->boolean('enable')->default(false);
+            $table->boolean('favorite')->default(false);
             $table->string('link')->nullable();
             $table->string('img_or_video')->nullable();
             $table->longText('content')->nullable();

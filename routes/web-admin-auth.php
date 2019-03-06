@@ -76,6 +76,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('blog', '[0-9]+');
                 Route::post('/blog/articles/enable/{blog}', ['uses' => 'Admin\BlogController@enable', 'as' => 'admin.blog.article.enable'])
                     ->where('blog', '[0-9]+');
+                Route::post('/blog/articles/favorite/{blog}', ['uses' => 'Admin\BlogController@favorite', 'as' => 'admin.blog.article.favorite'])
+                    ->where('blog', '[0-9]+');
 
                 Route::get('/blog/categories', ['uses' => 'Admin\BlogCategoryController@index', 'as' => 'admin.blog.category.index']);
                 Route::get('/blog/categories/create', ['uses' => 'Admin\BlogCategoryController@create', 'as' => 'admin.blog.category.create']);
@@ -113,6 +115,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::delete('/faq/questions/{faq}', ['uses' => 'Admin\FaqController@delete', 'as' => 'admin.faq.question.delete'])
                     ->where('faq', '[0-9]+');
                 Route::post('/faq/questions/enable/{faq}', ['uses' => 'Admin\FaqController@enable', 'as' => 'admin.faq.question.enable'])
+                    ->where('faq', '[0-9]+');
+                Route::post('/faq/questions/favorite/{faq}', ['uses' => 'Admin\FaqController@favorite', 'as' => 'admin.faq.question.favorite'])
                     ->where('faq', '[0-9]+');
                 Route::post('/faq/questions/save/{faq?}', ['uses' => 'Admin\FaqController@save', 'as' => 'admin.faq.question.save'])
                     ->where('faq', '[0-9]+');

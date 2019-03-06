@@ -91,11 +91,26 @@
                                     <div>
                                         <i class="far fa-check-circle mr-2"></i>Опубликовано:
                                     </div>
-                                    <div class="toggle-flip" style="height: 21px;">
-                                        <label>
+                                    <div class="toggle-flip">
+                                        <label class="mb-0">
                                             <input
                                                     data-href="{{ isset($blog) ? route('admin.blog.article.enable', $blog) : '' }}"
                                                     @if ($blog->enable) checked @endif
+                                                    type="checkbox"
+                                                    class="checkbox entity-availability"
+                                            ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="information-row">
+                                    <div>
+                                        <i class="far fa-star mr-2"></i>Избранное:
+                                    </div>
+                                    <div class="toggle-flip">
+                                        <label class="mb-0">
+                                            <input
+                                                    data-href="{{ isset($blog) ? route('admin.blog.article.favorite', $blog) : '' }}"
+                                                    @if ($blog->favorite) checked @endif
                                                     type="checkbox"
                                                     class="checkbox entity-availability"
                                             ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>

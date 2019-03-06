@@ -131,6 +131,20 @@ class FaqController extends Controller
     }
 
     /**
+     * @param Faq $faq
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function favorite(Faq $faq)
+    {
+        $faq->favorite = !$faq->favorite;
+        $faq->update();
+
+        return response()->json([
+            'message' => 'Значение было успешно изменено.',
+        ]);
+    }
+
+    /**
      * @param FaqRequest $request
      * @param Company $administeredCompany
      * @param Showcase $administeredShowcase

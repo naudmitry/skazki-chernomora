@@ -88,6 +88,20 @@ class BlogController extends Controller
     }
 
     /**
+     * @param Blog $blog
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function favorite(Blog $blog)
+    {
+        $blog->favorite = !$blog->favorite;
+        $blog->update();
+
+        return response()->json([
+            'message' => 'Значение было успешно изменено.',
+        ]);
+    }
+
+    /**
      * @param Company $administeredCompany
      * @param Showcase $administeredShowcase
      * @param Blog $blog
