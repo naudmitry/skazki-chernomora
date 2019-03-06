@@ -56,6 +56,7 @@
                             <th>Наименование</th>
                             <th>Категории</th>
                             <th>Опубликован</th>
+                            <th>Избранное</th>
                             <th>Автор</th>
                             <th>Обновлено</th>
                             <th>Редактор</th>
@@ -81,6 +82,9 @@
     </script>
     <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-published">
         @include('main_admin.faq.questions.columns.published')
+    </script>
+    <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-favorite">
+        @include('main_admin.faq.questions.columns.favorite')
     </script>
     <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-author">
         @include('main_admin.faq.questions.columns.author')

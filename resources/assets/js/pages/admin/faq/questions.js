@@ -10,6 +10,7 @@ $(function () {
     let mustacheTemplateFaqQuestionsTableColumnTitle = $('.template-faq-questions-table-column-title').text();
     let mustacheTemplateFaqQuestionsTableColumnCategories = $('.template-faq-questions-table-column-categories').text();
     let mustacheTemplateFaqQuestionsTableColumnPublished = $('.template-faq-questions-table-column-published').text();
+    let mustacheTemplateFaqQuestionsTableColumnFavorite = $('.template-faq-questions-table-column-favorite').text();
     let mustacheTemplateFaqQuestionsTableColumnAuthor = $('.template-faq-questions-table-column-author').text();
     let mustacheTemplateFaqQuestionsTableColumnUpdated = $('.template-faq-questions-table-column-updated').text();
     let mustacheTemplateFaqQuestionsTableColumnUpdater = $('.template-faq-questions-table-column-updater').text();
@@ -53,28 +54,33 @@ $(function () {
             },
             {
                 targets: 4,
+                data: 'favorite',
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnFavorite, {faq}),
+            },
+            {
+                targets: 5,
                 data: 'author_id',
                 sortable: false,
                 render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnAuthor, {faq}),
             },
             {
-                targets: 5,
+                targets: 6,
                 data: 'updated_at',
                 render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdated, {faq}),
             },
             {
-                targets: 6,
+                targets: 7,
                 data: 'updater_id',
                 sortable: false,
                 render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdater, {faq}),
             },
             {
-                targets: 7,
+                targets: 8,
                 data: 'view_count',
                 render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnViewed, {faq}),
             },
             {
-                targets: 8,
+                targets: 9,
                 orderable: false,
                 render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnActions, {faq}),
             },

@@ -10,6 +10,7 @@ $(function () {
     let mustacheTemplateBlogArticlesTableColumnTitle = $('.template-blog-articles-table-column-title').text();
     let mustacheTemplateBlogArticlesTableColumnCategories = $('.template-blog-articles-table-column-categories').text();
     let mustacheTemplateBlogArticlesTableColumnPublished = $('.template-blog-articles-table-column-published').text();
+    let mustacheTemplateBlogArticlesTableColumnFavorite = $('.template-blog-articles-table-column-favorite').text();
     let mustacheTemplateBlogArticlesTableColumnAuthor = $('.template-blog-articles-table-column-author').text();
     let mustacheTemplateBlogArticlesTableColumnUpdated = $('.template-blog-articles-table-column-updated').text();
     let mustacheTemplateBlogArticlesTableColumnUpdater = $('.template-blog-articles-table-column-updater').text();
@@ -53,28 +54,33 @@ $(function () {
             },
             {
                 targets: 4,
+                data: 'favorite',
+                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnFavorite, {blog}),
+            },
+            {
+                targets: 5,
                 data: 'author_id',
                 sortable: false,
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnAuthor, {blog}),
             },
             {
-                targets: 5,
+                targets: 6,
                 data: 'updated_at',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdated, {blog}),
             },
             {
-                targets: 6,
+                targets: 7,
                 data: 'updater_id',
                 sortable: false,
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdater, {blog}),
             },
             {
-                targets: 7,
+                targets: 8,
                 data: 'view_count',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnViewed, {blog}),
             },
             {
-                targets: 8,
+                targets: 9,
                 orderable: false,
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnActions, {blog}),
             },
