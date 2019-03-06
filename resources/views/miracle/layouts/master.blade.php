@@ -47,8 +47,8 @@
     <body>
         <div id="page-wrapper">
             <header id="header" class="header-color-white">
-                @include('miracle.vendor.navigation.index')
-                {{--@include('miracle.vendor.navigation.mobile')--}}
+                @include('miracle.vendor.navigation.desktop')
+                @include('miracle.vendor.navigation.mobile')
             </header>
 
             @yield('slider')
