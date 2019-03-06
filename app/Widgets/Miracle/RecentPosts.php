@@ -7,9 +7,6 @@ use Validator;
 
 class RecentPosts extends AbstractContentWidget
 {
-    /**
-     * @var array
-     */
     protected $defaultSettings =
         [
             'title' => '',

@@ -13,6 +13,10 @@ class BannerSmall extends AbstractContentWidget
             'image_link' => ''
         ];
 
+    /**
+     * @param $validatedData
+     * @return \Illuminate\Validation\Validator|null
+     */
     public function getSettingsValidator($validatedData)
     {
         return Validator::make(

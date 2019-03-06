@@ -14,6 +14,10 @@ class PostWrapper extends AbstractContentWidget
             'items' => [],
         ];
 
+    /**
+     * @param $validatedData
+     * @return \Illuminate\Validation\Validator|null
+     */
     public function getSettingsValidator($validatedData)
     {
         return Validator::make(

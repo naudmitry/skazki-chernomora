@@ -7,9 +7,6 @@ use Validator;
 
 class Blog extends AbstractContentWidget
 {
-    /**
-     * @var array
-     */
     protected $defaultSettings =
         [
             'title' => '',
@@ -45,6 +42,7 @@ class Blog extends AbstractContentWidget
         $blogs = Models\Blog::query()
             ->where('showcase_id', $showcase->id)
             ->where('enable', true)
+            ->where('favorite', true)
             ->inRandomOrder()
             ->take(3)
             ->get();

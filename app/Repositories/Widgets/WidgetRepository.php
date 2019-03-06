@@ -21,6 +21,7 @@ class WidgetRepository
                     'widgets' =>
                         [
                             MiracleWidgets\Slider::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\SliderWithTitle::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\CallOutBox::class => ['location' => 'middle'],
                             MiracleWidgets\Trend::class => ['location' => 'middle'],
                             MiracleWidgets\FeaturesThree::class => ['location' => 'middle'],

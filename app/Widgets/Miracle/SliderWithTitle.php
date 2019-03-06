@@ -4,7 +4,7 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class Slider extends AbstractContentWidget
+class SliderWithTitle extends AbstractContentWidget
 {
     protected $blockable = true;
 
@@ -22,15 +22,15 @@ class Slider extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'items.*.transition' => 'required|string',
-                'items.*.speed' => 'required|integer',
+                'items.*.title' => 'required|string',
+                'items.*.subtitle' => 'required|string',
                 'items.*.image_link' => 'required|url'
             ],
             [],
             [
-                'items.*.transition' => 'Выберите переход.',
-                'items.*.speed' => 'Введите скорость перехода.',
-                'items.*.image_link' => 'Введите ссылку картинки для слайдера.',
+                'items.*.title' => 'Введите заголовок слайда',
+                'items.*.subtitle' => 'Введите подзаголовок слайда',
+                'items.*.image_link' => 'Введите ссылку картинки для слайда.',
             ]);
     }
 }
