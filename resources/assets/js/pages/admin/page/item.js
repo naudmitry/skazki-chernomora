@@ -38,8 +38,9 @@ $(function () {
                     window.location.href = response.redirectUrl;
                 }
                 else {
-                    $pageItem.html(response.settings);
-                    $pageItem.find('.select2').select2({width: '100%'});
+                    let $pageSettings = $('.page-settings');
+                    $pageSettings.html(response.settings);
+                    $pageSettings.find('.select2').select2({width: '100%'});
                     notifyService.showMessage('info', 'Успех!', response.message);
                 }
             },

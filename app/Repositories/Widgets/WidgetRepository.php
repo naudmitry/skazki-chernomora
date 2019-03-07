@@ -21,7 +21,7 @@ class WidgetRepository
                     'widgets' =>
                         [
                             MiracleWidgets\Slider::class => ['location' => 'top', 'single' => true],
-                            MiracleWidgets\SliderWithTitle::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                             MiracleWidgets\CallOutBox::class => ['location' => 'middle'],
                             MiracleWidgets\Trend::class => ['location' => 'middle'],
                             MiracleWidgets\FeaturesThree::class => ['location' => 'middle'],
@@ -95,9 +95,9 @@ class WidgetRepository
                     'widgets' =>
                         [
                             MiracleWidgets\CallOutBox2::class => ['location' => 'top', 'single' => true],
-                            MiracleWidgets\PopularTags::class => ['location' => 'middle', 'single' => true],
-                            MiracleWidgets\UsefulLinks::class => ['location' => 'middle', 'single' => true],
-                            MiracleWidgets\RecentPosts::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\PopularTags::class => ['location' => 'middle'],
+                            MiracleWidgets\UsefulLinks::class => ['location' => 'middle'],
+                            MiracleWidgets\RecentPosts::class => ['location' => 'middle'],
                             MiracleWidgets\About::class => ['location' => 'middle', 'single' => true],
                             MiracleWidgets\CopyrightArea::class => ['location' => 'bottom', 'single' => true],
                         ],

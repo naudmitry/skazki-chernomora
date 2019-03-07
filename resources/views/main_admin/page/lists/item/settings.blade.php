@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3" for="address">Адрес категории:</label>
+                        <label class="control-label col-md-3" for="address">Адрес страницы:</label>
                         <div class="input-group col-md-9">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>

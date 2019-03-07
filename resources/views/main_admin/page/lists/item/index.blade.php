@@ -6,8 +6,8 @@
         'page' => 'Настройка страницы'
     ])
 
-    <div class="row">
-        <div class="col-md-12 page-item">
+    <div class="row page-item">
+        <div class="col-md-12 page-settings">
             @include('main_admin.page.lists.item.settings')
         </div>
     </div>
