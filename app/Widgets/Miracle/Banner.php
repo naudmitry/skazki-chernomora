@@ -57,6 +57,10 @@ class Banner extends AbstractContentWidget
             case $entity instanceof Models\Page :
                 $currentPage = app(PageRepository::class)->getStaticPage($showcase, $entity->static_page_type);
                 break;
+            case $entity instanceof Models\Blog :
+                $currentPage = $entity;
+                break;
+            default:
         }
 
         return array_merge(parent::getFrontViewData(),
