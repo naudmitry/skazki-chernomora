@@ -2,6 +2,9 @@
 
 namespace App\Widgets\Miracle;
 
+use App\Classes\StaticPageTypesEnum;
+use App\Models;
+use App\Repositories\PageRepository;
 use Validator;
 
 class Banner extends AbstractContentWidget
@@ -38,5 +41,26 @@ class Banner extends AbstractContentWidget
                 'subtitle_color' => 'Введите цвет подзаголовка.',
                 'image_link' => 'Введите ссылку на картинку.'
             ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getFrontViewData()
+    {
+        $showcase = $this->showcaseWidget->container->showcase;
+
+        $mainPage = app(PageRepository::class)->getStaticPage($showcase, StaticPageTypesEnum::MAIN_PAGE);
+        $entity = $this->showcaseWidget->container->widgetable;
+
+        switch (true) {
+            case $entity instanceof Models\Page :
+                $currentPage = app(PageRepository::class)->getStaticPage($showcase, $entity->static_page_type);
+                break;
+        }
+
+        return array_merge(parent::getFrontViewData(),
+            compact('mainPage', 'currentPage', 'showcase')
+        );
     }
 }

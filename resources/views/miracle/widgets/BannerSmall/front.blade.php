@@ -4,9 +4,5 @@
             <h1 class="entry-title" style="color: {{ $setting->title_color ?? '' }}">{{ $setting->title }}</h1>
         </div>
     </div>
-    <ul class="breadcrumbs">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">PAGES</a></li>
-        <li class="active">FAQS</li>
-    </ul>
+    @include('miracle.vendor.breadcrumbs')
 </div>
