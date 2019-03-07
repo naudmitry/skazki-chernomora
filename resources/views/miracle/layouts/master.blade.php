@@ -15,6 +15,7 @@
         <!-- Theme Styles -->
         <link rel="stylesheet" href="{{ asset('miracle/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('miracle/css/font-awesome.min.css') }}">
+
         <!-- Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic' rel='stylesheet' type='text/css'>

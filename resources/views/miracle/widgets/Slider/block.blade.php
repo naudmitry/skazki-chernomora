@@ -20,6 +20,32 @@
     <div id="collapse-{{ $position }}" class="collapse" aria-labelledby="heading-{{ $position }}" data-parent="#accordionExample">
         <div class="card-body">
             <div class="form-group row">
+                <label class="control-label col-md-4" for="title">Заголовок:</label>
+                <div class="col-md-8">
+                    <input
+                            id="title"
+                            data-setting="title"
+                            type="text"
+                            class="form-control widget-setting required"
+                            required
+                            value="{{ $setting->title ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="subtitle">Подзаголовок:</label>
+                <div class="col-md-8">
+                    <input
+                            id="subtitle"
+                            data-setting="subtitle"
+                            type="text"
+                            class="form-control widget-setting required"
+                            required
+                            value="{{ $setting->subtitle ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="control-label col-md-4" for="transition">Переход:</label>
                 <div class="col-md-8">
                     <select
