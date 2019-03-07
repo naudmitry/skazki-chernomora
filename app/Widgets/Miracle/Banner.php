@@ -55,7 +55,9 @@ class Banner extends AbstractContentWidget
 
         switch (true) {
             case $entity instanceof Models\Page :
-                $currentPage = app(PageRepository::class)->getStaticPage($showcase, $entity->static_page_type);
+                $currentPage = $entity->static_page_type
+                    ? app(PageRepository::class)->getStaticPage($showcase, $entity->static_page_type)
+                    : $entity;
                 break;
             case $entity instanceof Models\Blog :
                 $currentPage = $entity;

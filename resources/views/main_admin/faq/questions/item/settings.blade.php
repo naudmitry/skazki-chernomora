@@ -21,21 +21,21 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Имя для списка:</label>
+                        <label class="control-label col-md-3" for="title">Имя для списка:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="title" name="title" value="{{ $faq->title ?? '' }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Вопрос:</label>
+                        <label class="control-label col-md-3" for="name">Вопрос:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="name" name="name" value="{{ $faq->name ?? '' }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Адрес вопроса:</label>
+                        <label class="control-label col-md-3" for="address">Адрес вопроса:</label>
                         <div class="input-group col-md-9">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>
@@ -52,35 +52,35 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3" for="name">Ответ:</label>
+                        <label class="control-label col-md-3" for="answer">Ответ:</label>
                         <div class="col-md-9">
                             <textarea name="answer" rows="4" cols="5" class="form-control" required="required">{{ $faq->answer ?? '' }}</textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Навигационная цепочка:</label>
+                        <label class="control-label col-md-3" for="breadcrumbs">Навигационная цепочка:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="breadcrumbs" name="breadcrumbs" value="{{ $faq->breadcrumbs ?? '' }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Тег TITLE:</label>
+                        <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="metaTitle" name="meta_title" value="{{ $faq->meta_title ?? '' }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Метатег DESCRIPTION:</label>
+                        <label class="control-label col-md-3" for="metaDescription">Метатег DESCRIPTION:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="metaDescription" name="meta_description" value="{{ $faq->meta_description ?? '' }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Метатег KEYWORDS:</label>
+                        <label class="control-label col-md-3" for="metaKeywords">Метатег KEYWORDS:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="metaKeywords" name="meta_keywords" value="{{ $faq->meta_keywords ?? '' }}">
                         </div>

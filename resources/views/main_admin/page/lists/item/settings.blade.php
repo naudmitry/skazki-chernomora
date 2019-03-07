@@ -52,6 +52,13 @@
                     </div>
 
                     <div class="form-group row">
+                        <label class="control-label col-md-3" for="breadcrumbs">Навигационная цепочка:</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="breadcrumbs" name="breadcrumbs" value="{{ $page->breadcrumbs ?? '' }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label class="control-label col-md-3" for="metaTitle">Тег TITLE:</label>
                         <div class="col-md-9">
                             <input class="form-control" id="metaTitle" name="meta_title" value="{{ $page->meta_title ?? '' }}">
