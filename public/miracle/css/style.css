@@ -611,7 +611,6 @@ hr[class^="col-"], hr[class*=" col-"] {
 }
 
 .section-info {
-    border-top: 1px solid #d4dde5;
     padding: 50px 0;
     position: relative;
 }
@@ -12031,4 +12030,8 @@ body.woocommerce select:not(.default-style) + .customSelect .customSelectInner:b
     width: 100%;
     height: 100%;
     margin-left: 20px;
+}
+
+.slider-with-title {
+    margin-top: 30px;
 }

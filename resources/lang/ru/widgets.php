@@ -21,4 +21,13 @@ return [
     'CopyrightArea.title' => 'Авторские права и меню',
     'About.title' => 'О нас',
     'YandexMap.title' => 'Яндекс карта',
+    'Quote' => [
+        'title' => 'Цитата',
+        'style1' => 'Темный фон',
+        'style2' => 'Светлый фон',
+        'style3' => 'Светный фон и цветная линия'
+    ],
+    'Video.title' => 'Видео',
+    'SimpleProcess.title' => 'Простой процесс',
+    'SliderWithTitle.title' => 'Слайдер с заголовком',
 ];

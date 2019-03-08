@@ -29,6 +29,8 @@ class WidgetRepository
                             MiracleWidgets\Parallax::class => ['location' => 'middle'],
                             MiracleWidgets\MultiBox::class => ['location' => 'middle'],
                             MiracleWidgets\Blog::class => ['location' => 'middle'],
+                            MiracleWidgets\Video::class => ['location' => 'middle'],
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_MAIN_PAGE =>
@@ -44,7 +46,11 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
-                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\Quote::class => ['location' => 'middle'],
+                            MiracleWidgets\Video::class => ['location' => 'middle'],
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ_MAIN_PAGE =>
@@ -60,7 +66,11 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
-                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\Quote::class => ['location' => 'middle'],
+                            MiracleWidgets\Video::class => ['location' => 'middle'],
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::CUSTOM_PAGE =>
@@ -69,6 +79,10 @@ class WidgetRepository
                     'widgets' =>
                         [
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\Quote::class => ['location' => 'middle'],
+                            MiracleWidgets\Video::class => ['location' => 'middle'],
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::CONTACTS_PAGE =>

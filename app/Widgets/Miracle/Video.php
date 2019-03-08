@@ -4,20 +4,19 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class SliderWithTitle extends AbstractContentWidget
+class Video extends AbstractContentWidget
 {
-    protected $blockable = true;
-
     protected $defaultSettings =
         [
             'title' => '',
             'subtitle' => '',
-            'items' => [],
+            'poster_link' => '',
+            'video_link' => ''
         ];
 
     /**
      * @param $validatedData
-     * @return \Illuminate\Validation\Validator|null
+     * @return \Illuminate\Validation\Validator
      */
     public function getSettingsValidator($validatedData)
     {
@@ -26,17 +25,15 @@ class SliderWithTitle extends AbstractContentWidget
             [
                 'title' => 'required|string',
                 'subtitle' => 'required|string',
-                'items.*.title' => 'required|string',
-                'items.*.subtitle' => 'required|string',
-                'items.*.image_link' => 'required|url'
+                'poster_link' => 'required|url',
+                'video_link' => 'required|url'
             ],
             [],
             [
                 'title' => 'Введите заголовок',
                 'subtitle' => 'Введите подзаголовок',
-                'items.*.title' => 'Введите заголовок слайда',
-                'items.*.subtitle' => 'Введите подзаголовок слайда',
-                'items.*.image_link' => 'Введите ссылку картинки для слайда.',
+                'poster_link' => 'Введите ссылку на постер.',
+                'video_link' => 'Введите ссылку на видео.'
             ]);
     }
 }

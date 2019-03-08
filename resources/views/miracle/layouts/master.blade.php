@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="{{ asset('miracle/css/animate.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('miracle/components/owl-carousel/owl.carousel.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('miracle/components/owl-carousel/owl.transitions.css') }}" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('miracle/components/mediaelement/mediaelementplayer.min.css') }}" media="screen" />
         <!-- Magnific Popup core CSS file -->
         <link rel="stylesheet" href="{{ asset('miracle/components/magnific-popup/magnific-popup.css') }}">
 
@@ -86,6 +87,7 @@
         <!-- load revolution slider scripts -->
         <script type="text/javascript" src="{{ asset('miracle/components/revolution_slider/js/jquery.themepunch.tools.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('miracle/components/revolution_slider/js/jquery.themepunch.revolution.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('miracle/components/mediaelement/mediaelement-and-player.js') }}"></script>
 
         <!-- plugins -->
         <script type="text/javascript" src="{{ asset('miracle/js/jquery.plugins.js') }}"></script>

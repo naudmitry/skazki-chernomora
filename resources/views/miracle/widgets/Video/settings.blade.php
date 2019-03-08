@@ -11,9 +11,8 @@
                     <input
                             id="title"
                             data-setting="title"
+                            class="form-control widget-setting"
                             type="text"
-                            class="form-control widget-setting required"
-                            required
                             value="{{ $widget_setting->title ?? '' }}">
                 </div>
             </div>
@@ -24,23 +23,37 @@
                     <input
                             id="subtitle"
                             data-setting="subtitle"
+                            class="form-control widget-setting"
                             type="text"
-                            class="form-control widget-setting required"
-                            required
                             value="{{ $widget_setting->subtitle ?? '' }}">
                 </div>
             </div>
 
-            <div id="accordionExample" class="accordion">
-                @foreach(data_get($widget_setting, 'items', []) as $setting)
-                    @include('miracle.widgets.SliderWithTitle.block', ['position' => $loop->iteration])
-                @endforeach
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="poster_link">Ссылка на постер:</label>
+                <div class="col-md-8">
+                    <input
+                            id="poster_link"
+                            data-setting="poster_link"
+                            class="form-control widget-setting"
+                            type="text"
+                            value="{{ $widget_setting->poster_link ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="video_link">Ссылка на видео:</label>
+                <div class="col-md-8">
+                    <input
+                            id="video_link"
+                            data-setting="video_link"
+                            class="form-control widget-setting"
+                            type="text"
+                            value="{{ $widget_setting->video_link ?? '' }}">
+                </div>
             </div>
 
             <div class="tile-footer">
-                <button class="btn btn-primary" type="button" href="{{ route('widget.addBlock', $widget) }}" id="add_block">
-                    <i class="fas fa-plus-circle mr-2"></i>Добавить
-                </button>
                 <button class="btn btn-default save-settings" disabled>
                     <i class="fas fa-check-circle mr-2"></i>Сохранить
                 </button>
