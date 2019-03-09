@@ -85,7 +85,3 @@
         </div>
     </div>
 @endsection
-
-@section('footer__script')
-    <script type="text/javascript" src="{{ asset('vali-admin/plugins/tinymce/tinymce.min.js') }}"></script>
-@endsection

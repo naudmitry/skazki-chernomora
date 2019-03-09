@@ -1,6 +1,6 @@
 let scriptModule =
     {
-        text: undefined,
+        text: [],
         isValidate: undefined,
         start_setting: undefined,
 
@@ -24,41 +24,27 @@ let scriptModule =
                 }
             });
 
-            // $(document).on('input', '[data-field="widget:sites-list-title"]', function () {
-            //     let $currentPanel = $(this).closest('.panel'), $formWidgetPanel = $('#form-widget-panel');
-            //
-            //     let oldTitle = $currentPanel.find('.sites-list-panel-title').text(),
-            //         newTitle = $(this).val(),
-            //         data = [];
-            //
-            //     $formWidgetPanel.find('.panel').each(function() {
-            //         let $parentLink = $(this).find('[data-field="widget:sites-list-parent-link"]');
-            //         let settingsTitle = $(this).find('.setting-title').text();
-            //
-            //         $currentPanel.find('.sites-list-panel-title').text(newTitle);
-            //
-            //         $formWidgetPanel.find('.panel').each(function(index) {
-            //             data[index] = $(this).find('.setting-title').text();
-            //         });
-            //
-            //         if ($parentLink.val() === oldTitle) {
-            //             $parentLink.select2("destroy").find('option[value="' + $parentLink.val() + '"]').remove();
-            //             $parentLink.select2({
-            //                 'data' : $.grep(data, function(value) { return value !== settingsTitle; }),
-            //                 minimumResultsForSearch: Infinity
-            //             }).val(newTitle).trigger('change');
-            //         }
-            //         else {
-            //             let oldVal = $parentLink.val();
-            //             $parentLink.select2("destroy").find('option[value="' + oldTitle + '"]').remove();
-            //             $parentLink.select2({
-            //                 'data' : $.grep(data, function(value) { return value !== settingsTitle; }),
-            //                 minimumResultsForSearch: Infinity
-            //             }).val(oldVal).trigger('change');
-            //         }
-            //     });
-            // });
+            $context.find('textarea[data-field-type="textarea-editor"]').each(function () {
+                let $this = $(this);
+                let currentEditor = tinymce.get($this.attr('id'));
+                if(currentEditor)
+                {
+                    currentEditor.remove();
+                }
+                tinymce.init({
+                    target: this,
+                    language: 'ru',
+                    plugins: "image imagetools",
+                    setup: function (editor) {
+                        editor.on('keyup change', function (e) {
+                            scriptModule.text[this.id] = tinyMCE.activeEditor.getContent();
+                            scriptModule.unBlockBtn();
 
+                            console.log(scriptModule.text);
+                        });
+                    }
+                });
+            });
         },
 
         listeners: function () {
@@ -68,14 +54,6 @@ let scriptModule =
                 $panel.remove();
                 scriptModule.updateBtnChange();
             });
-
-            // $(document).on('select2:select', '#setting-widget-pc.select[data-setting=category]', function () {
-            //     $(this).closest('.panel').find('.select[data-setting=product]').select2("val", "0");
-            // });
-            //
-            // $(document).on('select2:select', '#setting-widget-pc .select[data-setting=product]', function () {
-            //     $(this).closest('.panel').find('.select[data-setting=category]').select2("val", "0");
-            // });
 
             $(document).on('click', '#setting-widget-pc #widget-panel .save-settings', function (e) {
                 e.preventDefault();
@@ -90,44 +68,6 @@ let scriptModule =
                 scriptModule.updateBtnChange();
                 // scriptModule.validate(this);
             });
-            //
-            // $(document).on('select2:select', '[data-action=product-search], [data-action=product-category-search]', function (e) {
-            //     let $el = $(e.target);
-            //     $($el.data('dependent-item')).val(0).trigger("change");
-            // });
-
-            // $(document).on('switchChange.bootstrapSwitch', '#setting-widget-pc .quick-products-order-switch', function (e) {
-            //     let productsBlock = $(this).closest('#widget-panel').find('[data-role=quick-order-products-block]');
-            //     productsBlock.toggle($(this).is(':checked'));
-            // });
-            //
-            // $(document).on('switchChange.bootstrapSwitch', '#setting-widget-pc .is-all-available-height', function (e) {
-            //     let heightBlock = $(this).closest('#widget-panel').find('[data-role=height-block]');
-            //     heightBlock.toggle(!$(this).is(':checked'));
-            // });
-            //
-            // $(document).on('switchChange.bootstrapSwitch', '#setting-widget-pc .is-all-available-width', function (e) {
-            //     let widthBlock = $(this).closest('#widget-panel').find('[data-role=width-block]');
-            //     widthBlock.toggle(!$(this).is(':checked'));
-            // });
-
-            // let runAnimate = function ($elem, animate) {
-            //     $elem.removeClass().addClass(animate + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-            //         $(this).removeClass();
-            //     });
-            // };
-
-            // $(document).on('change', '.text-effect', function () {
-            //     let anim = $(this).val();
-            //     let $elem = $(this).closest('.form-group').find('label').find('span');
-            //     runAnimate($elem, anim);
-            // });
-            //
-            // $(document).on('click', '.run-effect', function () {
-            //     let anim = $(this).closest('.form-group').find('.text-effect').val();
-            //     let $elem = $(this).closest('.form-group').find('label').find('span');
-            //     runAnimate($elem, anim);
-            // });
         },
 
         addBlock: function (url) {
@@ -219,6 +159,8 @@ let scriptModule =
                     let setting = $(this).attr('data-setting');
                     if ($(this).attr('type') === "checkbox") {
                         arr[setting] = $(this).is(':checked');
+                    } else if (setting === 'text') {
+                        arr[setting] = scriptModule.text[$(this).attr('id')];
                     } else {
                         arr[setting] = $(this).val();
                     }

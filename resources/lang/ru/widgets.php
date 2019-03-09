@@ -30,4 +30,5 @@ return [
     'Video.title' => 'Видео',
     'SimpleProcess.title' => 'Простой процесс',
     'SliderWithTitle.title' => 'Слайдер с заголовком',
+    'FullwidthTabs.title' => 'Вкладки на всю ширину',
 ];

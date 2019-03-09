@@ -2,13 +2,13 @@
     <div class="card-header collapse-header" id="heading-{{ $position }}">
         <h5 class="mb-0">
             <button
-                    class="btn btn-link"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse-{{ $position }}"
-                    aria-expanded="false"
                     aria-controls="collapse-{{ $position }}"
-            ><span class="widget-title">{{ 'Элемент' }}</span></button>
+                    aria-expanded="false"
+                    class="btn btn-link"
+                    data-target="#collapse-{{ $position }}"
+                    data-toggle="collapse"
+                    type="button"
+            ><span class="widget-title">{{ $setting->title ?? 'Элемент' }}</span></button>
         </h5>
 
         <div class="mr-3">
@@ -23,11 +23,11 @@
                 <label class="control-label col-md-4" for="title">Заголовок:</label>
                 <div class="col-md-8">
                     <input
-                            id="title"
-                            data-setting="title"
-                            type="text"
                             class="form-control widget-setting required"
+                            data-setting="title"
+                            id="title"
                             required
+                            type="text"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>
@@ -36,11 +36,11 @@
                 <label class="control-label col-md-4" for="subtitle">Подзаголовок:</label>
                 <div class="col-md-8">
                     <input
-                            id="subtitle"
-                            data-setting="subtitle"
-                            type="text"
                             class="form-control widget-setting required"
+                            data-setting="subtitle"
+                            id="subtitle"
                             required
+                            type="text"
                             value="{{ $setting->subtitle ?? '' }}">
                 </div>
             </div>
@@ -49,8 +49,8 @@
                 <label class="control-label col-md-4">Иконка:</label>
                 <div class="col-md-8">
                     <select
-                            data-setting="icon"
                             class="form-control select2 widget-setting"
+                            data-setting="icon"
                     >@include('miracle.widgets.SimpleProcess.select_icons', ['icon' => $setting->icon ?? ''])</select>
                 </div>
             </div>

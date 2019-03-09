@@ -83,6 +83,7 @@ class WidgetRepository
                             MiracleWidgets\Video::class => ['location' => 'middle'],
                             MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
                             MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\FullwidthTabs::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::CONTACTS_PAGE =>

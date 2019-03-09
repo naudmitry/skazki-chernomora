@@ -27,7 +27,3 @@
         @include('main_admin.faq.questions.item.loading')
     </script>
 @endsection
-
-@section('footer__script')
-    <script type="text/javascript" src="{{ asset('vali-admin/plugins/tinymce/tinymce.min.js') }}"></script>
-@endsection
