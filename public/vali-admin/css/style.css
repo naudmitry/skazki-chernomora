@@ -15379,3 +15379,7 @@ button.btn-link[aria-expanded="true"]:before {
 input[type=color] {
   height: 37px;
 }
+
+table .icon {
+  color: #009688;
+}
