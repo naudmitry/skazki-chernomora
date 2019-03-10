@@ -11,10 +11,12 @@
         <div id="main">
             <div class="blog-posts layout-timeline layout-fullwidth">
                 <div class="iso-container iso-col-2 style-masonry has-column-width">
-                    @foreach ($blogs as $blog)
+                    @foreach ($blogs as $index => $blog)
                         <div class="iso-item">
                             <article class="post post-masonry">
-                                <div class="post-date">{{ $blog->created_at->format('d M, Y') }}</div>
+                                @if ($loop->first || ($blog->created_at->diffInDays($blogs[$index - 1]->created_at) > 0))
+                                    <div class="post-date">{{ strftime('%d %B %G', strtotime($blog->created_at)) }}</div>
+                                @endif
                                 <div class="post-image">
                                     <div class="image">
                                         <img src="{{ $blog->link }}" alt="{{ $blog->title }}">
@@ -25,9 +27,8 @@
                                 </div>
                                 <div class="post-content no-author-img">
                                     <div class="post-meta">
-                                        <span class="entry-author fn"><a href="#">{{ $blog->author->full_name }}</a></span>
-                                        <span class="entry-time"><span class="published">{{ $blog->created_at->format('d M, Y') }}</span></span>
-                                        <span class="post-category">in <a href="#">Web Design</a></span>
+                                        <span class="entry-author fn">{{ $blog->author->full_name }}</span>
+                                        <span class="entry-time"><span class="published">{{ $blog->getFormatCreatedAtAttribute() }}</span></span>
                                     </div>
                                     <h3 class="entry-title"><a href="{{ $blog->getRoute() }}">{{ $blog->name }}</a></h3>
                                     <p>{!! mb_strimwidth(strip_tags($blog->content), 0, 200, "...") !!}</p>
