@@ -12041,3 +12041,9 @@ body.woocommerce select:not(.default-style) + .customSelect .customSelectInner:b
     height: 185px;
     object-fit: cover;
 }
+
+.widget-recent-post-img {
+    width: 50px !important;
+    height: 40px !important;
+    object-fit: cover;
+}
