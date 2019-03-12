@@ -15,7 +15,8 @@ class Banner extends AbstractContentWidget
             'title_color' => '#ff6600',
             'subtitle' => '',
             'subtitle_color' => '#343434',
-            'image_link' => ''
+            'image_link' => '',
+            'is_breadcrumbs' => 1
         ];
 
     /**
@@ -31,7 +32,8 @@ class Banner extends AbstractContentWidget
                 'title_color' => 'required|string',
                 'subtitle' => 'required|string',
                 'subtitle_color' => 'required|string',
-                'image_link' => 'required|url'
+                'image_link' => 'required|url',
+                'is_breadcrumbs' => 'required|boolean'
             ],
             [],
             [
@@ -39,7 +41,8 @@ class Banner extends AbstractContentWidget
                 'title_color' => 'Введите цвет заголовка.',
                 'subtitle' => 'Введите подзаголовок.',
                 'subtitle_color' => 'Введите цвет подзаголовка.',
-                'image_link' => 'Введите ссылку на картинку.'
+                'image_link' => 'Введите ссылку на картинку.',
+                'is_breadcrumbs' => 'Навигационная цепочка'
             ]);
     }
 
@@ -48,6 +51,8 @@ class Banner extends AbstractContentWidget
      */
     protected function getFrontViewData()
     {
+        if (!$this->is_breadcrumbs) return [];
+
         $showcase = $this->showcaseWidget->container->showcase;
 
         $mainPage = app(PageRepository::class)->getStaticPage($showcase, StaticPageTypesEnum::MAIN_PAGE);

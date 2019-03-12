@@ -29,6 +29,7 @@ class WidgetRepository
                             MiracleWidgets\Parallax::class => ['location' => 'middle'],
                             MiracleWidgets\MultiBox::class => ['location' => 'middle'],
                             MiracleWidgets\Blog::class => ['location' => 'middle'],
+                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
                             MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
                         ],

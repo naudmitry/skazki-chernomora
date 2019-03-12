@@ -25,16 +25,12 @@ class Slider extends AbstractContentWidget
                 'items.*.transition' => 'required|string',
                 'items.*.speed' => 'required|integer',
                 'items.*.image_link' => 'required|url',
-                'items.*.title' => 'required|string',
-                'items.*.subtitle' => 'required|string'
             ],
             [],
             [
                 'items.*.transition' => 'Выберите переход.',
                 'items.*.speed' => 'Введите скорость перехода.',
                 'items.*.image_link' => 'Введите ссылку картинки для слайдера.',
-                'items.*.title' => 'Введите заголовок слайда.',
-                'items.*.subtitle' => 'Введите подзаголовок слайда.'
             ]);
     }
 }

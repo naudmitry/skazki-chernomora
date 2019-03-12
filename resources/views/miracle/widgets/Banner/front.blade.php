@@ -9,5 +9,7 @@
             </div>
         </div>
     </div>
-    @include('miracle.vendor.breadcrumbs')
+    @if ($setting->is_breadcrumbs)
+        @include('miracle.vendor.breadcrumbs')
+    @endif
 </div>
