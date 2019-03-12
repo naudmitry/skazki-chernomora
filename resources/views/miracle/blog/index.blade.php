@@ -43,7 +43,7 @@
                 <a href="#" class="load-more"><i class="fa fa-angle-double-down"></i></a>
             </div>
 
-            @include('miracle.vendor.pagination')
+            {{ $blogs->links('miracle.vendor.pagination') }}
         </div>
     </div>
 @endsection
