@@ -77,9 +77,10 @@
                         <label class="mb-0">
                             <input
                                     id="is_breadcrumbs"
+                                    data-setting="is_breadcrumbs"
                                     @if ($widget_setting->is_breadcrumbs) checked @endif
                                     type="checkbox"
-                                    class="checkbox entity-availability"
+                                    class="widget-setting checkbox entity-availability"
                             ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                         </label>
                     </div>

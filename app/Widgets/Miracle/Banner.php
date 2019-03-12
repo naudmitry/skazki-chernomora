@@ -51,8 +51,6 @@ class Banner extends AbstractContentWidget
      */
     protected function getFrontViewData()
     {
-        if (!$this->is_breadcrumbs) return [];
-
         $showcase = $this->showcaseWidget->container->showcase;
 
         $mainPage = app(PageRepository::class)->getStaticPage($showcase, StaticPageTypesEnum::MAIN_PAGE);
