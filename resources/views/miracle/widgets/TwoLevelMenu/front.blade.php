@@ -3,7 +3,7 @@
     <a href="#">{{ $setting->title }}</a>
     <ul class="sub-nav">
         @foreach(data_get($setting, 'items', []) as $item)
-            <li><a href="{{ url($item->link) }}">{{ $item->title }}</a></li>
+            <li class="{{ (Request::url() == url($item->link) ? 'active' : '') }}"><a href="{{ url($item->link) }}">{{ $item->title }}</a></li>
         @endforeach
     </ul>
 </li>
