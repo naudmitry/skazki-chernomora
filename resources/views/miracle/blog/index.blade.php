@@ -40,7 +40,12 @@
                         </div>
                     @endforeach
                 </div>
-                <a href="#" class="load-more"><i class="fa fa-angle-double-down"></i></a>
+
+                @if ($blogs->hasMorePages())
+                    <a href="{{ $blogs->nextPageUrl() }}" class="load-more">
+                        <i class="fa fa-angle-double-down"></i>
+                    </a>
+                @endif
             </div>
 
             {{ $blogs->links('miracle.vendor.pagination') }}
