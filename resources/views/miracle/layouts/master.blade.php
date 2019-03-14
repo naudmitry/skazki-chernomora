@@ -4,8 +4,6 @@
 
         <link rel="shortcut icon" href="{{ asset('miracle/images/favicon.png') }}" />
 
-        <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
         <meta charset="utf-8">
         <meta name="description" content="Miracle | Responsive Multi-Purpose HTML5 Template">
         <meta name="author" content="SoapTheme">
