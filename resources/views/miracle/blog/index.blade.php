@@ -1,5 +1,22 @@
 @extends('miracle.layouts.master')
 
+@section('header__meta')
+    <title>{{ $staticPage->meta_title }} {{ ($blogs->currentPage() > 1) ? 'Страница' . $blogs->currentPage() : ''  }}</title>
+    <meta name="description" content="{{ $staticPage->meta_description }}"/>
+    <meta name="keywords" content="{{ $staticPage->meta_keywords }}"/>
+
+    <link rel="page" data="{{ $blogs->currentPage() }}">
+
+    @if ($blogs->hasPages())
+        @if (!$blogs->onFirstPage())
+            <link rel="prev" href="{{ $blogs->previousPageUrl() }}">
+        @endif
+        @if ($blogs->hasMorePages())
+            <link rel="next" href="{{ $blogs->nextPageUrl() }}">
+        @endif
+    @endif
+@endsection
+
 @section('slider')
     @foreach(array_get($pageWidgets, 'top', []) as $widget)
         @widget('miracle.' . $widget->class_name, ['widget' => $widget])

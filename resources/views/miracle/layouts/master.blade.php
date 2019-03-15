@@ -1,16 +1,11 @@
 <!DOCTYPE html>
     <head>
-        <title>Miracle | Responsive Multi-Purpose HTML5 Template</title>
-
-        <link rel="shortcut icon" href="{{ asset('miracle/images/favicon.png') }}" />
+        @yield('header__meta')
 
         <meta charset="utf-8">
-        <meta name="description" content="Miracle | Responsive Multi-Purpose HTML5 Template">
-        <meta name="author" content="SoapTheme">
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @yield('header__meta')
+        <link rel="shortcut icon" href="{{ asset('miracle/images/favicon.png') }}" />
 
         <!-- Theme Styles -->
         <link rel="stylesheet" href="{{ asset('miracle/css/bootstrap.min.css') }}">

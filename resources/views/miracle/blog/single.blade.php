@@ -1,5 +1,11 @@
 @extends('miracle.layouts.master')
 
+@section('header__meta')
+    <title>{{ $blog->meta_title }}</title>
+    <meta name="description" content="{{ $blog->meta_description }}"/>
+    <meta name="keywords" content="{{ $blog->meta_keywords }}"/>
+@endsection
+
 @section('slider')
     @foreach(array_get($pageWidgets, 'top', []) as $widget)
         @widget('miracle.' . $widget->class_name, ['widget' => $widget])
