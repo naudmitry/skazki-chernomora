@@ -51,7 +51,7 @@ var PageService =
 
 $(function()
 {
-    if ('settings.general' != $('body').data('page')) {
+    if ('settings.general' !== $('body').data('page')) {
         return;
     }
 

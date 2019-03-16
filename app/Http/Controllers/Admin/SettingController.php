@@ -27,7 +27,7 @@ class SettingController extends Controller
      * @param null $tab
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Showcase $administeredShowcase, $tab = null)
+    public function index(Showcase $administeredShowcase, $tab = 'general')
     {
         return view('main_admin.settings.index', compact(
             'administeredShowcase'
@@ -59,6 +59,9 @@ class SettingController extends Controller
 
         $validateRules =
             [
+                'general' => [
+                    'general:display-site-name' => 'required|string'
+                ],
                 'geo-ip' => [
                     'general:is-use-geo-ip' => '',
                 ],

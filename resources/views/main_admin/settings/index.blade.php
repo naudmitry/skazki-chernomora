@@ -13,7 +13,7 @@
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#user-timeline" data-toggle="tab">
+                        <a class="nav-link active" href="#general" data-toggle="tab">
                             Основные
                         </a>
                     </li>

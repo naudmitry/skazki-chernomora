@@ -13,6 +13,7 @@ return
 
                 \App\Models\Showcase::class =>
                     [
+                        'general:display-site-name' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
                         'general:geo-ip' => ['type' => SettingsDataTypeEnum::TYPE_ARRAY],
                         'general:is-use-geo-ip' => ['type' => SettingsDataTypeEnum::TYPE_BOOLEAN, 'default' => false],
                     ]
