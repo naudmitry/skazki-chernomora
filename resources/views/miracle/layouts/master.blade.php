@@ -5,6 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="yandex-verification" content="9487674887a0e274" />
 
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('miracle/images/favicon.ico') }}" />
 
