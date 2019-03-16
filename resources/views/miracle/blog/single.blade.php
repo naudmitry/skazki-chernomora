@@ -18,7 +18,7 @@
             <article class="post box-lg">
                 <div class="post-date">
                     <span class="day">{{ $blog->created_at->format('d') }}</span>
-                    <span class="month">{{ $blog->created_at->format('M') }}</span>
+                    <span class="month">{{ strftime('%B', strtotime($blog->created_at)) }}</span>
                 </div>
                 <div class="post-image">
                     <div class="image-container">
@@ -27,10 +27,6 @@
                 </div>
                 <div class="post-content">
                     <h2 class="entry-title"><a href="#">{{ $blog->name }}</a></h2>
-                    <div class="post-meta">
-                        <span class="post-category"><a href="#">Web Design</a></span>
-                        <span class="post-comment"><a href="#">1 Comment</a></span>
-                    </div>
                     <div class="section-info">
                         {!! $blog->content !!}
                     </div>
