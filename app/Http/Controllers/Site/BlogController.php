@@ -57,7 +57,7 @@ class BlogController extends Controller
             });
         }
 
-        $blogs = $blogs->paginate(5);
+        $blogs = $blogs->paginate(10);
 
         $staticPage = $this->pagesRepository->getStaticPage($showcase, StaticPageTypesEnum::BLOG_PAGE);
         $staticPage->incrementViewsCount();
