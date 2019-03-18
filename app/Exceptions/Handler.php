@@ -55,7 +55,6 @@ class Handler extends ExceptionHandler
         $isAdminRequest = ($request->getHost() == env('DOMAIN_ADMIN'));
 
         if ($isAdminRequest and !$request->user('admin')) {
-            dd($exception); // TODO : delete
             return redirect()
                 ->route('admin.login');
         }
@@ -79,16 +78,16 @@ class Handler extends ExceptionHandler
                 break;
         }
 
-//        if ($this->isHttpException($exception)) {
-//            switch ($exception->getStatusCode()) {
-//                case 404:
-//                    return redirect()->route('404');
-//                    break;
-//                case 405:
-//                    return redirect()->route('405');
-//                    break;
-//            }
-//        }
+        if ($this->isHttpException($exception)) {
+            switch ($exception->getStatusCode()) {
+                case 404:
+                    return redirect()->route('404');
+                    break;
+                case 405:
+                    return redirect()->route('405');
+                    break;
+            }
+        }
 
         return parent::render($request, $exception);
     }

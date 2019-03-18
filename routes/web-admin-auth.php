@@ -2,6 +2,7 @@
 
 use App\Classes\AdminComponentEnum;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
     Route::get('/', function (Request $request) {
@@ -19,8 +20,10 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         Route::get('companies/enter-as-admin/{company}', ['uses' => 'Admin\CompanyController@enterAsAdmin', 'as' => 'admin.companies.enter-as-admin']);
         Route::get('companies/leave-from-admin', ['uses' => 'Admin\CompanyController@leaveFromAdmin', 'as' => 'admin.companies.leave-from-admin']);
 
+        Route::get('403', ['as' => '403', 'uses' => 'Admin\ErrorHandlerController@errorCode403']);
         Route::get('404', ['as' => '404', 'uses' => 'Admin\ErrorHandlerController@errorCode404']);
-        Route::get('405', ['as' => '405', 'uses' => 'Admin\ErrorHandlerController@errorCode405']);
+        Route::get('500', ['as' => '500', 'uses' => 'Admin\ErrorHandlerController@errorCode500']);
+        Route::get('503', ['as' => '503', 'uses' => 'Admin\ErrorHandlerController@errorCode503']);
 
         Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_SHOWCASES], function () {
             Route::get('/showcases', ['uses' => 'Admin\ShowcaseController@index', 'as' => 'admin.showcases.index']);
@@ -92,7 +95,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('category', '[0-9]+');
 
                 Route::get('/blog/main', ['uses' => 'Admin\BlogController@main', 'as' => 'admin.blog.main.index']);
-
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_FAQ], function () {
@@ -122,7 +124,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('faq', '[0-9]+');
 
                 Route::get('/faq/main', ['uses' => 'Admin\FaqController@main', 'as' => 'admin.faq.main.index']);
-
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_BLOCKS], function () {
