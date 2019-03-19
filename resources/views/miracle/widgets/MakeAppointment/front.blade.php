@@ -50,11 +50,3 @@
         </div>
     </div>
 </section>
-
-
-
-<div style="display: flex; justify-content: center;">
-    <div class="col-sm-6 box make-appointment-section">
-
-    </div>
-</div>
