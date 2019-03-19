@@ -32,6 +32,9 @@ class WidgetRepository
                             MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
                             MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_MAIN_PAGE =>
@@ -39,7 +42,10 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
-                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true]
+                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_PAGE =>
@@ -52,6 +58,10 @@ class WidgetRepository
                             MiracleWidgets\Video::class => ['location' => 'middle'],
                             MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
                             MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\Highlights::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ_MAIN_PAGE =>
@@ -59,7 +69,10 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
-                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true]
+                            MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ_PAGE =>
@@ -72,6 +85,10 @@ class WidgetRepository
                             MiracleWidgets\Video::class => ['location' => 'middle'],
                             MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
                             MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\Highlights::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::CUSTOM_PAGE =>
@@ -85,6 +102,11 @@ class WidgetRepository
                             MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
                             MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                             MiracleWidgets\FullwidthTabs::class => ['location' => 'middle'],
+                            MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\Highlights::class => ['location' => 'middle'],
+                            MiracleWidgets\MakeAppointment::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::CONTACTS_PAGE =>
@@ -93,6 +115,9 @@ class WidgetRepository
                     'widgets' =>
                         [
                             MiracleWidgets\YandexMap::class => ['location' => 'top', 'single' => true],
+                            MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::HEADER =>

@@ -20,7 +20,7 @@ class OrderController extends Controller
         $order->name = $request->get('name');
         $order->phone_number = $request->get('phone_number');
         $order->email = $request->get('email');
-        $order->desired_date = Carbon::createFromFormat("d.m.Y", $request->get('desired_date'));
+        $order->desired_date = Carbon::createFromFormat("Y-m-d", $request->get('desired_date'));
         $order->salt_cave = $request->get('salt_cave');
         $order->type = $request->get('type');
         $order->message = $request->get('message');

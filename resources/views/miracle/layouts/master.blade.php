@@ -94,6 +94,8 @@
 
         <script type="text/javascript" src="{{ asset('miracle/js/revolution-slider.js') }}"></script>
 
+        <script src="{{ mix('miracle/js/miracle.js') }}"></script>
+
         @yield('footer__sc')
     </body>
 </html>

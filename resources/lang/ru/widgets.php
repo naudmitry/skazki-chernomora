@@ -31,4 +31,9 @@ return [
     'SimpleProcess.title' => 'Простой процесс',
     'SliderWithTitle.title' => 'Слайдер с заголовком',
     'FullwidthTabs.title' => 'Вкладки на всю ширину',
+    'AnimatedInfographicPies.title' => 'Диаграммы в виде круга',
+    'MetroGallery1.title' => 'Галерея (стиль 1)',
+    'SmallPostGallery.title' => 'Небольшая галерея',
+    'Highlights.title' => 'Основные моменты',
+    'MakeAppointment.title' => 'Запись на прием',
 ];

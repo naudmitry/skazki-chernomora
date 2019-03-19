@@ -12,6 +12,8 @@ let mix = require('laravel-mix');
  */
 mix.js('resources/assets/js/app.js', 'public/vali-admin/js');
 
+mix.js('resources/assets/js/miracle.js', 'public/miracle/js');
+
 // mix.styles([
 //         'resources/assets/css/main_theme.css',
 //     ],

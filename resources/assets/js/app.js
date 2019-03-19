@@ -13,5 +13,3 @@ require('./pages/admin/showcases');
 require('./pages/admin/roles');
 require('./pages/admin/content');
 require('./pages/admin/common');
-
-require('./pages/site/order');

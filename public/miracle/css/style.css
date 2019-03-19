@@ -8218,7 +8218,7 @@ ul.filter-categories > li li:last-child {
 }
 
 #footer .back-to-top:before {
-    background-image: url(../images/logo-white.png);
+    background-image: url(../images/icon/up.png);
     -moz-transition: all 0.25s ease 0s;
     -o-transition: all 0.25s ease 0s;
     -webkit-transition: all 0.25s ease 0s;

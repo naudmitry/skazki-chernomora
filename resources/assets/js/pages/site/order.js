@@ -1,5 +1,5 @@
 $(function () {
-    let $appoinmentSection = $('.appoinment-section');
+    let $appoinmentSection = $('.make-appointment-section');
 
     if (!$appoinmentSection.length) {
         return;
