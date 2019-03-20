@@ -20,11 +20,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         Route::get('companies/enter-as-admin/{company}', ['uses' => 'Admin\CompanyController@enterAsAdmin', 'as' => 'admin.companies.enter-as-admin']);
         Route::get('companies/leave-from-admin', ['uses' => 'Admin\CompanyController@leaveFromAdmin', 'as' => 'admin.companies.leave-from-admin']);
 
-        Route::get('403', ['as' => '403', 'uses' => 'Admin\ErrorHandlerController@errorCode403']);
-        Route::get('404', ['as' => '404', 'uses' => 'Admin\ErrorHandlerController@errorCode404']);
-        Route::get('500', ['as' => '500', 'uses' => 'Admin\ErrorHandlerController@errorCode500']);
-        Route::get('503', ['as' => '503', 'uses' => 'Admin\ErrorHandlerController@errorCode503']);
-
         Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_SHOWCASES], function () {
             Route::get('/showcases', ['uses' => 'Admin\ShowcaseController@index', 'as' => 'admin.showcases.index']);
             Route::post('/showcases/enable/{showcase}', ['uses' => 'Admin\ShowcaseController@enable', 'as' => 'admin.showcase.enable']);

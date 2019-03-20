@@ -6,11 +6,11 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
 class Handler extends ExceptionHandler
@@ -53,14 +53,14 @@ class Handler extends ExceptionHandler
         }
 
         $isAdminRequest = ($request->getHost() == env('DOMAIN_ADMIN'));
+        $template = $isAdminRequest ? 'main_admin' : 'miracle';
 
         if ($isAdminRequest and !$request->user('admin')) {
             return redirect()
                 ->route('admin.login');
         }
 
-        switch (true)
-        {
+        switch (true) {
             case $exception instanceof AuthenticationException:
                 return $isAdminRequest ?
                     redirect()
@@ -69,8 +69,7 @@ class Handler extends ExceptionHandler
                         ->route('site.index');
 
             case $exception instanceof TokenMismatchException:
-                if ( ! $request->ajax())
-                {
+                if (!$request->ajax()) {
                     return redirect()
                         ->back()
                         ->withInput($request->all());
@@ -81,11 +80,9 @@ class Handler extends ExceptionHandler
         if ($this->isHttpException($exception)) {
             switch ($exception->getStatusCode()) {
                 case 404:
-                    return redirect()->route('404');
-                    break;
+                    return response()->view($template . '.errors.404', [], Response::HTTP_NOT_FOUND);
                 case 405:
-                    return redirect()->route('405');
-                    break;
+                    return response()->view($template . '.errors.405', [], Response::HTTP_NOT_FOUND);
             }
         }
 

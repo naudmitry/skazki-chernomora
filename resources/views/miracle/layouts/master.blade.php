@@ -43,7 +43,7 @@
 
         @yield('header__ss')
     </head>
-    <body>
+    <body @yield('body-data')>
         <div id="page-wrapper">
             <header id="header" class="header-color-white">
                 @include('miracle.vendor.navigation.desktop')
