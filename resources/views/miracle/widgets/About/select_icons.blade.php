@@ -7,6 +7,7 @@
     'skype',
     'dribbble',
     'tumblr',
+    'vk'
 ] as $iteratedIcon)
     <option
             value="{{ $iteratedIcon }}"

@@ -164,6 +164,13 @@ class AdminController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @param Company $administeredCompany
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     * @throws \Throwable
+     */
     public function create(Request $request, Company $administeredCompany)
     {
         $this->validate($request,
