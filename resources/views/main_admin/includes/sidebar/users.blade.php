@@ -10,8 +10,8 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_USERS_CUSTOMERS, $administeredCompany))
         <li>
             <a
-                class="app-menu__item"
-                href="#"
+                class="app-menu__item @if (Route::is('admin.buyer.*')) active @endif"
+                href="{{ route('admin.buyer.list.index') }}"
             ><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Клиенты</span></a>
         </li>
     @endif

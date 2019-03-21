@@ -183,6 +183,14 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::delete('/order/lists/{order}', ['uses' => 'Admin\OrderController@delete', 'as' => 'admin.order.list.delete'])
                     ->where('order', '[0-9]+');
             });
+
+            Route::group(['components' => AdminComponentEnum::COMPANY_USERS_CUSTOMERS], function () {
+                Route::get('/buyer/lists', ['uses' => 'Admin\BuyerController@index', 'as' => 'admin.buyer.list.index']);
+                Route::get('/buyer/lists/edit/{buyer}', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyer.list.edit'])
+                    ->where('buyer', '[0-9]+');
+                Route::delete('/buyer/lists/{buyer}', ['uses' => 'Admin\BuyerController@delete', 'as' => 'admin.buyer.list.delete'])
+                    ->where('buyer', '[0-9]+');
+            });
         });
 
         Route::get('/{any?}',

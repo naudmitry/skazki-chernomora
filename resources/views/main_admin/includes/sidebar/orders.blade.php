@@ -9,7 +9,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ORDERS_LIST, $administeredCompany))
         <li>
             <a
-                class="app-menu__item"
+                class="app-menu__item @if (Route::is('admin.order.*')) active @endif"
                 href="{{ route('admin.order.list.index') }}"
             ><i class="app-menu__icon fas fa-shopping-cart"></i><span class="app-menu__label">Список заказов</span></a>
         </li>

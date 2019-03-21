@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-md-12 buyers-lists">
             <div class="tile">
-                <div class="tile-body">
-                    <div class="row" style="margin-bottom: 20px;">
+                <div class="tile-body mb-4">
+                    <div class="row">
                         <div class="col-md-6 col-lg-3">
                             <button data-href="#" class="btn btn-primary open-create-form" type="button">
-                                <i class="fas fa-plus-circle"></i> Добавить
+                                <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
                         <div class="col-md-6 col-lg-3">
@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="info">
                                     <p class="sites-count"><b>0</b></p>
-                                    <p>сайтов</p>
+                                    <p>зарегистрированных пользователей</p>
                                 </div>
                             </div>
                         </div>
@@ -34,11 +34,11 @@
                                 </div>
                                 <div class="info">
                                     <p class="amount-total"><b>0</b></p>
-                                    <p>всего выручка</p>
+                                    <p>заказавших пользователей</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3" style="margin-top: 10px;">
+                        <div class="col-md-6 col-lg-3 mt-2">
                             <input class="form-control form-control-sm search" placeholder="Введите и нажмите Enter..." />
                         </div>
                     </div>
@@ -47,19 +47,19 @@
                 <div class="tile-body datatable-scroll-lg">
                     <table
                             class="table table-hover"
-                            id="companiesListsTable"
-                            data-href="{{ route('admin.companies.lists.index') }}"
+                            id="buyersListsTable"
+                            data-href="{{ route('admin.buyer.list.index') }}"
                             width="100%"
                     >
                         <thead>
                         <tr>
-                            <th>Создан</th>
-                            <th>Наименование компании</th>
-                            <th>Сайтов</th>
-                            <th>Администратор</th>
-                            <th>Страна</th>
-                            <th>Выручка</th>
-                            <th>Доступность</th>
+                            <th>Зарегистрирован/IP</th>
+                            <th>Пользователь/Email</th>
+                            <th>Телефон</th>
+                            <th>Дата последнего входа/IP</th>
+                            <th>Статус</th>
+                            <th>Реальные заказы</th>
+                            <th>Общая сумма</th>
                             <th>Действия</th>
                         </tr>
                         </thead>
@@ -70,28 +70,28 @@
         </div>
     </div>
 
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-created">
-        @include('main_admin.companies.lists.columns.created')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-actions">
+        @include('main_admin.buyers.lists.columns.actions')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-title">
-        @include('main_admin.companies.lists.columns.title')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-phone">
+        @include('main_admin.buyers.lists.columns.phone')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-sites">
-        @include('main_admin.companies.lists.columns.sites')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-status">
+        @include('main_admin.buyers.lists.columns.status')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-admin">
-        @include('main_admin.companies.lists.columns.admin')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-orders">
+        @include('main_admin.buyers.lists.columns.orders')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-country">
-        @include('main_admin.companies.lists.columns.country')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-orders-sum">
+        @include('main_admin.buyers.lists.columns.orders_sum')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-amount">
-        @include('main_admin.companies.lists.columns.amount')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-login">
+        @include('main_admin.buyers.lists.columns.login')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-enable">
-        @include('main_admin.companies.lists.columns.enable')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-user">
+        @include('main_admin.buyers.lists.columns.user')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-companies-lists-table-column-actions">
-        @include('main_admin.companies.lists.columns.actions')
+    <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-created">
+        @include('main_admin.buyers.lists.columns.created')
     </script>
 @endsection

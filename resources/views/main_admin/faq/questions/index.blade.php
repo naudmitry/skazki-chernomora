@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3" style="margin-top: 10px;">
+                        <div class="col-md-6 col-lg-3 mt-2">
                             <input class="form-control form-control-sm search" placeholder="Введите и нажмите Enter..." />
                         </div>
                     </div>
