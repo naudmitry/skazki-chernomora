@@ -14,3 +14,4 @@ require('./pages/admin/roles');
 require('./pages/admin/content');
 require('./pages/admin/common');
 require('./pages/admin/buyer');
+require('./pages/admin/ad-source');

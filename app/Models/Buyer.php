@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $surname
  * @property string $name
  * @property string $middle_name
+ * @property Carbon $birthday_at
+ * @property string $address
  * @property string $email
  * @property string $number_contract
  * @property Carbon $contract_at
@@ -26,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $showcase_id
  * @property Carbon $login_at
  * @property string $password
+ * @property boolean $is_processing_personal_data
  *
  * @mixin \Eloquent
  */

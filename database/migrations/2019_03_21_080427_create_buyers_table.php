@@ -21,6 +21,8 @@ class CreateBuyersTable extends Migration
             $table->string('surname')->nullable();
             $table->string('name')->nullable();
             $table->string('middle_name')->nullable();
+            $table->timestamp('birthday_at')->nullable();
+            $table->string('address')->nullable();
             $table->string('email')->nullable()->index();
             $table->string('number_contract')->nullable()->index();
             $table->timestamp('contract_at')->nullable();
@@ -37,6 +39,8 @@ class CreateBuyersTable extends Migration
             $table->string('login_from')->nullable();
             $table->string('created_from')->nullable();
             $table->string('password')->nullable();
+            $table->boolean('is_processing_personal_data')->default(false);
+            $table->string('dynamics')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

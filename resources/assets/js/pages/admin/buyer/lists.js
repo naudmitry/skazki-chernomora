@@ -32,37 +32,30 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                // data: 'created_at',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnCreated, {buyer}),
             },
             {
                 targets: 1,
-                // data: 'name',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnUser, {buyer}),
             },
             {
                 targets: 2,
-                // data: 'phone',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnPhone, {buyer}),
             },
             {
                 targets: 3,
-                // data: 'login_at',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnLogin, {buyer}),
             },
             {
                 targets: 4,
-                // data: 'statuses',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnStatus, {buyer}),
             },
             {
                 targets: 5,
-                // data: 'stat_orders',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnOrders, {buyer}),
             },
             {
                 targets: 6,
-                // data: 'stat_orders_sum',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnOrdersSum, {buyer}),
             },
             {
@@ -121,34 +114,34 @@ $(function () {
     //     });
     // });
 
-    // $(document).on('click', '.blog-article-delete', function (e) {
-    //     e.preventDefault();
-    //     let $this = $(this);
-    //
-    //     swal({
-    //         title: "Подтвердите удаление",
-    //         text: "Вы действительно хотите удалить статью?",
-    //         icon: "warning",
-    //         buttons: ["Отмена", "Да, удалить"],
-    //         dangerMode: true,
-    //     }).then((willDelete) => {
-    //         if (willDelete) {
-    //             $.ajax({
-    //                 type: 'delete',
-    //                 url: $this.attr('href'),
-    //                 success: response => {
-    //                     notifyService.showMessage('danger', 'Успех!', response.message);
-    //                     $buyersListsTable.DataTable().ajax.reload();
-    //                 },
-    //                 error: xhr => {
-    //                     console.error(xhr);
-    //                 },
-    //             });
-    //
-    //             swal("Удаление подтверждено!", "Статья будет удалена.", "success");
-    //         } else {
-    //             swal("Удаление отменено!", "Статья не будет удалена.", "error");
-    //         }
-    //     });
-    // });
+    $(document).on('click', '.buyer-list-delete', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить данные клиента?",
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'delete',
+                    url: $this.attr('href'),
+                    success: response => {
+                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        $buyersListsTable.DataTable().ajax.reload();
+                    },
+                    error: xhr => {
+                        console.error(xhr);
+                    },
+                });
+
+                swal("Удаление подтверждено!", "Клиент будет удален.", "success");
+            } else {
+                swal("Удаление отменено!", "Клиент не будет удален.", "error");
+            }
+        });
+    });
 });

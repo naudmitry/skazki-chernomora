@@ -190,7 +190,19 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('buyer', '[0-9]+');
                 Route::delete('/buyer/lists/{buyer}', ['uses' => 'Admin\BuyerController@delete', 'as' => 'admin.buyer.list.delete'])
                     ->where('buyer', '[0-9]+');
+                Route::post('/buyer/lists/save/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@save', 'as' => 'admin.buyer.list.save',])
+                    ->where('buyer', '[0-9]+')
+                    ->where('tab', 'general');
             });
+
+
+            Route::get('/ad-sources/lists', ['uses' => 'Admin\AdSourceController@index', 'as' => 'admin.ad-source.list.index']);
+            Route::delete('/ad-sources/lists/{source}', ['uses' => 'Admin\AdSourceController@delete', 'as' => 'admin.ad-source.list.delete'])
+                ->where('source', '[0-9]+');
+            Route::post('/ad-sources/lists/save/{source?}', ['uses' => 'Admin\AdSourceController@save', 'as' => 'admin.ad-source.list.save',])
+                ->where('source', '[0-9]+');
+            Route::get('/ad-sources/lists/edit/{source?}', ['uses' => 'Admin\AdSourceController@edit', 'as' => 'admin.ad-source.list.edit'])
+                ->where('source', '[0-9]+');
         });
 
         Route::get('/{any?}',
