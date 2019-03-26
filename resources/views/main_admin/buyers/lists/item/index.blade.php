@@ -29,4 +29,8 @@
             </div>
         </div>
     </div>
+
+    <script type="text/template" class="loading-template">
+        @include('main_admin.includes.loading')
+    </script>
 @endsection

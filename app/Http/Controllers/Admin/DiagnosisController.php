@@ -2,35 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\AdSourceRequest;
-use App\Models\AdSource;
+use App\Models\Diagnosis;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
-class AdSourceController extends Controller
+class DiagnosisController extends Controller
 {
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
-     */
+
     public function index(Request $request)
     {
-        $adSourceQuery = AdSource::all();
+        $diagnosisQuery = Diagnosis::all();
 
         if ($request->ajax()) {
-            return Datatables::of($adSourceQuery)
+            return Datatables::of($diagnosisQuery)
                 ->make(true);
         }
 
-        return view('main_admin.ad_sources.index');
+        return view('main_admin.diagnosis.index');
     }
 
-    /**
-     * @param AdSource $source
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
-     */
+
     public function delete(AdSource $source)
     {
         $source->delete();
@@ -40,11 +31,7 @@ class AdSourceController extends Controller
         ]);
     }
 
-    /**
-     * @param AdSourceRequest $request
-     * @param AdSource|null $source
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function save(AdSourceRequest $request, AdSource $source = null)
     {
         if (!isset($source)) {
@@ -59,11 +46,7 @@ class AdSourceController extends Controller
         ]);
     }
 
-    /**
-     * @param AdSource|null $source
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Throwable
-     */
+
     public function edit(AdSource $source = null)
     {
         return response()->json([
@@ -73,10 +56,7 @@ class AdSourceController extends Controller
         ]);
     }
 
-    /**
-     * @param AdSource $source
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function enable(AdSource $source)
     {
         $source->is_enabled = !$source->is_enabled;

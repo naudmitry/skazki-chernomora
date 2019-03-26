@@ -3,16 +3,16 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Справочники',
-        'page' => 'Источники рекламы'
+        'page' => 'Диагнозы'
     ])
 
-    <div class="row ad-sources">
+    <div class="row diagnoses">
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button href="{{ route('admin.ad-source.list.edit') }}" class="btn btn-primary open-edit-modal" type="button">
+                            <button href="{{ route('admin.diagnosis.list.edit') }}" class="btn btn-primary open-edit-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="tile-body datatable-scroll-lg">
-                    <table class="table table-hover" id="adSourcesTable" data-href="{{ route('admin.ad-source.list.index') }}" width="100%">
+                    <table class="table table-hover" id="diagnosesTable" data-href="{{ route('admin.diagnosis.list.index') }}" width="100%">
                         <thead>
                         <tr>
                             <th>Создан</th>
@@ -63,16 +63,16 @@
 
     <div class="div-for-modal"></div>
 
-    <script type="application/x-tmpl-mustache" class="template-ad-sources-lists-table-column-actions">
-        @include('main_admin.ad_sources.columns.actions')
+    <script type="application/x-tmpl-mustache" class="template-diagnoses-lists-table-column-actions">
+        @include('main_admin.diagnoses.columns.actions')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-ad-sources-lists-table-column-title">
-        @include('main_admin.ad_sources.columns.title')
+    <script type="application/x-tmpl-mustache" class="template-diagnoses-lists-table-column-title">
+        @include('main_admin.diagnoses.columns.title')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-ad-sources-lists-table-column-created">
-        @include('main_admin.ad_sources.columns.created')
+    <script type="application/x-tmpl-mustache" class="template-diagnoses-lists-table-column-created">
+        @include('main_admin.diagnoses.columns.created')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-ad-sources-lists-table-column-enabled">
-        @include('main_admin.ad_sources.columns.enabled')
+    <script type="application/x-tmpl-mustache" class="template-diagnoses-lists-table-column-enabled">
+        @include('main_admin.diagnoses.columns.enabled')
     </script>
 @endsection

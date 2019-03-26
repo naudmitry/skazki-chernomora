@@ -1,24 +1,24 @@
 $(function () {
-    let $adSources = $('.ad-sources');
+    let $diagnoses = $('.diagnoses');
 
-    if (!$adSources.length) {
+    if (!$diagnoses.length) {
         return;
     }
 
-    let $adSourcesTable = $('#adSourcesTable');
-    let mustacheTemplateAdSourcesListsTableColumnActions = $('.template-ad-sources-lists-table-column-actions').text();
-    let mustacheTemplateAdSourcesListsTableColumnCreated = $('.template-ad-sources-lists-table-column-created').text();
-    let mustacheTemplateAdSourcesListsTableColumnEnabled = $('.template-ad-sources-lists-table-column-enabled').text();
+    let $diagnosesTable = $('#adSourcesTable');
+    let mustacheTemplateDiagnosesListsTableColumnActions = $('.template-ad-sources-lists-table-column-actions').text();
+    let mustacheTemplateDiagnosesListsTableColumnCreated = $('.template-ad-sources-lists-table-column-created').text();
+    let mustacheTemplateDiagnosesListsTableColumnEnabled = $('.template-ad-sources-lists-table-column-enabled').text();
     let mustacheTemplateAdSourcesListsTableColumnTitle = $('.template-ad-sources-lists-table-column-title').text();
 
-    $adSourcesTable.DataTable({
+    $diagnosesTable.DataTable({
         info: true,
         autoWidth: false,
         processing: true,
         serverSide: true,
         ajax:
             {
-                url: $adSourcesTable.data('href'),
+                url: $diagnosesTable.data('href'),
                 // data: function (data) {
                 //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
                 //         data[filter.name] = filter.value;
@@ -29,7 +29,7 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnCreated, {source}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnCreated, {source}),
             },
             {
                 targets: 1,
@@ -39,12 +39,12 @@ $(function () {
             {
                 targets: 2,
                 data: 'is_enabled',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnEnabled, {source}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnEnabled, {source}),
             },
             {
                 targets: 3,
                 orderable: false,
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnActions, {source}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnActions, {source}),
             },
         ],
         order: [[0, 'asc']],
@@ -114,7 +114,7 @@ $(function () {
                     url: $this.attr('href'),
                     success: response => {
                         notifyService.showMessage('danger', 'Успех!', response.message);
-                        $adSourcesTable.DataTable().ajax.reload();
+                        $diagnosesTable.DataTable().ajax.reload();
                     },
                     error: xhr => {
                         console.error(xhr);
@@ -165,7 +165,7 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $adSourcesTable.DataTable().ajax.reload();
+                $diagnosesTable.DataTable().ajax.reload();
                 $modal.modal('hide');
             },
             error: xhr => {

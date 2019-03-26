@@ -193,6 +193,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::post('/buyer/lists/save/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@save', 'as' => 'admin.buyer.list.save',])
                     ->where('buyer', '[0-9]+')
                     ->where('tab', 'general');
+                Route::post('/buyer/lists/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyer.list.create']);
+                Route::get('/buyer/lists/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyer.list.modal']);
             });
 
 
@@ -203,6 +205,20 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 ->where('source', '[0-9]+');
             Route::get('/ad-sources/lists/edit/{source?}', ['uses' => 'Admin\AdSourceController@edit', 'as' => 'admin.ad-source.list.edit'])
                 ->where('source', '[0-9]+');
+            Route::post('/ad-sources/lists/enable/{source}', ['uses' => 'Admin\AdSourceController@enable', 'as' => 'admin.ad-source.list.enable'])
+                ->where('source', '[0-9]+');
+
+
+
+            Route::get('/diagnoses/lists', ['uses' => 'Admin\DiagnosisController@index', 'as' => 'admin.diagnosis.list.index']);
+            Route::delete('/diagnoses/lists/{diagnosis}', ['uses' => 'Admin\DiagnosisController@delete', 'as' => 'admin.diagnosis.list.delete'])
+                ->where('diagnosis', '[0-9]+');
+            Route::post('/diagnoses/lists/save/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@save', 'as' => 'admin.diagnosis.list.save',])
+                ->where('diagnosis', '[0-9]+');
+            Route::get('/diagnoses/lists/edit/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@edit', 'as' => 'admin.diagnosis.list.edit'])
+                ->where('diagnosis', '[0-9]+');
+            Route::post('/diagnoses/lists/enable/{diagnosis}', ['uses' => 'Admin\DiagnosisController@enable', 'as' => 'admin.diagnosis.list.enable'])
+                ->where('diagnosis', '[0-9]+');
         });
 
         Route::get('/{any?}',

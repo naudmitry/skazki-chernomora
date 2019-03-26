@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdSourcesTable extends Migration
+class CreateDiagnosesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAdSourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ad_sources', function (Blueprint $table) {
+        Schema::create('diagnoses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->boolean('is_enabled')->default(false);
@@ -29,6 +29,6 @@ class CreateAdSourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ad_sources');
+        Schema::dropIfExists('diagnoses');
     }
 }

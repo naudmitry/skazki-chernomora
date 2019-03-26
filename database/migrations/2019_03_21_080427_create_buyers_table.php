@@ -34,7 +34,6 @@ class CreateBuyersTable extends Migration
             $table->string('rating')->default(BuyerRatingEnum::WARNING)->index();
             $table->string('statuses')->default(BuyerStatusEnum::VISITOR)->index();
             $table->integer('showcase_id')->unsigned();
-            $table->foreign('showcase_id')->references('id')->on('showcases')->onDelete('cascade');
             $table->timestamp('login_at')->nullable();
             $table->string('login_from')->nullable();
             $table->string('created_from')->nullable();
@@ -44,6 +43,8 @@ class CreateBuyersTable extends Migration
 
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('showcase_id')->references('id')->on('showcases')->onDelete('cascade');
         });
     }
 

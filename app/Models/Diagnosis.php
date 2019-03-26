@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class AdSource
+ * Class Diagnoses
  * @package App\Models
  *
  * @property integer $id
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @mixin \Eloquent
  */
-class AdSource extends Model
+class Diagnosis extends Model
 {
     use SoftDeletes;
 }

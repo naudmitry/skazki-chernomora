@@ -1,4 +1,4 @@
-<div class="text-semibold text-nowrap">
+<div>
     @{{buyer.created_at}}
 </div>
 @{{#buyer.created_from}}

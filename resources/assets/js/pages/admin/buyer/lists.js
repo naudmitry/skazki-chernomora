@@ -95,11 +95,12 @@ $(function () {
         width: 'auto'
     });
 
-    // $(document).on('keyup', '.search', function (e) {
-    //     if (e.keyCode == 13) {
-    //         $('#blogArticlesTable').DataTable().search(this.value).draw();
-    //     }
-    // });
+    $(document).on('keyup', '.search', function (e) {
+        if (e.keyCode == 13) {
+            $('#buyersListsTable').DataTable().search(this.value).draw();
+        }
+    });
+
 
     // $(document).on('change', '.checkbox', function () {
     //     $.ajax({
@@ -143,5 +144,66 @@ $(function () {
                 swal("Удаление отменено!", "Клиент не будет удален.", "error");
             }
         });
+    });
+
+    $(document).on('submit', '.buyer-create-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        let $modal = $form.closest('#buyer-modal');
+        if ($form.data('ajax')) {
+            $form.data('ajax').abort();
+        }
+        $form.find('.has-error').removeClass('has-error');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                if (response.status === 200) {
+                    $buyersListsTable.DataTable().ajax.reload();
+                    $modal.modal('hide');
+                }
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON.errors) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+            },
+        }));
+    });
+
+    $(document).on('click', '.open-buyer-modal', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        let $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.data('href'),
+            success: response => {
+                $divForModal.html(response.view);
+                let $modal = $('#buyer-modal');
+                $modal.find('.select2').select2({
+                    minimumResultsForSearch: Infinity,
+                    width: '100%'
+                });
+                $modal.modal('show');
+                $modal.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: xhr => {
+                console.error(xhr);
+            },
+            complete: () => $this.removeData('ajax'),
+        }));
     });
 });

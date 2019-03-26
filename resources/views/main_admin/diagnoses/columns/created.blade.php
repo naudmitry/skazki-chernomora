@@ -1,0 +1,1 @@
+@{{ diagnosis.created_at }}
