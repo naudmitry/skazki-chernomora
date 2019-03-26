@@ -32,37 +32,30 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                // data: 'created_at',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnCreated, {buyer}),
             },
             {
                 targets: 1,
-                // data: 'name',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnUser, {buyer}),
             },
             {
                 targets: 2,
-                // data: 'phone',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnPhone, {buyer}),
             },
             {
                 targets: 3,
-                // data: 'login_at',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnLogin, {buyer}),
             },
             {
                 targets: 4,
-                // data: 'statuses',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnStatus, {buyer}),
             },
             {
                 targets: 5,
-                // data: 'stat_orders',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnOrders, {buyer}),
             },
             {
                 targets: 6,
-                // data: 'stat_orders_sum',
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnOrdersSum, {buyer}),
             },
             {
@@ -102,53 +95,101 @@ $(function () {
         width: 'auto'
     });
 
-    // $(document).on('keyup', '.search', function (e) {
-    //     if (e.keyCode == 13) {
-    //         $('#blogArticlesTable').DataTable().search(this.value).draw();
-    //     }
-    // });
+    $(document).on('keyup', '.search', function (e) {
+        if (e.keyCode == 13) {
+            $('#buyersListsTable').DataTable().search(this.value).draw();
+        }
+    });
 
-    // $(document).on('change', '.checkbox', function () {
-    //     $.ajax({
-    //         url: $(this).data('href'),
-    //         type: 'post',
-    //         success: (response) => {
-    //             notifyService.showMessage('info', 'Успех!', response.message);
-    //         },
-    //         error: function (data) {
-    //             console.log(data);
-    //         }
-    //     });
-    // });
+    $(document).on('click', '.buyer-list-delete', function (e) {
+        e.preventDefault();
+        let $this = $(this);
 
-    // $(document).on('click', '.blog-article-delete', function (e) {
-    //     e.preventDefault();
-    //     let $this = $(this);
-    //
-    //     swal({
-    //         title: "Подтвердите удаление",
-    //         text: "Вы действительно хотите удалить статью?",
-    //         icon: "warning",
-    //         buttons: ["Отмена", "Да, удалить"],
-    //         dangerMode: true,
-    //     }).then((willDelete) => {
-    //         if (willDelete) {
-    //             $.ajax({
-    //                 type: 'delete',
-    //                 url: $this.attr('href'),
-    //                 success: response => {
-    //                     notifyService.showMessage('danger', 'Успех!', response.message);
-    //                     $buyersListsTable.DataTable().ajax.reload();
-    //                 },
-    //                 error: xhr => {
-    //                     console.error(xhr);
-    //                 },
-    //             });
-    //
-    //             swal("Удаление подтверждено!", "Статья будет удалена.", "success");
-    //         } else {
-    //             swal("Удаление отменено!", "Статья не будет удалена.", "error");
-    //         }
-    //     });
-    // });
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить клиента?",
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'delete',
+                    url: $this.attr('href'),
+                    success: response => {
+                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        $buyersListsTable.DataTable().ajax.reload();
+                    },
+                    error: xhr => {
+                        console.error(xhr);
+                    },
+                });
+
+                swal("Удаление подтверждено!", "Клиент будет удален.", "success");
+            } else {
+                swal("Удаление отменено!", "Клиент не будет удален.", "error");
+            }
+        });
+    });
+
+    $(document).on('submit', '.buyer-create-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        let $modal = $form.closest('#buyer-modal');
+        if ($form.data('ajax')) {
+            $form.data('ajax').abort();
+        }
+        $form.find('.has-error').removeClass('has-error');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                if (response.status === 200) {
+                    $buyersListsTable.DataTable().ajax.reload();
+                    $modal.modal('hide');
+                }
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON.errors) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+            },
+        }));
+    });
+
+    $(document).on('click', '.open-buyer-modal', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        let $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.data('href'),
+            success: response => {
+                $divForModal.html(response.view);
+                let $modal = $('#buyer-modal');
+                $modal.find('.select2').select2({
+                    minimumResultsForSearch: Infinity,
+                    width: '100%'
+                });
+                $modal.modal('show');
+                $modal.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: xhr => {
+                console.error(xhr);
+            },
+            complete: () => $this.removeData('ajax'),
+        }));
+    });
 });

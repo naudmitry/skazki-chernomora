@@ -12,7 +12,7 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="#" class="btn btn-primary open-create-form" type="button">
+                            <button data-href="{{ route('admin.buyer.list.modal') }}" class="btn btn-primary open-buyer-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="info">
                                     <p class="sites-count"><b>0</b></p>
-                                    <p>зарегистрированных пользователей</p>
+                                    <p>пользователей</p>
                                 </div>
                             </div>
                         </div>
@@ -69,6 +69,8 @@
             </div>
         </div>
     </div>
+
+    <div class="div-for-modal"></div>
 
     <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-actions">
         @include('main_admin.buyers.lists.columns.actions')

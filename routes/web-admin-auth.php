@@ -190,6 +190,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('buyer', '[0-9]+');
                 Route::delete('/buyer/lists/{buyer}', ['uses' => 'Admin\BuyerController@delete', 'as' => 'admin.buyer.list.delete'])
                     ->where('buyer', '[0-9]+');
+                Route::post('/buyer/lists/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyer.list.create']);
+                Route::get('/buyer/lists/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyer.list.modal']);
             });
         });
 

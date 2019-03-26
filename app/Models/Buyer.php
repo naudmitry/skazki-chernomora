@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $statuses
  * @property integer $showcase_id
  * @property Carbon $login_at
+ * @property string $login_from
+ * @property string $created_from
  * @property string $password
  *
  * @mixin \Eloquent
