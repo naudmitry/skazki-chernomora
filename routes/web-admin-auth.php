@@ -197,39 +197,41 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/buyer/lists/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyer.list.modal']);
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES], function () {
+                Route::get('/ad-sources/lists', ['uses' => 'Admin\AdSourceController@index', 'as' => 'admin.ad-source.list.index']);
+                Route::delete('/ad-sources/lists/{source}', ['uses' => 'Admin\AdSourceController@delete', 'as' => 'admin.ad-source.list.delete'])
+                    ->where('source', '[0-9]+');
+                Route::post('/ad-sources/lists/save/{source?}', ['uses' => 'Admin\AdSourceController@save', 'as' => 'admin.ad-source.list.save',])
+                    ->where('source', '[0-9]+');
+                Route::get('/ad-sources/lists/edit/{source?}', ['uses' => 'Admin\AdSourceController@edit', 'as' => 'admin.ad-source.list.edit'])
+                    ->where('source', '[0-9]+');
+                Route::post('/ad-sources/lists/enable/{source}', ['uses' => 'Admin\AdSourceController@enable', 'as' => 'admin.ad-source.list.enable'])
+                    ->where('source', '[0-9]+');
+            });
 
-            Route::get('/ad-sources/lists', ['uses' => 'Admin\AdSourceController@index', 'as' => 'admin.ad-source.list.index']);
-            Route::delete('/ad-sources/lists/{source}', ['uses' => 'Admin\AdSourceController@delete', 'as' => 'admin.ad-source.list.delete'])
-                ->where('source', '[0-9]+');
-            Route::post('/ad-sources/lists/save/{source?}', ['uses' => 'Admin\AdSourceController@save', 'as' => 'admin.ad-source.list.save',])
-                ->where('source', '[0-9]+');
-            Route::get('/ad-sources/lists/edit/{source?}', ['uses' => 'Admin\AdSourceController@edit', 'as' => 'admin.ad-source.list.edit'])
-                ->where('source', '[0-9]+');
-            Route::post('/ad-sources/lists/enable/{source}', ['uses' => 'Admin\AdSourceController@enable', 'as' => 'admin.ad-source.list.enable'])
-                ->where('source', '[0-9]+');
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES], function () {
+                Route::get('/diagnoses/lists', ['uses' => 'Admin\DiagnosisController@index', 'as' => 'admin.diagnosis.list.index']);
+                Route::delete('/diagnoses/lists/{diagnosis}', ['uses' => 'Admin\DiagnosisController@delete', 'as' => 'admin.diagnosis.list.delete'])
+                    ->where('diagnosis', '[0-9]+');
+                Route::post('/diagnoses/lists/save/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@save', 'as' => 'admin.diagnosis.list.save',])
+                    ->where('diagnosis', '[0-9]+');
+                Route::get('/diagnoses/lists/edit/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@edit', 'as' => 'admin.diagnosis.list.edit'])
+                    ->where('diagnosis', '[0-9]+');
+                Route::post('/diagnoses/lists/enable/{diagnosis}', ['uses' => 'Admin\DiagnosisController@enable', 'as' => 'admin.diagnosis.list.enable'])
+                    ->where('diagnosis', '[0-9]+');
+            });
 
-
-
-            Route::get('/diagnoses/lists', ['uses' => 'Admin\DiagnosisController@index', 'as' => 'admin.diagnosis.list.index']);
-            Route::delete('/diagnoses/lists/{diagnosis}', ['uses' => 'Admin\DiagnosisController@delete', 'as' => 'admin.diagnosis.list.delete'])
-                ->where('diagnosis', '[0-9]+');
-            Route::post('/diagnoses/lists/save/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@save', 'as' => 'admin.diagnosis.list.save',])
-                ->where('diagnosis', '[0-9]+');
-            Route::get('/diagnoses/lists/edit/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@edit', 'as' => 'admin.diagnosis.list.edit'])
-                ->where('diagnosis', '[0-9]+');
-            Route::post('/diagnoses/lists/enable/{diagnosis}', ['uses' => 'Admin\DiagnosisController@enable', 'as' => 'admin.diagnosis.list.enable'])
-                ->where('diagnosis', '[0-9]+');
-
-
-            Route::get('/complaints/lists', ['uses' => 'Admin\ComplaintController@index', 'as' => 'admin.complaint.list.index']);
-            Route::delete('/complaints/lists/{complaint}', ['uses' => 'Admin\ComplaintController@delete', 'as' => 'admin.complaint.list.delete'])
-                ->where('complaint', '[0-9]+');
-            Route::post('/complaints/lists/save/{complaint?}', ['uses' => 'Admin\ComplaintController@save', 'as' => 'admin.complaint.list.save',])
-                ->where('complaint', '[0-9]+');
-            Route::get('/complaints/lists/edit/{complaint?}', ['uses' => 'Admin\ComplaintController@edit', 'as' => 'admin.complaint.list.edit'])
-                ->where('complaint', '[0-9]+');
-            Route::post('/complaints/lists/enable/{complaint}', ['uses' => 'Admin\ComplaintController@enable', 'as' => 'admin.complaint.list.enable'])
-                ->where('complaint', '[0-9]+');
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS], function () {
+                Route::get('/complaints/lists', ['uses' => 'Admin\ComplaintController@index', 'as' => 'admin.complaint.list.index']);
+                Route::delete('/complaints/lists/{complaint}', ['uses' => 'Admin\ComplaintController@delete', 'as' => 'admin.complaint.list.delete'])
+                    ->where('complaint', '[0-9]+');
+                Route::post('/complaints/lists/save/{complaint?}', ['uses' => 'Admin\ComplaintController@save', 'as' => 'admin.complaint.list.save',])
+                    ->where('complaint', '[0-9]+');
+                Route::get('/complaints/lists/edit/{complaint?}', ['uses' => 'Admin\ComplaintController@edit', 'as' => 'admin.complaint.list.edit'])
+                    ->where('complaint', '[0-9]+');
+                Route::post('/complaints/lists/enable/{complaint}', ['uses' => 'Admin\ComplaintController@enable', 'as' => 'admin.complaint.list.enable'])
+                    ->where('complaint', '[0-9]+');
+            });
         });
 
         Route::get('/{any?}',

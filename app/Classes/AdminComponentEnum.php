@@ -6,6 +6,10 @@ class AdminComponentEnum extends Enum
 {
     const COMPANY_ORDERS_LIST = 'orders.list';
 
+    const COMPANY_HANDBOOKS_AD_SOURCES = 'handbooks.ad-sources';
+    const COMPANY_HANDBOOKS_DIAGNOSES = 'handbooks.diagnoses';
+    const COMPANY_HANDBOOKS_COMPLAINTS = 'handbooks.complaints';
+
     const COMPANY_USERS_CUSTOMERS = 'users.customers';
     const COMPANY_USERS_REVIEWS = 'users.reviews';
 
@@ -37,6 +41,9 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_CONTENT_BLOCKS,
                     self::COMPANY_MARKETING_DISCOUNTS,
                     self::COMPANY_ORDERS_LIST,
+                    self::COMPANY_HANDBOOKS_AD_SOURCES,
+                    self::COMPANY_HANDBOOKS_COMPLAINTS,
+                    self::COMPANY_HANDBOOKS_DIAGNOSES,
                     self::COMPANY_USERS_CUSTOMERS,
                     self::COMPANY_USERS_REVIEWS,
                     self::COMPANY_SETTINGS_GENERAL,
@@ -62,6 +69,9 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_CONTENT_BLOCKS,
                     self::COMPANY_MARKETING_DISCOUNTS,
                     self::COMPANY_ORDERS_LIST,
+                    self::COMPANY_HANDBOOKS_AD_SOURCES,
+                    self::COMPANY_HANDBOOKS_COMPLAINTS,
+                    self::COMPANY_HANDBOOKS_DIAGNOSES,
                     self::COMPANY_USERS_CUSTOMERS,
                     self::COMPANY_USERS_REVIEWS,
                     self::COMPANY_SETTINGS_GENERAL,
