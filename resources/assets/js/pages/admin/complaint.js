@@ -1,24 +1,24 @@
 $(function () {
-    let $adSources = $('.ad-sources');
+    let $complaints = $('.complaints');
 
-    if (!$adSources.length) {
+    if (!$complaints.length) {
         return;
     }
 
-    let $adSourcesTable = $('#adSourcesTable');
-    let mustacheTemplateAdSourcesListsTableColumnActions = $('.template-ad-sources-lists-table-column-actions').text();
-    let mustacheTemplateAdSourcesListsTableColumnCreated = $('.template-ad-sources-lists-table-column-created').text();
-    let mustacheTemplateAdSourcesListsTableColumnEnabled = $('.template-ad-sources-lists-table-column-enabled').text();
-    let mustacheTemplateAdSourcesListsTableColumnTitle = $('.template-ad-sources-lists-table-column-title').text();
+    let $complaintsTable = $('#complaintsTable');
+    let mustacheTemplateComplaintsListsTableColumnActions = $('.template-complaints-lists-table-column-actions').text();
+    let mustacheTemplateComplaintsListsTableColumnCreated = $('.template-complaints-lists-table-column-created').text();
+    let mustacheTemplateComplaintsListsTableColumnEnabled = $('.template-complaints-lists-table-column-enabled').text();
+    let mustacheTemplateComplaintsListsTableColumnTitle = $('.template-complaints-lists-table-column-title').text();
 
-    $adSourcesTable.DataTable({
+    $complaintsTable.DataTable({
         info: true,
         autoWidth: false,
         processing: true,
         serverSide: true,
         ajax:
             {
-                url: $adSourcesTable.data('href'),
+                url: $complaintsTable.data('href'),
                 // data: function (data) {
                 //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
                 //         data[filter.name] = filter.value;
@@ -29,22 +29,22 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnCreated, {source}),
+                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnCreated, {complaint}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnTitle, {source}),
+                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnTitle, {complaint}),
             },
             {
                 targets: 2,
                 data: 'is_enabled',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnEnabled, {source}),
+                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnEnabled, {complaint}),
             },
             {
                 targets: 3,
                 orderable: false,
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnActions, {source}),
+                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnActions, {complaint}),
             },
         ],
         order: [[0, 'asc']],
@@ -80,11 +80,11 @@ $(function () {
 
     $(document).on('keyup', '.search', function (e) {
         if (e.keyCode == 13) {
-            $('#adSourcesTable').DataTable().search(this.value).draw();
+            $('#complaintsTable').DataTable().search(this.value).draw();
         }
     });
 
-    $(document).on('change', '.ad-source-enabled', function () {
+    $(document).on('change', '.complaint-enabled', function () {
         $.ajax({
             url: $(this).data('href'),
             type: 'post',
@@ -97,13 +97,13 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.ad-source-list-delete', function (e) {
+    $(document).on('click', '.complaint-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить источник рекламы?",
+            text: "Вы действительно хотите удалить жалобу?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -114,16 +114,16 @@ $(function () {
                     url: $this.attr('href'),
                     success: response => {
                         notifyService.showMessage('danger', 'Успех!', response.message);
-                        $adSourcesTable.DataTable().ajax.reload();
+                        $complaintsTable.DataTable().ajax.reload();
                     },
                     error: xhr => {
                         console.error(xhr);
                     },
                 });
 
-                swal("Удаление подтверждено!", "Источник рекламы будет удален.", "success");
+                swal("Удаление подтверждено!", "Жалоба не будет удалена.", "success");
             } else {
-                swal("Удаление отменено!", "Источник рекламы не будет удален.", "error");
+                swal("Удаление отменено!", "Жалоба не будет удалена.", "error");
             }
         });
     });
@@ -139,7 +139,7 @@ $(function () {
             url: $this.attr('href'),
             success: response => {
                 $divForModal.html(response.view);
-                let $modal = $('#ad-source-modal');
+                let $modal = $('#complaint-modal');
                 $modal.modal('show');
                 $modal.on('hidden.bs.modal', function (event) {
                     $divForModal.empty();
@@ -152,10 +152,10 @@ $(function () {
         }));
     });
 
-    $(document).on('submit', '.ad-source-list-edit-form', function (e) {
+    $(document).on('submit', '.complaint-edit-form', function (e) {
         e.preventDefault();
         let $form = $(this);
-        let $modal = $form.closest('#ad-source-modal');
+        let $modal = $form.closest('#complaint-modal');
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }
@@ -165,7 +165,7 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $adSourcesTable.DataTable().ajax.reload();
+                $complaintsTable.DataTable().ajax.reload();
                 $modal.modal('hide');
             },
             error: xhr => {
@@ -183,7 +183,7 @@ $(function () {
         }));
     });
 
-    $(document).on('change keyup', '.ad-source-list-edit-form', function (e) {
+    $(document).on('change keyup', '.complaint-edit-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         if (!$input.is('input,select')) {

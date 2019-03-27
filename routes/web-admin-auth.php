@@ -219,6 +219,17 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 ->where('diagnosis', '[0-9]+');
             Route::post('/diagnoses/lists/enable/{diagnosis}', ['uses' => 'Admin\DiagnosisController@enable', 'as' => 'admin.diagnosis.list.enable'])
                 ->where('diagnosis', '[0-9]+');
+
+
+            Route::get('/complaints/lists', ['uses' => 'Admin\ComplaintController@index', 'as' => 'admin.complaint.list.index']);
+            Route::delete('/complaints/lists/{complaint}', ['uses' => 'Admin\ComplaintController@delete', 'as' => 'admin.complaint.list.delete'])
+                ->where('complaint', '[0-9]+');
+            Route::post('/complaints/lists/save/{complaint?}', ['uses' => 'Admin\ComplaintController@save', 'as' => 'admin.complaint.list.save',])
+                ->where('complaint', '[0-9]+');
+            Route::get('/complaints/lists/edit/{complaint?}', ['uses' => 'Admin\ComplaintController@edit', 'as' => 'admin.complaint.list.edit'])
+                ->where('complaint', '[0-9]+');
+            Route::post('/complaints/lists/enable/{complaint}', ['uses' => 'Admin\ComplaintController@enable', 'as' => 'admin.complaint.list.enable'])
+                ->where('complaint', '[0-9]+');
         });
 
         Route::get('/{any?}',

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\DiagnosisRequest;
-use App\Models\Diagnosis;
+use App\Http\Requests\ComplaintRequest;
+use App\Models\Complaint;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
-class DiagnosisController extends Controller
+class ComplaintController extends Controller
 {
     /**
      * @param Request $request
@@ -16,43 +16,43 @@ class DiagnosisController extends Controller
      */
     public function index(Request $request)
     {
-        $diagnosisQuery = Diagnosis::all();
+        $complaintsQuery = Complaint::all();
 
         if ($request->ajax()) {
-            return Datatables::of($diagnosisQuery)
+            return Datatables::of($complaintsQuery)
                 ->make(true);
         }
 
-        return view('main_admin.diagnoses.index');
+        return view('main_admin.complaints.index');
     }
 
     /**
-     * @param Diagnosis $diagnosis
+     * @param Complaint $complaint
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(Diagnosis $diagnosis)
+    public function delete(Complaint $complaint)
     {
-        $diagnosis->delete();
+        $complaint->delete();
 
         return response()->json([
-            'message' => 'Диагноз удален.'
+            'message' => 'Жалоба удалена.'
         ]);
     }
 
     /**
-     * @param DiagnosisRequest $request
-     * @param Diagnosis|null $diagnosis
+     * @param ComplaintRequest $request
+     * @param Complaint|null $complaint
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(DiagnosisRequest $request, Diagnosis $diagnosis = null)
+    public function save(ComplaintRequest $request, Complaint $complaint = null)
     {
-        if (!isset($diagnosis)) {
-            $diagnosis = new Diagnosis();
+        if (!isset($complaint)) {
+            $complaint = new Complaint();
         }
 
-        $diagnosis->title = $request->get('title');
-        $diagnosis->save();
+        $complaint->title = $request->get('title');
+        $complaint->save();
 
         return response()->json([
             'message' => 'Данные успешно сохранены.'
@@ -60,27 +60,27 @@ class DiagnosisController extends Controller
     }
 
     /**
-     * @param Diagnosis|null $diagnosis
+     * @param Complaint|null $complaint
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function edit(Diagnosis $diagnosis = null)
+    public function edit(Complaint $complaint = null)
     {
         return response()->json([
-            'view' => view('main_admin.diagnoses.modals.edit', compact(
-                'diagnosis'
+            'view' => view('main_admin.complaints.modals.edit', compact(
+                'complaint'
             ))->render(),
         ]);
     }
 
     /**
-     * @param Diagnosis $diagnosis
+     * @param Complaint $complaint
      * @return \Illuminate\Http\JsonResponse
      */
-    public function enable(Diagnosis $diagnosis)
+    public function enable(Complaint $complaint)
     {
-        $diagnosis->is_enabled = !$diagnosis->is_enabled;
-        $diagnosis->update();
+        $complaint->is_enabled = !$complaint->is_enabled;
+        $complaint->update();
 
         return response()->json([
             'message' => 'Доступность успешно изменена.',

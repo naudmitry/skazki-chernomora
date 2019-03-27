@@ -16,6 +16,7 @@
         </li>
 
         @include('main_admin.includes.sidebar.orders')
+        @include('main_admin.includes.sidebar.handbooks')
         @include('main_admin.includes.sidebar.users')
         @include('main_admin.includes.sidebar.marketing')
         @include('main_admin.includes.sidebar.content')
