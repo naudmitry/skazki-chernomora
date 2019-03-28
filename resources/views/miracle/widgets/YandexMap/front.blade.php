@@ -1,1 +1,3 @@
-<iframe class="soap-google-map" src="{{ $setting->map_link }}" width="100%"></iframe>
+<div class="soap-google-map">
+    <script type="text/javascript" charset="utf-8" src="{{ $setting->map_link }}"></script>
+</div>

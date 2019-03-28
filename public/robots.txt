@@ -1,4 +1,5 @@
 User-agent: Yandex
+Sitemap: http://vitebsk.skazki-chernomora.com/sitemap.xml
 Disallow: /main_admin/
 Disallow: /main_theme/
 Disallow: /js/
