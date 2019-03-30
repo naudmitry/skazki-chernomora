@@ -5,6 +5,7 @@ use App\Classes\AdminComponentEnum;
 return [
     'groups' => [
         'orders' => 'Заказы',
+        'handbooks' => 'Справочники',
         'users' => 'Пользователи',
         'marketing' => 'Маркетинг',
         'content' => 'Контент',
@@ -13,6 +14,10 @@ return [
     ],
 
     AdminComponentEnum::COMPANY_USERS_REVIEWS => 'Отзывы',
+
+    AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES => 'Источники рекламы',
+    AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES => 'Диагнозы',
+    AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS => 'Жалобы',
 
     AdminComponentEnum::COMPANY_ORDERS_LIST => 'Список заказов',
     AdminComponentEnum::COMPANY_USERS_CUSTOMERS => 'Клиенты',

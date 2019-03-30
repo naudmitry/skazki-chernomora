@@ -14,6 +14,8 @@ require('jquery-ui/ui/widgets/droppable');
 require('jquery-ui/ui/widgets/sortable');
 require('jquery-ui/ui/widgets/spinner');
 require('jquery-ui/ui/widgets/tabs');
+require('jquery-ui/ui/widgets/datepicker');
+require('jquery-ui/ui/i18n/datepicker-ru');
 
 require('bootstrap');
 require('select2/dist/js/select2.full');

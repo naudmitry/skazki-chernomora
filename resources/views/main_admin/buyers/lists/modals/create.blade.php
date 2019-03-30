@@ -54,11 +54,22 @@
                             </div>
                         </div>
 
-
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">Пол:</label>
+                            <div class="col-md-8">
+                                <select class="select2" name="gender">
+                                    @foreach (\App\Classes\GenderEnum::lists() as $gender)
+                                        <option
+                                                value="{{ $gender }}"
+                                        >{{ trans('gender.' . $gender) }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-default" type="submit" disabled>
                             <i class="fas fa-check-circle mr-2"></i>Сохранить
                         </button>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">

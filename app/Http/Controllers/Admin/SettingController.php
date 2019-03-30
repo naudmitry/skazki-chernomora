@@ -24,10 +24,9 @@ class SettingController extends Controller
 
     /**
      * @param Showcase $administeredShowcase
-     * @param null $tab
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Showcase $administeredShowcase, $tab = 'general')
+    public function index(Showcase $administeredShowcase)
     {
         return view('main_admin.settings.index', compact(
             'administeredShowcase'

@@ -13,7 +13,7 @@
                                 @foreach ($categories as $category)
                                     <option
                                             @if ($blog->categories->whereIn('id', $category->id)->count()) selected @endif
-                                    value="{{ $category->id }}"
+                                            value="{{ $category->id }}"
                                     >{{ $category->name }}</option>
                                 @endforeach
                             </select>

@@ -107,7 +107,7 @@ $(function () {
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить клиента?",
+            text: "Вы действительно хотите удалить данные клиента?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -139,7 +139,7 @@ $(function () {
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }
-        $form.find('.has-error').removeClass('has-error');
+        $form.find('.is-invalid').removeClass('is-invalid');
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -191,5 +191,17 @@ $(function () {
             },
             complete: () => $this.removeData('ajax'),
         }));
+    });
+
+    $(document).on('change keyup', '.buyer-create-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 });

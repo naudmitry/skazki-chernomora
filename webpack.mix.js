@@ -10,17 +10,7 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.js('resources/assets/js/app.js', 'public/vali-admin/js');
+mix.js('resources/assets/js/app.js', 'public/vali-admin/js')
+    .sass('resources/assets/sass/app.scss', 'public/vali-admin/css');
 
 mix.js('resources/assets/js/miracle.js', 'public/miracle/js');
-
-// mix.styles([
-//         'resources/assets/css/main_theme.css',
-//     ],
-//     'public/main_theme/css/style.css');
-//
-// mix.scripts([
-//         'resources/assets/js/main_theme/scripts.js',
-//         'resources/assets/js/main_theme/datepicker-ru.js',
-//     ],
-//     'public/main_theme/js/scripts.js');
