@@ -15,11 +15,11 @@
                             Карточка клиента
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="tab">
-                            Лист наблюдения
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="#" data-toggle="tab">--}}
+{{--                            Лист наблюдения--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </div>

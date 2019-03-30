@@ -9,8 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="{{ asset('vali-admin/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('vali-admin/css/dragula.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') }}">
+        <link rel="stylesheet" href="{{ mix('vali-admin/css/app.css') }}">
 
         @yield('header__sc')
     </head>

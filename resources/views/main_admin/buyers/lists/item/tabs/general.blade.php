@@ -9,6 +9,25 @@
                 <div class="column col-md-6">
                     <div class="row form-group">
                         <div class="col-md-4">
+                            <label class="control-label" for="is_enabled">Активен:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="toggle-flip">
+                                <label class="checkbox-left">
+                                    <input
+                                            class="checkbox"
+                                            type="checkbox"
+                                            name="is_enabled"
+                                            value="1"
+                                            @if ($buyer->is_enabled) checked @endif
+                                    ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
                             <label class="control-label" for="surname">Фамилия:</label>
                         </div>
                         <div class="col-md-8">
@@ -59,32 +78,13 @@
                                     name="birthday_at"
                                     class="form-control"
                                     type="text"
-                                    value="{{ $buyer->birthday_at }}">
+                                    value="{{ $buyer->birthday_at ? $buyer->birthday_at->format('d.m.Y') : '' }}">
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-4">
-                            <label class="control-label" for="is_enabled">Активен:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="toggle-flip">
-                                <label class="checkbox-left">
-                                    <input
-                                            class="checkbox"
-                                            type="checkbox"
-                                            name="is_enabled"
-                                            value="1"
-                                            @if ($buyer->is_enabled) checked @endif
-                                    ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label" for="is_enabled">Обработка данных:</label>
+                            <label class="control-label" for="is_processing_personal_data">Обработка данных:</label>
                         </div>
                         <div class="col-md-8">
                             <div class="toggle-flip">
@@ -103,6 +103,22 @@
                 </div>
 
                 <div class="column col-md-6">
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="contract_at">Пол:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="select2" name="gender">
+                                @foreach (\App\Classes\GenderEnum::lists() as $gender)
+                                    <option
+                                            @if ($gender == $buyer->gender) selected @endif
+                                    value="{{ $gender }}"
+                                    >{{ trans('gender.' . $gender) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="row form-group">
                         <div class="col-md-4">
                             <label class="control-label" for="address">Адрес:</label>
@@ -169,9 +185,72 @@
                                     name="contract_at"
                                     class="form-control"
                                     type="text"
-                                    value="{{ $buyer->contract_at }}">
+                                    value="{{ $buyer->contract_at ? $buyer->contract_at->format('d.m.Y') : '' }}">
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label class="control-label" for="ad_source">Источник рекламы:</label>
+                </div>
+                <div class="col-md-10">
+                    <select id="ad_source" multiple class="select2" name="ad_source_ids[]">
+                        @foreach ($adSources as $adSource)
+                            <option
+                                    value="{{ $adSource->id }}"
+                                    @if ($buyer->adSources->whereIn('id', $adSource->id)->count()) selected @endif
+                            >{{ $adSource->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label class="control-label" for="diagnosis">Диагнозы:</label>
+                </div>
+                <div class="col-md-10">
+                    <select id="diagnosis" multiple class="select2" name="diagnosis_ids[]">
+                        @foreach ($diagnoses as $diagnosis)
+                            <option
+                                    value="{{ $diagnosis->id }}"
+                                    @if ($buyer->diagnoses->whereIn('id', $diagnosis->id)->count()) selected @endif
+                            >{{ $diagnosis->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label class="control-label" for="complaint">Жалобы:</label>
+                </div>
+                <div class="col-md-10">
+                    <select id="complaint" multiple class="select2" name="complaint_ids[]">
+                        @foreach ($complaints as $complaint)
+                            <option
+                                    value="{{ $complaint->id }}"
+                                    @if ($buyer->complaints->whereIn('id', $complaint->id)->count()) selected @endif
+                            >{{ $complaint->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label class="control-label" for="dynamics">Динамика:</label>
+                </div>
+                <div class="col-md-10">
+                    <textarea
+                            id="dynamics"
+                            name="dynamics"
+                            rows="4"
+                            cols="5"
+                            class="form-control"
+                    >{{ $buyer->dynamics }}</textarea>
                 </div>
             </div>
 
@@ -183,3 +262,5 @@
         </form>
     </div>
 </div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

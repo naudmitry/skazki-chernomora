@@ -5,10 +5,17 @@ $(function () {
         return;
     }
 
+    $('.select2').select2({
+        minimumResultsForSearch: Infinity,
+        width: '100%'
+    });
+
+    $('#contract_at, #birthday_at').datepicker();
+
     $(document).on('change keyup', '.buyer-general-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
-        if (!$input.is('input,select')) {
+        if (!$input.is('input,select,textarea')) {
             return;
         }
         $form.find('[type=submit]')
@@ -23,6 +30,7 @@ $(function () {
         if ($form.data('ajax')) {
             return;
         }
+        $form.find('.is-invalid').removeClass('is-invalid');
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),

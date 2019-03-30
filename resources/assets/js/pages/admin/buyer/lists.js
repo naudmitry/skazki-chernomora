@@ -101,20 +101,6 @@ $(function () {
         }
     });
 
-
-    // $(document).on('change', '.checkbox', function () {
-    //     $.ajax({
-    //         url: $(this).data('href'),
-    //         type: 'post',
-    //         success: (response) => {
-    //             notifyService.showMessage('info', 'Успех!', response.message);
-    //         },
-    //         error: function (data) {
-    //             console.log(data);
-    //         }
-    //     });
-    // });
-
     $(document).on('click', '.buyer-list-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
@@ -153,7 +139,7 @@ $(function () {
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }
-        $form.find('.has-error').removeClass('has-error');
+        $form.find('.is-invalid').removeClass('is-invalid');
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),
             url: $form.attr('action'),
@@ -205,5 +191,17 @@ $(function () {
             },
             complete: () => $this.removeData('ajax'),
         }));
+    });
+
+    $(document).on('change keyup', '.buyer-create-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 });
