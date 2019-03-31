@@ -14,10 +14,8 @@ class CreateFaqFaqCategoryTable extends Migration
     public function up()
     {
         Schema::create('faq_faq_category', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->integer('faq_id')->unsigned();
-            $table->integer('faq_category_id')->unsigned();
+            $table->integer('faq_id')->unsigned()->index();
+            $table->integer('faq_category_id')->unsigned()->index();
 
             $table->foreign('faq_id')->references('id')->on('faqs');
             $table->foreign('faq_category_id')->references('id')->on('faq_categories');
