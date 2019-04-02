@@ -1,0 +1,1 @@
+@{{review.show_in_widgets}}

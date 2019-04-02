@@ -17,3 +17,4 @@ require('./pages/admin/buyer');
 require('./pages/admin/ad-source');
 require('./pages/admin/diagnosis');
 require('./pages/admin/complaint');
+require('./pages/admin/reviews');

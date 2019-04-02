@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Buyer;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,4 +28,35 @@ class Review extends Model
 {
     use SoftDeletes;
     use ShowcasableTrait;
+
+    protected $appends =
+        [
+            'ratingStars'
+        ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function buyer()
+    {
+        return $this->belongsTo(Buyer::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function getRatingStarsAttribute()
+    {
+        $ratingStars = array();
+
+        for ($i = 1; $i <= 5; $i++) {
+            if ($this->rating >= $i) {
+                $ratingStars[] = ['icon' => 'fas'];
+            } else {
+                $ratingStars[] = ['icon' => 'far'];
+            }
+        }
+
+        return $ratingStars;
+    }
 }
