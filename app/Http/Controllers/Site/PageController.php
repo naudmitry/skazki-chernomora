@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Site;
 
 use App\Classes\StaticPageTypesEnum;
 use App\Models\Page;
+use App\Models\PageCategory;
+use App\Models\Showcase;
 use App\Repositories\PageRepository;
 use App\Repositories\Widgets\WidgetRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,6 +49,29 @@ class PageController extends Controller
 
         return view($this->theme . '.page.single', compact([
             'page', 'pageWidgets', 'staticPage'
+        ]));
+    }
+
+    /**
+     * @param PageCategory $category
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function category(PageCategory $category)
+    {
+        if (false == $category->enable) {
+            abort(\Illuminate\Http\Response::HTTP_NOT_FOUND);
+        }
+
+        /** @var Showcase $showcase */
+        $showcase = $this->showcase;
+
+        $pages = $category->pages()
+            ->where('enable', true)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view($this->theme . '.page.category', compact([
+            'pages', 'category'
         ]));
     }
 }

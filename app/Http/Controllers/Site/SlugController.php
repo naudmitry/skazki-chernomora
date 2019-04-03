@@ -61,6 +61,9 @@ class SlugController extends Controller
 
                 return app(PageController::class)->single($entity);
 
+            case $entity instanceof Models\PageCategory:
+                return app(PageController::class)->category($entity);
+
             case $entity instanceof Models\Blog:
                 return app(BlogController::class)->single($entity);
 
