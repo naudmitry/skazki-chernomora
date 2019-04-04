@@ -74,7 +74,8 @@ class PageRepository
                 'meta_title',
                 'meta_description',
                 'meta_keywords',
-                'image_link'
+                'image_link',
+                'color'
             ];
 
         foreach ($fields as $fieldItem) {

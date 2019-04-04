@@ -27,6 +27,13 @@
             </div>
 
             <div class="form-group row">
+                <label class="control-label col-md-4" for="color">Цвет текста заголовка:</label>
+                <div class="col-md-8">
+                    <input id="color" name="color" class="form-control" type="color" value="{{ $category->color ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="control-label col-md-4" for="address">Адрес категории:</label>
                 <div class="input-group col-md-8">
                     <div class="input-group-prepend">

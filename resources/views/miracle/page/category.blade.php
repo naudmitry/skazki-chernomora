@@ -7,7 +7,11 @@
 @endsection
 
 @section('page-title')
-    @include('miracle.vendor.page_title', ['title' => $category->title, 'link' => $category->image_link])
+    @include('miracle.vendor.page_title', [
+        'title' => $category->title,
+        'link' => $category->image_link,
+        'color' => $category->color
+    ])
 @endsection
 
 @section('content')
