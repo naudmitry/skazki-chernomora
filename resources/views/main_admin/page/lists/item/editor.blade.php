@@ -3,6 +3,13 @@
         <form class="tile page-item-editor-form" action="{{ route('admin.page.content.save', $page) }}" method="post">
             <h4 class="line-head">Редактор страницы</h4>
 
+            <div class="form-group row">
+                <label class="control-label col-md-2">Ссылка на фото:</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="link" name="link" value="{{ $page->link ?? '' }}">
+                </div>
+            </div>
+
             <div class="content-group">
                 <textarea id="textarea-editor" name="content">{{ $page->content ?? '' }}</textarea>
             </div>

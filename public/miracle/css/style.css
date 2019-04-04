@@ -12047,3 +12047,9 @@ body.woocommerce select:not(.default-style) + .customSelect .customSelectInner:b
     height: 40px !important;
     object-fit: cover;
 }
+
+.page-category-item-img {
+    width: 270px !important;
+    height: 180px !important;
+    object-fit: cover;
+}

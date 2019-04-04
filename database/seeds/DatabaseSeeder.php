@@ -32,5 +32,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CountriesSeeder::class);
         $this->call(RegionsSeeder::class);
         $this->call(CitiesSeeder::class);
+
+        $this->call(AdSourcesSeeder::class);
+        $this->call(ComplaintsSeeder::class);
+        $this->call(DiagnosesSeeder::class);
     }
 }

@@ -11,7 +11,7 @@ $(function () {
         width: '100%'
     });
 
-    $(document).on('input', '.page-item-form', function (e) {
+    $(document).on('input', '.page-item-form, .page-item-editor-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         if (!$input.is('input,select,textarea')) {

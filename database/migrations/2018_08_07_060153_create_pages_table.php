@@ -23,6 +23,7 @@ class CreatePagesTable extends Migration
             $table->string('type')->default(PageTypesEnum::CUSTOM_PAGE);
             $table->string('title')->index()->nullable();
             $table->string('name')->nullable();
+            $table->string('link')->nullable();
             $table->longText('content')->nullable();
             $table->boolean('enable')->index()->default(false);
             $table->integer('view_count')->default(0)->index();

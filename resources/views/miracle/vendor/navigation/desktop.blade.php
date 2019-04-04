@@ -1,7 +1,7 @@
 <div class="container">
     <div class="header-inner">
         <div class="branding">
-            <h1 class="logo" style="background-image: url({{ asset('miracle/images/logo-standard.svg') }}); ">
+            <h1 class="logo" style="background-image: url({{ asset('miracle/images/logo-standard.svg') }});">
                 <a href="{{ static_page_route(\App\Classes\StaticPageTypesEnum::MAIN_PAGE, []) }}">
                     <img src="{{ asset('miracle/images/logo-standard.svg') }}" alt="logo" width="25" height="26">
                     {{ $currentShowcase->config('general:display-site-name') }}
