@@ -10,7 +10,7 @@
     <div class="container">
         <div id="main">
             <div class="blog-posts row same-height">
-                @foreach ($pages as $page)
+                @foreach ($entities as $entity)
                     <div class="col-sms-6 col-sm-6 col-md-3">
                         <article class="post post-grid">
                             <div class="post-image">
@@ -19,16 +19,16 @@
                                 </div>
                             </div>
                             <div class="post-content">
-                                <div class="post-date"><span>{{ strftime('%d %B %G', strtotime($page->created_at)) }}</span></div>
-                                <h4 class="entry-title"><a href="{{ $page->getRoute() }}">{{ mb_strimwidth($page->title, 0, 25, "...") }}</a></h4>
+                                <div class="post-date"><span>{{ strftime('%d %B %G', strtotime($entity->created_at)) }}</span></div>
+                                <h4 class="entry-title"><a href="{{ $entity->getRoute() }}">{{ mb_strimwidth($entity->title, 0, 25, "...") }}</a></h4>
                                 <div class="post-meta">
-                                    <span class="entry-author fn"><a href="#">{{ $page->author->full_name }}</a></span>
+                                    <span class="entry-author fn"><a href="#">{{ $entity->author->full_name }}</a></span>
 {{--                                    <span class="post-category">in <a href="#">Web Design</a></span>--}}
 {{--                                    <span class="post-comment"><a href="#">1 Comment</a></span>--}}
                                 </div>
-                                <p>{{ mb_strimwidth(strip_tags($page->content), 0, 60, "...") }}</p>
+                                <p>{{ mb_strimwidth(strip_tags($entity->content), 0, 60, "...") }}</p>
                                 <div class="post-action">
-                                    <a class="btn btn-sm style3 post-read-more" href="{{ $page->getRoute() }}">Подробнее</a>
+                                    <a class="btn btn-sm style3 post-read-more" href="{{ $entity->getRoute() }}">Подробнее</a>
                                 </div>
                             </div>
                         </article>
@@ -36,7 +36,7 @@
                 @endforeach
             </div>
 
-            {{ $pages->links('miracle.vendor.pagination') }}
+            {{ $entities->links('miracle.vendor.pagination') }}
         </div>
     </div>
 @endsection

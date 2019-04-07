@@ -70,8 +70,9 @@ class PageController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
 
-        return view($this->theme . '.page.category', compact([
-            'pages', 'category'
-        ]));
+        return view($this->theme . '.vendor.category_page.grid.4columns', [
+            'entities' => $pages,
+            'category' => $category
+        ]);
     }
 }
