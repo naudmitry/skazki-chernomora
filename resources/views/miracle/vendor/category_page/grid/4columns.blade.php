@@ -36,7 +36,7 @@
 {{--                                    <span class="post-category">in <a href="#">Web Design</a></span>--}}
 {{--                                    <span class="post-comment"><a href="#">1 Comment</a></span>--}}
                                 </div>
-                                <p>{{ $entity->trim($entity->content, 60) }}</p>
+                                <p>{{ $entity->trim($entity->content, 55) }}</p>
                                 <div class="post-action">
                                     <a class="btn btn-sm style3 post-read-more" href="{{ $entity->getRoute() }}">Подробнее</a>
                                 </div>
