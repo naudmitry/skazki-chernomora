@@ -6,6 +6,14 @@
     <meta name="keywords" content="{{ $category->meta_keywords }}"/>
 @endsection
 
+@section('page-title')
+    @include('miracle.vendor.page_title', [
+        'title' => $category->title,
+        'link' => $category->image_link,
+        'color' => $category->color
+    ])
+@endsection
+
 @section('content')
     <div class="container">
         <div id="main">
@@ -15,7 +23,9 @@
                         <article class="post post-grid">
                             <div class="post-image">
                                 <div class="image-container">
-                                    <a href="#"><img alt="" src="http://placehold.it/780x520"></a>
+                                    <a href="{{ $page->getRoute() }}">
+                                        <img class="page-category-item-img" alt="{{ $page->name }}" src="{{ $page->link }}">
+                                    </a>
                                 </div>
                             </div>
                             <div class="post-content">

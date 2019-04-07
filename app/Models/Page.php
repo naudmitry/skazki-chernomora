@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $type
  * @property string $title
  * @property string $name
+ * @property string $link
+ * @property string $color
  * @property string $content
  * @property boolean $enable
  * @property integer $view_count

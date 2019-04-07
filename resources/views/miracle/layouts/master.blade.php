@@ -43,19 +43,18 @@
 
         @yield('header__ss')
     </head>
+
     <body @yield('body-data')>
         <div id="page-wrapper">
             <header id="header" class="header-color-white">
                 @include('miracle.vendor.navigation.desktop')
                 @include('miracle.vendor.navigation.mobile')
             </header>
-
             @yield('slider')
-
+            @yield('page-title')
             <section id="content">
                 @yield('content')
             </section>
-
             @include('miracle.vendor.footer')
         </div>
 

@@ -26,6 +26,7 @@ class PageRequest extends FormRequest
         return [
             'title' => 'required|string',
             'name' => 'required|string',
+            'image_link' => 'sometimes|url',
             'category_id' => 'required|integer',
             'meta_title' => '',
             'meta_description' => '',

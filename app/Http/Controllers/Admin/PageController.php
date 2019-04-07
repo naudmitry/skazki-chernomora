@@ -246,6 +246,7 @@ class PageController extends Controller
      */
     public function saveContent(Request $request, Page $page)
     {
+        $page->link = $request->get('link');
         $page->content = $request->get('content');
         $page->update();
 

@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Auth;
 class PageRepository
 {
     /**
-     * @param Page $page
-     * @param array $data
+     * @param Page|null $page
+     * @param $data
      * @return Page
      */
     public function savePage(Page $page = null, $data)
@@ -38,6 +38,7 @@ class PageRepository
                 'meta_title',
                 'meta_description',
                 'meta_keywords',
+                'link'
             ];
 
         foreach ($fields as $fieldItem) {
@@ -73,6 +74,8 @@ class PageRepository
                 'meta_title',
                 'meta_description',
                 'meta_keywords',
+                'image_link',
+                'color'
             ];
 
         foreach ($fields as $fieldItem) {

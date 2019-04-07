@@ -20,6 +20,8 @@ class CreatePageCategoriesTable extends Migration
             $table->integer('showcase_id')->unsigned();
             $table->string('title');
             $table->string('name');
+            $table->string('image_link')->nullable();
+            $table->string('color')->nullable();
             $table->boolean('enable')->default(false);
             $table->integer('position')->default(0);
             $table->string('breadcrumbs')->nullable();
