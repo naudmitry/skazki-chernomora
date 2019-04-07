@@ -22,11 +22,11 @@
                 </div>
                 <div class="post-image">
                     <div class="image-container">
-                        <a href="#"><img alt="" src="{{ $blog->link }}"></a>
+                        <a href="{{ $blog->getRoute() }}"><img alt="{{ $blog->title }}" src="{{ $blog->link }}"></a>
                     </div>
                 </div>
                 <div class="post-content">
-                    <h2 class="entry-title"><a href="#">{{ $blog->name }}</a></h2>
+                    <h2 class="entry-title"><a href="{{ $blog->getRoute() }}">{{ $blog->name }}</a></h2>
                     <div class="section-info">
                         {!! $blog->content !!}
                     </div>

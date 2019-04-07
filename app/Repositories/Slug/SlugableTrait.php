@@ -31,6 +31,10 @@ trait SlugableTrait
         return $obj ? $obj->slug : null;
     }
 
+    /**
+     * @param array $extraOptions
+     * @return string
+     */
     public function getRoute($extraOptions = [])
     {
         $slug = $this->getSlug();

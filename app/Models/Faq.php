@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Page\PageableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use App\Repositories\Slug\SlugableInterface;
 use App\Repositories\Slug\SlugableTrait;
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property boolean $enable
  * @property boolean $favorite
- * @property string $answer
+ * @property string $content
  * @property integer $view_count
  * @property string $breadcrumbs
  * @property string $meta_title
@@ -43,6 +44,7 @@ class Faq extends Model implements SlugableInterface, WidgetableInterface
     use SlugableTrait;
     use ShowcasableTrait;
     use WidgetableTrait;
+    use PageableTrait;
 
     protected $with =
         [
@@ -101,25 +103,5 @@ class Faq extends Model implements SlugableInterface, WidgetableInterface
     public function incrementViewsCount($value = 1)
     {
         self::where('id', $this->id)->increment('view_count', $value);
-    }
-
-    /**
-     * @param $text
-     * @param int $length
-     * @return null|string|string[]
-     */
-    function reduction($text, $length = 70)
-    {
-        if (mb_strlen($text, 'UTF-8') > $length) {
-            $substr = mb_substr($text, 0, $length, 'UTF-8');
-
-            $text = strpos($substr, ' ') !== false
-                ? preg_replace('~(\s)?(?(1)\S+$|\s$)~', '', $substr)
-                : strstr($text, ' ', true);
-
-            $text .= ' ... ';
-        }
-
-        return $text;
     }
 }

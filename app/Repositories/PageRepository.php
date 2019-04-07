@@ -7,7 +7,6 @@ use App\Models\Admin;
 use App\Models\Page;
 use App\Models\PageCategory;
 use App\Models\Showcase;
-use Illuminate\Support\Facades\Auth;
 
 class PageRepository
 {

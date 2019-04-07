@@ -48,7 +48,7 @@
                                         <span class="entry-time"><span class="published">{{ $blog->getFormatCreatedAtAttribute() }}</span></span>
                                     </div>
                                     <h3 class="entry-title"><a href="{{ $blog->getRoute() }}">{{ $blog->name }}</a></h3>
-                                    <p>{!! mb_strimwidth(strip_tags($blog->content), 0, 200, "...") !!}</p>
+                                    <p>{{ $blog->trim($blog->content, 200) }}</p>
                                 </div>
                                 <div class="post-action">
                                     <a href="{{ $blog->getRoute() }}" class="btn btn-sm style3 post-read-more">Подробнее</a>

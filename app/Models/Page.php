@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Page\PageableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use App\Repositories\Slug\SlugableInterface;
 use App\Repositories\Slug\SlugableTrait;
@@ -47,6 +48,7 @@ class Page extends Model implements SlugableInterface, WidgetableInterface
     use SlugableTrait;
     use ShowcasableTrait;
     use WidgetableTrait;
+    use PageableTrait;
 
     protected $with =
         [

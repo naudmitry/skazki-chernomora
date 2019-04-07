@@ -110,26 +110,14 @@ class FaqController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
 
-        /** @var Showcase $showcase */
-        $showcase = $this->showcase;
-
-        $categories = FaqCategory::query()
-            ->where('showcase_id', $showcase->id)
-            ->where('enable', true)
-            ->orderBy('position')
-            ->get();
-
         $faqs = $category->faqs()
-            ->where('showcase_id', $showcase->id)
             ->where('enable', true)
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(12);
 
-        $currentCategory = $category;
-
-        return view($this->theme . '.faq.category.index', compact([
-            'faqs', 'categories', 'currentCategory'
-        ]));
-
+        return view($this->theme . '.vendor.category_page.grid.4columns', [
+            'entities' => $faqs,
+            'category' => $category
+        ]);
     }
 }

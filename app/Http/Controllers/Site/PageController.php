@@ -62,9 +62,6 @@ class PageController extends Controller
             abort(\Illuminate\Http\Response::HTTP_NOT_FOUND);
         }
 
-        /** @var Showcase $showcase */
-        $showcase = $this->showcase;
-
         $pages = $category->pages()
             ->where('enable', true)
             ->orderBy('created_at', 'desc')

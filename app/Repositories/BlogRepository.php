@@ -21,12 +21,24 @@ class BlogRepository
             $category->showcase_id = array_get($data, 'showcase_id');
         }
 
-        $category->title = array_get($data, 'title');
-        $category->name = array_get($data, 'name');
-        $category->breadcrumbs = array_get($data, 'breadcrumbs');
-        $category->meta_title = array_get($data, 'meta_title');
-        $category->meta_description = array_get($data, 'meta_description');
-        $category->meta_keywords = array_get($data, 'meta_keywords');
+        $fields =
+            [
+                'title',
+                'name',
+                'breadcrumbs',
+                'meta_title',
+                'meta_description',
+                'meta_keywords',
+                'image_link',
+                'color'
+            ];
+
+        foreach ($fields as $fieldItem) {
+            if (array_has($data, $fieldItem)) {
+                $category->$fieldItem = array_get($data, $fieldItem);
+            }
+        }
+
         $category->save();
 
         return $category;

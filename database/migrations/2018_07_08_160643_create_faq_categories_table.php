@@ -21,6 +21,8 @@ class CreateFaqCategoriesTable extends Migration
             $table->string('slug')->nullable();
             $table->string('title');
             $table->string('name');
+            $table->string('image_link')->nullable();
+            $table->string('color')->nullable();
             $table->boolean('enable')->default(false);
             $table->integer('position')->unsigned()->default(0);
             $table->string('breadcrumbs')->nullable();

@@ -38,7 +38,7 @@ class FaqsSeeder extends Seeder
                     'showcase_id' => $showcase->id,
                     'title' => $faker->word,
                     'name' => $faker->text(25),
-                    'answer' => $faker->text(300),
+                    'content' => $faker->text(300),
                     'enable' => $faker->boolean(50),
                     'favorite' => $faker->boolean(50),
                     'view_count' => $faker->randomNumber(2),

@@ -23,7 +23,7 @@
                                         <h6>{{ $faq->name }}</h6>
                                     </a>
                                     <span>{{ $faq->updater->full_name }} / {{ $faq->updated_at->format('d-m-Y H:i') }}</span>
-                                    <p>{{ $faq->reduction($faq->answer, 300) }}</p>
+                                    <p>{{ $faq->trim('answer', 300) }}</p>
                                 </div>
                             </div>
                         @endforeach

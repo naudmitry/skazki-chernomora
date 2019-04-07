@@ -22,7 +22,7 @@
                                     <h5>{{ $faq->name }}</h5>
                                 </a>
                                 <span>{{ $faq->updater->full_name }} / {{ $faq->updated_at->format('d-m-Y H:i') }}</span>
-                                <p>{{ $faq->answer }}</p>
+                                <p>{{ $faq->comtent }}</p>
                             </div>
                         </div>
                     </div>

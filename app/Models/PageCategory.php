@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $title
  * @property string $name
  * @property string $image_link
+ * @property string $color
  * @property boolean $enable
  * @property integer $position
  * @property string $breadcrumbs

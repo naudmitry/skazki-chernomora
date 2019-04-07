@@ -23,7 +23,7 @@
                         </h3>
                         <div class="panel-collapse collapse" id="faqs-{{ $loop->index }}">
                             <div class="panel-content">
-                                {{ $faq->answer }}
+                                {{ $faq->content }}
                             </div>
                         </div>
                     </div>

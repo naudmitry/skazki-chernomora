@@ -22,7 +22,7 @@ class CreateFaqsTable extends Migration
             $table->string('name');
             $table->boolean('enable')->default(false);
             $table->boolean('favorite')->default(false);
-            $table->longText('answer')->nullable();
+            $table->longText('content')->nullable();
             $table->integer('view_count')->default(0);
             $table->string('breadcrumbs')->nullable();
             $table->string('meta_title')->nullable();

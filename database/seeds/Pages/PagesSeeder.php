@@ -47,6 +47,7 @@ class PagesSeeder extends Seeder
                             'category_id' => $category->id,
                             'author_id' => $admins->random()->id,
                             'updater_id' => $admins->random()->id,
+                            'link' => $faker->imageUrl()
                         ]);
                     }
                 }

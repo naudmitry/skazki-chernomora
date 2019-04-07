@@ -28,7 +28,8 @@ class PageCategoriesSeeder extends Seeder
                         'breadcrumbs' => $faker->text(10),
                         'meta_title' => $faker->word,
                         'meta_description' => $faker->word,
-                        'meta_keywords' => $faker->word
+                        'meta_keywords' => $faker->word,
+                        'image_link' => $faker->imageUrl()
                     ]);
                 }
             }

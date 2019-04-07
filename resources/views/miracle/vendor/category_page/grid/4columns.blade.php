@@ -23,20 +23,20 @@
                         <article class="post post-grid">
                             <div class="post-image">
                                 <div class="image-container">
-                                    <a href="{{ $page->getRoute() }}">
-                                        <img class="page-category-item-img" alt="{{ $page->name }}" src="{{ $page->link }}">
+                                    <a href="{{ $entity->getRoute() }}">
+                                        <img class="page-category-item-img" alt="{{ $entity->title }}" src="{{ $entity->link }}">
                                     </a>
                                 </div>
                             </div>
                             <div class="post-content">
                                 <div class="post-date"><span>{{ strftime('%d %B %G', strtotime($entity->created_at)) }}</span></div>
-                                <h4 class="entry-title"><a href="{{ $entity->getRoute() }}">{{ mb_strimwidth($entity->title, 0, 25, "...") }}</a></h4>
+                                <h4 class="entry-title"><a href="{{ $entity->getRoute() }}">{{ $entity->trim($entity->name, 25) }}</a></h4>
                                 <div class="post-meta">
                                     <span class="entry-author fn"><a href="#">{{ $entity->author->full_name }}</a></span>
 {{--                                    <span class="post-category">in <a href="#">Web Design</a></span>--}}
 {{--                                    <span class="post-comment"><a href="#">1 Comment</a></span>--}}
                                 </div>
-                                <p>{{ mb_strimwidth(strip_tags($entity->content), 0, 60, "...") }}</p>
+                                <p>{{ $entity->trim($entity->content, 60) }}</p>
                                 <div class="post-action">
                                     <a class="btn btn-sm style3 post-read-more" href="{{ $entity->getRoute() }}">Подробнее</a>
                                 </div>

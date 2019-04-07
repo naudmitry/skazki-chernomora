@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3" for="answer">Ответ:</label>
                         <div class="col-md-9">
-                            <textarea name="answer" rows="4" cols="5" class="form-control" required="required">{{ $faq->answer ?? '' }}</textarea>
+                            <textarea name="answer" rows="4" cols="5" class="form-control" required="required">{{ $faq->content ?? '' }}</textarea>
                         </div>
                     </div>
 

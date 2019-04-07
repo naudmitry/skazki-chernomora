@@ -84,8 +84,7 @@ class BlogController extends Controller
         /** @var Showcase $showcase */
         $showcase = $this->showcase;
 
-        if ($categoryId = request()->get('category_id', null))
-        {
+        if ($categoryId = request()->get('category_id', null)) {
             /** @var BlogCategory $currentCategory */
             $currentCategory = $blog->categories()->find($categoryId);
         }
@@ -119,24 +118,14 @@ class BlogController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
 
-        /** @var Showcase $showcase */
-        $showcase = $this->showcase;
-
-        $categories = BlogCategory::query()
-            ->where('showcase_id', $showcase->id)
-            ->where('enable', true)
-            ->orderBy('position')
-            ->get();
-
         $blogs = $category->blogs()
             ->where('enable', true)
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(12);
 
-        $currentCategory = $category;
-
-        return view($this->theme . '.blog.category.index', compact([
-            'blogs', 'categories', 'currentCategory'
-        ]));
+        return view($this->theme . '.vendor.category_page.grid.4columns', [
+            'entities' => $blogs,
+            'category' => $category
+        ]);
     }
 }
