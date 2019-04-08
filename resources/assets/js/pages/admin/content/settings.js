@@ -34,13 +34,11 @@ let scriptModule =
                 tinymce.init({
                     target: this,
                     language: 'ru',
-                    plugins: "image imagetools",
+                    plugins: "link image imagetools",
                     setup: function (editor) {
                         editor.on('keyup change', function (e) {
                             scriptModule.text[this.id] = tinyMCE.activeEditor.getContent();
                             scriptModule.unBlockBtn();
-
-                            console.log(scriptModule.text);
                         });
                     }
                 });
@@ -181,7 +179,7 @@ let scriptModule =
                     if ($(this).attr('type') === "checkbox") {
                         obj_all[setting] = $(this).is(':checked');
                     } else if (setting === 'text') {
-                        obj_all[setting] = scriptModule.text;
+                        obj_all[setting] = scriptModule.text[$(this).attr('id')];
                     } else {
                         obj_all[setting] = $(this).val();
                         if ($(this).is('select[multiple]') && obj_all[setting] === null) {

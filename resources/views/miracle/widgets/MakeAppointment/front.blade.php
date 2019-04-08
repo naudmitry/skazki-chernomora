@@ -43,6 +43,12 @@
                     <textarea name="message" class="input-text full-width" placeholder="Ваше сообщение" rows="10"></textarea>
                 </div>
 
+                <div class="form-group text-align-left">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="confirmation">{!! $setting->text !!}</label>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <button type="submit" class="btn style1">Записаться</button>
                 </div>

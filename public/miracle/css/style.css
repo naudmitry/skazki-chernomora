@@ -1544,7 +1544,7 @@ select.selector {
     content: "";
     position: absolute;
     left: 0;
-    top: 3px;
+    top: 6px;
     width: 14px;
     height: 14px;
     border: 1px solid #d4dde5;
@@ -12052,4 +12052,16 @@ body.woocommerce select:not(.default-style) + .customSelect .customSelectInner:b
     width: 270px !important;
     height: 180px !important;
     object-fit: cover;
+}
+
+.text-align-left {
+    text-align: left !important;
+}
+
+.checkbox {
+    margin-bottom: 0;
+}
+
+.checkbox p {
+    margin: 0 !important;
 }

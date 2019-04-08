@@ -9,6 +9,7 @@ class MakeAppointment extends AbstractContentWidget
     protected $defaultSettings =
         [
             'title' => '',
+            'text' => ''
         ];
 
     /**
@@ -21,10 +22,12 @@ class MakeAppointment extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|string',
+                'text' => 'required|string',
             ],
             [],
             [
                 'title' => 'Введите текст.',
+                'text' => 'Введите текст подтверждения.',
             ]);
     }
 }

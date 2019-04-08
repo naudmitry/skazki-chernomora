@@ -10,11 +10,23 @@
                 <div class="col-md-8">
                     <input
                             id="title"
-                            name="title"
                             data-setting="title"
                             class="form-control widget-setting"
                             type="text"
                             value="{{ $widget_setting->title }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="textarea">Текст подтверждения:</label>
+                <div class="col-md-8 content-group">
+                    <textarea
+                            id="textarea-0"
+                            data-field-type="textarea-editor"
+                            data-setting="text"
+                            class="widget-setting required"
+                            required
+                    >{{ $widget_setting->text ?? '' }}</textarea>
                 </div>
             </div>
 
