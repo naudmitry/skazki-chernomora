@@ -18,3 +18,4 @@ require('./pages/admin/ad-source');
 require('./pages/admin/diagnosis');
 require('./pages/admin/complaint');
 require('./pages/admin/reviews');
+require('./pages/admin/salt-caves');

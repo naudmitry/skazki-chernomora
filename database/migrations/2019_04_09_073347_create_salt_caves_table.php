@@ -22,6 +22,7 @@ class CreateSaltCavesTable extends Migration
             $table->string('address');
             $table->string('working_time'); // workdays , holidays
             $table->string('phone_numbers');
+            $table->boolean('is_enabled')->default(false);
 
             $table->timestamps();
             $table->softDeletes();
