@@ -79,4 +79,11 @@
             ><i class="app-menu__icon fas fa-map-marker-alt"></i><span class="app-menu__label">Сайты</span></a>
         </li>
     @endif
+
+    <li>
+        <a
+            class="app-menu__item @if (Route::is('admin.salt-caves.*')) active @endif"
+            href="{{ route('admin.salt-caves.index') }}"
+        ><i class="app-menu__icon fas fa-store-alt"></i><span class="app-menu__label">Соляные пещеры</span></a>
+    </li>
 @endif

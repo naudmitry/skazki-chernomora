@@ -243,6 +243,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('review', '[0-9]+');
                 Route::get('/reviews/modal', ['uses' => 'Admin\ReviewController@modal', 'as' => 'admin.review.modal']);
             });
+
+            Route::get('/salt-caves', ['uses' => 'Admin\SaltCaveController@index', 'as' => 'admin.salt-caves.index']);
+
         });
 
         Route::get('/{any?}',

@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $salt_cave
  * @property string $type
  * @property string $message
- *
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *

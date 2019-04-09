@@ -16,21 +16,23 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('company_id')->unsigned();
-            $table->integer('showcase_id')->unsigned();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->string('email');
-            $table->date('desired_date');
-            $table->string('salt_cave');
-            $table->string('type');
-            $table->string('message');
+            $table->unsignedInteger('company_id');
+            $table->unsignedInteger('showcase_id');
+            $table->unsignedInteger('salt_cave_id');
+            $table->string('number');
+            $table->timestamp('completed_at')->nullable()->default(null);
+            $table->decimal('cost', 20, 2);
+            $table->decimal('paid', 20, 2);
+            $table->decimal('debt', 20, 2);
+            $table->string('payment_type');
+            $table->string('payment_status');
 
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('showcase_id')->references('id')->on('showcases');
+            $table->foreign('salt_cave_id')->references('id')->on('salt_caves');
         });
     }
 
