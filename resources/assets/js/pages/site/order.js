@@ -20,6 +20,18 @@ $(function () {
                 $form[0].reset();
             },
             error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON['errors']) {
+                        let $input = $form.find('[name="' + key + '"]');
+                        if ($input.is('input')) {
+                            $input.addClass('has-error');
+                        }
+                        if ($input.is('select') || $input.attr('type') === 'checkbox') {
+                            $input.closest('.form-group').addClass('has-error');
+                        }
+                    }
+                    return;
+                }
                 console.error(xhr);
             },
             complete: () => {

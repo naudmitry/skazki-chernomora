@@ -12065,3 +12065,7 @@ body.woocommerce select:not(.default-style) + .customSelect .customSelectInner:b
 .checkbox p {
     margin: 0 !important;
 }
+
+.has-error {
+    border: 1px solid red !important;
+}

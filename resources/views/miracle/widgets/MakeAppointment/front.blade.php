@@ -9,20 +9,20 @@
                 {{ csrf_field() }}
 
                 <div class="form-group column-2 no-column-bottom-margin">
-                    <input type="text" name="name" class="input-text" placeholder="Имя" required>
-                    <input type="email" name="email" class="input-text" placeholder="Email" required>
+                    <input type="text" name="name" class="input-text" placeholder="Имя">
+                    <input type="email" name="email" class="input-text" placeholder="Email">
                 </div>
 
                 <div class="form-group">
-                    <input required type="text" name="phone_number" class="input-text full-width" placeholder="Телефон">
+                    <input type="text" name="phone_number" class="input-text full-width" placeholder="Телефон">
                 </div>
 
                 <div class="form-group">
-                    <input required type="date" name="desired_date" class="input-text full-width" placeholder="Дата">
+                    <input type="date" name="desired_date" class="input-text full-width" placeholder="Дата">
                 </div>
 
                 <div class="form-group dropdown">
-                    <select class="selector full-width" name="salt_cave" required>
+                    <select class="selector full-width" name="salt_cave">
                         <option value="">Выберите пещеру</option>
                         <option value="Коммунистическая, 16">Коммунистическая, 16</option>
                         <option value="Чкалова, 14в">Чкалова, 14в</option>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-group dropdown">
-                    <select class="selector full-width" name="type" required>
+                    <select class="selector full-width" name="type">
                         <option value="">Тип посещения</option>
                         <option value="Первое посещение">Первое посещение</option>
                         <option value="Повторное">Повторное</option>

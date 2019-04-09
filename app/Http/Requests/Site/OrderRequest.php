@@ -24,6 +24,12 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'required|string',
+            'desired_date' => 'required',
+            'salt_cave' => 'required',
+            'type' => 'required',
             'confirmation' => 'required'
         ];
     }
