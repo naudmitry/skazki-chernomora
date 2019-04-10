@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $address
  * @property string $working_time
  * @property string $phone_numbers
+ * @property boolean $is_enabled
  * @property integer $company_id
  * @property integer $showcase_id
  * @property Carbon $created_at

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\SaltCaveRequest;
+use App\Models\Company;
 use App\Models\SaltCave;
 use App\Models\Showcase;
 use Illuminate\Http\Request;
@@ -27,5 +29,63 @@ class SaltCaveController extends Controller
         }
 
         return view('main_admin.salt_caves.index');
+    }
+
+    /**
+     * @param null $saltCave
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function modal(SaltCave $saltCave = null)
+    {
+        if (!$saltCave) {
+            $saltCave = new SaltCave();
+        }
+
+        return response()->json([
+            'view' => view('main_admin.salt_caves.modals.create', compact('saltCave'))->render(),
+        ]);
+    }
+
+    /**
+     * @param SaltCaveRequest $request
+     * @param SaltCave $saltCave
+     * @param Company $administeredCompany
+     * @param Showcase $administeredShowcase
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function save(Company $administeredCompany, Showcase $administeredShowcase, SaltCaveRequest $request, SaltCave $saltCave = null)
+    {
+        if (!$saltCave) {
+            $saltCave = new SaltCave();
+            $saltCave->company_id = $administeredCompany->id;
+            $saltCave->showcase_id = $administeredShowcase->id;
+        }
+
+        $saltCave->title = $request->get('title');
+        $saltCave->address = $request->get('address');
+        $saltCave->is_enabled = $request->get('is_enabled', false);
+        $saltCave->working_time = '';
+        $saltCave->phone_numbers = '';
+
+        $saltCave->save();
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.'
+        ]);
+    }
+
+    /**
+     * @param SaltCave $saltCave
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function delete(SaltCave $saltCave)
+    {
+        $saltCave->delete();
+
+        return response()->json([
+            'message' => 'Соляная пещера успешно удалена.'
+        ]);
     }
 }

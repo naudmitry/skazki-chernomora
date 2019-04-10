@@ -87,7 +87,106 @@ $(function () {
 
     $(document).on('keyup', '.search', function (e) {
         if (e.keyCode == 13) {
-            $('#buyersListsTable').DataTable().search(this.value).draw();
+            $('#saltCavesTable').DataTable().search(this.value).draw();
         }
+    });
+
+    $(document).on('click', '.open-salt-cave-modal', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        let $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.attr('href'),
+            success: response => {
+                $divForModal.html(response.view);
+                let $modal = $('#salt-cave-modal');
+                $modal.modal('show');
+                $modal.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: xhr => {
+                console.error(xhr);
+            },
+            complete: () => $this.removeData('ajax'),
+        }));
+    });
+
+    $(document).on('change keyup', '.salt-cave-create-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
+
+    $(document).on('submit', '.salt-cave-create-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        let $modal = $form.closest('#salt-cave-modal');
+        if ($form.data('ajax')) {
+            $form.data('ajax').abort();
+        }
+        $form.find('.is-invalid').removeClass('is-invalid');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                notifyService.showMessage('info', 'Успех!', response.message);
+                $saltCavesTable.DataTable().ajax.reload();
+                $modal.modal('hide');
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON.errors) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+            },
+        }));
+    });
+
+    $(document).on('click', '.salt-caves-delete', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить данные соляной пещеры?",
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'delete',
+                    url: $this.attr('href'),
+                    success: response => {
+                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        $saltCavesTable.DataTable().ajax.reload();
+                    },
+                    error: xhr => {
+                        console.error(xhr);
+                    },
+                });
+
+                swal("Удаление подтверждено!", "Соляная пещера будет удалена.", "success");
+            } else {
+                swal("Удаление отменено!", "Соляная пещера не будет удалена.", "error");
+            }
+        });
     });
 });

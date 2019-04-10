@@ -245,7 +245,12 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::get('/salt-caves', ['uses' => 'Admin\SaltCaveController@index', 'as' => 'admin.salt-caves.index']);
-
+            Route::get('/salt-caves/modal/{saltCave?}', ['uses' => 'Admin\SaltCaveController@modal', 'as' => 'admin.salt-caves.modal'])
+                ->where('saltCave', '[0-9]+');
+            Route::post('/salt-caves/save/{saltCave?}', ['uses' => 'Admin\SaltCaveController@save', 'as' => 'admin.salt-caves.save'])
+                ->where('saltCave', '[0-9]+');
+            Route::delete('/salt-caves/{saltCave}', ['uses' => 'Admin\SaltCaveController@delete', 'as' => 'admin.salt-caves.delete'])
+                ->where('saltCave', '[0-9]+');
         });
 
         Route::get('/{any?}',
