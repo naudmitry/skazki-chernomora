@@ -6,7 +6,7 @@
                         autocomplete="off"
                         class="modal-content salt-cave-create-form"
                         method="post"
-                        action="{{ route('admin.salt-caves.save', $saltCave) }}">
+                        action="{{ route('admin.salt-cave.save', $saltCave) }}">
 
                     <div class="modal-header">
                         <h5 class="modal-title">Соляная пещера</h5>

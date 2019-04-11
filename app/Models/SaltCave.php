@@ -30,6 +30,11 @@ class SaltCave extends Model
     use SoftDeletes;
     use ShowcasableTrait;
 
+    var $casts = [
+        'working_time' => 'array',
+        'phone_numbers' => 'array',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

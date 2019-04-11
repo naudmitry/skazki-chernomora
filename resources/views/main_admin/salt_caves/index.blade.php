@@ -12,7 +12,7 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button href="{{ route('admin.salt-caves.modal') }}" class="btn btn-primary open-salt-cave-modal" type="button">
+                            <button href="{{ route('admin.salt-cave.modal') }}" class="btn btn-primary open-salt-cave-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
@@ -57,6 +57,7 @@
                             <th>Наименование</th>
                             <th>Адрес</th>
                             <th>Номера телефонов</th>
+                            <th>Время работы</th>
                             <th>Доступность</th>
                             <th>Действия</th>
                         </tr>
@@ -87,5 +88,8 @@
     </script>
     <script type="application/x-tmpl-mustache" class="template-salt-caves-table-column-enabled">
         @include('main_admin.salt_caves.columns.enabled')
+    </script>
+    <script type="application/x-tmpl-mustache" class="template-salt-caves-table-column-working_time">
+        @include('main_admin.salt_caves.columns.working_time')
     </script>
 @endsection

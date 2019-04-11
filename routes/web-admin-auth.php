@@ -245,12 +245,14 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::get('/salt-caves', ['uses' => 'Admin\SaltCaveController@index', 'as' => 'admin.salt-caves.index']);
-            Route::get('/salt-caves/modal/{saltCave?}', ['uses' => 'Admin\SaltCaveController@modal', 'as' => 'admin.salt-caves.modal'])
+            Route::get('/salt-caves/modal/{saltCave?}', ['uses' => 'Admin\SaltCaveController@modal', 'as' => 'admin.salt-cave.modal'])
                 ->where('saltCave', '[0-9]+');
-            Route::post('/salt-caves/save/{saltCave?}', ['uses' => 'Admin\SaltCaveController@save', 'as' => 'admin.salt-caves.save'])
+            Route::post('/salt-caves/save/{saltCave?}', ['uses' => 'Admin\SaltCaveController@save', 'as' => 'admin.salt-cave.save'])
                 ->where('saltCave', '[0-9]+');
-            Route::delete('/salt-caves/{saltCave}', ['uses' => 'Admin\SaltCaveController@delete', 'as' => 'admin.salt-caves.delete'])
+            Route::delete('/salt-caves/{saltCave}', ['uses' => 'Admin\SaltCaveController@delete', 'as' => 'admin.salt-cave.delete'])
                 ->where('saltCave', '[0-9]+');
+            Route::post('/salt-caves/enabled/{saltCave}', ['uses' => 'Admin\SaltCaveController@enabled', 'as' => 'admin.salt-cave.enabled'])
+                ->where('category', '[0-9]+');
         });
 
         Route::get('/{any?}',

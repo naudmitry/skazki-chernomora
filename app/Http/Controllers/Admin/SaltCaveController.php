@@ -88,4 +88,18 @@ class SaltCaveController extends Controller
             'message' => 'Соляная пещера успешно удалена.'
         ]);
     }
+
+    /**
+     * @param SaltCave $saltCave
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enabled(SaltCave $saltCave)
+    {
+        $saltCave->is_enabled = !$saltCave->is_enabled;
+        $saltCave->update();
+
+        return response()->json([
+            'message' => 'Доступность соляной пещеры изменена.',
+        ]);
+    }
 }

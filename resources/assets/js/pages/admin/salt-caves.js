@@ -12,6 +12,7 @@ $(function () {
     let mustacheTemplateSaltCavesTableColumnAddress = $('.template-salt-caves-table-column-address').text();
     let mustacheTemplateSaltCavesTableColumnPhoneNumbers = $('.template-salt-caves-table-column-phone-numbers').text();
     let mustacheTemplateSaltCavesTableColumnEnabled = $('.template-salt-caves-table-column-enabled').text();
+    let mustacheTemplateSaltCavesTableColumnWorkingTime = $('.template-salt-caves-table-column-working_time').text();
 
     $saltCavesTable.DataTable({
         info: true,
@@ -46,10 +47,14 @@ $(function () {
             },
             {
                 targets: 4,
-                render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnEnabled, {cave}),
+                render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnWorkingTime, {cave}),
             },
             {
                 targets: 5,
+                render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnEnabled, {cave}),
+            },
+            {
+                targets: 6,
                 orderable: false,
                 render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnActions, {cave}),
             },
@@ -186,6 +191,19 @@ $(function () {
                 swal("Удаление подтверждено!", "Соляная пещера будет удалена.", "success");
             } else {
                 swal("Удаление отменено!", "Соляная пещера не будет удалена.", "error");
+            }
+        });
+    });
+
+    $(document).on('change', '.salt-cave-enabled', function () {
+        $.ajax({
+            url: $(this).data('href'),
+            type: 'post',
+            success: (response) => {
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            error: function (data) {
+                console.log(data);
             }
         });
     });

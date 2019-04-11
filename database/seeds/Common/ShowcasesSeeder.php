@@ -35,7 +35,7 @@ class ShowcasesSeeder extends Seeder
                 'company_id' => $superCompany->id,
                 'title' => 'Super',
                 'domain' => env('DOMAIN_CLIENT'),
-                'theme' => 'main_theme',
+                'theme' => 'miracle',
                 'email' => 'boss@' . env('DOMAIN_CLIENT'),
                 'enable' => true,
             ],
