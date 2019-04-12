@@ -80,8 +80,8 @@ $(function () {
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
         drawCallback: function (settings) {
-            // $('.enable-news-count').text(settings.json.counters.enable_news_count);
-            // $('.view-count-total').text(settings.json.counters.view_count_total);
+            $('.count').text(settings.json.count);
+            $('.enabled-count').text(settings.json.enabled_count);
         },
     });
 
@@ -109,6 +109,9 @@ $(function () {
                 $divForModal.html(response.view);
                 let $modal = $('#salt-cave-modal');
                 $modal.modal('show');
+                $('.select2', $modal).select2({
+                    tags: true
+                });
                 $modal.on('hidden.bs.modal', function (event) {
                     $divForModal.empty();
                 });

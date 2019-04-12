@@ -19,10 +19,10 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
                                 <div class="circle-icon">
-                                    <i class="far fa-file-alt"></i>
+                                    <i class="fas fa-store-alt"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="sites-count"><b>0</b></p>
+                                    <p class="sites-count"><b>{{ array_get($counters, 'count', 0) }}</b></p>
                                     <p>соляных пещер</p>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                     <i class="fas fa-eye"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="amount-total"><b>0</b></p>
+                                    <p class="amount-total"><b>{{ array_get($counters, 'enabled_count', 0) }}</b></p>
                                     <p>доступных</p>
                                 </div>
                             </div>

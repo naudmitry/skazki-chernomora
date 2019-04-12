@@ -20,15 +20,23 @@ class SaltCaveController extends Controller
     public function index(Request $request, Showcase $administeredShowcase)
     {
         $saltCavesQuery = SaltCave::query()
-            ->where('showcase_id', $administeredShowcase->id)
-            ->get();
+            ->where('showcase_id', $administeredShowcase->id);
+
+        $counters =
+            [
+                'count' => (clone $saltCavesQuery)->count(),
+                'enabled_count' => (clone $saltCavesQuery)->where('is_enabled', true)->count(),
+            ];
+
+        $saltCavesQuery->get();
 
         if ($request->ajax()) {
             return Datatables::of($saltCavesQuery)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('main_admin.salt_caves.index');
+        return view('main_admin.salt_caves.index', compact('counters'));
     }
 
     /**
@@ -65,9 +73,8 @@ class SaltCaveController extends Controller
         $saltCave->title = $request->get('title');
         $saltCave->address = $request->get('address');
         $saltCave->is_enabled = $request->get('is_enabled', false);
-        $saltCave->working_time = '';
-        $saltCave->phone_numbers = '';
-
+        $saltCave->working_time = $request->get('working_time', []);
+        $saltCave->phone_numbers = $request->get('phone_numbers', []);
         $saltCave->save();
 
         return response()->json([

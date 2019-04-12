@@ -20,22 +20,22 @@
 
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Наименование:</label>
-                            <div class="col-md-8">
+                            <label class="control-label col-md-4">Наименование:</label>
+                            <div class="col-md-7">
                                 <input name="title" class="form-control" type="text" placeholder="Введите наименование" value="{{ $saltCave->title ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Адрес:</label>
-                            <div class="col-md-8">
+                            <label class="control-label col-md-4">Адрес:</label>
+                            <div class="col-md-7">
                                 <input name="address" class="form-control" type="text" placeholder="Введите адрес" value="{{ $saltCave->address ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Доступность:</label>
-                            <div class="col-md-8">
+                            <label class="control-label col-md-4">Доступность:</label>
+                            <div class="col-md-7">
                                 <div class="toggle-flip">
                                     <label>
                                         <input
@@ -47,6 +47,32 @@
                                         ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-md-4">Номера телефонов:</label>
+                            <div class="col-md-7">
+                                <select class="form-control select2" multiple name="phone_numbers[]">
+                                    @if (!empty($saltCave->phone_numbers))
+                                        @foreach ($saltCave->phone_numbers as $phoneNumber)
+                                            <option selected value="{{ $phoneNumber }}">{{ $phoneNumber }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-md-4">Рабочее время:</label>
+                            <div class="col-md-7">
+                                <select class="form-control select2" multiple name="working_time[]">
+                                    @if (!empty($saltCave->working_time))
+                                        @foreach ($saltCave->working_time as $workingTime)
+                                            <option selected value="{{ $workingTime }}">{{ $workingTime }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                             </div>
                         </div>
                     </div>
