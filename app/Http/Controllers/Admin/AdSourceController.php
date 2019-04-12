@@ -18,12 +18,19 @@ class AdSourceController extends Controller
     {
         $adSourceQuery = AdSource::all();
 
+        $counters =
+            [
+                'count' => (clone $adSourceQuery)->count(),
+                'enabled_count' => (clone $adSourceQuery)->where('is_enabled', true)->count(),
+            ];
+
         if ($request->ajax()) {
             return Datatables::of($adSourceQuery)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('main_admin.ad_sources.index');
+        return view('main_admin.ad_sources.index', compact('counters'));
     }
 
     /**

@@ -68,8 +68,8 @@ $(function () {
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
         drawCallback: function (settings) {
-            // $('.enable-news-count').text(settings.json.counters.enable_news_count);
-            // $('.view-count-total').text(settings.json.counters.view_count_total);
+            $('.count').text(settings.json.counters.count);
+            $('.enabled-count').text(settings.json.counters.enabled_count);
         },
     });
 
@@ -90,6 +90,7 @@ $(function () {
             type: 'post',
             success: (response) => {
                 notifyService.showMessage('info', 'Успех!', response.message);
+                $complaintsTable.DataTable().ajax.reload();
             },
             error: function (data) {
                 console.log(data);

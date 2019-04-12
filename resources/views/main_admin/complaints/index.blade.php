@@ -22,7 +22,7 @@
                                     <i class="far fa-file-alt"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="enable-news-count"><b>0</b></p>
+                                    <p class="count"><b>{{ array_get($counters, 'count', 0) }}</b></p>
                                     <p>записей</p>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                     <i class="fas fa-eye"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="view-count-total"><b>0</b></p>
+                                    <p class="enabled-count"><b>{{ array_get($counters, 'enabled_count', 0) }}</b></p>
                                     <p>доступных</p>
                                 </div>
                             </div>

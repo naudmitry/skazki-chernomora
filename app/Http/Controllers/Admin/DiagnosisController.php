@@ -18,12 +18,19 @@ class DiagnosisController extends Controller
     {
         $diagnosisQuery = Diagnosis::all();
 
+        $counters =
+            [
+                'count' => (clone $diagnosisQuery)->count(),
+                'enabled_count' => (clone $diagnosisQuery)->where('is_enabled', true)->count(),
+            ];
+
         if ($request->ajax()) {
             return Datatables::of($diagnosisQuery)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('main_admin.diagnoses.index');
+        return view('main_admin.diagnoses.index', compact('counters'));
     }
 
     /**

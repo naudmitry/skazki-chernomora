@@ -20,15 +20,14 @@ class SaltCaveController extends Controller
     public function index(Request $request, Showcase $administeredShowcase)
     {
         $saltCavesQuery = SaltCave::query()
-            ->where('showcase_id', $administeredShowcase->id);
+            ->where('showcase_id', $administeredShowcase->id)
+            ->get();
 
         $counters =
             [
                 'count' => (clone $saltCavesQuery)->count(),
                 'enabled_count' => (clone $saltCavesQuery)->where('is_enabled', true)->count(),
             ];
-
-        $saltCavesQuery->get();
 
         if ($request->ajax()) {
             return Datatables::of($saltCavesQuery)

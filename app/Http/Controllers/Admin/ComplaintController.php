@@ -18,12 +18,19 @@ class ComplaintController extends Controller
     {
         $complaintsQuery = Complaint::all();
 
+        $counters =
+            [
+                'count' => (clone $complaintsQuery)->count(),
+                'enabled_count' => (clone $complaintsQuery)->where('is_enabled', true)->count(),
+            ];
+
         if ($request->ajax()) {
             return Datatables::of($complaintsQuery)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('main_admin.complaints.index');
+        return view('main_admin.complaints.index', compact('counters'));
     }
 
     /**

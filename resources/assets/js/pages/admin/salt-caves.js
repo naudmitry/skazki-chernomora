@@ -80,8 +80,8 @@ $(function () {
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
         drawCallback: function (settings) {
-            $('.count').text(settings.json.count);
-            $('.enabled-count').text(settings.json.enabled_count);
+            $('.count', $saltCaves).text(settings.json.counters.count);
+            $('.enabled-count', $saltCaves).text(settings.json.counters.enabled_count);
         },
     });
 
@@ -204,6 +204,7 @@ $(function () {
             type: 'post',
             success: (response) => {
                 notifyService.showMessage('info', 'Успех!', response.message);
+                $saltCavesTable.DataTable().ajax.reload();
             },
             error: function (data) {
                 console.log(data);
