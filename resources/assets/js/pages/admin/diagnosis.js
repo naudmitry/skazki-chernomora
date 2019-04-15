@@ -10,6 +10,7 @@ $(function () {
     let mustacheTemplateDiagnosesListsTableColumnCreated = $('.template-diagnoses-lists-table-column-created').text();
     let mustacheTemplateDiagnosesListsTableColumnEnabled = $('.template-diagnoses-lists-table-column-enabled').text();
     let mustacheTemplateDiagnosesListsTableColumnTitle = $('.template-diagnoses-lists-table-column-title').text();
+    let mustacheTemplateDiagnosesListsTableColumnAuthor = $('.template-diagnoses-lists-table-column-author').text();
 
     $diagnosesTable.DataTable({
         info: true,
@@ -38,11 +39,15 @@ $(function () {
             },
             {
                 targets: 2,
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnAuthor, {diagnosis}),
+            },
+            {
+                targets: 3,
                 data: 'is_enabled',
                 render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnEnabled, {diagnosis}),
             },
             {
-                targets: 3,
+                targets: 4,
                 orderable: false,
                 render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnActions, {diagnosis}),
             },

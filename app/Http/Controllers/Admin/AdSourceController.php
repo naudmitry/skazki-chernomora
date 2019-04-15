@@ -16,7 +16,7 @@ class AdSourceController extends Controller
      */
     public function index(Request $request)
     {
-        $adSourceQuery = AdSource::all();
+        $adSourceQuery = AdSource::with('author')->get();
 
         $counters =
             [

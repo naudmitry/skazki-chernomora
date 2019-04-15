@@ -16,7 +16,7 @@ class DiagnosisController extends Controller
      */
     public function index(Request $request)
     {
-        $diagnosisQuery = Diagnosis::all();
+        $diagnosisQuery = Diagnosis::with('author')->get();
 
         $counters =
             [

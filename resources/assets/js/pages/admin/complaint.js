@@ -10,6 +10,7 @@ $(function () {
     let mustacheTemplateComplaintsListsTableColumnCreated = $('.template-complaints-lists-table-column-created').text();
     let mustacheTemplateComplaintsListsTableColumnEnabled = $('.template-complaints-lists-table-column-enabled').text();
     let mustacheTemplateComplaintsListsTableColumnTitle = $('.template-complaints-lists-table-column-title').text();
+    let mustacheTemplateComplaintsListsTableColumnAuthor = $('.template-complaints-lists-table-column-author').text();
 
     $complaintsTable.DataTable({
         info: true,
@@ -38,11 +39,15 @@ $(function () {
             },
             {
                 targets: 2,
+                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnAuthor, {complaint}),
+            },
+            {
+                targets: 3,
                 data: 'is_enabled',
                 render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnEnabled, {complaint}),
             },
             {
-                targets: 3,
+                targets: 4,
                 orderable: false,
                 render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnActions, {complaint}),
             },

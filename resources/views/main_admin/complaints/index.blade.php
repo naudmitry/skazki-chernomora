@@ -50,6 +50,7 @@
                         <tr>
                             <th>Создан</th>
                             <th>Наименование</th>
+                            <th>Автор</th>
                             <th>Доступность</th>
                             <th>Действия</th>
                         </tr>
@@ -74,5 +75,8 @@
     </script>
     <script type="application/x-tmpl-mustache" class="template-complaints-lists-table-column-enabled">
         @include('main_admin.complaints.columns.enabled')
+    </script>
+    <script type="application/x-tmpl-mustache" class="template-complaints-lists-table-column-author">
+        @include('main_admin.complaints.columns.author')
     </script>
 @endsection

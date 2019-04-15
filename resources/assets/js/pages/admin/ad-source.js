@@ -10,6 +10,7 @@ $(function () {
     let mustacheTemplateAdSourcesListsTableColumnCreated = $('.template-ad-sources-lists-table-column-created').text();
     let mustacheTemplateAdSourcesListsTableColumnEnabled = $('.template-ad-sources-lists-table-column-enabled').text();
     let mustacheTemplateAdSourcesListsTableColumnTitle = $('.template-ad-sources-lists-table-column-title').text();
+    let mustacheTemplateAdSourcesListsTableColumnAuthor = $('.template-ad-sources-lists-table-column-author').text();
 
     $adSourcesTable.DataTable({
         info: true,
@@ -38,11 +39,15 @@ $(function () {
             },
             {
                 targets: 2,
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnAuthor, {source}),
+            },
+            {
+                targets: 3,
                 data: 'is_enabled',
                 render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnEnabled, {source}),
             },
             {
-                targets: 3,
+                targets: 4,
                 orderable: false,
                 render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnActions, {source}),
             },

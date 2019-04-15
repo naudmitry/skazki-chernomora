@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $id
  * @property string $title
  * @property boolean $is_enabled
+ * @property integer $author_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
@@ -20,4 +21,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Diagnosis extends Model
 {
     use SoftDeletes;
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }

@@ -16,7 +16,7 @@ class ComplaintController extends Controller
      */
     public function index(Request $request)
     {
-        $complaintsQuery = Complaint::all();
+        $complaintsQuery = Complaint::with('author')->get();
 
         $counters =
             [

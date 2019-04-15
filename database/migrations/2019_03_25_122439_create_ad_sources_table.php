@@ -15,10 +15,15 @@ class CreateAdSourcesTable extends Migration
     {
         Schema::create('ad_sources', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('title');
             $table->boolean('is_enabled')->default(false);
+            $table->unsignedInteger('author_id')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('author_id')->references('id')->on('admins');
         });
     }
 
