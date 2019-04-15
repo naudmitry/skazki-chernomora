@@ -54,6 +54,7 @@ class AdminRoleSettingsComposer
                         [
                             AdminComponentEnum::COMPANY_ADMIN_LIST,
                             AdminComponentEnum::COMPANY_ADMIN_ROLES,
+                            AdminComponentEnum::COMPANY_ADMIN_SALT_CAVES,
                             AdminComponentEnum::COMPANY_ADMIN_GROUPS,
                             AdminComponentEnum::COMPANY_ADMIN_COMPANY,
                             AdminComponentEnum::COMPANY_ADMIN_SHOWCASES,

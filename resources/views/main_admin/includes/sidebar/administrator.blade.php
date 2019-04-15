@@ -5,6 +5,7 @@
     App\Classes\AdminComponentEnum::COMPANY_ADMIN_GROUPS,
     App\Classes\AdminComponentEnum::COMPANY_ADMIN_LIST,
     App\Classes\AdminComponentEnum::COMPANY_ADMIN_ROLES,
+    App\Classes\AdminComponentEnum::COMPANY_ADMIN_SALT_CAVES,
 ], $administeredCompany))
     <li>
         <div class="app-menu__header"><span class="app-menu__label">Администратор</span></div>
@@ -80,10 +81,12 @@
         </li>
     @endif
 
-    <li>
-        <a
-            class="app-menu__item @if (Route::is('admin.salt-caves.*')) active @endif"
-            href="{{ route('admin.salt-caves.index') }}"
-        ><i class="app-menu__icon fas fa-store-alt"></i><span class="app-menu__label">Соляные пещеры</span></a>
-    </li>
+    @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ADMIN_SALT_CAVES, $administeredCompany))
+        <li>
+            <a
+                class="app-menu__item @if (Route::is('admin.salt-caves.*')) active @endif"
+                href="{{ route('admin.salt-caves.index') }}"
+            ><i class="app-menu__icon fas fa-store-alt"></i><span class="app-menu__label">Соляные пещеры</span></a>
+        </li>
+    @endif
 @endif
