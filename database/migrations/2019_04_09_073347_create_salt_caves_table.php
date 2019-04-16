@@ -20,7 +20,7 @@ class CreateSaltCavesTable extends Migration
             $table->integer('showcase_id')->unsigned()->index();
             $table->string('title');
             $table->string('address');
-            $table->string('working_time'); // workdays , holidays
+            $table->string('working_time');
             $table->string('phone_numbers');
             $table->boolean('is_enabled')->default(false);
 

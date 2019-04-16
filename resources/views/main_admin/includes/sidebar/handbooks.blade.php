@@ -3,6 +3,7 @@
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS,
+    App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
 ], $administeredCompany))
     <li>
         <div class="app-menu__header"><span class="app-menu__label">Справочники</span></div>
@@ -32,6 +33,15 @@
                 class="app-menu__item @if (Route::is('admin.complaint.*')) active @endif"
                 href="{{ route('admin.complaint.list.index') }}"
             ><i class="app-menu__icon fas fa-notes-medical"></i><span class="app-menu__label">Жалобы</span></a>
+        </li>
+    @endif
+
+    @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS, $administeredCompany))
+        <li>
+            <a
+                    class="app-menu__item @if (Route::is('admin.subscription.*')) active @endif"
+                    href="{{ route('admin.subscription.index') }}"
+            ><i class="app-menu__icon fas fa-ticket-alt"></i><span class="app-menu__label">Абонементы</span></a>
         </li>
     @endif
 @endif

@@ -255,6 +255,18 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::post('/salt-caves/enabled/{saltCave}', ['uses' => 'Admin\SaltCaveController@enabled', 'as' => 'admin.salt-cave.enabled'])
                     ->where('category', '[0-9]+');
             });
+
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS], function () {
+                Route::get('/subscriptions', ['uses' => 'Admin\SubscriptionController@index', 'as' => 'admin.subscription.index']);
+                Route::delete('/subscription/{subscription}', ['uses' => 'Admin\SubscriptionController@delete', 'as' => 'admin.subscription.delete'])
+                    ->where('subscription', '[0-9]+');
+                Route::post('/subscription/save/{subscription?}', ['uses' => 'Admin\SubscriptionController@save', 'as' => 'admin.subscription.save',])
+                    ->where('subscription', '[0-9]+');
+                Route::get('/subscription/edit/{subscription?}', ['uses' => 'Admin\SubscriptionController@edit', 'as' => 'admin.subscription.edit'])
+                    ->where('subscription', '[0-9]+');
+                Route::post('/subscription/enable/{subscription}', ['uses' => 'Admin\SubscriptionController@enable', 'as' => 'admin.subscription.enable'])
+                    ->where('subscription', '[0-9]+');
+            });
         });
 
         Route::get('/{any?}',

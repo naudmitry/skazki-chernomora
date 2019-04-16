@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -20,6 +21,8 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('showcase_id');
             $table->unsignedInteger('salt_cave_id');
             $table->string('number');
+            $table->timestamp('begin_at')->default(Carbon::now());
+            $table->timestamp('end_at')->default(Carbon::now());
             $table->timestamp('completed_at')->nullable()->default(null);
             $table->decimal('cost', 20, 2);
             $table->decimal('paid', 20, 2);

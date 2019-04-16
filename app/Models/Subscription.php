@@ -6,13 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * Абонемент.
  * Class Subscription
  * @package App\Models
  *
  * @property integer $id
  * @property string $title
- * @property float $base_cost
- * @property array $settings
+ * @property string $type
+ * @property boolean $is_enabled
+ * @property integer $company_id
+ * @property integer $showcase_id
+ * @property integer $amount_sessions
+ * @property double $cost
+ * @property double $author_id
  *
  * @mixin \Eloquent
  */
@@ -20,7 +26,11 @@ class Subscription extends Model
 {
     use SoftDeletes;
 
-    protected $casts = [
-        'settings' => 'array'
-    ];
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }
