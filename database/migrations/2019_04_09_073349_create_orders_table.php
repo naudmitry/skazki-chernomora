@@ -20,15 +20,20 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('company_id');
             $table->unsignedInteger('showcase_id');
             $table->unsignedInteger('salt_cave_id');
+
             $table->string('number');
+            $table->string('status');
             $table->timestamp('begin_at')->default(Carbon::now());
             $table->timestamp('end_at')->default(Carbon::now());
+            $table->unsignedInteger('amount_sessions');
             $table->timestamp('completed_at')->nullable()->default(null);
             $table->decimal('cost', 20, 2);
             $table->decimal('paid', 20, 2);
             $table->decimal('debt', 20, 2);
             $table->string('payment_type');
             $table->string('payment_status');
+            $table->unsignedInteger('manager_id')->index();
+            $table->unsignedInteger('executant_id')->index();
 
             $table->timestamps();
             $table->softDeletes();

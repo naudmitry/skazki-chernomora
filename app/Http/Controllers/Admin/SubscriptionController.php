@@ -93,9 +93,6 @@ class SubscriptionController extends Controller
         }
 
         $subscription->title = $request->get('title');
-        $subscription->type = $request->get('type');
-        $subscription->amount_sessions = $request->get('amount_sessions');
-        $subscription->cost= $request->get('cost');
         $subscription->author_id= \Auth::guard('admin')->user()->id;
         $subscription->save();
 

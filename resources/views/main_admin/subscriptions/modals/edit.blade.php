@@ -20,27 +20,6 @@
                                 <input name="title" class="form-control" type="text" placeholder="Введите наименование" value="{{ $subscription->title ?? '' }}">
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label class="control-label col-md-4">Тип:</label>
-                            <div class="col-md-7">
-                                <input name="type" class="form-control" type="text" placeholder="Введите тип" value="{{ $subscription->type ?? '' }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label col-md-4">Количество сеансов:</label>
-                            <div class="col-md-7">
-                                <input name="amount_sessions" class="form-control" type="text" placeholder="Введите количество сеансов" value="{{ $subscription->amount_sessions ?? '' }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="control-label col-md-4">Стоимость:</label>
-                            <div class="col-md-7">
-                                <input name="cost" class="form-control" type="text" placeholder="Введите стоимость" value="{{ $subscription->cost ?? '' }}">
-                            </div>
-                        </div>
                     </div>
 
                     <div class="modal-footer">

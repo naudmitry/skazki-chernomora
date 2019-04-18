@@ -12,12 +12,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property integer $id
  * @property string $title
- * @property string $type
  * @property boolean $is_enabled
  * @property integer $company_id
  * @property integer $showcase_id
- * @property integer $amount_sessions
- * @property double $cost
  * @property double $author_id
  *
  * @mixin \Eloquent

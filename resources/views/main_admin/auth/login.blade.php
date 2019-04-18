@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('vali-admin/css/font-awesome.min.css') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('vali-admin/logo.png') }}" />
         <title>Вход | Sacave</title>
     </head>
     <body>
