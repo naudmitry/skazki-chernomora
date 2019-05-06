@@ -56,9 +56,11 @@ class DiagnosisController extends Controller
     {
         if (!isset($diagnosis)) {
             $diagnosis = new Diagnosis();
+            $diagnosis->author_id = \Auth::guard('admin')->user()->id;
         }
 
         $diagnosis->title = $request->get('title');
+        $diagnosis->count_visits = $request->get('count_visits');
         $diagnosis->save();
 
         return response()->json([

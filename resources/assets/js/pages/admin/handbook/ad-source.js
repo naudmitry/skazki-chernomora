@@ -1,25 +1,27 @@
 $(function () {
-    let $subscriptions = $('.subscriptions');
+    let $adSources = $('.ad-sources');
 
-    if (!$subscriptions.length) {
+    if (!$adSources.length) {
         return;
     }
 
-    let $subscriptionsTable = $('#subscriptionsTable');
-    let mustacheTemplateSubscriptionsTableColumnActions = $('.template-subscriptions-table-column-actions').text();
-    let mustacheTemplateSubscriptionsTableColumnCreated = $('.template-subscriptions-table-column-created').text();
-    let mustacheTemplateSubscriptionsTableColumnEnabled = $('.template-subscriptions-table-column-enabled').text();
-    let mustacheTemplateSubscriptionsTableColumnTitle = $('.template-subscriptions-table-column-title').text();
-    let mustacheTemplateSubscriptionsTableColumnAuthor = $('.template-subscriptions-table-column-author').text();
+    let $adSourcesTable = $('#adSourcesTable');
+    let mustacheTemplateAdSourcesListsTableColumnActions = $('.template-ad-sources-lists-table-column-actions').text();
+    let mustacheTemplateAdSourcesListsTableColumnCreated = $('.template-ad-sources-lists-table-column-created').text();
+    let mustacheTemplateAdSourcesListsTableColumnEnabled = $('.template-ad-sources-lists-table-column-enabled').text();
+    let mustacheTemplateAdSourcesListsTableColumnTitle = $('.template-ad-sources-lists-table-column-title').text();
+    let mustacheTemplateAdSourcesListsTableColumnAuthor = $('.template-ad-sources-lists-table-column-author').text();
+    let mustacheTemplateAdSourcesListsTableColumnSort= $('.template-ad-sources-lists-table-column-sort').text();
 
-    $subscriptionsTable.DataTable({
+    $adSourcesTable.DataTable({
         info: true,
         autoWidth: false,
         processing: true,
         serverSide: true,
+        ordering: false,
         ajax:
             {
-                url: $subscriptionsTable.data('href'),
+                url: $adSourcesTable.data('href'),
                 // data: function (data) {
                 //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
                 //         data[filter.name] = filter.value;
@@ -30,29 +32,33 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnCreated, {subscription}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnCreated, {source}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnTitle, {subscription}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnTitle, {source}),
             },
             {
                 targets: 2,
-                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnAuthor, {subscription}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnAuthor, {source}),
             },
             {
                 targets: 3,
                 data: 'is_enabled',
-                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnEnabled, {subscription}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnEnabled, {source}),
             },
             {
                 targets: 4,
+                data: 'sort',
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnSort, {source}),
+            },
+            {
+                targets: 5,
                 orderable: false,
-                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnActions, {subscription}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnActions, {source}),
             },
         ],
-        order: [[0, 'asc']],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
         language: {
             processing: "Подождите...",
@@ -85,17 +91,17 @@ $(function () {
 
     $(document).on('keyup', '.search', function (e) {
         if (e.keyCode == 13) {
-            $('#subscriptionsTable').DataTable().search(this.value).draw();
+            $('#adSourcesTable').DataTable().search(this.value).draw();
         }
     });
 
-    $(document).on('change', '.subscription-enabled', function () {
+    $(document).on('change', '.ad-source-enabled', function () {
         $.ajax({
             url: $(this).data('href'),
             type: 'post',
             success: (response) => {
                 notifyService.showMessage('info', 'Успех!', response.message);
-                $subscriptionsTable.DataTable().ajax.reload();
+                $adSourcesTable.DataTable().ajax.reload();
             },
             error: function (data) {
                 console.log(data);
@@ -103,13 +109,13 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.subscription-delete', function (e) {
+    $(document).on('click', '.ad-source-list-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить абонемент?",
+            text: "Вы действительно хотите удалить источник рекламы?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -120,16 +126,16 @@ $(function () {
                     url: $this.attr('href'),
                     success: response => {
                         notifyService.showMessage('danger', 'Успех!', response.message);
-                        $subscriptionsTable.DataTable().ajax.reload();
+                        $adSourcesTable.DataTable().ajax.reload();
                     },
                     error: xhr => {
                         console.error(xhr);
                     },
                 });
 
-                swal("Удаление подтверждено!", "Абонемент будет удален.", "success");
+                swal("Удаление подтверждено!", "Источник рекламы будет удален.", "success");
             } else {
-                swal("Удаление отменено!", "Абонемент не будет удален.", "error");
+                swal("Удаление отменено!", "Источник рекламы не будет удален.", "error");
             }
         });
     });
@@ -145,7 +151,7 @@ $(function () {
             url: $this.attr('href'),
             success: response => {
                 $divForModal.html(response.view);
-                let $modal = $('#subscription-modal');
+                let $modal = $('#ad-source-modal');
                 $modal.modal('show');
                 $modal.on('hidden.bs.modal', function (event) {
                     $divForModal.empty();
@@ -158,10 +164,10 @@ $(function () {
         }));
     });
 
-    $(document).on('submit', '.subscription-edit-form', function (e) {
+    $(document).on('submit', '.ad-source-list-edit-form', function (e) {
         e.preventDefault();
         let $form = $(this);
-        let $modal = $form.closest('#subscription-modal');
+        let $modal = $form.closest('#ad-source-modal');
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }
@@ -171,7 +177,7 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $subscriptionsTable.DataTable().ajax.reload();
+                $adSourcesTable.DataTable().ajax.reload();
                 $modal.modal('hide');
             },
             error: xhr => {
@@ -189,7 +195,7 @@ $(function () {
         }));
     });
 
-    $(document).on('change keyup', '.subscription-edit-form', function (e) {
+    $(document).on('change keyup', '.ad-source-list-edit-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         if (!$input.is('input,select')) {

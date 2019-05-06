@@ -1,25 +1,26 @@
 $(function () {
-    let $adSources = $('.ad-sources');
+    let $diagnoses = $('.diagnoses');
 
-    if (!$adSources.length) {
+    if (!$diagnoses.length) {
         return;
     }
 
-    let $adSourcesTable = $('#adSourcesTable');
-    let mustacheTemplateAdSourcesListsTableColumnActions = $('.template-ad-sources-lists-table-column-actions').text();
-    let mustacheTemplateAdSourcesListsTableColumnCreated = $('.template-ad-sources-lists-table-column-created').text();
-    let mustacheTemplateAdSourcesListsTableColumnEnabled = $('.template-ad-sources-lists-table-column-enabled').text();
-    let mustacheTemplateAdSourcesListsTableColumnTitle = $('.template-ad-sources-lists-table-column-title').text();
-    let mustacheTemplateAdSourcesListsTableColumnAuthor = $('.template-ad-sources-lists-table-column-author').text();
+    let $diagnosesTable = $('#diagnosesTable');
+    let mustacheTemplateDiagnosesListsTableColumnActions = $('.template-diagnoses-lists-table-column-actions').text();
+    let mustacheTemplateDiagnosesListsTableColumnCreated = $('.template-diagnoses-lists-table-column-created').text();
+    let mustacheTemplateDiagnosesListsTableColumnEnabled = $('.template-diagnoses-lists-table-column-enabled').text();
+    let mustacheTemplateDiagnosesListsTableColumnTitle = $('.template-diagnoses-lists-table-column-title').text();
+    let mustacheTemplateDiagnosesListsTableColumnVisits = $('.template-diagnoses-lists-table-column-visits').text();
+    let mustacheTemplateDiagnosesListsTableColumnAuthor = $('.template-diagnoses-lists-table-column-author').text();
 
-    $adSourcesTable.DataTable({
+    $diagnosesTable.DataTable({
         info: true,
         autoWidth: false,
         processing: true,
         serverSide: true,
         ajax:
             {
-                url: $adSourcesTable.data('href'),
+                url: $diagnosesTable.data('href'),
                 // data: function (data) {
                 //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
                 //         data[filter.name] = filter.value;
@@ -30,29 +31,34 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnCreated, {source}),
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnCreated, {diagnosis}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnTitle, {source}),
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnTitle, {diagnosis}),
             },
             {
                 targets: 2,
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnAuthor, {source}),
+                data: 'count_visits',
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnVisits, {diagnosis}),
             },
             {
                 targets: 3,
-                data: 'is_enabled',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnEnabled, {source}),
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnAuthor, {diagnosis}),
             },
             {
                 targets: 4,
+                data: 'is_enabled',
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnEnabled, {diagnosis}),
+            },
+            {
+                targets: 5,
                 orderable: false,
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnActions, {source}),
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnActions, {diagnosis}),
             },
         ],
-        order: [[0, 'asc']],
+        order: [[1, 'asc']],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
         language: {
             processing: "Подождите...",
@@ -85,17 +91,17 @@ $(function () {
 
     $(document).on('keyup', '.search', function (e) {
         if (e.keyCode == 13) {
-            $('#adSourcesTable').DataTable().search(this.value).draw();
+            $('#diagnosesTable').DataTable().search(this.value).draw();
         }
     });
 
-    $(document).on('change', '.ad-source-enabled', function () {
+    $(document).on('change', '.diagnosis-enabled', function () {
         $.ajax({
             url: $(this).data('href'),
             type: 'post',
             success: (response) => {
                 notifyService.showMessage('info', 'Успех!', response.message);
-                $adSourcesTable.DataTable().ajax.reload();
+                $diagnosesTable.DataTable().ajax.reload();
             },
             error: function (data) {
                 console.log(data);
@@ -103,13 +109,13 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.ad-source-list-delete', function (e) {
+    $(document).on('click', '.diagnosis-list-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить источник рекламы?",
+            text: "Вы действительно хотите удалить диагноз?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -120,16 +126,15 @@ $(function () {
                     url: $this.attr('href'),
                     success: response => {
                         notifyService.showMessage('danger', 'Успех!', response.message);
-                        $adSourcesTable.DataTable().ajax.reload();
+                        $diagnosesTable.DataTable().ajax.reload();
                     },
                     error: xhr => {
                         console.error(xhr);
                     },
                 });
-
-                swal("Удаление подтверждено!", "Источник рекламы будет удален.", "success");
+                swal("Удаление подтверждено!", "Диагноз будет удален.", "success");
             } else {
-                swal("Удаление отменено!", "Источник рекламы не будет удален.", "error");
+                swal("Удаление отменено!", "Диагноз не будет удален.", "error");
             }
         });
     });
@@ -145,7 +150,7 @@ $(function () {
             url: $this.attr('href'),
             success: response => {
                 $divForModal.html(response.view);
-                let $modal = $('#ad-source-modal');
+                let $modal = $('#diagnosis-modal');
                 $modal.modal('show');
                 $modal.on('hidden.bs.modal', function (event) {
                     $divForModal.empty();
@@ -158,10 +163,10 @@ $(function () {
         }));
     });
 
-    $(document).on('submit', '.ad-source-list-edit-form', function (e) {
+    $(document).on('submit', '.diagnosis-list-edit-form', function (e) {
         e.preventDefault();
         let $form = $(this);
-        let $modal = $form.closest('#ad-source-modal');
+        let $modal = $form.closest('#diagnosis-modal');
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }
@@ -171,7 +176,8 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $adSourcesTable.DataTable().ajax.reload();
+                notifyService.showMessage('info', 'Успех!', response.message);
+                $diagnosesTable.DataTable().ajax.reload();
                 $modal.modal('hide');
             },
             error: xhr => {
@@ -189,7 +195,7 @@ $(function () {
         }));
     });
 
-    $(document).on('change keyup', '.ad-source-list-edit-form', function (e) {
+    $(document).on('change keyup', '.diagnosis-list-edit-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         if (!$input.is('input,select')) {

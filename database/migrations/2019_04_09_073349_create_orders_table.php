@@ -17,9 +17,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('company_id');
-            $table->unsignedInteger('showcase_id');
-            $table->unsignedInteger('salt_cave_id');
+            $table->unsignedInteger('company_id')->index();
+            $table->unsignedInteger('showcase_id')->index();
+            $table->unsignedInteger('salt_cave_id')->index();
+            $table->unsignedInteger('buyer_id')->index();
+            $table->unsignedInteger('parent_id')->nullbale()->index();
 
             $table->string('number');
             $table->string('status');
@@ -34,6 +36,8 @@ class CreateOrdersTable extends Migration
             $table->string('payment_status');
             $table->unsignedInteger('manager_id')->index();
             $table->unsignedInteger('executant_id')->index();
+            $table->string('reason_cancellation')->nullable();
+            $table->unsignedInteger('count_free_sessions')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -41,6 +45,8 @@ class CreateOrdersTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('showcase_id')->references('id')->on('showcases');
             $table->foreign('salt_cave_id')->references('id')->on('salt_caves');
+            $table->foreign('buyer_id')->references('id')->on('buyers');
+            $table->foreign('parent_id')->references('id')->on('orders');
         });
     }
 

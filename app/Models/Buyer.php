@@ -28,11 +28,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $rating
  * @property string $statuses
  * @property integer $showcase_id
+ * @property integer $organization_id
  * @property Carbon $login_at
  * @property string $login_from
  * @property string $created_from
  * @property string $password
  * @property boolean $is_processing_personal_data
+ * @property string $type_subscription
  *
  * @mixin \Eloquent
  */
@@ -47,6 +49,10 @@ class Buyer extends Model
     protected $dates = [
         'contract_at',
         'birthday_at'
+    ];
+
+    protected $appends = [
+        'full_name'
     ];
 
     /**
@@ -71,5 +77,13 @@ class Buyer extends Model
     public function complaints()
     {
         return $this->belongsToMany(Complaint::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname;
     }
 }

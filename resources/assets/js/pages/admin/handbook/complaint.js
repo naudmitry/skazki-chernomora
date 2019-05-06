@@ -52,7 +52,7 @@ $(function () {
                 render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnActions, {complaint}),
             },
         ],
-        order: [[0, 'asc']],
+        order: [[1, 'asc']],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
         language: {
             processing: "Подождите...",

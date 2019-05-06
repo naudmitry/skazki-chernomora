@@ -10,6 +10,7 @@ class AdminComponentEnum extends Enum
     const COMPANY_HANDBOOKS_DIAGNOSES = 'handbooks.diagnoses';
     const COMPANY_HANDBOOKS_COMPLAINTS = 'handbooks.complaints';
     const COMPANY_HANDBOOKS_SUBSCRIPTIONS = 'handbooks.subscriptions';
+    const COMPANY_HANDBOOKS_ORGANIZATIONS = 'handbooks.organizations';
 
     const COMPANY_USERS_CUSTOMERS = 'users.customers';
     const COMPANY_USERS_REVIEWS = 'users.reviews';
@@ -47,6 +48,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_HANDBOOKS_COMPLAINTS,
                     self::COMPANY_HANDBOOKS_DIAGNOSES,
                     self::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
+                    self::COMPANY_HANDBOOKS_ORGANIZATIONS,
                     self::COMPANY_USERS_CUSTOMERS,
                     self::COMPANY_USERS_REVIEWS,
                     self::COMPANY_SETTINGS_GENERAL,
@@ -77,6 +79,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_HANDBOOKS_COMPLAINTS,
                     self::COMPANY_HANDBOOKS_DIAGNOSES,
                     self::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
+                    self::COMPANY_HANDBOOKS_ORGANIZATIONS,
                     self::COMPANY_USERS_CUSTOMERS,
                     self::COMPANY_USERS_REVIEWS,
                     self::COMPANY_SETTINGS_GENERAL,

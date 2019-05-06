@@ -121,6 +121,22 @@
 
                     <div class="row form-group">
                         <div class="col-md-4">
+                            <label class="control-label" for="contract_at">Тип абонемента:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="select2" name="type_subscription">
+                                @foreach (\App\Classes\BuyerTypeSubscriptionEnum::lists() as $type)
+                                    <option
+                                            @if ($type == $buyer->type_subscription) selected @endif
+                                    value="{{ $type }}"
+                                    >{{ \App\Classes\BuyerTypeSubscriptionEnum::$labels[$type] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
                             <label class="control-label" for="address">Адрес:</label>
                         </div>
                         <div class="col-md-8">
@@ -262,5 +278,3 @@
         </form>
     </div>
 </div>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

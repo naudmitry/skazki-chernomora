@@ -52,6 +52,7 @@
                             <th>Наименование</th>
                             <th>Автор</th>
                             <th>Доступность</th>
+                            <th>Позиция</th>
                             <th>Действия</th>
                         </tr>
                         </thead>
@@ -78,5 +79,8 @@
     </script>
     <script type="application/x-tmpl-mustache" class="template-ad-sources-lists-table-column-author">
         @include('main_admin.ad_sources.columns.author')
+    </script>
+    <script type="application/x-tmpl-mustache" class="template-ad-sources-lists-table-column-sort">
+        @include('main_admin.ad_sources.columns.sort')
     </script>
 @endsection

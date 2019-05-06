@@ -1,3 +1,1 @@
-<span class="text-semibold">
-    @{{order.salt_cave}}
-</span>
+@{{order.saltCave.title}}Черноморская сказка

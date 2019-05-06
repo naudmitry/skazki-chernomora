@@ -28,6 +28,7 @@ class AdminRoleSettingsComposer
                             AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES,
                             AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS,
                             AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
+                            AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS,
                         ]),
                     'users' => array_intersect($components,
                         [

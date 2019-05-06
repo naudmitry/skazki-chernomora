@@ -15383,3 +15383,13 @@ input[type=color] {
 table .icon {
   color: #009688;
 }
+
+.custom-modal {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  z-index: 1;
+  display: block;
+}

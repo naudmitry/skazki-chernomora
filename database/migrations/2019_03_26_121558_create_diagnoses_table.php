@@ -17,6 +17,7 @@ class CreateDiagnosesTable extends Migration
             $table->increments('id');
 
             $table->string('title');
+            $table->unsignedInteger('count_visits')->nullable();
             $table->boolean('is_enabled')->default(false);
             $table->unsignedInteger('author_id');
 

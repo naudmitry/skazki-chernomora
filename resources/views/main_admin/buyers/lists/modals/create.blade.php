@@ -66,6 +66,20 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">Организация:</label>
+                            <div class="col-md-8">
+                                <select class="select2" name="organization_id">
+                                    <option value="">Нет</option>
+                                    @foreach ($organizations as $organization)
+                                        <option
+                                                value="{{ $organization->id }}"
+                                        >{{ $organization->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer">

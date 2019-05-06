@@ -4,6 +4,7 @@
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
+    App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS,
 ], $administeredCompany))
     <li>
         <div class="app-menu__header"><span class="app-menu__label">Справочники</span></div>
@@ -42,6 +43,15 @@
                     class="app-menu__item @if (Route::is('admin.subscription.*')) active @endif"
                     href="{{ route('admin.subscription.index') }}"
             ><i class="app-menu__icon fas fa-ticket-alt"></i><span class="app-menu__label">Абонементы</span></a>
+        </li>
+    @endif
+
+    @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS, $administeredCompany))
+        <li>
+            <a
+                    class="app-menu__item @if (Route::is('admin.organization.*')) active @endif"
+                    href="{{ route('admin.organization.index') }}"
+            ><i class="app-menu__icon fas fa-building"></i><span class="app-menu__label">Организации</span></a>
         </li>
     @endif
 @endif

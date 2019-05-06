@@ -2,6 +2,7 @@
 
 use App\Classes\BuyerRatingEnum;
 use App\Classes\BuyerStatusEnum;
+use App\Classes\BuyerTypeSubscriptionEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -41,12 +42,15 @@ class CreateBuyersTable extends Migration
             $table->string('created_from')->nullable();
             $table->string('password')->nullable();
             $table->boolean('is_processing_personal_data')->default(false);
+            $table->unsignedInteger('organization_id')->nullable();
             $table->string('dynamics')->nullable();
+            $table->string('type_subscription')->default(BuyerTypeSubscriptionEnum::FREE);
 
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('showcase_id')->references('id')->on('showcases')->onDelete('cascade');
+            $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }
 

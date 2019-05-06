@@ -48,6 +48,13 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/staff/lists/edit/{admin?}', ['uses' => 'Admin\AdminController@edit', 'as' => 'admin.staff.list.edit'])
                     ->where('admin', '[0-9]+');
                 Route::post('/staff/lists/create', ['uses' => 'Admin\AdminController@create', 'as' => 'admin.staff.list.create']);
+                Route::delete('/staff/lists/delete/{admin?}', ['uses' => 'Admin\AdminController@delete', 'as' => 'admin.staff.list.delete'])
+                    ->where('admin', '[0-9]+');
+
+                Route::get('/staff/change-password-modal/{admin?}', ['uses' => 'Admin\AdminController@openChangePasswordModal', 'as' => 'admin.staff.open-change-password-modal'])
+                    ->where('admin', '[0-9]+');
+                Route::post('/staff/change-password/{admin}', ['uses' => 'Admin\AdminController@changePassword', 'as' => 'admin.staff.change-password'])
+                    ->where('admin', '[0-9]+');
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_GROUPS], function () {
@@ -179,7 +186,12 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_ORDERS_LIST], function () {
-                Route::get('/order/lists', ['uses' => 'Admin\OrderController@index', 'as' => 'admin.order.list.index']);
+                Route::get('/orders', ['uses' => 'Admin\OrderController@index', 'as' => 'admin.order.list.index']);
+                Route::get('/order/edit/{order}', ['uses' => 'Admin\OrderController@edit', 'as' => 'admin.order.edit'])
+                    ->where('order', '[0-9]+');
+                Route::get('/order/create', ['uses' => 'Admin\OrderController@create', 'as' => 'admin.order.create']);
+                Route::post('/order/save/{order?}', ['uses' => 'Admin\OrderController@save', 'as' => 'admin.order.save'])
+                    ->where('order', '[0-9]+');
                 Route::delete('/order/lists/{order}', ['uses' => 'Admin\OrderController@delete', 'as' => 'admin.order.list.delete'])
                     ->where('order', '[0-9]+');
             });
@@ -266,6 +278,18 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('subscription', '[0-9]+');
                 Route::post('/subscription/enable/{subscription}', ['uses' => 'Admin\SubscriptionController@enable', 'as' => 'admin.subscription.enable'])
                     ->where('subscription', '[0-9]+');
+            });
+
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS], function () {
+                Route::get('/organizations', ['uses' => 'Admin\OrganizationController@index', 'as' => 'admin.organization.index']);
+                Route::delete('/organization/{organization}', ['uses' => 'Admin\OrganizationController@delete', 'as' => 'admin.organization.delete'])
+                    ->where('organization', '[0-9]+');
+                Route::post('/organization/save/{organization?}', ['uses' => 'Admin\OrganizationController@save', 'as' => 'admin.organization.save',])
+                    ->where('organization', '[0-9]+');
+                Route::get('/organization/edit/{organization?}', ['uses' => 'Admin\OrganizationController@edit', 'as' => 'admin.organization.edit'])
+                    ->where('organization', '[0-9]+');
+                Route::post('/organization/enable/{organization}', ['uses' => 'Admin\OrganizationController@enable', 'as' => 'admin.organization.enable'])
+                    ->where('organization', '[0-9]+');
             });
         });
 

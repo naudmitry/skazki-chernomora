@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Models\Admin;
 use App\Models\Company;
 use App\Models\Role;
@@ -80,9 +81,39 @@ class AdminController extends Controller
     }
 
     /**
+     * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function openChangePasswordModal(Admin $admin)
+    {
+        return response()->json([
+            'view' => view('main_admin.staff.lists.modals.change_password', compact(
+                'admin'
+            ))->render(),
+        ]);
+    }
+
+    /**
+     * @param ChangePasswordRequest $request
+     * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changePassword(ChangePasswordRequest $request, Admin $admin)
+    {
+        $admin->password = \Hash::make($request->input('password'));
+        $admin->save();
+
+        return response()->json([
+            'message' => 'Пароль успешно задан.'
+        ]);
+    }
+
+    /**
      * @param Request $request
      * @param Company $administeredCompany
      * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse|void
      */
     public function save(Request $request, Company $administeredCompany, Admin $admin)
     {

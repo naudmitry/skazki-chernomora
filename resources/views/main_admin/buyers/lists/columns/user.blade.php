@@ -1,4 +1,4 @@
 <div class="media-body">
-    @{{buyer.name}}
+    @{{buyer.full_name}}
     <div class="text-muted">@{{buyer.email}}</div>
 </div>

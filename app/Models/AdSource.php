@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $title
  * @property boolean $is_enabled
  * @property integer $author_id
+ * @property integer $sort
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *

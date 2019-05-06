@@ -1,55 +1,52 @@
 $(function () {
-    let $diagnoses = $('.diagnoses');
+    let $organizations = $('.organizations');
 
-    if (!$diagnoses.length) {
+    if (!$organizations.length) {
         return;
     }
 
-    let $diagnosesTable = $('#diagnosesTable');
-    let mustacheTemplateDiagnosesListsTableColumnActions = $('.template-diagnoses-lists-table-column-actions').text();
-    let mustacheTemplateDiagnosesListsTableColumnCreated = $('.template-diagnoses-lists-table-column-created').text();
-    let mustacheTemplateDiagnosesListsTableColumnEnabled = $('.template-diagnoses-lists-table-column-enabled').text();
-    let mustacheTemplateDiagnosesListsTableColumnTitle = $('.template-diagnoses-lists-table-column-title').text();
-    let mustacheTemplateDiagnosesListsTableColumnAuthor = $('.template-diagnoses-lists-table-column-author').text();
+    let $organizationsTable = $('#organizationsTable');
+    let mustacheTemplateOrganizationsTableColumnActions = $('.template-organizations-table-column-actions').text();
+    let mustacheTemplateOrganizationsTableColumnCreated = $('.template-organizations-table-column-created').text();
+    let mustacheTemplateOrganizationsTableColumnAddress = $('.template-organizations-table-column-address').text();
+    let mustacheTemplateOrganizationsTableColumnTitle = $('.template-organizations-table-column-title').text();
+    let mustacheTemplateOrganizationsTableColumnAuthor = $('.template-organizations-table-column-author').text();
 
-    $diagnosesTable.DataTable({
+    $organizationsTable.DataTable({
         info: true,
         autoWidth: false,
         processing: true,
         serverSide: true,
         ajax:
             {
-                url: $diagnosesTable.data('href'),
+                url: $organizationsTable.data('href'),
                 // data: function (data) {
-                //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
-                //         data[filter.name] = filter.value;
-                //     });
+                //     // $('.lists-filter-value').serializeArray().forEach(function (filter) {
+                //     //     data[filter.name] = filter.value;
+                //     // });
                 // },
             },
         columnDefs: [
             {
                 targets: 0,
-                data: 'created_at',
-                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnCreated, {diagnosis}),
+                render: (data, type, organization) => Mustache.render(mustacheTemplateOrganizationsTableColumnCreated, {organization}),
             },
             {
                 targets: 1,
-                data: 'title',
-                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnTitle, {diagnosis}),
+                render: (data, type, organization) => Mustache.render(mustacheTemplateOrganizationsTableColumnTitle, {organization}),
             },
             {
                 targets: 2,
-                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnAuthor, {diagnosis}),
+                render: (data, type, organization) => Mustache.render(mustacheTemplateOrganizationsTableColumnAuthor, {organization}),
             },
             {
                 targets: 3,
-                data: 'is_enabled',
-                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnEnabled, {diagnosis}),
+                render: (data, type, organization) => Mustache.render(mustacheTemplateOrganizationsTableColumnAddress, {organization}),
             },
             {
                 targets: 4,
                 orderable: false,
-                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnActions, {diagnosis}),
+                render: (data, type, organization) => Mustache.render(mustacheTemplateOrganizationsTableColumnActions, {organization}),
             },
         ],
         order: [[0, 'asc']],
@@ -85,17 +82,17 @@ $(function () {
 
     $(document).on('keyup', '.search', function (e) {
         if (e.keyCode == 13) {
-            $('#diagnosesTable').DataTable().search(this.value).draw();
+            $('#organizationsTable').DataTable().search(this.value).draw();
         }
     });
 
-    $(document).on('change', '.diagnosis-enabled', function () {
+    $(document).on('change', '.organization-enabled', function () {
         $.ajax({
             url: $(this).data('href'),
             type: 'post',
             success: (response) => {
                 notifyService.showMessage('info', 'Успех!', response.message);
-                $diagnosesTable.DataTable().ajax.reload();
+                $organizationsTable.DataTable().ajax.reload();
             },
             error: function (data) {
                 console.log(data);
@@ -103,13 +100,13 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.diagnosis-list-delete', function (e) {
+    $(document).on('click', '.organization-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить диагноз?",
+            text: "Вы действительно хотите удалить организацию?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -120,15 +117,16 @@ $(function () {
                     url: $this.attr('href'),
                     success: response => {
                         notifyService.showMessage('danger', 'Успех!', response.message);
-                        $diagnosesTable.DataTable().ajax.reload();
+                        $organizationsTable.DataTable().ajax.reload();
                     },
                     error: xhr => {
                         console.error(xhr);
                     },
                 });
-                swal("Удаление подтверждено!", "Диагноз будет удален.", "success");
+
+                swal("Удаление подтверждено!", "Организация будет удалена.", "success");
             } else {
-                swal("Удаление отменено!", "Диагноз не будет удален.", "error");
+                swal("Удаление отменено!", "Органиация не будет удалена.", "error");
             }
         });
     });
@@ -144,7 +142,7 @@ $(function () {
             url: $this.attr('href'),
             success: response => {
                 $divForModal.html(response.view);
-                let $modal = $('#diagnosis-modal');
+                let $modal = $('#organization-modal');
                 $modal.modal('show');
                 $modal.on('hidden.bs.modal', function (event) {
                     $divForModal.empty();
@@ -157,10 +155,10 @@ $(function () {
         }));
     });
 
-    $(document).on('submit', '.diagnosis-list-edit-form', function (e) {
+    $(document).on('submit', '.organization-edit-form', function (e) {
         e.preventDefault();
         let $form = $(this);
-        let $modal = $form.closest('#diagnosis-modal');
+        let $modal = $form.closest('#organization-modal');
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }
@@ -170,7 +168,7 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $diagnosesTable.DataTable().ajax.reload();
+                $organizationsTable.DataTable().ajax.reload();
                 $modal.modal('hide');
             },
             error: xhr => {
@@ -188,7 +186,7 @@ $(function () {
         }));
     });
 
-    $(document).on('change keyup', '.diagnosis-list-edit-form', function (e) {
+    $(document).on('change keyup', '.organization-edit-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);
         if (!$input.is('input,select')) {

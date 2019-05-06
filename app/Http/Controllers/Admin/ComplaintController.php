@@ -56,6 +56,7 @@ class ComplaintController extends Controller
     {
         if (!isset($complaint)) {
             $complaint = new Complaint();
+            $complaint->author_id = \Auth::guard('admin')->user()->id;
         }
 
         $complaint->title = $request->get('title');

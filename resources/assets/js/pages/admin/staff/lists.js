@@ -133,6 +133,61 @@ $(function () {
         }));
     });
 
+    $(document).on('click', '.open-change-password-modal', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        if ($this.data('ajax')) {
+            return;
+        }
+        let $divForModal = $('.div-for-modal');
+        $this.data('ajax', $.ajax({
+            url: $this.attr('href'),
+            success: response => {
+                $divForModal.html(response.view);
+                let $modalStaff = $('#change-password-modal');
+                $modalStaff.modal('show');
+                $modalStaff.on('hidden.bs.modal', function (event) {
+                    $divForModal.empty();
+                });
+            },
+            error: xhr => {
+                console.error(xhr);
+            },
+            complete: () => $this.removeData('ajax'),
+        }));
+    });
+
+    $(document).on('submit', '.admin-change-password-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        let $modal = $form.closest('#change-password-modal');
+        if ($form.data('ajax')) {
+            $form.data('ajax').abort();
+        }
+        $form.find('.has-error').removeClass('has-error');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                notifyService.showMessage('info', 'Успех!', response.message);
+                $modal.modal('hide');
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+            },
+        }));
+    });
+
     $(document).on('submit', '.admin-list-edit-form', function (e) {
         e.preventDefault();
         let $form = $(this);
@@ -165,5 +220,36 @@ $(function () {
                 $form.removeData('ajax');
             },
         }));
+    });
+
+    $(document).on('click', '.admin-delete', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+
+        swal({
+            title: "Подтвердите удаление",
+            text: "Вы действительно хотите удалить сотрудника?",
+            icon: "warning",
+            buttons: ["Отмена", "Да, удалить"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'delete',
+                    url: $this.attr('href'),
+                    success: response => {
+                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        $adminListsTable.DataTable().ajax.reload();
+                    },
+                    error: xhr => {
+                        console.error(xhr);
+                    },
+                });
+
+                swal("Удаление подтверждено!", "Сотрудник будет удален.", "success");
+            } else {
+                swal("Удаление отменено!", "Сотрудник не будет удален.", "error");
+            }
+        });
     });
 });

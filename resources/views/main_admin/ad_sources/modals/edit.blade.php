@@ -20,6 +20,12 @@
                                 <input name="title" class="form-control" type="text" placeholder="Введите наименование" value="{{ $source->title ?? '' }}">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">Позиция:</label>
+                            <div class="col-md-8">
+                                <input name="sort" class="form-control" type="text" placeholder="Введите позицию" value="{{ $source->sort ?? '' }}">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
