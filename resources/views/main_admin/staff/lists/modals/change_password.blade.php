@@ -14,14 +14,14 @@
                         <div class="form-group row">
                             <label class="control-label col-md-4" for="password">Пароль:</label>
                             <div class="col-md-7">
-                                <input id="password" name="password" class="form-control" type="text" placeholder="Введите пароль" value="">
+                                <input id="password" name="password" class="form-control" type="password" placeholder="Введите пароль" value="">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-4" for="password_confirmation">Повторите пароль:</label>
                             <div class="col-md-7">
-                                <input id="password_confirmation" name="password_confirmation" class="form-control" type="text" placeholder="Повторите пароль" value="">
+                                <input id="password_confirmation" name="password_confirmation" class="form-control" type="password" placeholder="Повторите пароль" value="">
                             </div>
                         </div>
                     </div>

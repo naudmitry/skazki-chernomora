@@ -136,7 +136,6 @@ class AdminController extends Controller
                 'name' => 'required',
                 'surname' => '',
                 'position' => 'required',
-                'phone' => 'required',
                 'email' => 'required|email',
                 'role_id' => '',
                 'showcases' => 'array',
