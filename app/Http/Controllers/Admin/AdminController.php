@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Models\Admin;
 use App\Models\Company;
+use App\Models\Page;
 use App\Models\Role;
 use App\Repositories\AdminRepository;
 use Illuminate\Http\Request;
@@ -269,5 +270,27 @@ class AdminController extends Controller
         return response()->json(
             'success'
         );
+    }
+
+    /**
+     * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function delete(Admin $admin)
+    {
+        Page::query()
+            ->where('author_id', $admin->id)
+            ->update(['author_id' => null]);
+
+        Page::query()
+            ->where('updater_id', $admin->id)
+            ->update(['updater_id' => null]);
+
+        $admin->delete();
+
+        return response()->json([
+            'message' => 'Сотрудник успешно удален.'
+        ]);
     }
 }

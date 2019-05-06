@@ -191,4 +191,12 @@ class Admin extends Authenticatable
     {
         return $this->name . ' ' . $this->surname;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pages()
+    {
+        return $this->hasMany(Page::class, 'author_id', 'id');
+    }
 }
