@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Models\Admin;
+use App\Models\Blog;
 use App\Models\Company;
 use App\Models\Page;
 use App\Models\Role;
 use App\Repositories\AdminRepository;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
@@ -279,13 +281,10 @@ class AdminController extends Controller
      */
     public function delete(Admin $admin)
     {
-        Page::query()
-            ->where('author_id', $admin->id)
-            ->update(['author_id' => null]);
-
-        Page::query()
-            ->where('updater_id', $admin->id)
-            ->update(['updater_id' => null]);
+        $admin->relationsDelete();
+        $admin->companies()->sync([]);
+        $admin->showcases()->sync([]);
+        $admin->groups()->sync([]);
 
         $admin->delete();
 

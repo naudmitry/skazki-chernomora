@@ -193,10 +193,24 @@ class Admin extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Delete relations
      */
-    public function pages()
+    public function relationsDelete()
     {
-        return $this->hasMany(Page::class, 'author_id', 'id');
+        $relations = [
+            Page::class,
+            Blog::class,
+            Faq::class
+        ];
+
+        foreach ($relations as $relation) {
+            $relation::query()
+                ->where('author_id', $this->id)
+                ->update(['author_id' => null]);
+
+            $relation::query()
+                ->where('updater_id', $this->id)
+                ->update(['updater_id' => null]);
+        }
     }
 }
