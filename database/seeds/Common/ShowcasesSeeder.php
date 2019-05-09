@@ -49,18 +49,10 @@ class ShowcasesSeeder extends Seeder
             ],
             [
                 'company_id' => $company->id,
-                'title' => 'Орша',
+                'title' => 'Полоцк',
                 'domain' => env('DOMAIN_CLIENT2'),
                 'theme' => 'miracle',
                 'email' => 'boss@' . env('DOMAIN_CLIENT2'),
-                'enable' => true,
-            ],
-            [
-                'company_id' => $company->id,
-                'title' => 'Полоцк',
-                'domain' => env('DOMAIN_CLIENT3'),
-                'theme' => 'miracle',
-                'email' => 'boss@' . env('DOMAIN_CLIENT3'),
                 'enable' => true,
             ],
         ];

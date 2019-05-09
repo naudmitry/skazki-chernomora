@@ -1,6 +1,6 @@
 <div class="col-lg-6 modal" id="ad-source-modal">
     <div class="bs-component">
-        <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
+        <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
                 <form autocomplete="off" class="modal-content ad-source-list-edit-form" method="post" action="{{ route('admin.ad-source.list.save', $source ?? null) }}">
                     <div class="modal-header">

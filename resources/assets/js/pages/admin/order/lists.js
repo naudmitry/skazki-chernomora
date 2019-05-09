@@ -97,6 +97,11 @@ $(function () {
         },
     });
 
+    $('.dataTables_length select').select2({
+        minimumResultsForSearch: Infinity,
+        width: 'auto'
+    });
+
     $(document).on('click', '.order-list-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
@@ -126,5 +131,11 @@ $(function () {
                 swal("Удаление отменено!", "Заказ не будет удалены.", "error");
             }
         });
+    });
+
+    $(document).on('keyup', '.search', function (e) {
+        if (e.keyCode == 13) {
+            $('#orderListsTable').DataTable().search(this.value).draw();
+        }
     });
 });

@@ -83,7 +83,9 @@ class OrderController extends Controller
             ->where('is_enabled', true)
             ->get();
 
-        return view('main_admin.orders.item.index', compact('order', 'employees', 'buyers', 'saltCaves'));
+        return view('main_admin.orders.item.index', compact(
+            'order', 'employees', 'buyers', 'saltCaves'
+        ));
     }
 
     /**
@@ -95,10 +97,13 @@ class OrderController extends Controller
      */
     public function save(Company $administeredCompany, Showcase $administeredShowcase, Request $request, Order $order = null)
     {
+        $isNew = false;
+
         if (empty($order)) {
             $order = new Order();
             $order->company_id = $administeredCompany->id;
             $order->showcase_id = $administeredShowcase->id;
+            $isNew = true;
         }
 
         $order->salt_cave_id = $request->get('salt_cave_id');
@@ -120,7 +125,8 @@ class OrderController extends Controller
         $order->save();
 
         return response()->json([
-            'message' => 'Данные успешно сохранены.'
+            'message' => 'Данные успешно сохранены.',
+            'redirect' => $isNew ? route('admin.order.edit', $order) : ''
         ]);
     }
 
@@ -151,5 +157,20 @@ class OrderController extends Controller
             ->get();
 
         return view('main_admin.orders.item.index', compact('order', 'employees', 'buyers', 'saltCaves'));
+    }
+
+    /**
+     * @param Order $order
+     * @param $modal
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function openModal(Order $order, $modal)
+    {
+        return response()->json([
+            'view' => view('main_admin.orders.item.modals.' . $modal, compact(
+                'order'
+            ))->render(),
+        ]);
     }
 }

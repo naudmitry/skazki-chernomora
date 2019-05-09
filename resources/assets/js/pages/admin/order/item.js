@@ -36,7 +36,11 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                notifyService.showMessage('info', 'Успех!', response.message);
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                } else {
+                    notifyService.showMessage('info', 'Успех!', response.message);
+                }
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
@@ -56,4 +60,7 @@ $(function () {
             },
         }));
     });
+
+    require('./family');
+    require('./history');
 });

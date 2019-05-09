@@ -1,6 +1,6 @@
 <div class="col-lg-6 modal" id="complaint-modal">
     <div class="bs-component">
-        <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
+        <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
                 <form autocomplete="off" class="modal-content complaint-edit-form" method="post" action="{{ route('admin.complaint.list.save', $complaint ?? null) }}">
                     <div class="modal-header">

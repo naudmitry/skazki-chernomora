@@ -14380,8 +14380,8 @@ be a descendant of the grid when it is being dragged.
 }
 
 .animated-radio-button input[type="radio"] + .label-text:before {
-  content: "";
-  font-family: "FontAwesome";
+  content: "\f111";
+  font-family: Font Awesome\ 5 Free;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -14394,10 +14394,11 @@ be a descendant of the grid when it is being dragged.
   display: inline-block;
   margin-right: 2px;
   vertical-align: -2px;
+  color: #009688;
 }
 
 .animated-radio-button input[type="radio"]:checked + .label-text:before {
-  content: "";
+  content: "\f192";
   color: #009688;
   -webkit-animation: tick 180ms ease-in;
           animation: tick 180ms ease-in;

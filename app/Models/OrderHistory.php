@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $buyer_id
  * @property integer $order_id
  * @property Carbon $date_at
+ * @property integer $count_sessions_passed
+ * @property integer $count_remaining_sessions
  *
  * @property-read \App\Models\Order $order
  * @property-read \App\Models\Buyer $buyer

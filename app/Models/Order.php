@@ -34,6 +34,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Company $company
  * @property-read Showcase $showcase
  * @property-read SaltCave $saltCave
+ * @property-read Buyer $buyer
+ * @property-read Buyer[] $buyers
+ * @property-read OrderHistory[] $histories
  */
 class Order extends Model
 {
@@ -81,5 +84,21 @@ class Order extends Model
     public function buyer()
     {
         return $this->belongsTo(Buyer::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function buyers()
+    {
+        return $this->belongsToMany(Buyer::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function histories()
+    {
+        return $this->hasMany(OrderHistory::class);
     }
 }

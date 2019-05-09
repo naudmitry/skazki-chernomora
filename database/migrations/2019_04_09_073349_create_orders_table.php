@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('showcase_id')->index();
             $table->unsignedInteger('salt_cave_id')->index();
             $table->unsignedInteger('buyer_id')->index();
-            $table->unsignedInteger('parent_id')->nullbale()->index();
+            $table->unsignedInteger('parent_id')->nullable()->index();
 
             $table->string('number');
             $table->string('status');

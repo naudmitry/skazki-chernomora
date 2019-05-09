@@ -66,7 +66,7 @@ class BlogController extends Controller
             $staticPage, WidgetsContainerTypesEnum::BLOG_MAIN_PAGE
         );
 
-        return view($this->theme . '.blog.index', compact([
+        return view($this->showcase->theme . '.blog.index', compact([
             'categories', 'blogs', 'staticPage', 'pageWidgets'
         ]));
     }
@@ -103,7 +103,7 @@ class BlogController extends Controller
             app(WidgetRepository::class)->getWidgetsByContainer($blog->widgetContainer) :
             [];
 
-        return view($this->theme . '.blog.single', compact([
+        return view($this->showcase->theme . '.blog.single', compact([
             'blog', 'categories', 'currentCategory', 'pageWidgets'
         ]));
     }
@@ -123,7 +123,7 @@ class BlogController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
 
-        return view($this->theme . '.vendor.category_page.grid.4columns', [
+        return view($this->showcase->theme . '.vendor.category_page.grid.4columns', [
             'entities' => $blogs,
             'category' => $category
         ]);

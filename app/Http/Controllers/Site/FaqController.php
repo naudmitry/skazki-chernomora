@@ -66,7 +66,7 @@ class FaqController extends Controller
             $staticPage, WidgetsContainerTypesEnum::FAQ_MAIN_PAGE
         );
 
-        return view($this->theme . '.faq.index', compact([
+        return view($this->showcase->theme . '.faq.index', compact([
             'categories', 'faqs', 'staticPage', 'pageWidgets'
         ]));
     }
@@ -95,7 +95,7 @@ class FaqController extends Controller
 
         $faq->incrementViewsCount();
 
-        return view($this->theme . '.faq.single.index', compact([
+        return view($this->showcase->theme . '.faq.single.index', compact([
             'faq', 'categories', 'currentCategory'
         ]));
     }
@@ -115,7 +115,7 @@ class FaqController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
 
-        return view($this->theme . '.vendor.category_page.grid.4columns', [
+        return view($this->showcase->theme . '.vendor.category_page.grid.4columns', [
             'entities' => $faqs,
             'category' => $category
         ]);

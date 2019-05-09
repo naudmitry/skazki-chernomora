@@ -11,9 +11,13 @@
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#general" data-toggle="tab">
-                            Общая информация
-                        </a>
+                        <a class="nav-link active" href="#general" data-toggle="tab">Общая информация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#family" data-toggle="tab">Семья</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#history" data-toggle="tab">История посещений</a>
                     </li>
                 </ul>
             </div>
@@ -21,9 +25,13 @@
         <div class="col-md-9">
             <div class="tab-content">
                 @include('main_admin.orders.item.tabs.general')
+                @include('main_admin.orders.item.tabs.family')
+                @include('main_admin.orders.item.tabs.history')
             </div>
         </div>
     </div>
+
+    <div class="div-for-modal"></div>
 
     <script type="text/template" class="loading-template">
         @include('main_admin.includes.loading')
