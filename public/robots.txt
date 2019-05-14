@@ -1,10 +1,6 @@
 User-agent: *
 Sitemap: http://vitebsk.skazki-chernomora.com/sitemap.xml
-Disallow: /main_admin/
-Disallow: /main_theme/
-Disallow: /js/
 Disallow: /images/
-Disallow: /css/
 Disallow: /vali-admin/
 Disallow: /medic/
 Disallow: /miracle/components/

@@ -13,20 +13,24 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="#general" data-toggle="tab">Общая информация</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#family" data-toggle="tab">Семья</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#history" data-toggle="tab">История посещений</a>
-                    </li>
+                    @if ($order->id)
+                        <li class="nav-item">
+                            <a class="nav-link" href="#family" data-toggle="tab">Семья</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#history" data-toggle="tab">История посещений</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
         <div class="col-md-9">
             <div class="tab-content">
                 @include('main_admin.orders.item.tabs.general')
-                @include('main_admin.orders.item.tabs.family')
-                @include('main_admin.orders.item.tabs.history')
+                @if ($order->id)
+                    @include('main_admin.orders.item.tabs.family')
+                    @include('main_admin.orders.item.tabs.history')
+                @endif
             </div>
         </div>
     </div>

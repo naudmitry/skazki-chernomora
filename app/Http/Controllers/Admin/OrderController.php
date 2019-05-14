@@ -156,7 +156,9 @@ class OrderController extends Controller
             ->where('is_enabled', true)
             ->get();
 
-        return view('main_admin.orders.item.index', compact('order', 'employees', 'buyers', 'saltCaves'));
+        return view('main_admin.orders.item.index', compact(
+            'order', 'employees', 'buyers', 'saltCaves'
+        ));
     }
 
     /**
