@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $middle_name
  * @property string $gender
+ * @property string $passport
  * @property Carbon $birthday_at
  * @property string $address
  * @property string $email

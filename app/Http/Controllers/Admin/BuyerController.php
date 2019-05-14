@@ -146,6 +146,7 @@ class BuyerController extends Controller
                 $buyer->is_processing_personal_data = $request->get('is_processing_personal_data', 0);
                 $buyer->organization_id = $request->get('organization_id');
                 $buyer->type_subscription = $request->get('type_subscription');
+                $buyer->passport = $request->get('passport');
                 $buyer->save();
 
                 $buyer->adSources()->sync($request->get('ad_source_ids'));

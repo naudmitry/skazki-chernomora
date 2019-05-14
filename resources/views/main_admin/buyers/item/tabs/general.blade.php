@@ -70,6 +70,20 @@
 
                     <div class="row form-group">
                         <div class="col-md-4">
+                            <label class="control-label" for="passport">Паспорт:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input
+                                    id="passport"
+                                    name="passport"
+                                    class="form-control"
+                                    type="text"
+                                    value="{{ $buyer->passport }}">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
                             <label class="control-label" for="birthday_at">Дата рождения:</label>
                         </div>
                         <div class="col-md-8">
