@@ -5,6 +5,7 @@ namespace App\Classes;
 class AdminComponentEnum extends Enum
 {
     const COMPANY_ORDERS_LIST = 'orders.list';
+    const COMPANY_ORDERS_PRE_ENTRY = 'orders.pre-entry';
 
     const COMPANY_HANDBOOKS_AD_SOURCES = 'handbooks.ad-sources';
     const COMPANY_HANDBOOKS_DIAGNOSES = 'handbooks.diagnoses';
@@ -44,6 +45,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_CONTENT_BLOCKS,
                     self::COMPANY_MARKETING_DISCOUNTS,
                     self::COMPANY_ORDERS_LIST,
+                    self::COMPANY_ORDERS_PRE_ENTRY,
                     self::COMPANY_HANDBOOKS_AD_SOURCES,
                     self::COMPANY_HANDBOOKS_COMPLAINTS,
                     self::COMPANY_HANDBOOKS_DIAGNOSES,
@@ -75,6 +77,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_CONTENT_BLOCKS,
                     self::COMPANY_MARKETING_DISCOUNTS,
                     self::COMPANY_ORDERS_LIST,
+                    self::COMPANY_ORDERS_PRE_ENTRY,
                     self::COMPANY_HANDBOOKS_AD_SOURCES,
                     self::COMPANY_HANDBOOKS_COMPLAINTS,
                     self::COMPANY_HANDBOOKS_DIAGNOSES,

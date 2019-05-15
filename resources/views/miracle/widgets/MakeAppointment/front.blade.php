@@ -5,11 +5,11 @@
                 <h2 class="box-title">{{ $setting->title }}</h2>
             </div>
 
-            <form autocomplete="off" class="order-form" action="{{ route('front.orders.save') }}" method="post">
+            <form autocomplete="off" class="pre-entry-form" action="{{ route('front.pre-entry.save') }}" method="post">
                 {{ csrf_field() }}
 
                 <div class="form-group column-2 no-column-bottom-margin">
-                    <input type="text" name="name" class="input-text" placeholder="Имя">
+                    <input type="text" name="full_name" class="input-text" placeholder="ФИО">
                     <input type="email" name="email" class="input-text" placeholder="Email">
                 </div>
 
@@ -22,20 +22,20 @@
                 </div>
 
                 <div class="form-group dropdown">
-                    <select class="selector full-width" name="salt_cave">
+                    <select class="selector full-width" name="salt_cave_id">
                         <option value="">Выберите пещеру</option>
-                        <option value="Коммунистическая, 16">Коммунистическая, 16</option>
-                        <option value="Чкалова, 14в">Чкалова, 14в</option>
-                        <option value="Фрунзе, 81, корп. 33">Фрунзе, 81, корп. 33</option>
-                        <option value="Гончарная, 3">Гончарная, 3</option>
+                        @foreach ($saltCaves as $saltCave)
+                            <option value="{{ $saltCave->id }}">{{ $saltCave->title }}</option>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="form-group dropdown">
                     <select class="selector full-width" name="type">
                         <option value="">Тип посещения</option>
-                        <option value="Первое посещение">Первое посещение</option>
-                        <option value="Повторное">Повторное</option>
+                        @foreach (\App\Classes\TypeVisitEnum::lists() as $typeVisit)
+                            <option value="{{ $typeVisit }}">{{ \App\Classes\TypeVisitEnum::$labels[$typeVisit] }}</option>
+                        @endforeach
                     </select>
                 </div>
 

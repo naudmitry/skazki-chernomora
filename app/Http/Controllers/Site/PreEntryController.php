@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Requests\Site\OrderRequest;
-use App\Models\Order;
+use App\Http\Requests\PreEntryRequest;
+use App\Models\PreEntry;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class PreEntryController extends Controller
 {
     /**
-     * @param Request $request
+     * @param PreEntryRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(OrderRequest $request)
+    public function save(PreEntryRequest $request)
     {
-        $order = new Order();
+        $order = new PreEntry();
         $order->showcase_id = $this->showcase->id;
         $order->company_id = $this->showcase->company->id;
-        $order->name = $request->get('name');
+        $order->full_name = $request->get('full_name');
         $order->phone_number = $request->get('phone_number');
         $order->email = $request->get('email');
         $order->desired_date = Carbon::createFromFormat("Y-m-d", $request->get('desired_date'));
-        $order->salt_cave = $request->get('salt_cave');
+        $order->salt_cave_id = $request->get('salt_cave_id');
         $order->type = $request->get('type');
         $order->message = $request->get('message');
         $order->save();

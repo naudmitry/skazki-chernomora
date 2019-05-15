@@ -212,6 +212,10 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('order', '[0-9]+');
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY], function () {
+                Route::get('/pre-entry', ['uses' => 'Admin\PreEntryController@index', 'as' => 'admin.pre-entry.index']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_CUSTOMERS], function () {
                 Route::get('/buyers', ['uses' => 'Admin\BuyerController@index', 'as' => 'admin.buyer.list.index']);
                 Route::get('/buyer/edit/{buyer}', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyer.list.edit'])

@@ -5,7 +5,7 @@ $(function () {
         return;
     }
 
-    $(document).on('submit', '.order-form', function (e) {
+    $(document).on('submit', '.pre-entry-form', function (e) {
         e.preventDefault();
         let $form = $(this);
         if ($form.data('ajax')) {
