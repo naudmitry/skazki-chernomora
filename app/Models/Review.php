@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Classes\ReviewStatusEnum;
 use App\Models\Buyer;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -18,9 +19,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $ip
  * @property string $status
  * @property integer $rating
- * @property string $description
- * @property boolean $show_in_widgets
+ * @property string $review
+ * @property boolean $is_widget
  * @property string $reply
+ * @property string $customer_name
+ * @property string $customer_position
+ *
+ * @property Buyer $buyer
  *
  * @mixin \Eloquent
  */
@@ -31,7 +36,8 @@ class Review extends Model
 
     protected $appends =
         [
-            'ratingStars'
+            'ratingStars',
+            'transStatus'
         ];
 
     /**
@@ -58,5 +64,13 @@ class Review extends Model
         }
 
         return $ratingStars;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTransStatusAttribute()
+    {
+        return ReviewStatusEnum::$labels[$this->status];
     }
 }

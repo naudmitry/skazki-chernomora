@@ -21,7 +21,7 @@
             <a
                 class="app-menu__item @if (Route::is('admin.pre-entry.*')) active @endif"
                 href="{{ route('admin.pre-entry.index') }}"
-            ><i class="app-menu__icon fas fa-list"></i><span class="app-menu__label">Предварительная запись</span></a>
+            ><i class="app-menu__icon fas fa-list"></i><span class="app-menu__label">Запись на прием</span></a>
         </li>
     @endif
 @endif

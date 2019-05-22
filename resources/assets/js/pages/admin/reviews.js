@@ -100,8 +100,6 @@ $(function () {
 
     $(document).on('click', '.review-delete', function (e) {
         e.preventDefault();
-        let $this = $(this);
-
         swal({
             title: "Подтвердите удаление",
             text: "Вы действительно хотите удалить отзыв?",
@@ -112,7 +110,7 @@ $(function () {
             if (willDelete) {
                 $.ajax({
                     type: 'delete',
-                    url: $this.attr('href'),
+                    url: $(this).attr('href'),
                     success: response => {
                         notifyService.showMessage('danger', 'Успех!', response.message);
                         $reviewsTable.DataTable().ajax.reload();
@@ -155,5 +153,62 @@ $(function () {
             },
             complete: () => $this.removeData('ajax'),
         }));
+    });
+
+    $(document).on('change keyup', '.review-create-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select,textarea')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
+
+    $(document).on('submit', '.review-create-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        if ($form.data('ajax')) {
+            return;
+        }
+        let $modal = $form.closest('#review-modal');
+        $form.find('.is-invalid').removeClass('is-invalid');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                notifyService.showMessage('info', 'Успех!', response.message);
+                $reviewsTable.DataTable().ajax.reload();
+                $modal.modal('hide');
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+            },
+        }));
+    });
+
+    $(document).on('change', '.review-widgeted', function () {
+        $.ajax({
+            url: $(this).data('href'),
+            type: 'post',
+            success: (response) => {
+                notifyService.showMessage('info', 'Успех!', response.message);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
     });
 });

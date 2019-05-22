@@ -135,10 +135,10 @@ $(function () {
     $(document).on('submit', '.buyer-create-form', function (e) {
         e.preventDefault();
         let $form = $(this);
-        let $modal = $form.closest('#buyer-modal');
         if ($form.data('ajax')) {
             $form.data('ajax').abort();
         }
+        let $modal = $form.closest('#buyer-modal');
         $form.find('.is-invalid').removeClass('is-invalid');
         $form.data('ajax', $.ajax({
             type: $form.attr('method'),

@@ -12,9 +12,11 @@
 
 ```
     sites:
-        - map: admin.skazki-chernomora.com
+        - map: admin.skazki-chernomora.local
           to: "/home/vagrant/Code/public"
-        - map: site.skazki-chernomora.com
+        - map: site.skazki-chernomora.local
+          to: "/home/vagrant/Code/public"
+        - map: skazki-chernomora.local
           to: "/home/vagrant/Code/public"
 
     ports:

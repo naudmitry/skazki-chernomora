@@ -1,4 +1,4 @@
 <div>
-    @{{review.description}}
+    @{{review.review}}
 </div>
 @{{review.reply}}

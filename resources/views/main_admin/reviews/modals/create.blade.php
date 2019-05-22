@@ -2,12 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form
-                        autocomplete="off"
-                        class="modal-content review-create-form"
-                        method="post"
-                        action="{{ route('admin.review.save') }}">
-
+                <form autocomplete="off" class="modal-content review-create-form" method="post" action="{{ route('admin.review.save') }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Отзыв</h5>
                         <button
@@ -20,41 +15,58 @@
 
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Описание:</label>
+                            <label class="control-label col-md-4">Имя клиента:</label>
                             <div class="col-md-8">
-                                <input name="surname" class="form-control" type="text" placeholder="Введите фамилию" value="">
+                                <input name="customer_name" class="form-control" type="text">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Ответ:</label>
+                            <label class="control-label col-md-4">Должность клиента:</label>
                             <div class="col-md-8">
-                                <input name="name" class="form-control" type="text" placeholder="Введите имя" value="">
+                                <input name="customer_position" class="form-control" type="text">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Статус:</label>
+                            <label class="control-label col-md-4">Отзыв:</label>
                             <div class="col-md-8">
-                                <select class="select2" name="gender">
-                                    @foreach (\App\Classes\ReviewStatusEnum::lists() as $status)
-                                        <option
-                                                value="{{ $status }}"
-                                        >{{ trans('review.status.' . $status) }}</option>
-                                    @endforeach
+                                <textarea name="review" rows="4" cols="5" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-md-4">Рейтинг:</label>
+                            <div class="col-md-8">
+                                <select class="select2" name="rating">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <option value="{{ $i }}" @if ($i == 5) selected @endif>
+                                            {{ $i }}
+                                        </option>
+                                    @endfor
                                 </select>
                             </div>
                         </div>
 
+                        <hr />
+
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Показать:</label>
+                            <label class="control-label col-md-4">Показать в виджетах:</label>
                             <div class="toggle-flip col-md-8">
                                 <label class="mb-0">
                                     <input
                                             type="checkbox"
                                             class="checkbox entity-availability"
+                                            name="is_widget"
                                     ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                                 </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-md-4">Ответ:</label>
+                            <div class="col-md-8">
+                                <textarea name="reply" rows="4" cols="5" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>

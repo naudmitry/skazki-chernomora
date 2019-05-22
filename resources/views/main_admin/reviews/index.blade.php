@@ -22,7 +22,7 @@
                                     <i class="far fa-file-alt"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="enable-news-count"><b>0</b></p>
+                                    <p class="enable-news-count">{{ array_get($counters, 'negative_count', 0) }}</p>
                                     <p>негативных отзывов</p>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                     <i class="fas fa-eye"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="view-count-total"><b>0</b></p>
+                                    <p class="view-count-total">{{ array_get($counters, 'positive_count', 0) }}</p>
                                     <p>позитивных отзывов</p>
                                 </div>
                             </div>
@@ -45,12 +45,7 @@
                 </div>
 
                 <div class="tile-body datatable-scroll-lg">
-                    <table
-                            class="table table-hover"
-                            id="reviewsTable"
-                            data-href="{{ route('admin.review.index') }}"
-                            width="100%"
-                    >
+                    <table class="table table-hover" id="reviewsTable" data-href="{{ route('admin.reviews.index') }}" width="100%">
                         <thead>
                         <tr>
                             <th>Дата/IP</th>
@@ -58,7 +53,7 @@
                             <th>Клиент</th>
                             <th>Рейтинг</th>
                             <th>Отзыв</th>
-                            <th>Показать</th>
+                            <th>Показать в виджете</th>
                             <th>Действия</th>
                         </tr>
                         </thead>

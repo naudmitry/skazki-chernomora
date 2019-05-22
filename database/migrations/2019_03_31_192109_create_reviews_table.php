@@ -17,15 +17,17 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('company_id')->unsigned()->index();
-            $table->integer('showcase_id')->unsigned()->index();
-            $table->integer('buyer_id')->unsigned()->index();
+            $table->unsignedInteger('company_id')->index();
+            $table->unsignedInteger('showcase_id')->index();
+            $table->unsignedInteger('buyer_id')->nullable();
             $table->string('ip')->nullable();
             $table->string('status')->nullable()->default(ReviewStatusEnum::NEW)->index();
-            $table->integer('rating')->unsigned()->nullable()->index();
-            $table->text('description')->nullable();
-            $table->boolean('show_in_widgets')->default(0);
+            $table->unsignedInteger('rating')->nullable()->index();
+            $table->text('review')->nullable();
+            $table->boolean('is_widget')->default(false);
             $table->text('reply')->nullable();
+            $table->string('customer_name')->nullable()->index();
+            $table->string('customer_position')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

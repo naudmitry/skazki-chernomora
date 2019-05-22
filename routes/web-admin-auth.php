@@ -266,12 +266,14 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_REVIEWS], function () {
-                Route::get('/reviews', ['uses' => 'Admin\ReviewController@index', 'as' => 'admin.review.index']);
+                Route::get('/reviews', ['uses' => 'Admin\ReviewController@index', 'as' => 'admin.reviews.index']);
                 Route::get('/review/edit/{review}', ['uses' => 'Admin\ReviewController@edit', 'as' => 'admin.review.edit'])
                     ->where('review', '[0-9]+');
                 Route::delete('/review/{review}', ['uses' => 'Admin\ReviewController@delete', 'as' => 'admin.review.delete'])
                     ->where('review', '[0-9]+');
                 Route::post('/review/save/{review?}', ['uses' => 'Admin\ReviewController@save', 'as' => 'admin.review.save'])
+                    ->where('review', '[0-9]+');
+                Route::post('/review/widgeted/{review}', ['uses' => 'Admin\ReviewController@widgeted', 'as' => 'admin.review.widgeted'])
                     ->where('review', '[0-9]+');
                 Route::get('/review/modal', ['uses' => 'Admin\ReviewController@modal', 'as' => 'admin.review.modal']);
             });

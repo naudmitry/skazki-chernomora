@@ -1,4 +1,1 @@
-{{ trans('review.status') }}
-
-
-@{{review.status}}
+@{{review.transStatus}}

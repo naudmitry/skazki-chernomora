@@ -20,7 +20,7 @@
         <li>
             <a
                 class="app-menu__item @if (Route::is('admin.review.*')) active @endif"
-                href="{{ route('admin.review.index') }}"
+                href="{{ route('admin.reviews.index') }}"
             ><i class="app-menu__icon fas fa-medal"></i><span class="app-menu__label">Отзывы</span></a>
         </li>
     @endif
