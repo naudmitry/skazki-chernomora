@@ -191,4 +191,26 @@ class Admin extends Authenticatable
     {
         return $this->name . ' ' . $this->surname;
     }
+
+    /**
+     * Delete relations
+     */
+    public function relationsDelete()
+    {
+        $relations = [
+            Page::class,
+            Blog::class,
+            Faq::class
+        ];
+
+        foreach ($relations as $relation) {
+            $relation::query()
+                ->where('author_id', $this->id)
+                ->update(['author_id' => null]);
+
+            $relation::query()
+                ->where('updater_id', $this->id)
+                ->update(['updater_id' => null]);
+        }
+    }
 }

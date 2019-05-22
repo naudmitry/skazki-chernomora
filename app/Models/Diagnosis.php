@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property integer $id
  * @property string $title
+ * @property integer $count_visits
  * @property boolean $is_enabled
  * @property integer $author_id
  * @property \Carbon\Carbon $created_at

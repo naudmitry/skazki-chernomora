@@ -1,6 +1,6 @@
 <div class="col-lg-6 modal" id="buyer-modal">
     <div class="bs-component">
-        <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
+        <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
                 <form
                         autocomplete="off"
@@ -62,6 +62,20 @@
                                         <option
                                                 value="{{ $gender }}"
                                         >{{ trans('gender.' . $gender) }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">Организация:</label>
+                            <div class="col-md-8">
+                                <select class="select2" name="organization_id">
+                                    <option value="">Нет</option>
+                                    @foreach ($organizations as $organization)
+                                        <option
+                                                value="{{ $organization->id }}"
+                                        >{{ $organization->title }}</option>
                                     @endforeach
                                 </select>
                             </div>

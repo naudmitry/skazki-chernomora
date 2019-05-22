@@ -1,6 +1,6 @@
 <div class="col-lg-6 modal" id="modal-add-showcase">
     <div class="bs-component">
-        <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
+        <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
                 <form class="modal-content showcase-add-form" method="post" action="{{ route('admin.showcase.create') }}">
                     <div class="modal-header">

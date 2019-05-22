@@ -1,3 +1,3 @@
 require('./bootstrap');
 
-require('./pages/site/order');
+require('./pages/site/pre-entry');

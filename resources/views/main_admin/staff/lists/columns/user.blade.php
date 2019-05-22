@@ -1,3 +1,4 @@
-<span>
+<div>
     @{{admin.name}}
-</span>
+</div>
+@{{admin.surname}}

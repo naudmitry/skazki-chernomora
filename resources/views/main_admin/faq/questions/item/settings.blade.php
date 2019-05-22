@@ -145,7 +145,7 @@
                                         <i class="far fa-plus-square mr-2"></i>Обновлен:
                                     </div>
                                     <div>
-                                        {{ $faq->updater->name ?? '' }} {{ $faq->updater->surname ?? '' }}
+                                        {{ $faq->updater->full_name ?? '' }}
                                     </div>
                                 </div>
                                 <div class="information-row">

@@ -19,6 +19,7 @@ class CreateAdSourcesTable extends Migration
             $table->string('title');
             $table->boolean('is_enabled')->default(false);
             $table->unsignedInteger('author_id');
+            $table->unsignedInteger('sort')->nullable()->index();
 
             $table->timestamps();
             $table->softDeletes();

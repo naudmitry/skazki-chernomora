@@ -1,4 +1,4 @@
-<div class="media-body">
-    @{{buyer.name}}
-    <div class="text-muted">@{{buyer.email}}</div>
+<div>
+    <a href="{{ route('admin.buyer.list.edit', '') }}/@{{ buyer.id }}">@{{buyer.full_name}}</a>
 </div>
+@{{buyer.email}}

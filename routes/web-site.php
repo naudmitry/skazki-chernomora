@@ -6,10 +6,10 @@ Route::get('/',
         'as' => 'site.index',
     ])->middleware('geoIpRedirect');
 
-Route::post('orders/save',
+Route::post('pre-entry/save',
     [
-        'uses' => 'Site\OrderController@save',
-        'as'   => 'front.orders.save'
+        'uses' => 'Site\PreEntryController@save',
+        'as'   => 'front.pre-entry.save'
     ]);
 
 Route::get('{slug}',

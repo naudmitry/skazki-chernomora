@@ -40,8 +40,6 @@ class CreatePagesTable extends Migration
             $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('page_categories');
-            $table->foreign('author_id')->references('id')->on('admins');
-            $table->foreign('updater_id')->references('id')->on('admins');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('showcase_id')->references('id')->on('showcases');
             $table->foreign('widget_container_id')->references('id')->on('widget_containers');

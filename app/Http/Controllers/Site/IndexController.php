@@ -23,7 +23,7 @@ class IndexController extends Controller
             $staticPage, WidgetsContainerTypesEnum::MAIN_PAGE
         );
 
-        return view($this->theme . '.index', compact([
+        return view($this->showcase->theme . '.index', compact([
             'staticPage', 'pageWidgets'
         ]));
     }
@@ -40,7 +40,7 @@ class IndexController extends Controller
             $staticPage, WidgetsContainerTypesEnum::BLOG_MAIN_PAGE
         );
 
-        return view($this->theme . '.contact.index', compact([
+        return view($this->showcase->theme . '.contact.index', compact([
             'staticPage', 'pageWidgets'
         ]));
     }

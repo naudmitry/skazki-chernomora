@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Blog\BuyerRequest;
 use App\Models\AdSource;
 use App\Models\Buyer;
+use App\Models\Company;
 use App\Models\Complaint;
 use App\Models\Diagnosis;
+use App\Models\Order;
+use App\Models\Organization;
 use App\Models\Showcase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,13 +41,20 @@ class BuyerController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function modal()
+    public function modal(Company $administeredCompany)
     {
+        $organizations = Organization::query()
+            ->where('company_id', $administeredCompany->id)
+            ->get();
+
         return response()->json([
-            'view' => view('main_admin.buyers.lists.modals.create')->render(),
+            'view' => view('main_admin.buyers.lists.modals.create', compact(
+                'organizations'
+            ))->render(),
         ]);
     }
 
@@ -69,17 +79,26 @@ class BuyerController extends Controller
     }
 
     /**
+     * @param Showcase $administeredShowcase
      * @param Buyer $buyer
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Buyer $buyer)
+    public function edit(Showcase $administeredShowcase, Buyer $buyer)
     {
-        $adSources = AdSource::all();
+        $adSources = AdSource::query()
+            ->orderBy('sort', 'asc')
+            ->get();
+
         $complaints = Complaint::all();
         $diagnoses = Diagnosis::all();
 
-        return view('main_admin.buyers.lists.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses'
+        $orders = Order::query()
+            ->where('showcase_id', $administeredShowcase->id)
+            ->where('buyer_id', $buyer->id)
+            ->get();
+
+        return view('main_admin.buyers.item.index', compact(
+            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders'
         ));
     }
 
@@ -125,6 +144,9 @@ class BuyerController extends Controller
                 $buyer->contract_at = $request->get('contract_at') ? Carbon::createFromFormat('d.m.Y', $request->get('contract_at')) : null;
                 $buyer->is_enabled = $request->get('is_enabled', 0);
                 $buyer->is_processing_personal_data = $request->get('is_processing_personal_data', 0);
+                $buyer->organization_id = $request->get('organization_id');
+                $buyer->type_subscription = $request->get('type_subscription');
+                $buyer->passport = $request->get('passport');
                 $buyer->save();
 
                 $buyer->adSources()->sync($request->get('ad_source_ids'));

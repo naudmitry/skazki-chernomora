@@ -1,6 +1,6 @@
 <div class="col-lg-6 modal" id="diagnosis-modal">
     <div class="bs-component">
-        <div class="modal" style="position: relative; top: auto; right: auto; left: auto; bottom: auto; z-index: 1; display: block;">
+        <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
                 <form autocomplete="off" class="modal-content diagnosis-list-edit-form" method="post" action="{{ route('admin.diagnosis.list.save', $diagnosis ?? null) }}">
                     <div class="modal-header">
@@ -15,9 +15,16 @@
 
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Наименование:</label>
-                            <div class="col-md-8">
+                            <label class="control-label col-md-5">Наименование:</label>
+                            <div class="col-md-6">
                                 <input name="title" class="form-control" type="text" placeholder="Введите наименование" value="{{ $diagnosis->title ?? '' }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-md-5">Количество посещений:</label>
+                            <div class="col-md-6">
+                                <input name="count_visits" class="form-control" type="text" placeholder="Введите количество посещений" value="{{ $diagnosis->count_visits ?? '' }}">
                             </div>
                         </div>
                     </div>

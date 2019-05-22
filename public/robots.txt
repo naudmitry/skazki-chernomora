@@ -1,9 +1,9 @@
-User-agent: Yandex
+User-agent: *
 Sitemap: http://vitebsk.skazki-chernomora.com/sitemap.xml
-Disallow: /js/
 Disallow: /images/
-Disallow: /css/
 Disallow: /vali-admin/
 Disallow: /medic/
 Disallow: /miracle/components/
 Disallow: /?s=
+Host: vitebsk.skazki-chernomora.com
+

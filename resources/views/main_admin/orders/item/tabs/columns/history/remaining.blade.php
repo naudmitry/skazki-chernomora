@@ -1,0 +1,1 @@
+@{{ history.count_remaining_sessions }}

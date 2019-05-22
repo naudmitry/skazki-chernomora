@@ -24,6 +24,12 @@ class AdSourceController extends Controller
                 'enabled_count' => (clone $adSourceQuery)->where('is_enabled', true)->count(),
             ];
 
+        $adSourceQuery = $adSourceQuery
+            ->where('sort', '!=', null)
+            ->sortBy('sort')->merge(
+                $adSourceQuery->where('sort', '=', null)->sortBy('title')
+            );
+
         if ($request->ajax()) {
             return Datatables::of($adSourceQuery)
                 ->with(compact('counters'))
@@ -56,9 +62,11 @@ class AdSourceController extends Controller
     {
         if (!isset($source)) {
             $source = new AdSource();
+            $source->author_id = \Auth::guard('admin')->user()->id;
         }
 
         $source->title = $request->get('title');
+        $source->sort = $request->get('sort');
         $source->save();
 
         return response()->json([

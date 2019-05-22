@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Models\Admin;
+use App\Models\Blog;
 use App\Models\Company;
+use App\Models\Page;
 use App\Models\Role;
 use App\Repositories\AdminRepository;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
@@ -80,9 +84,39 @@ class AdminController extends Controller
     }
 
     /**
+     * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function openChangePasswordModal(Admin $admin)
+    {
+        return response()->json([
+            'view' => view('main_admin.staff.lists.modals.change_password', compact(
+                'admin'
+            ))->render(),
+        ]);
+    }
+
+    /**
+     * @param ChangePasswordRequest $request
+     * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changePassword(ChangePasswordRequest $request, Admin $admin)
+    {
+        $admin->password = \Hash::make($request->input('password'));
+        $admin->save();
+
+        return response()->json([
+            'message' => 'Пароль успешно задан.'
+        ]);
+    }
+
+    /**
      * @param Request $request
      * @param Company $administeredCompany
      * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse|void
      */
     public function save(Request $request, Company $administeredCompany, Admin $admin)
     {
@@ -102,7 +136,6 @@ class AdminController extends Controller
                 'name' => 'required',
                 'surname' => '',
                 'position' => 'required',
-                'phone' => 'required',
                 'email' => 'required|email',
                 'role_id' => '',
                 'showcases' => 'array',
@@ -238,5 +271,24 @@ class AdminController extends Controller
         return response()->json(
             'success'
         );
+    }
+
+    /**
+     * @param Admin $admin
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function delete(Admin $admin)
+    {
+        $admin->relationsDelete();
+        $admin->companies()->sync([]);
+        $admin->showcases()->sync([]);
+        $admin->groups()->sync([]);
+
+        $admin->delete();
+
+        return response()->json([
+            'message' => 'Сотрудник успешно удален.'
+        ]);
     }
 }

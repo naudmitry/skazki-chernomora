@@ -19,8 +19,10 @@ return [
     AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES => 'Диагнозы',
     AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS => 'Жалобы',
     AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS => 'Абонементы',
+    AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS => 'Организации',
 
     AdminComponentEnum::COMPANY_ORDERS_LIST => 'Список заказов',
+    AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY => 'Предварительная запись',
     AdminComponentEnum::COMPANY_USERS_CUSTOMERS => 'Клиенты',
 
     AdminComponentEnum::COMPANY_MARKETING_DISCOUNTS => 'Скидки',

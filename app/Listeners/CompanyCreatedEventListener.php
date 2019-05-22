@@ -28,7 +28,7 @@ class CompanyCreatedEventListener
         $adminRole = new Role;
         $adminRole->super = $company->super ?: false;
         $adminRole->company()->associate($company);
-        $adminRole->title = $company->super ? 'Super-administrator' : 'Administrator';
+        $adminRole->title = $company->super ? 'Супер-администратор' : 'Администратор';
         $adminRole->components = array_values($company->super ? AdminComponentEnum::listsSuper() : AdminComponentEnum::listsCompany());
         $adminRole->enable = true;
         $adminRole->save();

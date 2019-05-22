@@ -50,6 +50,7 @@
                         <tr>
                             <th>Создан</th>
                             <th>Наименование</th>
+                            <th>Количество посещений</th>
                             <th>Автор</th>
                             <th>Доступность</th>
                             <th>Действия</th>
@@ -69,6 +70,9 @@
     </script>
     <script type="application/x-tmpl-mustache" class="template-diagnoses-lists-table-column-title">
         @include('main_admin.diagnoses.columns.title')
+    </script>
+    <script type="application/x-tmpl-mustache" class="template-diagnoses-lists-table-column-visits">
+        @include('main_admin.diagnoses.columns.visits')
     </script>
     <script type="application/x-tmpl-mustache" class="template-diagnoses-lists-table-column-created">
         @include('main_admin.diagnoses.columns.created')

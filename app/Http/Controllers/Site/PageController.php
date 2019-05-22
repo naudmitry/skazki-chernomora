@@ -47,7 +47,7 @@ class PageController extends Controller
 
         $staticPage = app(PageRepository::class)->getStaticPage($this->showcase, StaticPageTypesEnum::BLOG_PAGE);
 
-        return view($this->theme . '.page.single', compact([
+        return view($this->showcase->theme . '.page.single', compact([
             'page', 'pageWidgets', 'staticPage'
         ]));
     }
@@ -67,7 +67,7 @@ class PageController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(12);
 
-        return view($this->theme . '.vendor.category_page.grid.4columns', [
+        return view($this->showcase->theme . '.vendor.category_page.grid.4columns', [
             'entities' => $pages,
             'category' => $category
         ]);

@@ -20,9 +20,6 @@ class CreateSubscriptionsTable extends Migration
             $table->unsignedInteger('company_id')->index();
             $table->unsignedInteger('showcase_id')->index();
             $table->string('title');
-            $table->string('type');
-            $table->unsignedInteger('amount_sessions');
-            $table->decimal('cost', 20, 2);
             $table->boolean('is_enabled')->default(false);
             $table->unsignedInteger('author_id');
 

@@ -2,6 +2,7 @@
 
 namespace App\Widgets\Miracle;
 
+use App\Models\SaltCave;
 use Validator;
 
 class MakeAppointment extends AbstractContentWidget
@@ -29,5 +30,21 @@ class MakeAppointment extends AbstractContentWidget
                 'title' => 'Введите текст.',
                 'text' => 'Введите текст подтверждения.',
             ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getFrontViewData()
+    {
+        $showcase = $this->showcaseWidget->container->showcase;
+
+        $saltCaves = SaltCave::query()
+            ->where('showcase_id', $showcase->id)
+            ->get();
+
+        return array_merge(parent::getFrontViewData(),
+            compact('saltCaves')
+        );
     }
 }

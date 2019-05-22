@@ -39,12 +39,12 @@ class CompaniesSeeder extends Seeder
                 'company_id' => $superCompany->id,
                 'super' => true,
                 'role_id' => $superAdminRole->id,
-                'name' => 'Olga',
-                'surname' => 'Egorova',
+                'name' => 'Черноморская',
+                'surname' => 'сказка',
                 'position' => $superAdminRole->title,
                 'email' => 'boss@mail.com',
                 'password' => bcrypt('123456'),
-                'remember_token' => str_random(10),
+                'remember_token' => '',
             ]);
 
         $superCompany->admin()->associate($superAdmin);

@@ -123,7 +123,7 @@
                                         <i class="far fa-plus-square mr-2"></i>Обновлен:
                                     </div>
                                     <div>
-                                        {{ $page->updater->name ?? '' }} {{ $page->updater->surname ?? '' }}
+                                        {{ $page->updater->full_name ?? '' }}
                                     </div>
                                 </div>
                                 <div class="information-row">

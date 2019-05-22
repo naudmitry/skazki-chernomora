@@ -81,7 +81,7 @@
                                         <i class="far fa-plus-square mr-2"></i>Обновлен:
                                     </div>
                                     <div>
-                                        {{ $staticPage->updater->full_name }}
+                                        {{ $staticPage->updater->full_name ?? '' }}
                                     </div>
                                 </div>
                                 <div class="information-row">

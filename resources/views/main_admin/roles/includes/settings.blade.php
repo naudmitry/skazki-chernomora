@@ -7,7 +7,12 @@
                 <label class="control-label">Название:</label>
             </div>
             <div class="col-md-9 toggle-flip">
-                <input name="title" class="form-control" type="text" value="{{ $role->title ?? '' }}">
+                <input
+                        name="title"
+                        class="form-control"
+                        type="text"
+                        @if (isset($role) && $role->enable) disabled @endif
+                        value="{{ $role->title ?? '' }}">
             </div>
         </div>
 

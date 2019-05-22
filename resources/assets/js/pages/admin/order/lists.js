@@ -7,13 +7,13 @@ $(function () {
 
     let $orderListsTable = $('#orderListsTable');
     let mustacheTemplateOrderListsTableColumnCreated = $('.template-order-lists-table-column-created').text();
-    let mustacheTemplateOrderListsTableColumnName = $('.template-order-lists-table-column-name').text();
-    let mustacheTemplateOrderListsTableColumnPhoneNumber = $('.template-order-lists-table-column-phone-number').text();
-    let mustacheTemplateOrderListsTableColumnEmail = $('.template-order-lists-table-column-email').text();
-    let mustacheTemplateOrderListsTableColumnDesiredDate = $('.template-order-lists-table-column-desired-date').text();
+    let mustacheTemplateOrderListsTableColumnNumber = $('.template-order-lists-table-column-number').text();
+    let mustacheTemplateOrderListsTableColumnStatus = $('.template-order-lists-table-column-status').text();
+    let mustacheTemplateOrderListsTableColumnDate = $('.template-order-lists-table-column-date').text();
+    let mustacheTemplateOrderListsTableColumnSessions = $('.template-order-lists-table-column-sessions').text();
     let mustacheTemplateOrderListsTableColumnSaltCave = $('.template-order-lists-table-column-salt-cave').text();
-    let mustacheTemplateOrderListsTableColumnType = $('.template-order-lists-table-column-type').text();
-    let mustacheTemplateOrderListsTableColumnMessage = $('.template-order-lists-table-column-message').text();
+    let mustacheTemplateOrderListsTableColumnCost = $('.template-order-lists-table-column-cost').text();
+    let mustacheTemplateOrderListsTableColumnPaid = $('.template-order-lists-table-column-paid').text();
     let mustacheTemplateOrderListsTableColumnActions = $('.template-order-lists-table-column-actions').text();
 
     $orderListsTable.DataTable({
@@ -34,37 +34,36 @@ $(function () {
             {
                 targets: 1,
                 data: 'name',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnName, {order}),
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnNumber, {order}),
             },
             {
                 targets: 2,
                 data: 'phone_number',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnPhoneNumber, {order}),
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnStatus, {order}),
             },
             {
                 targets: 3,
                 data: 'email',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnEmail, {order}),
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnDate, {order}),
             },
             {
                 targets: 4,
                 data: 'desired_date',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnDesiredDate, {order}),
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnSessions, {order}),
             },
             {
                 targets: 5,
-                data: 'salt_cave',
                 render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnSaltCave, {order}),
             },
             {
                 targets: 6,
-                data: 'type',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnType, {order}),
+                data: 'cost',
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnCost, {order}),
             },
             {
                 targets: 7,
-                data: 'message',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnMessage, {order}),
+                data: 'paid',
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnPaid, {order}),
             },
             {
                 targets: 8,
@@ -91,7 +90,16 @@ $(function () {
             }
         },
         lengthMenu: [15, 25, 50, 75, 100],
-        displayLength: 15
+        displayLength: 15,
+        drawCallback: function (settings) {
+            $('.orders-count').text(settings.json.counters.orders_count);
+            $('.orders-paid').text(settings.json.counters.orders_paid);
+        },
+    });
+
+    $('.dataTables_length select').select2({
+        minimumResultsForSearch: Infinity,
+        width: 'auto'
     });
 
     $(document).on('click', '.order-list-delete', function (e) {
@@ -123,5 +131,11 @@ $(function () {
                 swal("Удаление отменено!", "Заказ не будет удалены.", "error");
             }
         });
+    });
+
+    $(document).on('keyup', '.search', function (e) {
+        if (e.keyCode == 13) {
+            $('#orderListsTable').DataTable().search(this.value).draw();
+        }
     });
 });
