@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Classes\ReviewStatusEnum;
 use App\Models\Buyer;
-use App\Review;
+use App\Models\Review;
 
 /**
  * Class ReviewRepository
@@ -32,6 +32,7 @@ class ReviewRepository
         $review->is_widget = array_get($data, 'is_widget') == 'on' ? 1 : 0;
         $review->reply = array_get($data, 'reply');
         $review->review = array_get($data, 'review');
+        $review->avatar_link = array_get($data, 'avatar_link');
 
         if (isset($buyer)) {
             $review->buyer()->associate($buyer);

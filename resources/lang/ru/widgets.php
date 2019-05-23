@@ -36,4 +36,5 @@ return [
     'SmallPostGallery.title' => 'Небольшая галерея',
     'Highlights.title' => 'Основные моменты',
     'MakeAppointment.title' => 'Запись на прием',
+    'Reviews.title' => 'Отзывы',
 ];

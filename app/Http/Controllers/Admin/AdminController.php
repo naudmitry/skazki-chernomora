@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Models\Admin;
-use App\Models\Blog;
 use App\Models\Company;
-use App\Models\Page;
 use App\Models\Role;
 use App\Repositories\AdminRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;

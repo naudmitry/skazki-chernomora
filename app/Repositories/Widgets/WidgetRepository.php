@@ -35,6 +35,7 @@ class WidgetRepository
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
                             MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
                             MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_MAIN_PAGE =>
@@ -46,6 +47,7 @@ class WidgetRepository
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
                             MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
                             MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_PAGE =>
@@ -62,6 +64,7 @@ class WidgetRepository
                             MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
                             MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Highlights::class => ['location' => 'middle'],
+                            MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ_MAIN_PAGE =>
@@ -73,6 +76,7 @@ class WidgetRepository
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
                             MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
                             MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ_PAGE =>
@@ -89,6 +93,7 @@ class WidgetRepository
                             MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
                             MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Highlights::class => ['location' => 'middle'],
+                            MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::CUSTOM_PAGE =>
@@ -107,6 +112,7 @@ class WidgetRepository
                             MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Highlights::class => ['location' => 'middle'],
                             MiracleWidgets\MakeAppointment::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::CONTACTS_PAGE =>

@@ -6,7 +6,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Models\Company;
 use App\Models\Showcase;
 use App\Repositories\ReviewRepository;
-use App\Review;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 

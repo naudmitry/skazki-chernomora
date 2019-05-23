@@ -29,6 +29,13 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="control-label col-md-4">Ссылка на аватар:</label>
+                            <div class="col-md-8">
+                                <input name="avatar_link" class="form-control" type="text" value="{{ $review->avatar_link ?? '' }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label class="control-label col-md-4">Отзыв:</label>
                             <div class="col-md-8">
                                 <textarea name="review" rows="4" cols="5" class="form-control">{{ $review->review ?? '' }}</textarea>

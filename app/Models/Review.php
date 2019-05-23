@@ -1,9 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Classes\ReviewStatusEnum;
-use App\Models\Buyer;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $reply
  * @property string $customer_name
  * @property string $customer_position
+ * @property string $avatar_link
  *
  * @property Buyer $buyer
  *

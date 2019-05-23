@@ -28,6 +28,7 @@ class CreateReviewsTable extends Migration
             $table->text('reply')->nullable();
             $table->string('customer_name')->nullable()->index();
             $table->string('customer_position')->nullable();
+            $table->string('avatar_link')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
