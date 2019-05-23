@@ -82,8 +82,9 @@ $(function () {
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
         drawCallback: function (settings) {
-            // $('.enable-news-count').text(settings.json.counters.enable_news_count);
-            // $('.view-count-total').text(settings.json.counters.view_count_total);
+            $('.negative-count').text(settings.json.counters.negative_count);
+            $('.positive-count').text(settings.json.counters.positive_count);
+            $('.average-rating').text(settings.json.counters.average_rating);
         },
     });
 
@@ -135,7 +136,7 @@ $(function () {
         }
         let $divForModal = $('.div-for-modal');
         $this.data('ajax', $.ajax({
-            url: $this.data('href'),
+            url: $this.attr('href'),
             success: response => {
                 $divForModal.html(response.view);
                 let $modal = $('#review-modal');

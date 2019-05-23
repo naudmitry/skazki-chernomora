@@ -12,29 +12,40 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="{{ route('admin.review.modal') }}" class="btn btn-primary open-review-modal" type="button">
+                            <button href="{{ route('admin.review.modal') }}" class="btn btn-primary open-review-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
-                        <div class="col-md-6 col-lg-3">
+                        <div class="col-md-6 col-lg-2">
                             <div class="widget-small primary coloured-icon">
                                 <div class="circle-icon">
-                                    <i class="far fa-file-alt"></i>
+                                    <i class="fas fa-user-minus"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="enable-news-count">{{ array_get($counters, 'negative_count', 0) }}</p>
+                                    <p class="negative-count">0</p>
                                     <p>негативных отзывов</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">
+                        <div class="col-md-6 col-lg-2">
                             <div class="widget-small primary coloured-icon">
                                 <div class="circle-icon">
-                                    <i class="fas fa-eye"></i>
+                                    <i class="fas fa-user-plus"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="view-count-total">{{ array_get($counters, 'positive_count', 0) }}</p>
+                                    <p class="positive-count">0</p>
                                     <p>позитивных отзывов</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2">
+                            <div class="widget-small primary coloured-icon">
+                                <div class="circle-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="info">
+                                    <p class="average-rating">0</p>
+                                    <p>среднее значение</p>
                                 </div>
                             </div>
                         </div>

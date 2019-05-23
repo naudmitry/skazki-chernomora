@@ -49,16 +49,11 @@ class ReviewController extends Controller
 
         if ($request->ajax()) {
             return Datatables::of($reviewsQuery)
-                ->with('counters')
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('main_admin.reviews.index', compact('counters'));
-    }
-
-    public function edit(Company $administeredCompany, Showcase $administeredShowcase, Review $review)
-    {
-        return null;
+        return view('main_admin.reviews.index');
     }
 
     /**
@@ -76,13 +71,14 @@ class ReviewController extends Controller
     }
 
     /**
+     * @param Review|null $review
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function modal()
+    public function modal(Review $review = null)
     {
         return response()->json([
-            'view' => view('main_admin.reviews.modals.create')->render(),
+            'view' => view('main_admin.reviews.modals.create', compact('review'))->render(),
         ]);
     }
 

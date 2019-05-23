@@ -2,7 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form autocomplete="off" class="modal-content review-create-form" method="post" action="{{ route('admin.review.save') }}">
+                <form autocomplete="off" class="modal-content review-create-form" method="post" action="{{ route('admin.review.save', $review) }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Отзыв</h5>
                         <button
@@ -17,21 +17,21 @@
                         <div class="form-group row">
                             <label class="control-label col-md-4">Имя клиента:</label>
                             <div class="col-md-8">
-                                <input name="customer_name" class="form-control" type="text">
+                                <input name="customer_name" class="form-control" type="text" value="{{ $review->customer_name ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-4">Должность клиента:</label>
                             <div class="col-md-8">
-                                <input name="customer_position" class="form-control" type="text">
+                                <input name="customer_position" class="form-control" type="text" value="{{ $review->customer_position ?? '' }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-md-4">Отзыв:</label>
                             <div class="col-md-8">
-                                <textarea name="review" rows="4" cols="5" class="form-control"></textarea>
+                                <textarea name="review" rows="4" cols="5" class="form-control">{{ $review->review ?? '' }}</textarea>
                             </div>
                         </div>
 
@@ -40,9 +40,10 @@
                             <div class="col-md-8">
                                 <select class="select2" name="rating">
                                     @for ($i = 1; $i <= 5; $i++)
-                                        <option value="{{ $i }}" @if ($i == 5) selected @endif>
-                                            {{ $i }}
-                                        </option>
+                                        <option
+                                                @if (isset($review) && $review->rating == $i) selected @endif
+                                                value="{{ $i }}"
+                                        >{{ $i }}</option>
                                     @endfor
                                 </select>
                             </div>
@@ -55,6 +56,7 @@
                             <div class="toggle-flip col-md-8">
                                 <label class="mb-0">
                                     <input
+                                            {{ (isset($review) && $review->is_widget) ? 'checked' : '' }}
                                             type="checkbox"
                                             class="checkbox entity-availability"
                                             name="is_widget"
@@ -66,7 +68,7 @@
                         <div class="form-group row">
                             <label class="control-label col-md-4">Ответ:</label>
                             <div class="col-md-8">
-                                <textarea name="reply" rows="4" cols="5" class="form-control"></textarea>
+                                <textarea name="reply" rows="4" cols="5" class="form-control">{{ $review->reply ?? '' }}</textarea>
                             </div>
                         </div>
                     </div>

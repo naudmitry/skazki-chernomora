@@ -1,7 +1,7 @@
 <div class="btn-group">
     <a
-        href="{{ route('admin.review.edit', '') }}/@{{review.id}}"
-        class="btn btn-primary"
+        href="{{ route('admin.review.modal', '') }}/@{{review.id}}"
+        class="btn btn-primary open-review-modal"
     ><i class="fas fa-edit"></i></a>
 
     <a
