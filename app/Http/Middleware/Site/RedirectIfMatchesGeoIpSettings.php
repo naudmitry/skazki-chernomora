@@ -15,8 +15,7 @@ class RedirectIfMatchesGeoIpSettings
      */
     public function handle($request, Closure $next)
     {
-        // $request->ip()
-        $geoIpData = geoip_record_by_name('178.172.222.88');
+        $geoIpData = $request->ip();
         $isGeo = $request->input('geo', 'true');
 
         if ($isGeo == 'true' && $geoIpData) {
