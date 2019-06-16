@@ -2,7 +2,7 @@
 
 @section('content')
     @include('main_admin.vendor.pageHeader', [
-        'section' => 'Заказы',
+        'section' => 'Абонементы',
         'page' => 'Основная информация'
     ])
 
