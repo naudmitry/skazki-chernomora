@@ -30,6 +30,7 @@ class AdminRoleSettingsComposer
                             AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS,
                             AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
                             AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS,
+                            AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES,
                         ]),
                     'users' => array_intersect($components,
                         [
@@ -57,7 +58,6 @@ class AdminRoleSettingsComposer
                         [
                             AdminComponentEnum::COMPANY_ADMIN_LIST,
                             AdminComponentEnum::COMPANY_ADMIN_ROLES,
-                            AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES,
                             AdminComponentEnum::COMPANY_ADMIN_GROUPS,
                             AdminComponentEnum::COMPANY_ADMIN_COMPANY,
                             AdminComponentEnum::COMPANY_ADMIN_SHOWCASES,
