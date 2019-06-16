@@ -40,5 +40,5 @@ return [
     AdminComponentEnum::COMPANY_ADMIN_GROUPS => 'Группы',
     AdminComponentEnum::COMPANY_ADMIN_LIST => 'Список',
     AdminComponentEnum::COMPANY_ADMIN_ROLES => 'Роли',
-    AdminComponentEnum::COMPANY_ADMIN_SALT_CAVES => 'Соляные пещеры'
+    AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES => 'Соляные пещеры'
 ];

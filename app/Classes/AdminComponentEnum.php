@@ -12,6 +12,7 @@ class AdminComponentEnum extends Enum
     const COMPANY_HANDBOOKS_COMPLAINTS = 'handbooks.complaints';
     const COMPANY_HANDBOOKS_SUBSCRIPTIONS = 'handbooks.subscriptions';
     const COMPANY_HANDBOOKS_ORGANIZATIONS = 'handbooks.organizations';
+    const COMPANY_HANDBOOKS_SALT_CAVES = 'handbooks.salt-caves';
 
     const COMPANY_USERS_CUSTOMERS = 'users.customers';
     const COMPANY_USERS_REVIEWS = 'users.reviews';
@@ -31,7 +32,6 @@ class AdminComponentEnum extends Enum
     const COMPANY_ADMIN_GROUPS = 'admin.groups';
     const COMPANY_ADMIN_LIST = 'admin.list';
     const COMPANY_ADMIN_ROLES = 'admin.roles';
-    const COMPANY_ADMIN_SALT_CAVES = 'admin.salt-caves';
 
     public static function listsCompany()
     {
@@ -59,7 +59,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_ADMIN_GROUPS,
                     self::COMPANY_ADMIN_LIST,
                     self::COMPANY_ADMIN_ROLES,
-                    self::COMPANY_ADMIN_SALT_CAVES,
+                    self::COMPANY_HANDBOOKS_SALT_CAVES,
                     self::COMPANY_SETTINGS_PRICING
                 ]);
         });
@@ -91,7 +91,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_ADMIN_GROUPS,
                     self::COMPANY_ADMIN_LIST,
                     self::COMPANY_ADMIN_ROLES,
-                    self::COMPANY_ADMIN_SALT_CAVES,
+                    self::COMPANY_HANDBOOKS_SALT_CAVES,
                     self::COMPANY_SETTINGS_PRICING
                 ]);
         });

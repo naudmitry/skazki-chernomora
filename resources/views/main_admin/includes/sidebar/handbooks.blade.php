@@ -5,6 +5,7 @@
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS,
+    App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES,
 ], $administeredCompany))
     <li>
         <div class="app-menu__header"><span class="app-menu__label">Справочники</span></div>
@@ -52,6 +53,15 @@
                     class="app-menu__item @if (Route::is('admin.organization.*')) active @endif"
                     href="{{ route('admin.organization.index') }}"
             ><i class="app-menu__icon fas fa-building"></i><span class="app-menu__label">Организации</span></a>
+        </li>
+    @endif
+
+    @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES, $administeredCompany))
+        <li>
+            <a
+                    class="app-menu__item @if (Route::is('admin.salt-caves.*')) active @endif"
+                    href="{{ route('admin.salt-caves.index') }}"
+            ><i class="app-menu__icon fas fa-store-alt"></i><span class="app-menu__label">Соляные пещеры</span></a>
         </li>
     @endif
 @endif

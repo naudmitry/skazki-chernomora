@@ -277,7 +277,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('review', '[0-9]+');
             });
 
-            Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_SALT_CAVES], function () {
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES], function () {
                 Route::get('/salt-caves', ['uses' => 'Admin\SaltCaveController@index', 'as' => 'admin.salt-caves.index']);
                 Route::get('/salt-cave/modal/{saltCave?}', ['uses' => 'Admin\SaltCaveController@modal', 'as' => 'admin.salt-cave.modal'])
                     ->where('saltCave', '[0-9]+');
