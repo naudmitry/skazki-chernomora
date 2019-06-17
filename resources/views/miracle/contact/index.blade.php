@@ -18,6 +18,22 @@
 
 @section('content')
     <div class="container">
+        @if ($saltCaves)
+            <ul class="contact-address style2 col-md-12">
+                @foreach($saltCaves as $saltCave)
+                    <li class="office-address">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="details">
+                            <h5>{{ $saltCave->title }}</h5>
+                            <p>{{ $saltCave->address }}</p>
+                            <p>{{ implode(", ", $saltCave->phone_numbers) }}</p>
+                            <p>{{ implode(", ", $saltCave->working_time) }}</p>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
         <div class="col-md-8 center-block text-center block">
             <div class="heading-box">
                 <h2 class="box-title">Напишите нам</h2>

@@ -8842,7 +8842,7 @@ ul.filter-categories > li li:last-child {
 }
 
 .contact-address.style2 .details {
-    word-break: break-all;
+    word-break: normal;
 }
 
 .contact-address.style2 i {

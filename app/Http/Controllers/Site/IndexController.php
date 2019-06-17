@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Classes\StaticPageTypesEnum;
 use App\Classes\WidgetsContainerTypesEnum;
+use App\Models\SaltCave;
 use App\Repositories\PageRepository;
 use App\Repositories\Widgets\WidgetRepository;
 
@@ -40,8 +41,13 @@ class IndexController extends Controller
             $staticPage, WidgetsContainerTypesEnum::BLOG_MAIN_PAGE
         );
 
+        $saltCaves = SaltCave::query()
+            ->where('showcase_id', $this->showcase->id)
+            ->where('is_enabled', true)
+            ->get();
+
         return view($this->showcase->theme . '.contact.index', compact([
-            'staticPage', 'pageWidgets'
+            'staticPage', 'pageWidgets', 'saltCaves'
         ]));
     }
 }
