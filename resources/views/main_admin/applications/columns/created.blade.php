@@ -1,0 +1,1 @@
+@{{ application.created_at }}

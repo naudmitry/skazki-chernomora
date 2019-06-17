@@ -24,6 +24,7 @@ return [
     AdminComponentEnum::COMPANY_ORDERS_LIST => 'Абонементы',
     AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY => 'Запись на прием',
     AdminComponentEnum::COMPANY_USERS_CUSTOMERS => 'Клиенты',
+    AdminComponentEnum::COMPANY_ORDERS_APPLICATIONS => 'Заявки',
 
     AdminComponentEnum::COMPANY_MARKETING_DISCOUNTS => 'Скидки',
 

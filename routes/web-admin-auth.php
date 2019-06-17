@@ -212,6 +212,10 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('order', '[0-9]+');
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_ORDERS_APPLICATIONS], function () {
+                Route::get('/applications', ['uses' => 'Admin\ApplicationController@index', 'as' => 'admin.application.index']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY], function () {
                 Route::get('/pre-entry', ['uses' => 'Admin\PreEntryController@index', 'as' => 'admin.pre-entry.index']);
             });

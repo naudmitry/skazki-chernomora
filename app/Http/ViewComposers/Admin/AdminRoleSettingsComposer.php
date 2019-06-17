@@ -22,6 +22,7 @@ class AdminRoleSettingsComposer
                         [
                             AdminComponentEnum::COMPANY_ORDERS_LIST,
                             AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY,
+                            AdminComponentEnum::COMPANY_ORDERS_APPLICATIONS,
                         ]),
                     'handbooks' => array_intersect($components,
                         [

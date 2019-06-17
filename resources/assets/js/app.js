@@ -17,3 +17,4 @@ require('./pages/admin/buyer');
 require('./pages/admin/reviews');
 require('./pages/admin/salt-caves');
 require('./pages/admin/handbooks');
+require('./pages/admin/applications');
