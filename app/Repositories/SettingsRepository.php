@@ -156,6 +156,17 @@ class SettingsRepository
     }
 
     /**
+     * @param $data
+     * @throws \Exception
+     */
+    public function saveMany($data)
+    {
+        foreach ($data as $itemKey => $itemValue) {
+            $this->save($itemKey, $itemValue);
+        }
+    }
+
+    /**
      * @param $key
      * @param $value
      * @return Setting
@@ -177,16 +188,5 @@ class SettingsRepository
         $setting->save();
 
         return $setting;
-    }
-
-    /**
-     * @param $data
-     * @throws \Exception
-     */
-    public function saveMany($data)
-    {
-        foreach ($data as $itemKey => $itemValue) {
-            $this->save($itemKey, $itemValue);
-        }
     }
 }

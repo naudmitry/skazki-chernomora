@@ -316,6 +316,12 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::post('/organization/enable/{organization}', ['uses' => 'Admin\OrganizationController@enable', 'as' => 'admin.organization.enable'])
                     ->where('organization', '[0-9]+');
             });
+
+            Route::group(['components' => AdminComponentEnum::COMPANY_SETTINGS_SEO_INTEGRATION], function () {
+                Route::get('settings/seo-integrations/{tab?}', ['uses' => 'Admin\SettingsSeoIntegrationsController@index', 'as' => 'admin.seo-integrations.index'])
+                    ->where('tab', 'site-map|robots|integrations|cookies|external-usage');
+                Route::post('settings/seo-integrations', ['uses' => 'Admin\SettingsSeoIntegrationsController@save', 'as' => 'admin.seo-integrations.save']);
+            });
         });
 
         Route::get('/{any?}',

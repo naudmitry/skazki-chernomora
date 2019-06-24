@@ -27,6 +27,7 @@ class AdminComponentEnum extends Enum
 
     const COMPANY_SETTINGS_GENERAL = 'settings.general';
     const COMPANY_SETTINGS_PRICING = 'settings.pricing';
+    const COMPANY_SETTINGS_SEO_INTEGRATION = 'settings.seo-integration';
 
     const COMPANY_ADMIN_COMPANY = 'admin.company';
     const COMPANY_ADMIN_SHOWCASES = 'admin.showcases';
@@ -56,6 +57,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_USERS_CUSTOMERS,
                     self::COMPANY_USERS_REVIEWS,
                     self::COMPANY_SETTINGS_GENERAL,
+                    self::COMPANY_SETTINGS_SEO_INTEGRATION,
                     self::COMPANY_ADMIN_COMPANY,
                     self::COMPANY_ADMIN_SHOWCASES,
                     self::COMPANY_ADMIN_GROUPS,
@@ -89,6 +91,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_USERS_CUSTOMERS,
                     self::COMPANY_USERS_REVIEWS,
                     self::COMPANY_SETTINGS_GENERAL,
+                    self::COMPANY_SETTINGS_SEO_INTEGRATION,
                     self::COMPANY_ADMIN_COMPANY,
                     self::COMPANY_ADMIN_SHOWCASES,
                     self::COMPANY_ADMIN_GROUPS,

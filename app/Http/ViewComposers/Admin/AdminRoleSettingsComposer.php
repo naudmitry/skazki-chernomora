@@ -54,6 +54,7 @@ class AdminRoleSettingsComposer
                         [
                             AdminComponentEnum::COMPANY_SETTINGS_GENERAL,
                             AdminComponentEnum::COMPANY_SETTINGS_PRICING,
+                            AdminComponentEnum::COMPANY_SETTINGS_SEO_INTEGRATION,
                         ]),
                     'administrator' => array_intersect($components,
                         [

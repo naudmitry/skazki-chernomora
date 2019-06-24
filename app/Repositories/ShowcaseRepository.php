@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Showcase;
+use App\Models\ShowcaseDomain;
 
 class ShowcaseRepository
 {
@@ -41,5 +42,20 @@ class ShowcaseRepository
                 $this->showcase->domains()->create(['name' => $domainItem]);
             }
         });
+    }
+
+    /**
+     * @param $hostname
+     * @return Showcase|\Illuminate\Database\Eloquent\Model|mixed|object|null
+     */
+    public function getShowcaseByHostname($hostname)
+    {
+        /** @var ShowcaseDomain|null $showcaseDomain */
+        $showcaseDomain = ShowcaseDomain::query()->where('name', $hostname)->first();
+
+        /** @var Showcase $showcase */
+        return $showcaseDomain
+            ? $showcaseDomain->showcase
+            : Showcase::where('domain', $hostname)->first();
     }
 }

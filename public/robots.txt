@@ -1,9 +1,0 @@
-User-agent: *
-Sitemap: http://vitebsk.skazki-chernomora.com/sitemap.xml
-Disallow: /images/
-Disallow: /vali-admin/
-Disallow: /medic/
-Disallow: /miracle/components/
-Disallow: /?s=
-Host: vitebsk.skazki-chernomora.com
-
