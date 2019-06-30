@@ -1,4 +1,4 @@
-<div id="slideshow">
+<div id="slideshow" data-widget="{{ $widget_class }}">
     <div class="revolution-slider">
         <ul>
             @foreach(data_get($setting, 'items', []) as $item)

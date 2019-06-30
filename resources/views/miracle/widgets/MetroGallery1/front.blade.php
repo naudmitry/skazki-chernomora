@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-widget="{{ $widget_class }}">
     <div id="main">
         <div class="section-info {{ $setting->is_header_show ? 'section-info-line' : '' }}">
             @if ($setting->is_header_show)

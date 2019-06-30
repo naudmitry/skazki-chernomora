@@ -1,4 +1,4 @@
-<div class="section-info">
+<div class="section-info" data-widget="{{ $widget_class }}">
     <div class="tab-container vertical-tab">
         <ul class="tabs">
             @foreach(data_get($setting, 'items', []) as $item)

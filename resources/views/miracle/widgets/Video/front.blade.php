@@ -1,4 +1,4 @@
-<div class="parallax-elem">
+<div class="parallax-elem" data-widget="{{ $widget_class }}">
     <div class="video-container mejs-skin">
         <video poster="{{ $setting->poster_link }}" preload="none" data-stellar-ratio="0.5" data-video-format="16:9">
             <source src="{{ $setting->video_link }}" type="video/youtube" />

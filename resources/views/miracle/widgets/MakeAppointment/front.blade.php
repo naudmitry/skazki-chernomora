@@ -1,4 +1,4 @@
-<section id="content">
+<section id="content" data-widget="{{ $widget_class }}">
     <div class="container">
         <div class="col-md-8 center-block text-center block make-appointment-section">
             <div class="heading-box">

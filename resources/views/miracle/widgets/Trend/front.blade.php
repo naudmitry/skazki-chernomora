@@ -1,4 +1,4 @@
-<div class="section trend-section">
+<div class="section trend-section" data-widget="{{ $widget_class }}">
     <div class="container text-center">
         @if ($setting->image_link)
             <div class="image-container trend-image">

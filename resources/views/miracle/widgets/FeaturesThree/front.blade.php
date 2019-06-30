@@ -1,4 +1,4 @@
-<div class="section">
+<div class="section" data-widget="{{ $widget_class }}">
     <div class="container">
         <div class="row">
             @foreach(data_get($setting, 'items', []) as $item)

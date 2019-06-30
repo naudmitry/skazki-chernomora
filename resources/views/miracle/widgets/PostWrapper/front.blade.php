@@ -1,4 +1,4 @@
-<div class="post-wrapper">
+<div class="post-wrapper" data-widget="{{ $widget_class }}">
     <div class="owl-carousel post-slider style6" data-items="4" data-itemsPerDisplayWidth="[[0, 1], [480, 1], [768, 2], [992, 3], [1200, 4]]">
         @foreach(data_get($setting, 'items', []) as $item)
             <article class="post">

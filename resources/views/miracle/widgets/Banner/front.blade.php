@@ -1,4 +1,4 @@
-<div class="page-title-container style5">
+<div class="page-title-container style5" data-widget="{{ $widget_class }}">
     <div class="banner parallax" data-stellar-background-ratio="0.5" style="background-image:url({{ $setting->image_link }})">
         <div class="container">
             <div class="caption-wrapper position-right">

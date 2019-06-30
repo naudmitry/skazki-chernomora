@@ -1,4 +1,4 @@
-<div class="footer-bottom-area">
+<div class="footer-bottom-area" data-widget="{{ $widget_class }}">
     <div class="container">
         <div class="copyright-area">
             <nav class="secondary-menu">

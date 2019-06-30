@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-md-3">
+<div class="col-sm-6 col-md-3" data-widget="{{ $widget_class }}">
     <h5 class="section-title box">{{ $setting->title }}</h5>
     <p>{{ $setting->subtitle }}</p>
     <div class="social-icons">

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-widget="{{ $widget_class }}">
     <div id="main">
         <div class="row">
             <div class="col-sm-6 col-md-8">

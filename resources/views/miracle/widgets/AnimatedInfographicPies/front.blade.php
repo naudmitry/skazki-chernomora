@@ -1,4 +1,4 @@
-<div class="section">
+<div class="section" data-widget="{{ $widget_class }}">
     <div class="container">
         <div class="heading-box">
             <h2 class="box-title">{{ $setting->title }}</h2>
