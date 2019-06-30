@@ -10,7 +10,8 @@ class CallOutBox extends AbstractContentWidget
         [
             'title' => '',
             'link' => '',
-            'button' => ''
+            'button' => '',
+            'is_button_show' => '',
         ];
 
     /**

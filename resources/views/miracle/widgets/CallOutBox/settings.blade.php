@@ -44,6 +44,23 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="is_button_show">Показывать кнопку:</label>
+                <div class="col-md-8">
+                    <div class="toggle-flip">
+                        <label class="mb-0">
+                            <input
+                                    id="is_button_show"
+                                    data-setting="is_button_show"
+                                    @if ($widget_setting->is_button_show) checked @endif
+                                    type="checkbox"
+                                    class="widget-setting checkbox entity-availability"
+                            ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
             <div class="tile-footer">
                 <button class="btn btn-default save-settings" disabled>
                     <i class="fas fa-check-circle mr-2"></i>Сохранить
