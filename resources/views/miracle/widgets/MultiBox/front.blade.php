@@ -1,4 +1,7 @@
 <div class="section" data-widget="{{ $widget_class }}">
+    @if ($setting->is_header_show)
+        <h2 class="section-title">{{ $setting->title }}</h2>
+    @endif
     <div class="container">
         <div class="row">
             @foreach(data_get($setting, 'items', []) as $item)

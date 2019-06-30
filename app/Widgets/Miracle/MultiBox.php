@@ -10,6 +10,8 @@ class MultiBox extends AbstractContentWidget
 
     protected $defaultSettings =
         [
+            'title' => '',
+            'is_header_show' => '',
             'items' => [],
         ];
 
@@ -22,6 +24,7 @@ class MultiBox extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
+                'title' => 'required|string',
                 'items.*.title' => 'required|max:25',
                 'items.*.subtitle' => 'required|max:180',
                 'items.*.icon' => 'required|string',
@@ -29,6 +32,7 @@ class MultiBox extends AbstractContentWidget
             ],
             [],
             [
+                'title' => 'Введите заголовок.',
                 'items.*.title' => 'Введите заголовок.',
                 'items.*.subtitle' => 'Введите подзаголовок.',
                 'items.*.icon' => 'Выберите иконку.',
