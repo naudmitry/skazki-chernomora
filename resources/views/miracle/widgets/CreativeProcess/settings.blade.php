@@ -10,30 +10,47 @@
                 <div class="col-md-8">
                     <input
                             id="title"
+                            name="title"
                             data-setting="title"
+                            class="form-control widget-setting"
                             type="text"
-                            class="form-control widget-setting required"
-                            required
                             value="{{ $widget_setting->title ?? '' }}">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="subtitle">Подзаголовок:</label>
+                <label class="control-label col-md-4" for="is_header_show">Показывать заголовок:</label>
+                <div class="col-md-8">
+                    <div class="toggle-flip">
+                        <label class="mb-0">
+                            <input
+                                    id="is_header_show"
+                                    data-setting="is_header_show"
+                                    @if ($widget_setting->is_header_show) checked @endif
+                                    type="checkbox"
+                                    class="widget-setting checkbox entity-availability"
+                            ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="image_link">Ссылка на картинку (430x270):</label>
                 <div class="col-md-8">
                     <input
-                            id="subtitle"
-                            data-setting="subtitle"
+                            id="image_link"
+                            name="image_link"
+                            data-setting="image_link"
+                            class="form-control widget-setting"
                             type="text"
-                            class="form-control widget-setting required"
-                            required
-                            value="{{ $widget_setting->subtitle ?? '' }}">
+                            value="{{ $widget_setting->image_link ?? '' }}">
                 </div>
             </div>
 
             <div id="accordionExample" class="accordion">
                 @foreach(data_get($widget_setting, 'items', []) as $setting)
-                    @include('miracle.widgets.SliderWithTitle.block', ['position' => $loop->iteration])
+                    @include('miracle.widgets.CreativeProcess.block', ['position' => $loop->iteration])
                 @endforeach
             </div>
 

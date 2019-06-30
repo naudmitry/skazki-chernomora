@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="is_header_show">Показывать заголовок:</label>
+                <label class="control-label col-md-4" for="is_header_show">Отображать линию:</label>
                 <div class="col-md-8">
                     <div class="toggle-flip">
                         <label class="mb-0">
@@ -35,9 +35,22 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="subtitle">Подзаголовок:</label>
+                <div class="col-md-8">
+                    <textarea
+                            id="subtitle"
+                            name="subtitle"
+                            data-setting="subtitle"
+                            class="form-control widget-setting"
+                            type="text"
+                    >{{ $widget_setting->subtitle }}</textarea>
+                </div>
+            </div>
+
             <div id="accordionExample" class="accordion">
                 @foreach(data_get($widget_setting, 'items', []) as $setting)
-                    @include('miracle.widgets.SmallPostGallery.block', ['position' => $loop->iteration])
+                    @include('miracle.widgets.PostSliderOverlay.block', ['position' => $loop->iteration])
                 @endforeach
             </div>
 

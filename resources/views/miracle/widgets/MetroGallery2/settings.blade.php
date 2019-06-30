@@ -37,7 +37,7 @@
 
             <div id="accordionExample" class="accordion">
                 @foreach(data_get($widget_setting, 'items', []) as $setting)
-                    @include('miracle.widgets.SmallPostGallery.block', ['position' => $loop->iteration])
+                    @include('miracle.widgets.MetroGallery2.block', ['position' => $loop->iteration])
                 @endforeach
             </div>
 

@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="image_link">Ссылка на фото:</label>
+                <label class="control-label col-md-4" for="image_link">Ссылка на картинку (800x544):</label>
                 <div class="col-md-8">
                     <input
                             id="image_link"
@@ -42,6 +42,32 @@
                             required
                             data-setting="image_link"
                             value="{{ $setting->image_link ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="image_link_small">Ссылка на картинку (400x294):</label>
+                <div class="col-md-8">
+                    <input
+                            id="image_link_small"
+                            type="text"
+                            class="form-control widget-setting required"
+                            required
+                            data-setting="image_link_small"
+                            value="{{ $setting->image_link_small ?? '' }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="link">Ссылка:</label>
+                <div class="col-md-8">
+                    <input
+                            id="link"
+                            type="text"
+                            class="form-control widget-setting required"
+                            required
+                            data-setting="link"
+                            value="{{ $setting->link ?? '' }}">
                 </div>
             </div>
         </div>

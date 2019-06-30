@@ -4,7 +4,7 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class SliderWithTitle extends AbstractContentWidget
+class PostSlider extends AbstractContentWidget
 {
     protected $blockable = true;
 
@@ -12,6 +12,7 @@ class SliderWithTitle extends AbstractContentWidget
         [
             'title' => '',
             'subtitle' => '',
+            'is_header_show' => '',
             'items' => [],
         ];
 
@@ -27,7 +28,6 @@ class SliderWithTitle extends AbstractContentWidget
                 'title' => 'required|string',
                 'subtitle' => 'required|string',
                 'items.*.title' => 'required|string',
-                'items.*.subtitle' => 'required|string',
                 'items.*.image_link' => 'required|url'
             ],
             [],
@@ -35,7 +35,6 @@ class SliderWithTitle extends AbstractContentWidget
                 'title' => 'Введите заголовок',
                 'subtitle' => 'Введите подзаголовок',
                 'items.*.title' => 'Введите заголовок слайда',
-                'items.*.subtitle' => 'Введите подзаголовок слайда',
                 'items.*.image_link' => 'Введите ссылку картинки для слайда.',
             ]);
     }

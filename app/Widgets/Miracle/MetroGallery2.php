@@ -4,7 +4,7 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class SmallPostGallery extends AbstractContentWidget
+class MetroGallery2 extends AbstractContentWidget
 {
     protected $blockable = true;
 
@@ -26,15 +26,13 @@ class SmallPostGallery extends AbstractContentWidget
             [
                 'title' => 'required|string',
                 'items.*.image_link' => 'required|url',
-                'items.*.image_link_small' => 'required|url',
                 'items.*.title' => 'required|string',
             ],
             [],
             [
                 'title' => 'Введите заголовок.',
                 'items.*.image_link' => 'Введите ссылку на картинку.',
-                'items.*.image_link_small' => 'Введите ссылку на картинку.',
-                'items.*.title' => 'Введите заголовок картинки.',
+                'items.*.title' => 'Введите наименование.',
             ]);
     }
 }

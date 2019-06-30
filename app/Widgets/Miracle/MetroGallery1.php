@@ -10,6 +10,8 @@ class MetroGallery1 extends AbstractContentWidget
 
     protected $defaultSettings =
         [
+            'title' => '',
+            'is_header_show' => '',
             'items' => [],
         ];
 
@@ -22,11 +24,15 @@ class MetroGallery1 extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
+                'title' => 'required|string',
                 'items.*.image_link' => 'required|url',
+                'items.*.title' => 'required|string',
             ],
             [],
             [
-                'items.*.image_link' => 'Введите адрес картинки.',
+                'title' => 'Введите заголовок.',
+                'items.*.image_link' => 'Введите ссылку на картинку.',
+                'items.*.title' => 'Введите наименование.',
             ]);
     }
 }

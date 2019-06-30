@@ -10,6 +10,8 @@ class SimpleProcess extends AbstractContentWidget
 
     protected $defaultSettings =
         [
+            'title' => '',
+            'is_header_show' => '',
             'items' => []
         ];
 
@@ -22,12 +24,14 @@ class SimpleProcess extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
+                'title' => 'required|string',
                 'items.*.title' => 'required|string',
                 'items.*.subtitle' => 'required|string',
                 'items.*.icon' => 'required|string'
             ],
             [],
             [
+                'title' => 'Введите заголовок.',
                 'items.*.title' => 'Введите заголовок.',
                 'items.*.subtitle' => 'Введите подзаголовок.',
                 'items.*.icon' => 'Выберите иконку.'

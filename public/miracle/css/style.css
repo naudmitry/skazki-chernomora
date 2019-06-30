@@ -615,6 +615,10 @@ hr[class^="col-"], hr[class*=" col-"] {
     position: relative;
 }
 
+.section-info-line {
+    border-top: 1px solid #d4dde5;
+}
+
 .section-info .section-title {
     display: inline-block;
     line-height: 1em;

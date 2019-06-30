@@ -4,13 +4,14 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class SmallPostGallery extends AbstractContentWidget
+class PostSliderWithText extends AbstractContentWidget
 {
     protected $blockable = true;
 
     protected $defaultSettings =
         [
             'title' => '',
+            'subtitle' => '',
             'is_header_show' => '',
             'items' => [],
         ];
@@ -25,16 +26,18 @@ class SmallPostGallery extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|string',
-                'items.*.image_link' => 'required|url',
-                'items.*.image_link_small' => 'required|url',
+                'subtitle' => 'required|string',
                 'items.*.title' => 'required|string',
+                'items.*.subtitle' => 'required|string',
+                'items.*.image_link' => 'required|url'
             ],
             [],
             [
                 'title' => 'Введите заголовок.',
-                'items.*.image_link' => 'Введите ссылку на картинку.',
-                'items.*.image_link_small' => 'Введите ссылку на картинку.',
-                'items.*.title' => 'Введите заголовок картинки.',
+                'subtitle' => 'Введите подзаголовок.',
+                'items.*.title' => 'Введите заголовок.',
+                'items.*.subtitle' => 'Введите подзаголовок.',
+                'items.*.image_link' => 'Введите ссылку картинки.',
             ]);
     }
 }

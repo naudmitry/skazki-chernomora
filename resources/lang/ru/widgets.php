@@ -28,13 +28,23 @@ return [
         'style3' => 'Светный фон и цветная линия'
     ],
     'Video.title' => 'Видео',
-    'SimpleProcess.title' => 'Простой процесс',
-    'SliderWithTitle.title' => 'Слайдер с заголовком',
     'FullwidthTabs.title' => 'Вкладки на всю ширину',
     'AnimatedInfographicPies.title' => 'Диаграммы в виде круга',
-    'MetroGallery1.title' => 'Галерея (стиль 1)',
-    'SmallPostGallery.title' => 'Небольшая галерея',
     'Highlights.title' => 'Основные моменты',
     'MakeAppointment.title' => 'Запись на прием',
     'Reviews.title' => 'Отзывы',
+
+    'FullwidthSliderGallery.title' => 'Галерея (слайдер на всю ширину)',
+    'MetroGallery1.title' => 'Галерея (стиль 1)',
+    'MetroGallery2.title' => 'Галерея (стиль 2)',
+    'SmallPostGallery.title' => 'Галерея (небольшая)',
+
+    'SimpleProcess.title' => 'Простой процесс',
+    'CreativeProcess.title' => 'Креативный процесс',
+
+    'PostSlider.title' => 'Сообщение (слайдер)',
+    'PostSliderWithText.title' => 'Сообщение (слайдер с текстом)',
+    'PostSliderWithTitle.title' => 'Сообщение (слайдер с заголовком)',
+    'PostSliderMiddleText.title' => 'Сообщение (слайдер с текстом по середине)',
+    'PostSliderOverlay.title' => 'Сообщение (слайдер с перекрытием)',
 ];

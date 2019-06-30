@@ -2,13 +2,13 @@
     <div class="card-header collapse-header" id="heading-{{ $position }}">
         <h5 class="mb-0">
             <button
-                    class="btn btn-link"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse-{{ $position }}"
-                    aria-expanded="false"
                     aria-controls="collapse-{{ $position }}"
-            ><span class="widget-title">{{ $setting->title ?? 'Введите наименование.' }}</span></button>
+                    aria-expanded="false"
+                    class="btn btn-link"
+                    data-target="#collapse-{{ $position }}"
+                    data-toggle="collapse"
+                    type="button"
+            ><span class="widget-title">{{ $setting->title ?? 'Элемент' }}</span></button>
         </h5>
 
         <div class="mr-3">
@@ -20,27 +20,27 @@
     <div id="collapse-{{ $position }}" class="collapse" aria-labelledby="heading-{{ $position }}" data-parent="#accordionExample">
         <div class="card-body">
             <div class="form-group row">
-                <label class="control-label col-md-4" for="title">Наименование:</label>
+                <label class="control-label col-md-4" for="title">Заголовок:</label>
                 <div class="col-md-8">
                     <input
-                            id="title"
-                            type="text"
                             class="form-control widget-setting required"
-                            required
                             data-setting="title"
+                            id="title"
+                            required
+                            type="text"
                             value="{{ $setting->title ?? '' }}">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="image_link">Ссылка на картинку (800x487):</label>
+                <label class="control-label col-md-4" for="image_link">Ссылка на картинку (158x158):</label>
                 <div class="col-md-8">
                     <input
-                            id="image_link"
-                            type="text"
                             class="form-control widget-setting required"
-                            required
                             data-setting="image_link"
+                            id="image_link"
+                            required
+                            type="text"
                             value="{{ $setting->image_link ?? '' }}">
                 </div>
             </div>

@@ -21,7 +21,7 @@ class WidgetRepository
                     'widgets' =>
                         [
                             MiracleWidgets\Slider::class => ['location' => 'top', 'single' => true],
-                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
+
                             MiracleWidgets\CallOutBox::class => ['location' => 'middle'],
                             MiracleWidgets\Trend::class => ['location' => 'middle'],
                             MiracleWidgets\FeaturesThree::class => ['location' => 'middle'],
@@ -31,11 +31,22 @@ class WidgetRepository
                             MiracleWidgets\Blog::class => ['location' => 'middle'],
                             MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
-                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
-                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
-                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
+
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery2::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\CreativeProcess::class => ['location' => 'middle'],
+
+                            MiracleWidgets\PostSlider::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_MAIN_PAGE =>
@@ -45,9 +56,21 @@ class WidgetRepository
                         [
                             MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
-                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
-                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
+
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery2::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\CreativeProcess::class => ['location' => 'middle'],
+
+                            MiracleWidgets\PostSlider::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::BLOG_PAGE =>
@@ -58,13 +81,23 @@ class WidgetRepository
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\Quote::class => ['location' => 'middle'],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
-                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
-                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
-                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
-                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Highlights::class => ['location' => 'middle'],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
+
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery2::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\CreativeProcess::class => ['location' => 'middle'],
+
+                            MiracleWidgets\PostSlider::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ_MAIN_PAGE =>
@@ -74,9 +107,21 @@ class WidgetRepository
                         [
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
-                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
-                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
+
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery2::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\CreativeProcess::class => ['location' => 'middle'],
+
+                            MiracleWidgets\PostSlider::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::FAQ_PAGE =>
@@ -87,13 +132,23 @@ class WidgetRepository
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\Quote::class => ['location' => 'middle'],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
-                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
-                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
-                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
-                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Highlights::class => ['location' => 'middle'],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
+
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery2::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\CreativeProcess::class => ['location' => 'middle'],
+
+                            MiracleWidgets\PostSlider::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::CUSTOM_PAGE =>
@@ -104,15 +159,25 @@ class WidgetRepository
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\Quote::class => ['location' => 'middle'],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
-                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
-                            MiracleWidgets\SliderWithTitle::class => ['location' => 'middle'],
                             MiracleWidgets\FullwidthTabs::class => ['location' => 'middle'],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
-                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
-                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
                             MiracleWidgets\Highlights::class => ['location' => 'middle'],
                             MiracleWidgets\MakeAppointment::class => ['location' => 'middle', 'single' => true],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
+
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery2::class => ['location' => 'middle'],
+                            MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\CreativeProcess::class => ['location' => 'middle'],
+
+                            MiracleWidgets\PostSlider::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::CONTACTS_PAGE =>
@@ -122,8 +187,20 @@ class WidgetRepository
                         [
                             MiracleWidgets\YandexMap::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
+
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
                             MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],
+                            MiracleWidgets\MetroGallery2::class => ['location' => 'middle'],
                             MiracleWidgets\SmallPostGallery::class => ['location' => 'middle'],
+
+                            MiracleWidgets\SimpleProcess::class => ['location' => 'middle'],
+                            MiracleWidgets\CreativeProcess::class => ['location' => 'middle'],
+
+                            MiracleWidgets\PostSlider::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
+                            MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
                         ],
                 ],
             WidgetsContainerTypesEnum::HEADER =>
@@ -145,7 +222,7 @@ class WidgetRepository
                             MiracleWidgets\PopularTags::class => ['location' => 'middle'],
                             MiracleWidgets\UsefulLinks::class => ['location' => 'middle'],
                             MiracleWidgets\RecentPosts::class => ['location' => 'middle'],
-                            MiracleWidgets\About::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle', 'single' => true],
                             MiracleWidgets\CopyrightArea::class => ['location' => 'bottom', 'single' => true],
                         ],
                 ],

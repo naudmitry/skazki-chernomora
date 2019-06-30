@@ -4,7 +4,7 @@ namespace App\Widgets\Miracle;
 
 use Validator;
 
-class SmallPostGallery extends AbstractContentWidget
+class FullwidthSliderGallery extends AbstractContentWidget
 {
     protected $blockable = true;
 
@@ -12,12 +12,12 @@ class SmallPostGallery extends AbstractContentWidget
         [
             'title' => '',
             'is_header_show' => '',
-            'items' => [],
+            'items' => []
         ];
 
     /**
      * @param $validatedData
-     * @return \Illuminate\Validation\Validator|null
+     * @return \Illuminate\Validation\Validator
      */
     public function getSettingsValidator($validatedData)
     {
@@ -25,16 +25,14 @@ class SmallPostGallery extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|string',
-                'items.*.image_link' => 'required|url',
-                'items.*.image_link_small' => 'required|url',
                 'items.*.title' => 'required|string',
+                'items.*.image_link' => 'required|url',
             ],
             [],
             [
                 'title' => 'Введите заголовок.',
-                'items.*.image_link' => 'Введите ссылку на картинку.',
-                'items.*.image_link_small' => 'Введите ссылку на картинку.',
-                'items.*.title' => 'Введите заголовок картинки.',
+                'items.*.title' => 'Введите наименование.',
+                'items.*.image_link' => 'Введите ссылку.',
             ]);
     }
 }
