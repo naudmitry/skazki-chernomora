@@ -158,6 +158,8 @@ class WidgetRepository
                         [
                             MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
+
+                            MiracleWidgets\MultiBox::class => ['location' => 'middle'],
                             MiracleWidgets\Quote::class => ['location' => 'middle'],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
                             MiracleWidgets\FullwidthTabs::class => ['location' => 'middle'],
