@@ -156,6 +156,7 @@ class WidgetRepository
                     'type' => 'multi',
                     'widgets' =>
                         [
+                            MiracleWidgets\Banner::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\BannerSmall::class => ['location' => 'top', 'single' => true],
                             MiracleWidgets\Quote::class => ['location' => 'middle'],
                             MiracleWidgets\Video::class => ['location' => 'middle'],
