@@ -1,6 +1,7 @@
 @if ($administerableShowcases->count() && auth('admin')->user()->hasAccessTo([
     App\Classes\AdminComponentEnum::COMPANY_SETTINGS_GENERAL,
     App\Classes\AdminComponentEnum::COMPANY_SETTINGS_PRICING,
+    App\Classes\AdminComponentEnum::COMPANY_SETTINGS_SEO_INTEGRATION,
 ], $administeredCompany))
     <li>
         <div class="app-menu__header"><span class="app-menu__label">Настройки</span></div>

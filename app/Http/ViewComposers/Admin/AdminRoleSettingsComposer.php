@@ -18,6 +18,10 @@ class AdminRoleSettingsComposer
 
             $groupsComponentsBySuper[$super] =
                 [
+                    'communication' => array_intersect($components,
+                        [
+                            AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK,
+                        ]),
                     'orders' => array_intersect($components,
                         [
                             AdminComponentEnum::COMPANY_ORDERS_LIST,

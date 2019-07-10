@@ -47,4 +47,6 @@ return [
     'PostSliderWithTitle.title' => 'Сообщение (слайдер с заголовком)',
     'PostSliderMiddleText.title' => 'Сообщение (слайдер с текстом по середине)',
     'PostSliderOverlay.title' => 'Сообщение (слайдер с перекрытием)',
+
+    'HelpDesk.title' => 'Обратная связь',
 ];

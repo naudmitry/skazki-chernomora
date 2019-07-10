@@ -4,6 +4,7 @@ use App\Classes\AdminComponentEnum;
 
 return [
     'groups' => [
+        'communication' => 'Коммуникация',
         'orders' => 'Заказы',
         'handbooks' => 'Справочники',
         'users' => 'Пользователи',
@@ -21,6 +22,7 @@ return [
     AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS => 'Абонементы',
     AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS => 'Организации',
 
+    AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK => 'Help Desk',
     AdminComponentEnum::COMPANY_ORDERS_LIST => 'Абонементы',
     AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY => 'Запись на прием',
     AdminComponentEnum::COMPANY_USERS_CUSTOMERS => 'Клиенты',

@@ -201,6 +201,8 @@ class WidgetRepository
                             MiracleWidgets\PostSliderWithTitle::class => ['location' => 'middle'],
                             MiracleWidgets\PostSliderMiddleText::class => ['location' => 'middle'],
                             MiracleWidgets\PostSliderOverlay::class => ['location' => 'middle'],
+
+                            MiracleWidgets\HelpDesk::class => ['location' => 'middle', 'single' => true],
                         ],
                 ],
             WidgetsContainerTypesEnum::HEADER =>

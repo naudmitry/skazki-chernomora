@@ -305,6 +305,10 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('subscription', '[0-9]+');
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK], function () {
+                Route::get('/helpdesk', ['uses' => 'Admin\HelpDeskController@index', 'as' => 'admin.helpdesk.index']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS], function () {
                 Route::get('/organizations', ['uses' => 'Admin\OrganizationController@index', 'as' => 'admin.organization.index']);
                 Route::delete('/organization/{organization}', ['uses' => 'Admin\OrganizationController@delete', 'as' => 'admin.organization.delete'])

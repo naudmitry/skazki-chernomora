@@ -15,6 +15,7 @@
             </a>
         </li>
 
+        @include('main_admin.includes.sidebar.communication')
         @include('main_admin.includes.sidebar.orders')
         @include('main_admin.includes.sidebar.handbooks')
         @include('main_admin.includes.sidebar.users')

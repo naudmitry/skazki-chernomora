@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Date\DateableTrait;
 use App\Repositories\Page\PageableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use App\Repositories\Slug\SlugableInterface;
@@ -49,6 +50,7 @@ class Page extends Model implements SlugableInterface, WidgetableInterface
     use ShowcasableTrait;
     use WidgetableTrait;
     use PageableTrait;
+    use DateableTrait;
 
     protected $with =
         [
@@ -92,21 +94,5 @@ class Page extends Model implements SlugableInterface, WidgetableInterface
     public function incrementViewsCount($value = 1)
     {
         self::where('id', $this->id)->increment('view_count', $value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getFormatCreatedAtAttribute()
-    {
-        return $this->created_at->format('d/m/Y H:i');
-    }
-
-    /**
-     * @return string
-     */
-    public function getFormatUpdatedAtAttribute()
-    {
-        return $this->updated_at->format('d/m/Y H:i');
     }
 }
