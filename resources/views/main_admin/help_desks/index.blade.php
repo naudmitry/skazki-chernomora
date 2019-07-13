@@ -14,7 +14,7 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
                                 <div class="circle-icon">
-                                    <i class="fas fa-star-of-life"></i>
+                                    <i class="fas fa-users"></i>
                                 </div>
                                 <div class="info">
                                     <p class="helpdesk-status-total"><b>{{ array_get($counters, 'helpdesk_status_total', 0) }}</b></p>
@@ -25,7 +25,7 @@
                         <div class="col-md-4 col-lg-3">
                             <div class="widget-small primary coloured-icon">
                                 <div class="circle-icon">
-                                    <i class="fas fa-star-of-life"></i>
+                                    <i class="fas fa-user-secret"></i>
                                 </div>
                                 <div class="info">
                                     <p class="helpdesk-status-new"><b>{{ array_get($counters, 'helpdesk_status_new', 0) }}</b></p>
