@@ -306,7 +306,10 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK], function () {
-                Route::get('/helpdesk', ['uses' => 'Admin\HelpDeskController@index', 'as' => 'admin.helpdesk.index']);
+                Route::get('/help-desks', ['uses' => 'Admin\HelpDeskController@index', 'as' => 'admin.help-desks.index']);
+                Route::delete('/help-desks/{helpDesk}', ['uses' => 'Admin\HelpDeskController@destroy', 'as' => 'admin.help-desks.destroy']);
+                Route::patch('/help-desks/{helpDesk}', ['uses' => 'Admin\HelpDeskController@update', 'as' => 'admin.help-desks.update']);
+                Route::get('/help-desks/open-modal/{helpDesk}', ['uses' => 'Admin\HelpDeskController@openModal', 'as' => 'admin.help-desks.open-modal']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS], function () {

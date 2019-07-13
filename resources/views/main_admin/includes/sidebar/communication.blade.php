@@ -9,8 +9,8 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.helpdesk.*')) active @endif"
-                href="{{ route('admin.helpdesk.index') }}"
+                class="app-menu__item @if (Route::is('admin.help-desks.*')) active @endif"
+                href="{{ route('admin.help-desks.index') }}"
             ><i class="app-menu__icon fas fa-headset"></i><span class="app-menu__label">Help Desk</span></a>
         </li>
     @endif

@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-md style1">Отправить</button>
+                    <button type="submit" class="btn btn-md style1">Отправить сообщение</button>
                 </div>
             </form>
         </div>
