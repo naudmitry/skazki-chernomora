@@ -26,8 +26,9 @@
                     <textarea name="message" rows="10" class="input-text full-width" placeholder="Текст сообщения"></textarea>
                 </div>
                 <div class="form-group text-align-left">
+                    <input hidden type="text" name="confirmation" value="false">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="confirmation">{!! $setting->text !!}</label>
+                        <label><input type="checkbox" name="confirmation" value="true">{!! $setting->text !!}</label>
                     </div>
                 </div>
                 <div class="form-group">

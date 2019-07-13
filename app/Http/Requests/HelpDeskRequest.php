@@ -29,7 +29,7 @@ class HelpDeskRequest extends FormRequest
             'email' => 'required|email',
             'phone' => 'required',
             'message' => 'required',
-            'confirmation' => 'required|sometimes'
+            'confirmation' => 'sometimes|required|in:true'
         ];
     }
 }

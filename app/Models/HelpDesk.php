@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $message
  * @property string $status
  * @property string $phone
+ * @property integer $showcase_id
  */
 class HelpDesk extends Model
 {
