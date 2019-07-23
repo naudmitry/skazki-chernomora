@@ -37,6 +37,7 @@ return [
 
     AdminComponentEnum::COMPANY_SETTINGS_GENERAL => 'Общие',
     AdminComponentEnum::COMPANY_SETTINGS_PRICING => 'Оплата',
+    AdminComponentEnum::COMPANY_SETTINGS_SEO_INTEGRATION => 'SEO & интеграция',
 
     AdminComponentEnum::COMPANY_ADMIN_COMPANY => 'Компания',
     AdminComponentEnum::COMPANY_ADMIN_SHOWCASES => 'Сайты',
