@@ -18,24 +18,21 @@ $(function () {
             data: $form.serialize(),
             success: response => {
                 $form[0].reset();
+                $form.find('.checkbox').removeClass('checked');
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
                     for (let key in xhr.responseJSON['errors']) {
                         let $input = $form.find('[name="' + key + '"]');
-                        if ($input.is('input,textarea')) {
-                            $input.addClass('has-error');
-                        }
-                        if ($input.is('select') || $input.attr('type') === 'checkbox') {
-                            $input.closest('.form-group').addClass('has-error');
-                        }
+                        $input.closest('div').hasClass('checkbox')
+                            ? $input.closest('.form-group').addClass('has-error')
+                            : $input.addClass('has-error');
                     }
                     return;
                 }
                 console.error(xhr);
             },
             complete: () => {
-                $form.find('.checkbox').removeClass('checked');
                 $form.removeData('ajax');
             },
         }));

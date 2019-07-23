@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateHelpdeskTable extends Migration
+class CreateHelpDesksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHelpdeskTable extends Migration
      */
     public function up()
     {
-        Schema::create('helpdesk', function (Blueprint $table) {
+        Schema::create('help_desks', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('showcase_id')->unsigned();
@@ -40,6 +40,6 @@ class CreateHelpdeskTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('helpdesk');
+        Schema::dropIfExists('help_desks');
     }
 }

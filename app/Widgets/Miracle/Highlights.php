@@ -8,7 +8,7 @@ class Highlights extends AbstractContentWidget
 {
     protected $defaultSettings =
         [
-            'content' => '',
+            'text' => '',
         ];
 
     /**
@@ -20,11 +20,11 @@ class Highlights extends AbstractContentWidget
         return Validator::make(
             $validatedData,
             [
-                'content' => 'required|string',
+                'text' => 'required|string',
             ],
             [],
             [
-                'content' => 'Введите текст.',
+                'text' => 'Введите текст.',
             ]);
     }
 }

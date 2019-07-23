@@ -34,7 +34,7 @@ let scriptModule =
                 tinymce.init({
                     target: this,
                     language: 'ru',
-                    plugins: "link image imagetools",
+                    plugins: "link image imagetools code",
                     setup: function (editor) {
                         editor.on('keyup change', function (e) {
                             scriptModule.text[this.id] = tinyMCE.activeEditor.getContent();

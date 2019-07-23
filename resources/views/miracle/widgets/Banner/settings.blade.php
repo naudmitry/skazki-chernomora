@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="image_link">Ссылка на картинку:</label>
+                <label class="control-label col-md-4" for="image_link">Ссылка на картинку (1920x1280):</label>
                 <div class="col-md-8">
                     <input
                             id="image_link"

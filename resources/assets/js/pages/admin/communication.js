@@ -1,1 +1,1 @@
-require('./communication/helpdesk');
+require('./communication/help_desks');

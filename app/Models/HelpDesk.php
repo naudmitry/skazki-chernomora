@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Classes\HelpDeskStatusEnum;
 use App\Repositories\Date\DateableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string $message
  * @property string $status
+ * @property string $phone
+ * @property integer $showcase_id
  */
 class HelpDesk extends Model
 {
@@ -25,8 +28,15 @@ class HelpDesk extends Model
     protected $appends =
         [
             'formatCreatedAt',
-            'formatUpdatedAt'
+            'formatUpdatedAt',
+            'statusI18n'
         ];
 
-    protected $table = 'helpdesk';
+    /**
+     * @return mixed
+     */
+    public function getStatusI18nAttribute()
+    {
+        return HelpDeskStatusEnum::$labels[$this->status];
+    }
 }

@@ -6,15 +6,15 @@
             {{ csrf_field() }}
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="content">Текст:</label>
-                <div class="col-md-8">
+                <label class="control-label col-md-2" for="content">Текст:</label>
+                <div class="col-md-10">
                     <textarea
-                            id="content"
-                            name="content"
-                            data-setting="content"
-                            class="form-control widget-setting"
-                            type="text"
-                    >{{ $widget_setting->content }}</textarea>
+                            id="textarea-0"
+                            data-field-type="textarea-editor"
+                            data-setting="text"
+                            class="widget-setting required"
+                            required
+                    >{{ $widget_setting->text ?? '' }}</textarea>
                 </div>
             </div>
 

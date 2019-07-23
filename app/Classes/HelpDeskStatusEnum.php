@@ -2,7 +2,7 @@
 
 namespace App\Classes;
 
-class HelpDeskStatusEnum
+class HelpDeskStatusEnum extends Enum
 {
     const NEW = 'NEW';
     const COMPLETED = 'COMPLETED';

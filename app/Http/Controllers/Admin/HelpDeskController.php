@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes\HelpDeskStatusEnum;
+use App\Http\Requests\HelpDeskRequest;
 use App\Models\HelpDesk;
 use App\Models\Showcase;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class HelpDeskController extends Controller
             [
                 'helpdesk_status_new' => (clone $helpDeskQuery)->where('status', HelpDeskStatusEnum::NEW)->count(),
                 'helpdesk_status_completed' => (clone $helpDeskQuery)->where('status', HelpDeskStatusEnum::COMPLETED)->count(),
+                'helpdesk_status_total' => (clone $helpDeskQuery)->count(),
             ];
 
         if ($request->ajax()) {
@@ -34,8 +36,57 @@ class HelpDeskController extends Controller
                 ->make(true);
         }
 
-        return view('main_admin.helpdesk.index', compact(
+        return view('main_admin.help_desks.index', compact(
             'counters'
         ));
+    }
+
+    /**
+     * @param HelpDesk $helpDesk
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function destroy(HelpDesk $helpDesk)
+    {
+        $helpDesk->delete();
+
+        return response()->json([
+            'message' => 'Запись удалена.'
+        ]);
+    }
+
+    /**
+     * @param HelpDeskRequest $request
+     * @param HelpDesk $helpDesk
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(HelpDeskRequest $request, HelpDesk $helpDesk)
+    {
+        $helpDesk->name = $request->get('name');
+        $helpDesk->surname = $request->get('surname');
+        $helpDesk->email = $request->get('email');
+        $helpDesk->phone = $request->get('phone');
+        $helpDesk->status = $request->get('status');
+        $helpDesk->message = $request->get('message');
+
+        $helpDesk->update();
+
+        return response()->json([
+            'message' => 'Запись успешно обновлена.',
+        ]);
+    }
+
+    /**
+     * @param HelpDesk $helpDesk
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function openModal(HelpDesk $helpDesk)
+    {
+        return response()->json([
+            'view' => view('main_admin.help_desks.modals.update', compact(
+                'helpDesk'
+            ))->render(),
+        ]);
     }
 }
