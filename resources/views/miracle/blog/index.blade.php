@@ -27,6 +27,9 @@
     <div class="container">
         <div id="main">
             <div class="blog-posts layout-timeline layout-fullwidth">
+                <div class="timeline-author">
+                    <img src="{{ asset('miracle/images/logo-standard.svg') }}" alt="logo" style="margin-top: 10px;">
+                </div>
                 <div class="iso-container iso-col-2 style-masonry has-column-width">
                     @foreach ($blogs as $index => $blog)
                         <div class="iso-item">
