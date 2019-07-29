@@ -228,6 +228,7 @@ class WidgetRepository
                             MiracleWidgets\UsefulLinks::class => ['location' => 'middle'],
                             MiracleWidgets\RecentPosts::class => ['location' => 'middle'],
                             MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\About::class => ['location' => 'middle', 'single' => true],
                             MiracleWidgets\CopyrightArea::class => ['location' => 'bottom', 'single' => true],
                         ],
                 ],
