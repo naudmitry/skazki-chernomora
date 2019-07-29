@@ -27,9 +27,11 @@
                 </div>
                 <div class="post-content">
                     <h2 class="entry-title"><a href="{{ $blog->getRoute() }}">{{ $blog->name }}</a></h2>
-                    <div class="section-info">
-                        {!! $blog->content !!}
-                    </div>
+                    @if ($blog->content)
+                        <div class="section-info">
+                            {!! $blog->content !!}
+                        </div>
+                    @endif
                     @foreach(array_get($pageWidgets, 'middle', []) as $widget)
                         @widget('miracle.' . $widget->class_name, ['widget' => $widget])
                     @endforeach
