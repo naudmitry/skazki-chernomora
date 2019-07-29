@@ -49,7 +49,8 @@ class BlogController extends Controller
 
         $blogs = Blog::query()
             ->where('showcase_id', $showcase->id)
-            ->where('enable', true);
+            ->where('enable', true)
+            ->orderBy('created_at', 'desc');
 
         if ($request->has('category')) {
             $blogs->whereHas('categories', function ($query) use ($request) {
