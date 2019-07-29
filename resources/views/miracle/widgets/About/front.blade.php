@@ -3,7 +3,7 @@
     <p>{{ $setting->subtitle }}</p>
     <div class="social-icons">
         @foreach(data_get($setting, 'items', []) as $item)
-            <a href="{{ url($item->link) }}" class="social-icon">
+            <a href="{{ url($item->link) }}" class="social-icon" target="_blank">
                 <i class="fa fa-{{ $item->icon }} has-circle" data-toggle="tooltip" data-placement="top" title="{{ $item->title }}"></i>
             </a>
         @endforeach
