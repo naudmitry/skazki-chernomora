@@ -29,7 +29,7 @@ class About extends AbstractContentWidget
                 'title' => 'required|string',
                 'subtitle' => 'required|string',
                 'button_title' => 'required|string',
-                'button_link' => 'required|url',
+                'button_link' => 'required|string',
                 'items.*.title' => 'required|string',
                 'items.*.link' => 'required|url',
                 'items.*.icon' => 'required|string',

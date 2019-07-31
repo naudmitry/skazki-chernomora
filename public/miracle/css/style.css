@@ -537,10 +537,6 @@ article {
     padding-top: 0;
 }
 
-#main {
-    margin-bottom: 60px;
-}
-
 #main > .section:first-child {
     padding-top: 0;
 }

@@ -16,9 +16,11 @@
     <div class="container">
         <div id="main">
             <h2>{{ $page->name }}</h2>
-            <div class="section-info">
-                {!! $page->content !!}
-            </div>
+            @if ($page->content)
+                <div class="section-info">
+                    {!! $page->content !!}
+                </div>
+            @endif
             @foreach(array_get($pageWidgets, 'middle', []) as $widget)
                 @widget('miracle.' . $widget->class_name, ['widget' => $widget])
             @endforeach

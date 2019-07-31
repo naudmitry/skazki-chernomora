@@ -90,7 +90,7 @@ $(function () {
         selector: '#textarea-editor',
         language: 'ru',
         height: 500,
-        plugins: "image imagetools",
+        plugins: "link image imagetools code",
         setup: function (editor) {
             editor.on('keyup change', function (e) {
                 $('.page-item-editor-form').find('[type=submit]')
