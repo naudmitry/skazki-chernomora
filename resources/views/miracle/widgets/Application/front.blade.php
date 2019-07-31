@@ -27,7 +27,6 @@
                 </div>
 
                 <div class="form-group text-align-left">
-                    <input type="hidden" name="confirmation" value="0">
                     <div class="checkbox">
                         <label><input value="1" type="checkbox" name="confirmation">{!! $setting->text !!}</label>
                     </div>
