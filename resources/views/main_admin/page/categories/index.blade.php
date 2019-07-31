@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="col-md-7 col-md-12 page-categories-settings-container"></div>
+        <div class="col-md-7 col-sm-12 page-categories-settings-container"></div>
     </div>
 
     <script type="text/template" class="page-category-settings-loading-template">
