@@ -32,6 +32,7 @@ return [
     'AnimatedInfographicPies.title' => 'Диаграммы в виде круга',
     'Highlights.title' => 'Основные моменты',
     'MakeAppointment.title' => 'Запись на прием',
+    'Application.title' => 'Заявка',
     'Reviews.title' => 'Отзывы',
 
     'FullwidthSliderGallery.title' => 'Галерея (слайдер на всю ширину)',

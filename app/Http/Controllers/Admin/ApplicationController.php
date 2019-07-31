@@ -16,7 +16,6 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         $applicationQuery = Application::query()
-            ->with('type')
             ->get();
 
         if ($request->ajax()) {

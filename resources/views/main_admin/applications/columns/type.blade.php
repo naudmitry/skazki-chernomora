@@ -1,1 +1,0 @@
-@{{ application.type.title }}

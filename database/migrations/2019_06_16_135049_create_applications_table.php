@@ -17,15 +17,14 @@ class CreateApplicationsTable extends Migration
             $table->increments('id');
 
             $table->string('name');
+            $table->string('surname');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->string('city');
+            $table->string('country');
             $table->boolean('is_process_personal_data')->default(false);
-            $table->unsignedInteger('application_type_id')->index();
+            $table->boolean('is_processed')->default(false);
 
             $table->timestamps();
-
-            $table->foreign('application_type_id')->references('id')->on('application_types');
         });
     }
 

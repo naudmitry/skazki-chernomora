@@ -50,10 +50,10 @@
                         <tr>
                             <th>Создан</th>
                             <th>Имя</th>
+                            <th>Фамилия</th>
                             <th>Email</th>
                             <th>Телефон</th>
-                            <th>Город</th>
-                            <th>Тип</th>
+                            <th>Страна</th>
                             <th>Обработка</th>
                             <th>Действия</th>
                         </tr>
@@ -77,11 +77,11 @@
     <script type="application/x-tmpl-mustache" class="template-application-table-column-phone">
         @include('main_admin.applications.columns.phone')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-application-table-column-city">
-        @include('main_admin.applications.columns.city')
+    <script type="application/x-tmpl-mustache" class="template-application-table-column-country">
+        @include('main_admin.applications.columns.country')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-application-table-column-type">
-        @include('main_admin.applications.columns.type')
+    <script type="application/x-tmpl-mustache" class="template-application-table-column-surname">
+        @include('main_admin.applications.columns.surname')
     </script>
     <script type="application/x-tmpl-mustache" class="template-application-table-column-process">
         @include('main_admin.applications.columns.process')

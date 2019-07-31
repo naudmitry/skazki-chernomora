@@ -10,20 +10,15 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $id
  * @property string $name
+ * @property string $surname
  * @property string $email
  * @property string $phone
- * @property string $city
+ * @property string $country
  * @property boolean $is_process_personal_data
  *
  * @mixin \Eloquent
  */
 class Application extends Model
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function type()
-    {
-        return $this->belongsTo(ApplicationType::class, 'application_type_id');
-    }
+
 }

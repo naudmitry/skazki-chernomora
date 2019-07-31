@@ -166,6 +166,7 @@ class WidgetRepository
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
                             MiracleWidgets\Highlights::class => ['location' => 'middle'],
                             MiracleWidgets\MakeAppointment::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\Application::class => ['location' => 'middle', 'single' => true],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
 
                             MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],

@@ -10,8 +10,8 @@ $(function () {
     let mustacheTemplateApplicationTableColumnName = $('.template-application-table-column-name').text();
     let mustacheTemplateApplicationTableColumnEmail = $('.template-application-table-column-email').text();
     let mustacheTemplateApplicationTableColumnPhone = $('.template-application-table-column-phone').text();
-    let mustacheTemplateApplicationTableColumnCity = $('.template-application-table-column-city').text();
-    let mustacheTemplateApplicationTableColumnType = $('.template-application-table-column-type').text();
+    let mustacheTemplateApplicationTableColumnCountry = $('.template-application-table-column-country').text();
+    let mustacheTemplateApplicationTableColumnSurname = $('.template-application-table-column-surname').text();
     let mustacheTemplateApplicationTableColumnProcess = $('.template-application-table-column-process').text();
     let mustacheTemplateApplicationTableColumnActions = $('.template-application-table-column-actions').text();
 
@@ -32,38 +32,32 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                data: 'created_at',
                 render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnCreated, {application}),
             },
             {
                 targets: 1,
-                data: 'title',
                 render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnName, {application}),
             },
             {
                 targets: 2,
                 sortable: false,
-                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnEmail, {application}),
+                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnSurname, {application}),
             },
             {
                 targets: 3,
-                data: 'enable',
-                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnPhone, {application}),
+                sortable: false,
+                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnEmail, {application}),
             },
             {
                 targets: 4,
-                data: 'favorite',
-                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnCity, {application}),
+                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnPhone, {application}),
             },
             {
                 targets: 5,
-                data: 'author_id',
-                sortable: false,
-                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnType, {application}),
+                render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnCountry, {application}),
             },
             {
                 targets: 6,
-                data: 'updated_at',
                 render: (data, type, application) => Mustache.render(mustacheTemplateApplicationTableColumnProcess, {application}),
             },
             {

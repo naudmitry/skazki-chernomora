@@ -12,6 +12,12 @@ Route::post('pre-entry/save',
         'as'   => 'front.pre-entry.save'
     ]);
 
+Route::post('application/save',
+    [
+        'uses' => 'Site\ApplicationController@save',
+        'as'   => 'site.application.save'
+    ]);
+
 Route::post('helpdesk/save',
     [
         'uses' => 'Site\HelpDeskController@save',
