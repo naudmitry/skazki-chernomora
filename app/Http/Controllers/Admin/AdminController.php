@@ -120,9 +120,6 @@ class AdminController extends Controller
      */
     public function save(Request $request, Company $administeredCompany, Admin $admin)
     {
-        /** @var Admin $user */
-        $user = $request->user('admin');
-
         if (!$admin->company->is($administeredCompany)) {
             return abort(Response::HTTP_NOT_FOUND);
         }
@@ -139,22 +136,19 @@ class AdminController extends Controller
                 'companies' => 'array',
             ]);
 
+        /** @var Role $role */
+        $role = $administeredCompany->roles()->where('roles.id', $request->input('role_id'))->firstOrFail();
 
-        if (!$admin->isCompanyAdmin) {
-            /** @var Role $role */
-            $role = $administeredCompany->roles()->where('roles.id', $request->input('role_id'))->firstOrFail();
+        $showcases = in_array('all', $request->input('showcases', [])) ?
+            $administeredCompany->showcases :
+            collect($request->input('showcases', []))
+                ->map(function ($showcaseId) use ($administeredCompany) {
+                    return $administeredCompany->showcases()
+                        ->where('showcases.id', $showcaseId)
+                        ->firstOrFail();
+                });
 
-            $showcases = in_array('all', $request->input('showcases', [])) ?
-                $administeredCompany->showcases :
-                collect($request->input('showcases', []))
-                    ->map(function ($showcaseId) use ($administeredCompany) {
-                        return $administeredCompany->showcases()
-                            ->where('showcases.id', $showcaseId)
-                            ->firstOrFail();
-                    });
-
-            $admin->role()->associate($role);
-        }
+        $admin->role()->associate($role);
 
         $groups = collect($request->input('groups', []))
             ->map(function ($groupId) use ($administeredCompany) {
@@ -179,9 +173,7 @@ class AdminController extends Controller
         $admin->email = $request->input('email');
         $admin->save();
 
-        if (!$admin->isCompanyAdmin) {
-            $admin->showcases()->sync($showcases->pluck('id')->all());
-        }
+        $admin->showcases()->sync($showcases->pluck('id')->all());
 
         $admin->groups()->sync($groups->pluck('id')->all());
 
