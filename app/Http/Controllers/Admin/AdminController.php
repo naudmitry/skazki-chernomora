@@ -73,9 +73,12 @@ class AdminController extends Controller
         $adminShowcases = $admin->showcases->toArray();
         $adminCompanies = $admin->companies->toArray();
 
+        $company = $admin->company;
+
         return response()->json([
             'view' => view('main_admin.staff.lists.modals.edit', compact(
-                'admin', 'administeredCompany', 'companies', 'adminGroups', 'adminShowcases', 'adminCompanies'
+                'admin', 'company', 'administeredCompany', 'companies',
+                'adminGroups', 'adminShowcases', 'adminCompanies'
             ))->render(),
         ]);
     }
@@ -124,10 +127,6 @@ class AdminController extends Controller
             return abort(Response::HTTP_NOT_FOUND);
         }
 
-        if ($admin->isCompanyAdmin && (!$admin->is($user))) {
-            return abort(Response::HTTP_NOT_FOUND);
-        }
-
         $this->validate($request,
             [
                 'name' => 'required',
@@ -139,6 +138,7 @@ class AdminController extends Controller
                 'groups' => 'array',
                 'companies' => 'array',
             ]);
+
 
         if (!$admin->isCompanyAdmin) {
             /** @var Role $role */

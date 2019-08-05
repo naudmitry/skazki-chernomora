@@ -101,20 +101,22 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="control-label col-md-3" for="companies">Компании:</label>
-                            <div class="col-md-8">
-                                <select id="companies" class="select2" multiple name="companies[]">
-                                    <option value="all">Все</option>
-                                    @foreach ($companies as $company)
-                                        <option
-                                                value="{{ $company->id }}"
-                                                @if (array_search($company->id, array_column($adminCompanies, 'id')) !== false) selected @endif
-                                        >{{ $company->title }}</option>
-                                    @endforeach
-                                </select>
+                        @if ($company->super)
+                            <div class="form-group row">
+                                <label class="control-label col-md-3" for="companies">Компании:</label>
+                                <div class="col-md-8">
+                                    <select id="companies" class="select2" multiple name="companies[]">
+                                        <option value="all">Все</option>
+                                        @foreach ($companies as $company)
+                                            <option
+                                                    value="{{ $company->id }}"
+                                                    @if (array_search($company->id, array_column($adminCompanies, 'id')) !== false) selected @endif
+                                            >{{ $company->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
 
                     <div class="modal-footer">
