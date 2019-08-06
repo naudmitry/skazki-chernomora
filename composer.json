@@ -9,8 +9,10 @@
         "ext-json": "*",
         "arrilot/laravel-widgets": "^3.12",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "vkcom/vk-php-sdk": "^5.100",
         "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {
