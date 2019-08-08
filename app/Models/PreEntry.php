@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Date\DateableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,7 @@ class PreEntry extends Model
 {
     use SoftDeletes;
     use ShowcasableTrait;
+    use DateableTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
