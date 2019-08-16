@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Date\DateableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,5 +21,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Application extends Model
 {
+    use DateableTrait;
 
+    protected $appends =
+        [
+            'formatCreatedAt',
+            'formatUpdatedAt',
+        ];
 }

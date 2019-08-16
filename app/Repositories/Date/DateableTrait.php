@@ -28,4 +28,13 @@ trait DateableTrait
     {
         return $this->updated_at->format('d/m/Y H:i');
     }
+
+    /**
+     * @param $field
+     * @return mixed
+     */
+    public function getFormattedDate($field)
+    {
+        return $this->$field->format('d/m/Y H:i');
+    }
 }

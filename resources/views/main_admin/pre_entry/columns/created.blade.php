@@ -1,3 +1,1 @@
-<span class="text-semibold">
-    @{{blog.formatCreatedAt}}
-</span>
+@{{preEntry.formatCreatedAt}}

@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="date" name="desired_date" class="input-text full-width" placeholder="Дата">
+                    <input type="date" name="desired_at" class="input-text full-width" placeholder="Дата">
                 </div>
 
                 <div class="form-group dropdown">

@@ -27,7 +27,7 @@ class PreEntryRequest extends FormRequest
             'full_name' => 'required|string',
             'email' => 'required|email',
             'phone_number' => 'required|string',
-            'desired_date' => 'required',
+            'desired_at' => 'required',
             'salt_cave_id' => 'required',
             'type' => 'required',
             'confirmation' => 'required'

@@ -20,7 +20,7 @@ class PreEntryController extends Controller
         $order->full_name = $request->get('full_name');
         $order->phone_number = $request->get('phone_number');
         $order->email = $request->get('email');
-        $order->desired_date = Carbon::createFromFormat("Y-m-d", $request->get('desired_date'));
+        $order->desired_at = Carbon::createFromFormat("Y-m-d", $request->get('desired_at'));
         $order->salt_cave_id = $request->get('salt_cave_id');
         $order->type = $request->get('type');
         $order->message = $request->get('message');

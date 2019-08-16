@@ -1,4 +1,4 @@
 <div>
-    @{{order.begin_at}}
+    @{{order.formatBeginAt}}
 </div>
-@{{order.end_at}}
+@{{order.formatEndAt}}

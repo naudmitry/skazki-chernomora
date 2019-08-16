@@ -7,15 +7,14 @@ $(function () {
 
     let $preEntriesTable = $('#preEntryTable');
     let mustacheTemplatePreEntriesTableColumnCreated = $('.template-pre-entries-table-column-created').text();
-    let mustacheTemplateBlogArticlesTableColumnTitle = $('.template-blog-articles-table-column-title').text();
-    let mustacheTemplateBlogArticlesTableColumnCategories = $('.template-blog-articles-table-column-categories').text();
-    let mustacheTemplateBlogArticlesTableColumnPublished = $('.template-blog-articles-table-column-published').text();
-    let mustacheTemplateBlogArticlesTableColumnFavorite = $('.template-blog-articles-table-column-favorite').text();
-    let mustacheTemplateBlogArticlesTableColumnAuthor = $('.template-blog-articles-table-column-author').text();
-    let mustacheTemplateBlogArticlesTableColumnUpdated = $('.template-blog-articles-table-column-updated').text();
-    let mustacheTemplateBlogArticlesTableColumnUpdater = $('.template-blog-articles-table-column-updater').text();
-    let mustacheTemplateBlogArticlesTableColumnViewed = $('.template-blog-articles-table-column-viewed').text();
-    let mustacheTemplateBlogArticlesTableColumnActions = $('.template-blog-articles-table-column-actions').text();
+    let mustacheTemplatePreEntriesTableColumnName = $('.template-pre-entries-table-column-name').text();
+    let mustacheTemplatePreEntriesTableColumnPhone = $('.template-pre-entries-table-column-phone').text();
+    let mustacheTemplatePreEntriesTableColumnEmail = $('.template-pre-entries-table-column-email').text();
+    let mustacheTemplatePreEntriesTableColumnDate = $('.template-pre-entries-table-column-date').text();
+    let mustacheTemplatePreEntriesTableColumnSaltCave = $('.template-pre-entries-table-column-salt-cave').text();
+    let mustacheTemplatePreEntriesTableColumnType = $('.template-pre-entries-table-column-type').text();
+    let mustacheTemplatePreEntriesTableColumnMessage = $('.template-pre-entries-table-column-message').text();
+    let mustacheTemplatePreEntriesTableColumnActions = $('.template-pre-entries-table-column-actions').text();
 
     $preEntriesTable.DataTable({
         info: true,
@@ -34,55 +33,43 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                data: 'created_at',
-                render: (data, type, blog) => Mustache.render(mustacheTemplatePreEntriesTableColumnCreated, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnCreated, {preEntry}),
             },
             {
                 targets: 1,
-                data: 'title',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnTitle, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnName, {preEntry}),
             },
             {
                 targets: 2,
                 sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCategories, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnPhone, {preEntry}),
             },
             {
                 targets: 3,
-                data: 'enable',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnPublished, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnEmail, {preEntry}),
             },
             {
                 targets: 4,
-                data: 'favorite',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnFavorite, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnDate, {preEntry}),
             },
             {
                 targets: 5,
-                data: 'author_id',
                 sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnAuthor, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnSaltCave, {preEntry}),
             },
             {
                 targets: 6,
-                data: 'updated_at',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdated, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnType, {preEntry}),
             },
             {
                 targets: 7,
-                data: 'updater_id',
                 sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdater, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnMessage, {preEntry}),
             },
             {
                 targets: 8,
-                data: 'view_count',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnViewed, {blog}),
-            },
-            {
-                targets: 9,
                 orderable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnActions, {blog}),
+                render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnActions, {preEntry}),
             },
         ],
         order: [[0, 'asc']],
@@ -106,8 +93,7 @@ $(function () {
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
         drawCallback: function (settings) {
-            $('.enable-news-count').text(settings.json.counters.enable_news_count);
-            $('.view-count-total').text(settings.json.counters.view_count_total);
+
         },
     });
 
@@ -122,26 +108,13 @@ $(function () {
         }
     });
 
-    $(document).on('change', '.checkbox', function () {
-        $.ajax({
-            url: $(this).data('href'),
-            type: 'post',
-            success: (response) => {
-                notifyService.showMessage('info', 'Успех!', response.message);
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        });
-    });
-
-    $(document).on('click', '.blog-article-delete', function (e) {
+    $(document).on('click', '.pre-entry-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
         swal({
             title: "Подтвердите удаление",
-            text: "Вы действительно хотите удалить статью?",
+            text: "Вы действительно хотите удалить запись?",
             icon: "warning",
             buttons: ["Отмена", "Да, удалить"],
             dangerMode: true,
@@ -159,14 +132,10 @@ $(function () {
                     },
                 });
 
-                swal("Удаление подтверждено!", "Статья будет удалена.", "success");
+                swal("Удаление подтверждено!", "Запись будет удалена.", "success");
             } else {
-                swal("Удаление отменено!", "Статья не будет удалена.", "error");
+                swal("Удаление отменено!", "Запись не будет удалена.", "error");
             }
         });
-    });
-
-    $('.open-create-form').bind('click', function () {
-        location.href = $(this).data('href');
     });
 });

@@ -81,30 +81,27 @@
         @include('main_admin.pre_entry.columns.created')
     </script>
     <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-name">
-        @include('main_admin.blog.articles.columns.title')
+        @include('main_admin.pre_entry.columns.full_name')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-categories">
-        @include('main_admin.blog.articles.columns.categories')
+    <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-phone">
+        @include('main_admin.pre_entry.columns.phone')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-published">
-        @include('main_admin.blog.articles.columns.published')
+    <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-email">
+        @include('main_admin.pre_entry.columns.email')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-favorite">
-        @include('main_admin.blog.articles.columns.favorite')
+    <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-date">
+        @include('main_admin.pre_entry.columns.date')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-author">
-        @include('main_admin.blog.articles.columns.author')
+    <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-salt-cave">
+        @include('main_admin.pre_entry.columns.salt_cave')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-updated">
-        @include('main_admin.blog.articles.columns.updated')
+    <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-type">
+        @include('main_admin.pre_entry.columns.type')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-updater">
-        @include('main_admin.blog.articles.columns.updater')
+    <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-message">
+        @include('main_admin.pre_entry.columns.message')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-viewed">
-        @include('main_admin.blog.articles.columns.viewed')
-    </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-actions">
-        @include('main_admin.blog.articles.columns.actions')
+    <script type="application/x-tmpl-mustache" class="template-pre-entries-table-column-actions">
+        @include('main_admin.pre_entry.columns.actions')
     </script>
 @endsection

@@ -1,1 +1,1 @@
-@{{ application.created_at }}
+@{{ application.formatCreatedAt }}
