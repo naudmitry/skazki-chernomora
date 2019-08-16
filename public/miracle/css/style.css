@@ -6284,15 +6284,17 @@ ul.filter-categories > li li:last-child {
     left: 0;
     padding: 15px 30px 15px 50px;
     bottom: 20px;
-    background: rgba(255, 255, 255, 0.75);
+    background: #fe6600;
 }
 
 .image .caption-wrapper > *:last-child, .post-slider.style3 .slide-text > *:last-child {
     margin-bottom: 0;
+    color: white;
 }
 
 .image .caption-wrapper .slide-title, .post-slider.style3 .slide-text .slide-title {
     margin-bottom: 5px;
+    color: white;
 }
 
 .owl-item img {
