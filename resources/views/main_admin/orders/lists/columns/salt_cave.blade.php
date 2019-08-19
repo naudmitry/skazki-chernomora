@@ -1,1 +1,1 @@
-@{{order.saltCave.title}}Черноморская сказка
+@{{order.saltCaveTitle}}

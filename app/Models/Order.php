@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Classes\OrderStatus;
+use App\Repositories\Date\DateableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -42,10 +44,16 @@ class Order extends Model
 {
     use SoftDeletes;
     use ShowcasableTrait;
+    use DateableTrait;
 
     protected $appends =
         [
-            'formatCreatedAt'
+            'formatCreatedAt',
+            'formatUpdatedAt',
+            'formatBeginAt',
+            'formatEndAt',
+            'saltCaveTitle',
+            'statusI18n',
         ];
 
     protected $dates =
@@ -60,14 +68,6 @@ class Order extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
-    }
-
-    /**
-     * @return string
-     */
-    public function getFormatCreatedAtAttribute()
-    {
-        return $this->created_at->format('d/m/Y H:i');
     }
 
     /**
@@ -100,5 +100,37 @@ class Order extends Model
     public function histories()
     {
         return $this->hasMany(OrderHistory::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSaltCaveTitleAttribute()
+    {
+        return $this->saltCave->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatBeginAtAttribute()
+    {
+        return $this->begin_at->format('d/m/Y H:i');
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatEndAtAttribute()
+    {
+        return $this->end_at->format('d/m/Y H:i');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusI18nAttribute()
+    {
+        return OrderStatus::$labels[$this->status];
     }
 }

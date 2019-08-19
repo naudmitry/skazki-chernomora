@@ -21,7 +21,7 @@ class CreatePreEntriesTable extends Migration
             $table->string('full_name');
             $table->string('phone_number');
             $table->string('email');
-            $table->timestamp('desired_date');
+            $table->timestamp('desired_at');
             $table->unsignedInteger('salt_cave_id')->index();
             $table->string('type');
             $table->text('message');

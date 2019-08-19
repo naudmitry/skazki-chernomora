@@ -48,7 +48,7 @@ $(function () {
             },
             {
                 targets: 4,
-                data: 'desired_date',
+                data: 'desired_at',
                 render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnSessions, {order}),
             },
             {
