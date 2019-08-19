@@ -10,7 +10,7 @@ class PreEntryCreatedEventListener
 {
     public function handle(PreEntry $preEntry)
     {
-        Mail::to("d.naumov@general-soft.by")
+        Mail::to("baterflai_salon@mail.ru")
             ->send(new PreEntryPlacedEmail($preEntry));
     }
 }
