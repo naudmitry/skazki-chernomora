@@ -2,16 +2,15 @@
 
 namespace App\Listeners;
 
-use App\Models\Admin;
+use App\Mail\PreEntryPlacedEmail;
 use App\Models\PreEntry;
+use Illuminate\Support\Facades\Mail;
 
 class PreEntryCreatedEventListener
 {
-    /**
-     * @param Admin $admin
-     */
     public function handle(PreEntry $preEntry)
     {
-
+        Mail::to("d.naumov@general-soft.by")
+            ->send(new PreEntryPlacedEmail($preEntry));
     }
 }
