@@ -77,6 +77,6 @@ class PreEntry extends Model
      */
     public function getFormatDesiredAtAttribute()
     {
-        return $this->desired_at->format('d/m/Y H:i');
+        return $this->desired_at->format('d/m/Y');
     }
 }
