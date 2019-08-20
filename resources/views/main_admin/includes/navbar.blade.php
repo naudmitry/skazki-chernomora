@@ -21,8 +21,10 @@
             <li class="dropdown">
                 <a class="app-nav__item" href="javascript:;" data-toggle="dropdown">
                     <i class="fas fa-user"></i>
-                    <span>{{ auth('admin')->user()->full_name }}</span>
-                    <i class="fas fa-caret-down"></i>
+                    <div class="d-none d-md-block">
+                        <span>{{ auth('admin')->user()->full_name }}</span>
+                        <i class="fas fa-caret-down"></i>
+                    </div>
                 </a>
 
                 <ul class="app-notification dropdown-menu dropdown-menu-rigth">

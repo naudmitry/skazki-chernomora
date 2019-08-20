@@ -13705,6 +13705,10 @@ be a descendant of the grid when it is being dragged.
   margin-right: 5px;
 }
 
+.app-nav__item div {
+  float: right;
+}
+
 .app-nav__item:hover, .app-nav__item:focus {
   background: rgba(0, 0, 0, 0.1);
   color: #f6f6f6;

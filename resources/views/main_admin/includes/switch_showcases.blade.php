@@ -1,8 +1,10 @@
 <li class="dropdown">
     <a class="app-nav__item" href="javascript:;" data-toggle="dropdown">
         <i class="fas fa-globe-asia button-link-target-blank" data-href="{{ $administeredShowcase->http_origin }}"></i>
-        <span>{{ $administeredShowcase->title }}</span>
-        <i class="fas fa-caret-down"></i>
+        <div class="d-none d-md-block">
+            <span>{{ $administeredShowcase->title }}</span>
+            <i class="fas fa-caret-down"></i>
+        </div>
     </a>
 
     <ul class="app-notification dropdown-menu dropdown-menu-rigth">

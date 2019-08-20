@@ -2,8 +2,10 @@
     <li class="dropdown switch-companies">
         <a class="app-nav__item" href="javascript:;" data-toggle="dropdown">
             <i class="fas fa-globe"></i>
-            <span>{{ $administeredCompany->super ? 'Компании' : $administeredCompany->title }}</span>
-            <i class="fas fa-caret-down"></i>
+            <div class="d-none d-md-block">
+                <span>{{ $administeredCompany->super ? 'Компании' : $administeredCompany->title }}</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
         </a>
 
         <ul class="app-notification dropdown-menu dropdown-menu-rigth">
