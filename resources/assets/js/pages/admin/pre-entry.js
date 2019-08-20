@@ -34,6 +34,7 @@ $(function () {
             {
                 targets: 0,
                 render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnCreated, {preEntry}),
+                width: '10%',
             },
             {
                 targets: 1,
@@ -64,6 +65,7 @@ $(function () {
             {
                 targets: 7,
                 sortable: false,
+                width: '20%',
                 render: (data, type, preEntry) => Mustache.render(mustacheTemplatePreEntriesTableColumnMessage, {preEntry}),
             },
             {
