@@ -17,7 +17,7 @@
                         <div class="form-group row">
                             <label class="control-label col-md-3" for="address">Адрес страницы:</label>
                             <div class="input-group col-md-9">
-                                <div class="input-group-prepend">
+                                <div class="input-group-prepend d-none d-md-block">
                                     <span class="input-group-text">{{ $administeredShowcase->getDomainPath() }}</span>
                                 </div>
                                 <input id="address" name="address" class="form-control" type="text" value="{{ $staticPage->getSlug() ?? '' }}">

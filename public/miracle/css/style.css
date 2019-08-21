@@ -4120,6 +4120,10 @@ ul.filter-categories > li li:last-child {
     margin-bottom: 0;
 }
 
+#header .logo a {
+    font-size: 16px;
+}
+
 @media all and (-webkit-min-device-pixel-ratio: 1.5), all and (-o-min-device-pixel-ratio: 3 / 2), all and (min--moz-device-pixel-ratio: 1.5), all and (min-device-pixel-ratio: 1.5) {
     #header .logo {
         background-image: url("../images/logo@2x.png");
