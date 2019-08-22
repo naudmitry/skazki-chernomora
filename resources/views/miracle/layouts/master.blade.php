@@ -30,7 +30,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('miracle/components/revolution_slider/css/style.css') }}" media="screen" />
 
         <!-- Main Style -->
-        <link id="main-style" rel="stylesheet" href="{{ asset('miracle/css/style.css') }}">
+        <link id="main-style" rel="stylesheet" href="{{ asset('miracle/css/style.css') . '?v=' . time() }}">
 
         <!-- Custom Styles -->
         <link rel="stylesheet" href="{{ asset('miracle/css/custom.css') }}">
@@ -93,7 +93,7 @@
 
         <script type="text/javascript" src="{{ asset('miracle/js/revolution-slider.js') }}"></script>
 
-        <script src="{{ mix('miracle/js/miracle.js') }}"></script>
+        <script src="{{ mix('miracle/js/miracle.js') . '?v=' . time() }}"></script>
 
         @yield('footer__sc')
     </body>

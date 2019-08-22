@@ -12,10 +12,6 @@
     @endforeach
 @endsection
 
-@section('header__ss')
-    <link rel="stylesheet" href="{{ asset('miracle/css/black-header.css') }}">
-@endsection
-
 @section('content')
     <div class="container">
         @if ($saltCaves)
