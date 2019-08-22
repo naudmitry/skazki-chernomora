@@ -10,7 +10,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('vali-admin/logo.png') }}" />
 
         <link rel="stylesheet" href="{{ asset('vali-admin/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') . '?v=' . time() }}">
         <link rel="stylesheet" href="{{ mix('vali-admin/css/app.css') }}">
 
         @yield('header__sc')
@@ -26,7 +26,7 @@
 
         @yield('modal')
 
-        <script src="{{ mix('vali-admin/js/app.js') }}"></script>
+        <script src="{{ mix('vali-admin/js/app.js') . '?v=' . time() }}"></script>
         <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
         <script type="text/javascript" src="{{ asset('vali-admin/plugins/tinymce/tinymce.min.js') }}"></script>
 
