@@ -17,8 +17,8 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $form[0].reset();
-                $form.find('.checkbox').removeClass('checked');
+                $helpDeskForm.closest('section').find('.alert').removeAttr('hidden');
+                $helpDeskForm.closest('.container').attr('hidden', 'hidden');
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
