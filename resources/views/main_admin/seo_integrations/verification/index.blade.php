@@ -1,18 +1,18 @@
-<div class="tab-pane active" id="robots">
+<div class="tab-pane" id="verification">
     <div class="tile">
-        <h4 class="line-head">Robots</h4>
+        <h4 class="line-head">Verification</h4>
 
-        <form autocomplete="off" class="settings-robots-form" method="post" action="{{ route('admin.seo-integrations.save') }}">
+        <form autocomplete="off" class="settings-verification-form" method="post" action="{{ route('admin.seo-integrations.save') }}">
             <div class="form-group row">
-                <label class="col-md-2" for="robots-text">Текст:</label>
+                <label class="col-md-2" for="verification">Текст:</label>
                 <div class="col-md-10">
                     <textarea
-                            id="robots-text"
-                            name="seo-integration:robots-text"
+                            id="verification"
+                            name="seo-integration:verification"
                             rows="10"
                             cols="5"
                             class="form-control"
-                    >{{ $administeredShowcase->config('seo-integration:robots-text') }}</textarea>
+                    >{{ $administeredShowcase->config('seo-integration:verification') }}</textarea>
                 </div>
             </div>
 

@@ -32,11 +32,6 @@ class SettingsSeoIntegrationsController extends Controller
      */
     public function save(Request $request, SettingsRepository $settingsRepository, Showcase $administeredShowcase)
     {
-        $this->validate($request,
-            [
-                'seo-integration:robots-text' => 'required|string',
-            ]);
-
         $settingsRepository->setObject($administeredShowcase);
 
         $data = array_filter(

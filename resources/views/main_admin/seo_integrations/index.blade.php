@@ -17,12 +17,18 @@
                             Robots
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#verification" data-toggle="tab">
+                            Validation
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="col-md-9">
             <div class="tab-content">
                 @include('main_admin.seo_integrations.robots.index')
+                @include('main_admin.seo_integrations.verification.index')
             </div>
         </div>
     </div>

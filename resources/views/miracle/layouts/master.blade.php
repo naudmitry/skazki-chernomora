@@ -5,10 +5,8 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {{--vitebsk.skazki-chernomora--}}
-        <meta name="yandex-verification" content="9487674887a0e274" />
-        {{--skazki-chernomora--}}
-        <meta name="yandex-verification" content="07a144f21247985e" />
+        {!! $currentShowcase->config('seo-integration:verification') !!}
+
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('miracle/images/favicon.ico') }}" />
 
         <!-- Theme Styles -->

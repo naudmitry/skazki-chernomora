@@ -36,7 +36,7 @@ var PageService =
             }
         },
         init: function () {
-            $(document).on('submit', '.settings-robots-form', function (e) {
+            $(document).on('submit', '.settings-robots-form, .settings-verification-form', function (e) {
                 e.preventDefault();
                 PageService.save(this);
                 return false;
