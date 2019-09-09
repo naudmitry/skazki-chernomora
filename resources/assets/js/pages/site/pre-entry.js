@@ -1,7 +1,7 @@
 $(function () {
-    let $appoinmentSection = $('.make-appointment-section');
+    let $appointmentSection = $('.make-appointment-section');
 
-    if (!$appoinmentSection.length) {
+    if (!$appointmentSection.length) {
         return;
     }
 
@@ -17,8 +17,8 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $form[0].reset();
-                $form.find('.checkbox').removeClass('checked');
+                $appointmentSection.closest('section').find('.alert').removeAttr('hidden');
+                $appointmentSection.closest('.container').attr('hidden', 'hidden');
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
