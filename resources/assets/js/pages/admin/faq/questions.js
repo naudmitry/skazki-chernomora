@@ -85,7 +85,7 @@ $(function () {
                 render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnActions, {faq}),
             },
         ],
-        order: [[0, 'asc']],
+        order: [[0, 'desc']],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
         language: {
             processing: "Подождите...",
