@@ -19,7 +19,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#verification" data-toggle="tab">
-                            Validation
+                            Verification
                         </a>
                     </li>
                 </ul>
