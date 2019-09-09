@@ -1,4 +1,9 @@
 <section id="content" data-widget="{{ $widget_class }}">
+    <div class="alert alert-success" hidden>
+        <p>Спасибо, ваша заявка принята и в скором времени будет обработана нашим менеджером. С вами свяжутся по телефону или электронной почте.</p>
+        <span class="close"></span>
+    </div>
+
     <div class="container">
         <div class="col-md-8 center-block text-center block application-section">
             <div class="heading-box">
