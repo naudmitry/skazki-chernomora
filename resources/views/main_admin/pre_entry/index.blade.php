@@ -17,30 +17,30 @@
                                     <i class="far fa-file-alt"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="enable-news-count">0</p>
-                                    <p>статей онлайн</p>
+                                    <p class="total-count">{{ array_get($counters, 'total_count', 0) }}</p>
+                                    <p>всего записей</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
                                 <div class="circle-icon">
-                                    <i class="far fa-file-alt"></i>
+                                    <i class="fas fa-star-of-life"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="enable-news-count">0</p>
-                                    <p>статей онлайн</p>
+                                    <p class="fist-count">{{ array_get($counters, 'first_count', 0) }}</p>
+                                    <p>первое посещение</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
                                 <div class="circle-icon">
-                                    <i class="fas fa-eye"></i>
+                                    <i class="fas fa-redo"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="view-count-total">0</p>
-                                    <p>всего просмотров</p>
+                                    <p class="repeated-count">{{ array_get($counters, 'repeated_count', 0) }}</p>
+                                    <p>повторное посещение</p>
                                 </div>
                             </div>
                         </div>

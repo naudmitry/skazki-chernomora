@@ -22,7 +22,7 @@
                                     <i class="far fa-file-alt"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="enable-news-count"><b>{{ array_get($counters, 'enable_news_count', 0) }}</b></p>
+                                    <p class="enable-news-count">{{ array_get($counters, 'enable_news_count', 0) }}</p>
                                     <p>статей онлайн</p>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                     <i class="fas fa-eye"></i>
                                 </div>
                                 <div class="info">
-                                    <p class="view-count-total"><b>{{ array_get($counters, 'view_count_total', 0) }}</b></p>
+                                    <p class="view-count-total">{{ array_get($counters, 'view_count_total', 0) }}</p>
                                     <p>всего просмотров</p>
                                 </div>
                             </div>

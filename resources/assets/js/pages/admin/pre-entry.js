@@ -95,7 +95,9 @@ $(function () {
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
         drawCallback: function (settings) {
-
+            $('.total-count').text(settings.json.counters.total_count);
+            $('.first-count').text(settings.json.counters.first_count);
+            $('.repeated-count').text(settings.json.counters.repeated_count);
         },
     });
 
@@ -106,7 +108,7 @@ $(function () {
 
     $(document).on('keyup', '.search', function (e) {
         if (e.keyCode == 13) {
-            $('#blogArticlesTable').DataTable().search(this.value).draw();
+            $('#preEntryTable').DataTable().search(this.value).draw();
         }
     });
 

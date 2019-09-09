@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\TypeVisitEnum;
 use App\Models\PreEntry;
 use App\Models\Showcase;
 use Illuminate\Http\Request;
@@ -22,12 +23,20 @@ class PreEntryController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
+        $counters =
+            [
+                'total_count' => (clone $preEntries)->count(),
+                'first_count' => (clone $preEntries)->where('type', TypeVisitEnum::FIRST)->count(),
+                'repeated_count' => (clone $preEntries)->where('type', TypeVisitEnum::REPEATED)->count(),
+            ];
+
         if ($request->ajax()) {
             return Datatables::of($preEntries)
+                ->with(compact('counters'))
                 ->make(true);
         }
 
-        return view('main_admin.pre_entry.index');
+        return view('main_admin.pre_entry.index', compact('counters'));
     }
 
     /**
