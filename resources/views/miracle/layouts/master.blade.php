@@ -58,6 +58,8 @@
             @include('miracle.vendor.footer')
         </div>
 
+        @include('miracle.modals.review')
+
         <!-- Javascript -->
         <script type="text/javascript" src="{{ asset('miracle/js/jquery-2.1.3.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('miracle/js/jquery.noconflict.js') }}"></script>

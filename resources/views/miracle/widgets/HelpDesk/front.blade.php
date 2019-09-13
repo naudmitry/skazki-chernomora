@@ -10,7 +10,7 @@
                 <h2 class="box-title">{{ $setting->title }}</h2>
                 <p class="desc-lg">{{ $setting->subtitle }}</p>
             </div>
-            <form autocomplete="off" class="helpdesk-form" action="{{ route('front.helpdesk.save') }}" method="post">
+            <form autocomplete="off" class="helpdesk-form" action="{{ route('site.helpdesk.save') }}" method="post">
                 {{ csrf_field() }}
 
                 <div class="row">

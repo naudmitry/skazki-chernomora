@@ -27,7 +27,6 @@ class ReviewRequest extends FormRequest
             'customer_name' => 'required|string',
             'review' => 'required|string',
             'rating' => 'required|integer',
-            'reply' => 'required|string',
         ];
     }
 }

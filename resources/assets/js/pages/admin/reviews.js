@@ -61,7 +61,7 @@ $(function () {
                 render: (data, type, review) => Mustache.render(mustacheTemplateReviewsTableColumnActions, {review}),
             },
         ],
-        order: [[0, 'asc']],
+        order: [[0, 'desc']],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
         language: {
             processing: "Подождите...",

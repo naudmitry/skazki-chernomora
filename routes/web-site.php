@@ -6,10 +6,16 @@ Route::get('/',
         'as' => 'site.index',
     ])->middleware('geoIpRedirect');
 
+Route::post('review/save',
+    [
+        'uses' => 'Site\ReviewController@save',
+        'as'   => 'site.review.save'
+    ]);
+
 Route::post('pre-entry/save',
     [
         'uses' => 'Site\PreEntryController@save',
-        'as'   => 'front.pre-entry.save'
+        'as'   => 'site.pre-entry.save'
     ]);
 
 Route::post('application/save',
@@ -21,7 +27,7 @@ Route::post('application/save',
 Route::post('helpdesk/save',
     [
         'uses' => 'Site\HelpDeskController@save',
-        'as'   => 'front.helpdesk.save'
+        'as'   => 'site.helpdesk.save'
     ]);
 
 Route::get('{slug}',

@@ -10,7 +10,7 @@
                 <h2 class="box-title">{{ $setting->title }}</h2>
             </div>
 
-            <form autocomplete="off" class="pre-entry-form" action="{{ route('front.pre-entry.save') }}" method="post">
+            <form autocomplete="off" class="pre-entry-form" action="{{ route('site.pre-entry.save') }}" method="post">
                 {{ csrf_field() }}
 
                 <div class="form-group column-2 no-column-bottom-margin">
