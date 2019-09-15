@@ -32,12 +32,12 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         ], function () {
 
             Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_ROLES], function () {
-                Route::get('roles', ['uses' => 'Admin\RoleController@index', 'as' => 'admin.roles']);
-                Route::get('/role/edit/{role?}', ['uses' => 'Admin\RoleController@edit', 'as' => 'admin.role.edit'])
+                Route::get('staff/roles', ['uses' => 'Admin\RoleController@index', 'as' => 'admin.staff.roles']);
+                Route::get('staff/role/edit/{role?}', ['uses' => 'Admin\RoleController@edit', 'as' => 'admin.staff.role.edit'])
                     ->where('category', '[0-9]+');
-                Route::post('role/save/{role?}', ['uses' => 'Admin\RoleController@save', 'as' => 'admin.role.save',])
+                Route::post('staff/role/save/{role?}', ['uses' => 'Admin\RoleController@save', 'as' => 'admin.staff.role.save',])
                     ->where('role', '[0-9]+');
-                Route::delete('role/delete/{role?}', ['uses' => 'Admin\RoleController@delete', 'as' => 'admin.role.delete',])
+                Route::delete('staff/role/delete/{role?}', ['uses' => 'Admin\RoleController@delete', 'as' => 'admin.staff.role.delete',])
                     ->where('role', '[0-9]+');
             });
 

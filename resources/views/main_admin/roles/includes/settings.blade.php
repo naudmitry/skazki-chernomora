@@ -1,7 +1,7 @@
 <div class="tile admin-role-settings-container" data-admin-role-id="{{ $role->id ?? '' }}">
     <h4 class="line-head">Настройки</h4>
 
-    <form class="admin-role-settings-form" method="post" action="{{ route('admin.role.save', $role) }}">
+    <form class="admin-role-settings-form" method="post" action="{{ route('admin.staff.role.save', $role) }}">
         <div class="form-group row">
             <div class="col-md-3">
                 <label class="control-label">Название:</label>

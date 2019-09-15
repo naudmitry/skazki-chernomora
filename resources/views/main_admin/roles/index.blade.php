@@ -21,7 +21,7 @@
                     <button
                             class="btn btn-primary admin-role-settings-open"
                             type="button"
-                            href="{{ route('admin.role.edit') }}"
+                            href="{{ route('admin.staff.role.edit') }}"
                     ><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Добавить</button>
                 </div>
             </div>

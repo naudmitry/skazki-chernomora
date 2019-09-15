@@ -1,5 +1,7 @@
 require('./bootstrap');
 
+$('.app-sidebar').scrollTo('.scroll-here', 300, {offset: -100});
+
 require('./pages/admin/main');
 require('./pages/admin/swith-companies');
 require('./pages/admin/blog');

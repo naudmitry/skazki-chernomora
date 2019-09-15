@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-require('./pages/site/pre-entry');
-require('./pages/site/help-desks');
-require('./pages/site/application');
-require('./pages/site/review');
+require('./pages/miracle/pre-entry');
+require('./pages/miracle/help-desks');
+require('./pages/miracle/application');
+require('./pages/miracle/review');

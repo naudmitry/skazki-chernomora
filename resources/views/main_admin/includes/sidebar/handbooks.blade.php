@@ -14,7 +14,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.ad-source.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.ad-source.*')) active scroll-here @endif"
                 href="{{ route('admin.ad-source.list.index') }}"
             ><i class="app-menu__icon fas fa-ad"></i><span class="app-menu__label">Источники рекламы</span></a>
         </li>
@@ -23,7 +23,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.diagnosis.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.diagnosis.*')) active scroll-here @endif"
                 href="{{ route('admin.diagnosis.list.index') }}"
             ><i class="app-menu__icon fas fa-diagnoses"></i><span class="app-menu__label">Диагнозы</span></a>
         </li>
@@ -32,7 +32,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.complaint.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.complaint.*')) active scroll-here @endif"
                 href="{{ route('admin.complaint.list.index') }}"
             ><i class="app-menu__icon fas fa-notes-medical"></i><span class="app-menu__label">Жалобы</span></a>
         </li>
@@ -41,7 +41,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS, $administeredCompany))
         <li>
             <a
-                    class="app-menu__item @if (Route::is('admin.subscription.*')) active @endif"
+                    class="app-menu__item @if (Route::is('admin.subscription.*')) active scroll-here @endif"
                     href="{{ route('admin.subscription.index') }}"
             ><i class="app-menu__icon fas fa-ticket-alt"></i><span class="app-menu__label">Абонементы</span></a>
         </li>
@@ -50,7 +50,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS, $administeredCompany))
         <li>
             <a
-                    class="app-menu__item @if (Route::is('admin.organization.*')) active @endif"
+                    class="app-menu__item @if (Route::is('admin.organization.*')) active scroll-here @endif"
                     href="{{ route('admin.organization.index') }}"
             ><i class="app-menu__icon fas fa-building"></i><span class="app-menu__label">Организации</span></a>
         </li>
@@ -59,7 +59,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES, $administeredCompany))
         <li>
             <a
-                    class="app-menu__item @if (Route::is('admin.salt-caves.*')) active @endif"
+                    class="app-menu__item @if (Route::is('admin.salt-caves.*')) active scroll-here @endif"
                     href="{{ route('admin.salt-caves.index') }}"
             ><i class="app-menu__icon fas fa-store-alt"></i><span class="app-menu__label">Соляные пещеры</span></a>
         </li>

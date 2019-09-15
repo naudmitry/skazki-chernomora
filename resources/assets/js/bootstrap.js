@@ -20,6 +20,7 @@ require('jquery-ui/ui/i18n/datepicker-ru');
 require('bootstrap');
 require('select2/dist/js/select2.full');
 require('bootstrap-notify');
+require('jquery.scrollto');
 
 window.Mustache = require('mustache');
 window.DataTable = require('datatables.net-bs4');

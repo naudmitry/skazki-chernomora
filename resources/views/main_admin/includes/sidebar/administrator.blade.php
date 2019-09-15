@@ -16,7 +16,7 @@
         App\Classes\AdminComponentEnum::COMPANY_ADMIN_LIST,
         App\Classes\AdminComponentEnum::COMPANY_ADMIN_ROLES,
     ], $administeredCompany))
-        <li class="treeview @if (Route::is('admin.staff.*') || Route::is('admin.roles')) is-expanded @endif">
+        <li class="treeview @if (Route::is('admin.staff.*')) is-expanded scroll-here @endif">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon far fa-file-alt"></i>
                 <span class="app-menu__label">Персонал</span>
@@ -25,7 +25,6 @@
 
             <ul class="treeview-menu">
                 @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ADMIN_LIST, $administeredCompany))
-
                     <li>
                         <a
                             class="treeview-item @if (Route::is('admin.staff.list.*')) active @endif"
@@ -37,8 +36,8 @@
                 @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ADMIN_ROLES, $administeredCompany))
                     <li>
                         <a
-                            class="treeview-item @if (Route::is('admin.roles')) active @endif"
-                            href="{{ route('admin.roles') }}"
+                            class="treeview-item @if (Route::is('admin.staff.roles')) active @endif"
+                            href="{{ route('admin.staff.roles') }}"
                         ><i class="icon far fa-circle"></i>Роли</a>
                     </li>
                 @endif
@@ -57,7 +56,7 @@
 
     <li>
         <a
-            class="app-menu__item @if (Route::is('admin.companies.*')) active @endif"
+            class="app-menu__item @if (Route::is('admin.companies.*')) active scroll-here @endif"
             href="{{ route('admin.companies.lists.index') }}"
         ><i class="app-menu__icon fas fa-list"></i><span class="app-menu__label">Компании</span></a>
     </li>
@@ -74,7 +73,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ADMIN_SHOWCASES, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.showcases.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.showcases.*')) active scroll-here @endif"
                 href="{{ route('admin.showcases.index') }}"
             ><i class="app-menu__icon fas fa-map-marker-alt"></i><span class="app-menu__label">Сайты</span></a>
         </li>

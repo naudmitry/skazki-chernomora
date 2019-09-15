@@ -6,12 +6,12 @@
     <div class="btn-group">
         <a
             class="btn btn-primary admin-role-settings-open"
-            href="{{ route('admin.role.edit', $role) }}"
+            href="{{ route('admin.staff.role.edit', $role) }}"
         ><i class="fas fa-edit"></i></a>
 
         <a
             class="btn btn-primary admin-role-delete"
-            href="{{ route('admin.role.delete', $role) }}"
+            href="{{ route('admin.staff.role.delete', $role) }}"
         ><i class="fas fa-trash"></i></a>
     </div>
 </div>

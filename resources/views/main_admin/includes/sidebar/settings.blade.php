@@ -10,7 +10,7 @@
     @if ($administerableShowcases->count() && auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_SETTINGS_GENERAL, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.settings.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.settings.*')) active scroll-here @endif"
                 href="{{ route('admin.settings.index') }}"
             ><i class="app-menu__icon fas fa-cog"></i><span class="app-menu__label">Общие</span></a>
         </li>
@@ -28,7 +28,7 @@
     @if ($administerableShowcases->count() && auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_SETTINGS_SEO_INTEGRATION, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.seo-integrations.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.seo-integrations.*')) active scroll-here @endif"
                 href="{{ route('admin.seo-integrations.index') }}"
             ><i class="app-menu__icon fas fa-chart-line"></i><span class="app-menu__label">SEO & интеграция</span></a>
         </li>

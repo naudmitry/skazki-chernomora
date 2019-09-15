@@ -10,7 +10,7 @@
     </li>
 
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_CONTENT_BLOG, $administeredCompany))
-        <li class="treeview @if (Route::is('admin.blog.*')) is-expanded @endif">
+        <li class="treeview @if (Route::is('admin.blog.*')) is-expanded scroll-here @endif">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fas fa-newspaper"></i>
                 <span class="app-menu__label">Новости</span>

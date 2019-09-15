@@ -11,7 +11,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ORDERS_LIST, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.order.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.order.*')) active scroll-here @endif"
                 href="{{ route('admin.order.list.index') }}"
             ><i class="app-menu__icon fas fa-shopping-cart"></i><span class="app-menu__label">Абонементы</span></a>
         </li>
@@ -20,7 +20,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.pre-entry.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.pre-entry.*')) active scroll-here @endif"
                 href="{{ route('admin.pre-entry.index') }}"
             ><i class="app-menu__icon fas fa-list"></i><span class="app-menu__label">Запись на прием</span></a>
         </li>
@@ -29,7 +29,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ORDERS_APPLICATIONS, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.application.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.application.*')) active scroll-here @endif"
                 href="{{ route('admin.application.index') }}"
             ><i class="app-menu__icon fas fa-marker"></i><span class="app-menu__label">Заявки</span></a>
         </li>
