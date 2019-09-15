@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Classes\ReviewStatusEnum;
+use App\Repositories\Date\DateableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,11 +34,13 @@ class Review extends Model
 {
     use SoftDeletes;
     use ShowcasableTrait;
+    use DateableTrait;
 
     protected $appends =
         [
             'ratingStars',
-            'transStatus'
+            'transStatus',
+            'formatCreatedAt'
         ];
 
     /**

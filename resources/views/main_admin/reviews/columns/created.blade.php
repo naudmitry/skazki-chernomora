@@ -1,4 +1,4 @@
 <div>
-    @{{review.created_at}}
+    @{{review.formatCreatedAt}}
 </div>
 @{{review.ip}}

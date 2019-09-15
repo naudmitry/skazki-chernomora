@@ -44,6 +44,7 @@ $(function () {
             },
             {
                 targets: 3,
+                width: '10%',
                 render: (data, type, review) => Mustache.render(mustacheTemplateReviewsTableColumnRating, {review}),
             },
             {
