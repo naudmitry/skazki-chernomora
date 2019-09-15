@@ -136,7 +136,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_PAGES], function () {
                 Route::post('/static-page/save/{staticPage}', ['uses' => 'Admin\PageController@saveStaticPage', 'as' => 'admin.static.page.save'])
                     ->where('staticPage', '[0-9]+');
-                Route::get('/pages', ['uses' => 'Admin\PageController@index', 'as' => 'admin.page.list.index']);
+                Route::get('/page/list', ['uses' => 'Admin\PageController@index', 'as' => 'admin.page.list.index']);
                 Route::get('/page/create', ['uses' => 'Admin\PageController@create', 'as' => 'admin.page.list.create']);
                 Route::get('/page/edit/{page}', ['uses' => 'Admin\PageController@edit', 'as' => 'admin.page.list.edit'])
                     ->where('page', '[0-9]+');

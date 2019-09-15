@@ -43,7 +43,7 @@
     @endif
 
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_CONTENT_FAQ, $administeredCompany))
-        <li class="treeview @if (Route::is('admin.faq.*')) is-expanded @endif">
+        <li class="treeview @if (Route::is('admin.faq.*')) is-expanded scroll-here @endif">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fas fa-question"></i>
                 <span class="app-menu__label">FAQ</span>
@@ -76,7 +76,7 @@
     @endif
 
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_CONTENT_PAGES, $administeredCompany))
-        <li class="treeview @if (Route::is('admin.page.*')) is-expanded @endif">
+        <li class="treeview @if (Route::is('admin.page.*')) is-expanded scroll-here @endif">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon far fa-file-alt"></i>
                 <span class="app-menu__label">Страницы</span>
@@ -102,14 +102,14 @@
 
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.main.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.main.*')) active scroll-here @endif"
                 href="{{ route('admin.main.index') }}"
             ><i class="app-menu__icon fas fa-home"></i><span class="app-menu__label">Главная</span></a>
         </li>
 
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.contacts.*')) active @endif"
+                class="app-menu__item @if (Route::is('admin.contacts.*')) active scroll-here @endif"
                 href="{{ route('admin.contacts.index') }}"
             ><i class="app-menu__icon fas fa-address-book"></i><span class="app-menu__label">Контакты</span></a>
         </li>
@@ -118,14 +118,14 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_CONTENT_BLOCKS, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.header')) active @endif"
+                class="app-menu__item @if (Route::is('admin.header')) active scroll-here @endif"
                 href="{{ route('admin.header') }}"
             ><i class="app-menu__icon fas fa-chess-queen"></i><span class="app-menu__label">Header</span></a>
         </li>
 
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.footer')) active @endif"
+                class="app-menu__item @if (Route::is('admin.footer')) active scroll-here @endif"
                 href="{{ route('admin.footer') }}"
             ><i class="app-menu__icon fas fa-shoe-prints"></i><span class="app-menu__label">Footer</span></a>
         </li>
