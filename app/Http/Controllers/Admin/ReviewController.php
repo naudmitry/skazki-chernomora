@@ -44,7 +44,7 @@ class ReviewController extends Controller
             [
                 'positive_count' => (clone $reviewsQuery)->where('rating', '>', 3)->count(),
                 'negative_count' => (clone $reviewsQuery)->where('rating', '<=', 3)->count(),
-                'average_rating' => (clone $reviewsQuery)->avg('rating'),
+                'average_rating' => round((clone $reviewsQuery)->avg('rating'), 2),
             ];
 
         if ($request->ajax()) {

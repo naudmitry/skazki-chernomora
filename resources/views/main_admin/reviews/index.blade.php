@@ -11,7 +11,7 @@
             <div class="tile">
                 <div class="tile-body mb-4">
                     <div class="row">
-                        <div class="col-md-6 col-lg-3">
+                        <div class="col-md-6 col-lg-2">
                             <button href="{{ route('admin.review.modal') }}" class="btn btn-primary open-review-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="info">
                                     <p class="negative-count">0</p>
-                                    <p>негативных отзывов</p>
+                                    <p>негативных</p>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="info">
                                     <p class="positive-count">0</p>
-                                    <p>позитивных отзывов</p>
+                                    <p>позитивных</p>
                                 </div>
                             </div>
                         </div>
@@ -45,11 +45,11 @@
                                 </div>
                                 <div class="info">
                                     <p class="average-rating">0</p>
-                                    <p>среднее значение</p>
+                                    <p>среднее</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3 mt-2">
+                        <div class="col-md-6 col-lg-4 mt-2">
                             <input class="form-control form-control-sm search" placeholder="Введите и нажмите Enter..." />
                         </div>
                     </div>
