@@ -12065,7 +12065,7 @@ body.woocommerce select:not(.default-style) + .customSelect .customSelectInner:b
 }
 
 .checkbox p {
-    margin: 0 !important;
+    margin-top: -20px !important;
 }
 
 .has-error {
