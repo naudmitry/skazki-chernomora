@@ -34,6 +34,7 @@ return [
     'MakeAppointment.title' => 'Запись на прием',
     'Application.title' => 'Заявка',
     'Reviews.title' => 'Отзывы',
+    'ReviewForm.title' => 'Форма - оставить отзыв',
 
     'FullwidthSliderGallery.title' => 'Галерея (слайдер на всю ширину)',
     'MetroGallery1.title' => 'Галерея (стиль 1)',

@@ -33,6 +33,7 @@ class WidgetRepository
                             MiracleWidgets\Video::class => ['location' => 'middle'],
                             MiracleWidgets\AnimatedInfographicPies::class => ['location' => 'middle'],
                             MiracleWidgets\Reviews::class => ['location' => 'middle', 'single' => true],
+                            MiracleWidgets\ReviewForm::class => ['location' => 'middle', 'single' => true],
 
                             MiracleWidgets\FullwidthSliderGallery::class => ['location' => 'middle'],
                             MiracleWidgets\MetroGallery1::class => ['location' => 'middle'],

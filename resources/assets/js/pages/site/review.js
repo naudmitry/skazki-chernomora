@@ -4,10 +4,6 @@ $(function () {
     if (!$reviewForm.length) {
         return;
     }
-    //
-    // $('#reviewModal').modal({
-    //     keyboard: false
-    // });
 
     $(document).on('submit', '.send-review-form', function (e) {
         e.preventDefault();
@@ -21,8 +17,8 @@ $(function () {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: response => {
-                $reviewForm[0].reset();
-                $('#reviewModal').modal('hide');
+                $reviewForm.closest('section').find('.alert').removeAttr('hidden');
+                $reviewForm.closest('.container').attr('hidden', 'hidden');
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
