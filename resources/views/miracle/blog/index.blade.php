@@ -47,7 +47,6 @@
                                 </div>
                                 <div class="post-content no-author-img">
                                     <div class="post-meta">
-                                        <span class="entry-author fn">{{ $blog->author->full_name ?? '' }}</span>
                                         <span class="entry-time"><span class="published">{{ $blog->getFormatCreatedAtAttribute() }}</span></span>
                                     </div>
                                     <h3 class="entry-title"><a href="{{ $blog->getRoute() }}">{{ $blog->name }}</a></h3>
