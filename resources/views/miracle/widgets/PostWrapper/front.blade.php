@@ -19,7 +19,7 @@
     </div>
     <div class="title-section">
         <div class="title-section-wrapper">
-            <div class="container">
+            <div class="container hidden-xs">
                 <p>{{ $setting->title }}</p>
             </div>
         </div>

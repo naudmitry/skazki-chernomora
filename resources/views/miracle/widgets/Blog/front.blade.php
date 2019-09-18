@@ -18,7 +18,6 @@
                         </div>
                         <div class="post-content">
                             <div class="post-meta">
-                                <span class="entry-author fn">{{ $blog->author->full_name ?? '' }}</span>
                                 <span class="entry-time"><span class="updated no-display">{{ $blog->getFormatUpdatedAtAttribute() }}</span><span class="published">{{ $blog->getFormatCreatedAtAttribute() }}</span></span>
                             </div>
                             <h3 class="entry-title"><a href="{{ $blog->getRoute() }}">{{ mb_strimwidth($blog->name, 0, 24, "...") }}</a></h3>
