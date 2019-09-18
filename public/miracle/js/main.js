@@ -964,7 +964,7 @@ function initPostFullContentHeight() {
                             rightCount++;
                         }
                     });
-                    if (rightCount == 0) {
+                    if (rightCount == 0 && offsetLeft > 0) {
                         $isoContainer.addClass("layout-responsive-single");
                         $isoContainer.find(".iso-item").removeClass("col-left");
                         $isoContainer.find(".iso-item").addClass("col-right");
