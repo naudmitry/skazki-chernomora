@@ -11,7 +11,6 @@
                     </div>
                     <span class="portfolio-action">
                         <a href="{{ $item->image_link }}" class="soap-mfp-popup"><i class="fa fa-eye has-circle"></i></a>
-                        <a href="#"><i class="fa fa-chain has-circle"></i></a>
                     </span>
                 </div>
             </article>
