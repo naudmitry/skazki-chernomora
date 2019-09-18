@@ -10,7 +10,8 @@ class HelpDesk extends AbstractContentWidget
         [
             'title' => '',
             'subtitle' => '',
-            'text' => ''
+            'text' => '',
+            'padding' => ''
         ];
 
     /**
@@ -25,6 +26,7 @@ class HelpDesk extends AbstractContentWidget
                 'title' => 'required|string',
                 'subtitle' => 'required|string',
                 'text' => 'required|string',
+                'padding' => 'string',
             ],
             [],
             [

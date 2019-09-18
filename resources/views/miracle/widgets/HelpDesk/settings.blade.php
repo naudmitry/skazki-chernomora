@@ -30,7 +30,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4" for="textarea">Текст подтверждения:</label>
+                <label class="control-label col-md-4" for="textarea-0">Текст подтверждения:</label>
                 <div class="col-md-8 content-group">
                     <textarea
                             id="textarea-0"
@@ -39,6 +39,19 @@
                             class="widget-setting required"
                             required
                     >{{ $widget_setting->text ?? '' }}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="padding">Отступы:</label>
+                <div class="col-md-8">
+                    <input
+                            id="padding"
+                            name="padding"
+                            data-setting="padding"
+                            class="form-control widget-setting"
+                            type="text"
+                            value="{{ $widget_setting->padding ?? '' }}">
                 </div>
             </div>
 

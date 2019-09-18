@@ -1,4 +1,4 @@
-<section id="content" data-widget="{{ $widget_class }}">
+<section id="content" data-widget="{{ $widget_class }}" @if (isset($setting->padding) && strlen($setting->padding) > 0) style="padding: {{ $setting->padding }}" @endif>
     <div class="alert alert-success" hidden>
         <p>Спасибо, ваша заявка принята и в скором времени будет обработана нашим менеджером. При необходимости с вами свяжутся по телефону или электронной почте.</p>
         <span class="close"></span>
