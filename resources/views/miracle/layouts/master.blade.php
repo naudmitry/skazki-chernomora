@@ -59,39 +59,39 @@
         </div>
 
         <!-- Javascript -->
-        <script type="text/javascript" src="{{ asset('miracle/js/jquery-2.1.3.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('miracle/js/jquery.noconflict.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('miracle/js/modernizr.2.8.3.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('miracle/js/jquery-migrate-1.2.1.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('miracle/js/jquery-ui.1.11.2.min.js') }}"></script>
+        <script src="{{ asset('miracle/js/jquery-2.1.3.min.js') }}"></script>
+        <script src="{{ asset('miracle/js/jquery.noconflict.js') }}"></script>
+        <script src="{{ asset('miracle/js/modernizr.2.8.3.min.js') }}"></script>
+        <script src="{{ asset('miracle/js/jquery-migrate-1.2.1.min.js') }}"></script>
+        <script src="{{ asset('miracle/js/jquery-ui.1.11.2.min.js') }}"></script>
 
         <!-- Twitter Bootstrap -->
-        <script type="text/javascript" src="{{ asset('miracle/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('miracle/js/bootstrap.min.js') }}"></script>
 
         <!-- Magnific Popup core JS file -->
-        <script type="text/javascript" src="{{ asset('miracle/components/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('miracle/components/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 
         <!-- parallax -->
-        <script type="text/javascript" src="{{ asset('miracle/js/jquery.stellar.min.js') }}"></script>
+        <script src="{{ asset('miracle/js/jquery.stellar.min.js') }}"></script>
 
         <!-- waypoint -->
-        <script type="text/javascript" src="{{ asset('miracle/js/waypoints.min.js') }}"></script>
+        <script src="{{ asset('miracle/js/waypoints.min.js') }}"></script>
 
         <!-- Owl Carousel -->
-        <script type="text/javascript" src="{{ asset('miracle/components/owl-carousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('miracle/components/owl-carousel/owl.carousel.min.js') }}"></script>
 
         <!-- load revolution slider scripts -->
-        <script type="text/javascript" src="{{ asset('miracle/components/revolution_slider/js/jquery.themepunch.tools.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('miracle/components/revolution_slider/js/jquery.themepunch.revolution.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('miracle/components/mediaelement/mediaelement-and-player.js') }}"></script>
+        <script src="{{ asset('miracle/components/revolution_slider/js/jquery.themepunch.tools.min.js') }}"></script>
+        <script src="{{ asset('miracle/components/revolution_slider/js/jquery.themepunch.revolution.min.js') }}"></script>
+        <script src="{{ asset('miracle/components/mediaelement/mediaelement-and-player.js') }}"></script>
 
         <!-- plugins -->
-        <script type="text/javascript" src="{{ asset('miracle/js/jquery.plugins.js') }}"></script>
+        <script src="{{ asset('miracle/js/jquery.plugins.js') }}"></script>
 
         <!-- load page Javascript -->
-        <script type="text/javascript" src="{{ asset('miracle/js/main.js') }}"></script>
+        <script src="{{ asset('miracle/js/main.js') }}"></script>
 
-        <script type="text/javascript" src="{{ asset('miracle/js/revolution-slider.js') }}"></script>
+        <script src="{{ asset('miracle/js/revolution-slider.js') }}"></script>
 
         <script src="{{ mix('miracle/js/miracle.js') . '?v=' . time() }}"></script>
 

@@ -9,6 +9,7 @@ class ReviewForm extends AbstractContentWidget
     protected $defaultSettings =
         [
             'title' => '',
+            'padding' => ''
         ];
 
     /**
@@ -21,6 +22,7 @@ class ReviewForm extends AbstractContentWidget
             $validatedData,
             [
                 'title' => 'required|string',
+                'padding' => 'string',
             ],
             [],
             [

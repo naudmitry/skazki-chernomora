@@ -18,6 +18,19 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label class="control-label col-md-4" for="padding">Отступы:</label>
+                <div class="col-md-8">
+                    <input
+                            id="padding"
+                            name="padding"
+                            data-setting="padding"
+                            class="form-control widget-setting"
+                            type="text"
+                            value="{{ $widget_setting->padding ?? '' }}">
+                </div>
+            </div>
+
             <div class="tile-footer">
                 <button class="btn btn-default save-settings" disabled>
                     <i class="fas fa-check-circle mr-2"></i>Сохранить

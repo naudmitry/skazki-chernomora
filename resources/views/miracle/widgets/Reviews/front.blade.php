@@ -2,7 +2,7 @@
     <div class="container">
         <div class="heading-box">
             <h2 class="box-title">{{ $setting->title }}</h2>
-            <p class="desc-lg">{!! $setting->subtitle !!}</p>
+            <p class="desc-lg">{{ $setting->subtitle }}</p>
         </div>
         <div class="testimonials style1 owl-carousel box-lg" data-transitionstyle="fade">
             @foreach ($reviews as $review)
