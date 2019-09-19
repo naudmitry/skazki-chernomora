@@ -55,6 +55,11 @@ $(function()
         return;
     }
 
+    $('.select2').select2({
+        width: '100%',
+        minimumResultsForSearch: -1
+    });
+
     require('./general/geo-ip');
 
     PageService.init();

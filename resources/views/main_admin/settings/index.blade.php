@@ -19,17 +19,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#geo-ip" data-toggle="tab">
-                            Geo-ip
+                            Местоположение
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="tab">
-                            Социальные сети
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="tab">
-                            Бухгалтерские данные
+                        <a class="nav-link" href="#styles" data-toggle="tab">
+                            Оформление
                         </a>
                     </li>
                 </ul>
@@ -39,6 +34,7 @@
             <div class="tab-content">
                 @include('main_admin.settings.general.index')
                 @include('main_admin.settings.geo-ip.index')
+                @include('main_admin.settings.styles.index')
             </div>
         </div>
     </div>

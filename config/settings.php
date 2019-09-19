@@ -14,8 +14,12 @@ return
                 \App\Models\Showcase::class =>
                     [
                         'general:display-site-name' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
+
                         'general:geo-ip' => ['type' => SettingsDataTypeEnum::TYPE_ARRAY],
                         'general:is-use-geo-ip' => ['type' => SettingsDataTypeEnum::TYPE_BOOLEAN, 'default' => false],
+
+                        'styles:footer' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
+                        'styles:menu' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
 
                         'seo-integration:robots-text' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
                         'seo-integration:verification' => ['type' => SettingsDataTypeEnum::TYPE_STRING],

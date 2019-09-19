@@ -1,4 +1,4 @@
-<footer id="footer" class="style4">
+<footer id="footer" class="{{ $currentShowcase->config('styles:footer') }}">
     @foreach(array_get($widgets_bottom, 'top', []) as $widget)
         @widget('miracle.' . $widget->class_name, ['widget' => $widget])
     @endforeach

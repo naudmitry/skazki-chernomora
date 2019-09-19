@@ -179,7 +179,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/settings/{tab?}', ['uses' => 'Admin\SettingController@index', 'as' => 'admin.settings.index'])
                     ->where('tab', 'general|geo-ip');
                 Route::post('settings/{tab}', ['uses' => 'Admin\SettingController@update', 'as' => 'admin.settings.update'])
-                    ->where('tab', 'general|geo-ip|');
+                    ->where('tab', 'general|geo-ip|styles');
                 Route::get('settings/create/geo-ip-rule', ['uses' => 'Admin\SettingController@createGeoIpRule', 'as' => 'admin.settings.createGeoIpRule']);
                 Route::get('settings/regions/{country?}', ['uses' => 'Admin\SettingController@regionsByCountry', 'as' => 'admin.settings.regions']);
                 Route::get('settings/cities/{region?}', ['uses' => 'Admin\SettingController@citiesByRegion', 'as' => 'admin.settings.cities']);

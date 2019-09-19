@@ -64,13 +64,17 @@ class SettingController extends Controller
                 'geo-ip' => [
                     'general:is-use-geo-ip' => '',
                 ],
+                'styles' => [
+                    'footer' => '',
+                    'menu' => '',
+                ]
             ];
 
         $this->validate($request, array_get($validateRules, $tab));
 
         $data = $request->all();
 
-        $prefix = 'general:';
+        $prefix = $tab . ':';
 
         $generalSettingsData = array_filter($data, function ($key) use ($prefix) {
             return starts_with($key, $prefix);

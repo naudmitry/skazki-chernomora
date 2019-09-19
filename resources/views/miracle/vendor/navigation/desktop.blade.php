@@ -8,7 +8,7 @@
                 </a>
             </h1>
         </div>
-        <nav id="nav">
+        <nav id="nav" class="{{ $currentShowcase->config('styles:menu') }}">
             <ul class="header-top-nav">
                 <li class="visible-mobile">
                     <a href="#mobile-nav-wrapper" data-toggle="collapse"><i class="fa fa-bars has-circle"></i></a>
