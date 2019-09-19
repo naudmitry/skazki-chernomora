@@ -10,7 +10,7 @@
                 </a>
                 <div class="post-content">
                     <a href="{{ $blog->getRoute() }}" class="post-title">{{ mb_strimwidth($blog->name, 0, 25, "...") }}</a>
-                    <p class="post-meta">{{ $blog->author->fullName }} . {{ strftime('%d %B %G', strtotime($blog->created_at)) }}</p>
+                    <p class="post-meta">{{ strftime('%d %B %G', strtotime($blog->created_at)) }}</p>
                 </div>
             </li>
         @endforeach
