@@ -45,6 +45,24 @@
     </head>
 
     <body @yield('body-data')>
+        <div class="pace">
+            <div class="pace-activity">
+                <div class="page-loading-wrapper" style="display: none;">
+                    <header>
+                        <h1 class="logo">
+                            <a href="#">
+                                <img src="{{ asset('miracle/images/logo-standard.svg') }}" alt="logo">
+                                {{ $currentShowcase->config('general:display-site-name') }}
+                            </a>
+                        </h1>
+                    </header>
+                    <div class="progress-bar">
+                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="page-wrapper">
             <header id="header" class="header-color-white">
                 @include('miracle.vendor.navigation.desktop')

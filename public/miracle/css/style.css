@@ -9171,10 +9171,13 @@ ul.filter-options li:hover a, ul.filter-options li.active a {
     -moz-border-radius: 13px 13px 13px 13px;
     -ms-border-radius: 13px 13px 13px 13px;
     border-radius: 13px 13px 13px 13px;
-    background: #fff;
     padding: 4px;
     max-width: 100%;
     margin-bottom: 25px;
+}
+
+.page-loading-wrapper .progress-bar .fa-spinner {
+    color: #ff6600;
 }
 
 .page-loading-wrapper .progress-bar .progress-inner {
