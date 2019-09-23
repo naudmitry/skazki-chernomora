@@ -32,7 +32,6 @@
                                 <div class="post-date"><span>{{ strftime('%d %B %G', strtotime($entity->created_at)) }}</span></div>
                                 <h4 class="entry-title"><a href="{{ $entity->getRoute() }}">{{ $entity->trim($entity->name, 25) }}</a></h4>
                                 <div class="post-meta">
-                                    <span class="entry-author fn"><a href="#">{{ $entity->author->full_name ?? '' }}</a></span>
 {{--                                    <span class="post-category">in <a href="#">Web Design</a></span>--}}
 {{--                                    <span class="post-comment"><a href="#">1 Comment</a></span>--}}
                                 </div>

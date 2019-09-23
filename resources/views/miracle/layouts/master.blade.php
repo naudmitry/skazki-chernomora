@@ -47,7 +47,7 @@
     <body @yield('body-data')>
         <div class="pace">
             <div class="pace-activity">
-                <div class="page-loading-wrapper" style="display: none;">
+                <div class="page-loading-wrapper">
                     <header>
                         <h1 class="logo">
                             <a href="#">
