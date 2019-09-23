@@ -20,6 +20,7 @@ return
 
                         'styles:footer' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
                         'styles:menu' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
+                        'styles:color' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
 
                         'seo-integration:robots-text' => ['type' => SettingsDataTypeEnum::TYPE_STRING],
                         'seo-integration:verification' => ['type' => SettingsDataTypeEnum::TYPE_STRING],

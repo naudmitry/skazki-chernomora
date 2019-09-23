@@ -35,6 +35,15 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label class="control-label" for="color">Цвет:</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="color" id="color" name="styles:color" value="{{ $administeredShowcase->config('styles:color') ?? '#ff6600' }}">
+                </div>
+            </div>
+
             <div class="tile-footer">
                 <button class="btn btn-default" type="submit" disabled>
                     <i class="fas fa-check-circle mr-2"></i>Сохранить

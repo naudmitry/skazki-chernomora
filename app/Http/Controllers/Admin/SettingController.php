@@ -67,6 +67,7 @@ class SettingController extends Controller
                 'styles' => [
                     'footer' => '',
                     'menu' => '',
+                    'color' => ''
                 ]
             ];
 
