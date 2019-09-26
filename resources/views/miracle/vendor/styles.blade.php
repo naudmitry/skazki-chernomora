@@ -1,3 +1,176 @@
+/*
+* Title:   Miracle | Responsive Multi-Purpose HTML5 Template - Main Style file
+* Author:  http://themeforest.net/user/soaptheme
+*/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Table of contents]
+
+1. Base Styles
+1.1. Reset
+1.2. Layout
+2. Global Styles
+2.1. General Styles
+2.2. Form Elements
+2.3. Buttons
+2.4. Message box
+2.5. Table
+2.6. Design Elements
+2.7. Toggle & Accordion
+2.8. Blog Posts
+2.9. Sticky Notes
+2.10. Social Icons
+2.11. Callout Box
+3. Header
+3.1. Main Header
+3.2. Slideshow
+3.3. Page Title Container
+3.4. Main Menu
+3.5. Mobile Menu
+4. Main Content
+4.1. Galleries
+4.2. Icon Box
+4.3. Banner
+4.4. Process Builder
+4.5. Post Slider
+4.6. Pricing table
+4.7. Progress Bar
+4.8. Style Changer
+4.9. Tab
+4.10. Team
+4.11. Testimonial
+5. Footer
+6. Page Content
+6.1. Standard Pages
+6.2. Portfolio Pages
+6.3. Blog Pages
+6.4. Homepage
+6.5. WooCommerce Pages
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*
+* Title:   Miracle | Responsive Multi-Purpose HTML5 Template - SCSS Mixin
+* Author:  http://themeforest.net/user/soaptheme
+*/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Table of contents]
+
+1) BORDER RADIUS
+2) OPACITY
+3) BACKGROUND GRADIENT
+4) BOX SHADOW
+5) TEXT SHADOW
+6) TRANSITION
+7) ANIMATION
+8) TRANSFORM
+9) DESATURATE
+10) RETINA
+11) GRADIENT IMAGE
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 1) BORDER RADIUS */
+/* 2) OPACITY */
+/* 3) BACKGROUND GRADIENT */
+/* 4) BOX SHADOW */
+/* 5) TEXT SHADOW */
+/* 6) TRANSITION */
+/* 7) ANIMATION */
+/* 8) TRANSFORM */
+/* 9) DESATURATE */
+/* 10) RETINA */
+/* 11) GRADIENT IMAGE */
+/* 1. Base Styles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 1.1. Reset ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*
+* Title:   Miracle | Responsive Multi-Purpose HTML5 Template - Basic Style
+* Author:  http://themeforest.net/user/soaptheme
+*/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Table of contents]
+
+1) Reset
+2) Heading
+3) Lists
+4) Contents
+5) Table
+6) HTML5 & CSS3 Styles for older browsers
+7) Tools
+8) Color
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*
+* Title:   Miracle | Responsive Multi-Purpose HTML5 Template - SCSS Variables for style customization
+* Author:  http://themeforest.net/user/soaptheme
+*/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Table of contents]
+
+1. Global
+2. Skin colors
+3. Skin logos
+4. Important colors
+5. Skin 1
+6. Skin 2
+7. Skin 3
+8. Skin 4
+9. Skin 5
+10. Skin 6
+11. Skin 7
+12. Skin 8
+13. Skin 9
+14. Skin 10
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 1. Global */
+/* 2. Theme skin colors */
+/* 3. Skin logos */
+/* 4. Important colors */
+/* 5. Skin 1(Orange) */
+/* 6. Skin 2(Green) */
+/*$theme-skin-logo: $theme-skin2-logo;
+$theme-skin-color: $theme-skin-green;
+$theme-skin-light-bgcolor: #a2d13a;
+$theme-skin-light-fontcolor: #d8eaaf;*/
+/* 7. Skin 3(Purple) */
+/*$theme-skin-logo: $theme-skin3-logo;
+$theme-skin-color: $theme-skin-purple;
+$theme-skin-light-bgcolor: #bd50d7;
+$theme-skin-light-fontcolor: #f1c5fb;*/
+/* 8. Skin 4(Blue) */
+/*$theme-skin-logo: $theme-skin4-logo;
+$theme-skin-color: $theme-skin-blue;
+$theme-skin-light-bgcolor: #1aabf0;
+$theme-skin-light-fontcolor: #c8e9f9;*/
+/* 9. Skin 5(Yellow) */
+/*$theme-skin-logo: $theme-skin5-logo;
+$theme-skin-color: $theme-skin-yellow;
+$theme-skin-light-bgcolor: #ffb61a;
+$theme-skin-light-fontcolor: #f0deb8;*/
+/* 10. Skin 6(Gray) */
+/*$theme-skin-logo: $theme-skin6-logo;
+$theme-skin-color: $theme-skin-gray;
+$theme-skin-light-bgcolor: #b4b4b4;
+$theme-skin-light-fontcolor: #d9d9d9;*/
+/* 11. Skin 7(Navy) */
+/*$theme-skin-logo: $theme-skin7-logo;
+$theme-skin-color: $theme-skin-navy;
+$theme-skin-light-bgcolor: #1a7bff;
+$theme-skin-light-fontcolor: #c9dcf7;*/
+/* 12. Skin(Sea) 8 */
+/*$theme-skin-logo: $theme-skin8-logo;
+$theme-skin-color: $theme-skin-sea;
+$theme-skin-light-bgcolor: #23bda1;
+$theme-skin-light-fontcolor: #cef2eb;*/
+/* 13. Skin 9(Red) */
+/*$theme-skin-logo: $theme-skin9-logo;
+$theme-skin-color: $theme-skin-red;
+$theme-skin-light-bgcolor: #ff3030;
+$theme-skin-light-fontcolor: #eec8c8;*/
+/* 14. Skin 10(Gold) */
+/*$theme-skin-logo: $theme-skin10-logo;
+$theme-skin-color: $theme-skin-gold;
+$theme-skin-light-bgcolor: #ddc541;
+$theme-skin-light-fontcolor: #eee9cb;*/
+/* 1) Reset */
 * {
 box-sizing: border-box;
 -moz-box-sizing: border-box;
@@ -1412,7 +1585,6 @@ opacity: 0;
 }
 
 .radio:before {
-/*@include border-radius(50%, 50%, 50%, 50%);*/
 font-size: 8px;
 line-height: 13px;
 }
@@ -3894,7 +4066,6 @@ width: 100%;
 z-index: 101;
 left: 0;
 color: #000;
-/*@include transition((height 0.4s ease 0s, opacity 0.3s ease 0s));*/
 }
 
 #header.header-color-white {
@@ -4081,7 +4252,6 @@ letter-spacing: -0.1em;
 
 /* 3.3. Page Title Container ~~~~~~~~~~~~~~~~~~~~~~~ */
 .page-title-container {
-background: url(../images/inner/style1-pattern.png) repeat;
 position: relative;
 overflow: visible;
 }
@@ -4628,12 +4798,12 @@ border-color: #fff;
 }
 
 #nav.style-colored li.menu-item-has-children > .sub-nav {
-background: rgba(255, 102, 0, 0.9);
+background: {{ $color }};
 }
 
 #nav.style-colored > ul > li.menu-item-has-children:hover > a {
 color: #fff;
-background: rgba(255, 102, 0, 0.9);
+background: {{ $color }};
 }
 
 #nav.style-colored .sub-nav {
@@ -5163,7 +5333,6 @@ background: {{ $color }};
 color: #fff;
 position: relative;
 overflow: hidden;
-/*@include transition(all, 0.35s, ease);*/
 }
 
 .icon-box[class*=" style-centered-"].style-centered-2 > i:before, .icon-box[class*=" style-centered-"].style-centered-4 > i:before {
@@ -5180,7 +5349,6 @@ right: 0;
 top: 0;
 border-right: 100px solid #ff7d26;
 border-bottom: 100px solid transparent;
-/*@include transition(all, 0.35s, ease);*/
 -webkit-border-radius: 0 5px 0 0;
 -moz-border-radius: 0 5px 0 0;
 -ms-border-radius: 0 5px 0 0;
@@ -5639,10 +5807,6 @@ transform: rotate(45deg);
 -ms-transform-origin: 50% 100%;
 -o-transform-origin: 50% 100%;
 transform-origin: 50% 100%;
-}
-
-.icon-box[class*=" style-boxed-"].style-boxed-1 .icon-container i, .icon-box[class*=" style-boxed-"].style-boxed-1 .icon-container i:after, .icon-box[class*=" style-boxed-"].style-boxed-3 .icon-container i, .icon-box[class*=" style-boxed-"].style-boxed-3 .icon-container i:after {
-/*@include transition(all, 0.3s, ease);*/
 }
 
 .icon-box[class*=" style-boxed-"].style-boxed-1.icon-color-blue .icon-container i, .icon-box[class*=" style-boxed-"].style-boxed-3.icon-color-blue .icon-container i {
@@ -6276,7 +6440,7 @@ top: 0;
 height: 100%;
 bottom: 0;
 width: 40%;
-background: rgba(255, 102, 0, 0.9);
+background: {{ $color }};
 min-width: 250px;
 filter: alpha(opacity=0);
 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";

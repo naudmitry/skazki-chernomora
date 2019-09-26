@@ -194,7 +194,6 @@ body {
     overflow-x: hidden !important;
     -webkit-font-smoothing: antialiased;
     -ms-overflow-style: scrollbar;
-    /*oveflow-y: scroll;*/
 }
 
 iframe, img {

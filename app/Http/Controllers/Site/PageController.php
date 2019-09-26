@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Classes\StandardColorsShowcaseEnum;
 use App\Classes\StaticPageTypesEnum;
 use App\Models\Page;
 use App\Models\PageCategory;
-use App\Models\Showcase;
 use App\Repositories\PageRepository;
 use App\Repositories\Widgets\WidgetRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,5 +71,21 @@ class PageController extends Controller
             'entities' => $pages,
             'category' => $category
         ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomStyles()
+    {
+        $color = $this->showcase->config('styles:color');
+
+        if (!$color) {
+            $color = StandardColorsShowcaseEnum::MAIN_COLOR_HEX;
+        }
+
+        $content = view('miracle.vendor.styles', compact('color'));
+
+        return response($content)->header('Content-Type', 'text/css');
     }
 }

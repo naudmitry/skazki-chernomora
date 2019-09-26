@@ -29,8 +29,10 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('miracle/components/revolution_slider/css/settings.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('miracle/components/revolution_slider/css/style.css') }}" media="screen" />
 
-        <!-- Main Style -->
-        <link id="main-style" rel="stylesheet" href="{{ asset('miracle/css/style.css') . '?v=' . time() }}">
+        <link id="main-style" rel="stylesheet" type="text/css" href="{{ route('site.custom-styles') }}">
+
+
+{{--        <link id="main-style" rel="stylesheet" href="{{ asset('miracle/css/style.css') . '?v=' . time() }}">--}}
 
         <!-- Custom Styles -->
         <link rel="stylesheet" href="{{ asset('miracle/css/custom.css') }}">

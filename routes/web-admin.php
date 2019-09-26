@@ -1,4 +1,5 @@
 <?php
+
 Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
     Route::get('/login',
         [
