@@ -78,13 +78,15 @@ class PageController extends Controller
      */
     public function getCustomStyles()
     {
-        $color = $this->showcase->config('styles:color');
+        $color = empty($this->showcase->config('styles:color'))
+            ? StandardColorsShowcaseEnum::MAIN_COLOR_HEX
+            : $this->showcase->config('styles:color');
 
-        if (!$color) {
-            $color = StandardColorsShowcaseEnum::MAIN_COLOR_HEX;
-        }
+        $secondColor = empty($this->showcase->config('styles:second-color'))
+            ? StandardColorsShowcaseEnum::SECOND_COLOR_HEX
+            : $this->showcase->config('styles:second-color');
 
-        $content = view('miracle.vendor.styles', compact('color'));
+        $content = view('miracle.vendor.styles', compact('color', 'secondColor'));
 
         return response($content)->header('Content-Type', 'text/css');
     }

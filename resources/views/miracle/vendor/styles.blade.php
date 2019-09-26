@@ -1695,7 +1695,7 @@ text-align: center;
 }
 
 .btn.style1:hover, .btn.style1:active, .btn.style1:focus, .btn.style1.active {
-background: #ff7d26;
+background: {{ $secondColor }};
 color: #fff;
 }
 
@@ -3674,7 +3674,7 @@ background: {{ $color }};
 }
 
 .social-icons.style2 .social-icon:hover i {
-background: #ff7d26;
+background: {{ $secondColor }};
 }
 
 .social-icons.style3 .social-icon i {
@@ -4204,7 +4204,7 @@ font-size: 14px;
 }
 
 #header .mini-search .main-nav-search-form button:hover .fa {
-color: #ff7d26;
+color: {{ $secondColor }};
 }
 
 #header .mini-search .main-nav-search-form .fa {
@@ -4841,7 +4841,7 @@ color: #fff;
 }
 
 #nav.style-colored .mini-cart .cart-content hr {
-border-color: #ff7d26;
+border-color: {{ $secondColor }};
 }
 
 #nav.style-colored .mini-cart .cart-content .product-price, #nav.style-colored .mini-cart .cart-content .total-price {
@@ -5347,7 +5347,7 @@ position: absolute;
 z-index: 0;
 right: 0;
 top: 0;
-border-right: 100px solid #ff7d26;
+border-right: 100px solid {{ $secondColor }};
 border-bottom: 100px solid transparent;
 -webkit-border-radius: 0 5px 0 0;
 -moz-border-radius: 0 5px 0 0;
@@ -5427,7 +5427,7 @@ color: #fff;
 }
 
 .icon-box[class*=" style-centered-"].style-centered-4:hover > i:after {
-border-right-color: #ff7d26;
+border-right-color: {{ $secondColor }};
 }
 
 .icon-box[class*=" style-side-"] > i {
@@ -5517,7 +5517,7 @@ height: 50%;
 -moz-border-radius: 100px 100px 0 0;
 -ms-border-radius: 100px 100px 0 0;
 border-radius: 100px 100px 0 0;
-background: #ff7d26;
+background: {{ $secondColor }};
 -webkit-transform: rotate(30deg);
 -moz-transform: rotate(30deg);
 -ms-transform: rotate(30deg);
@@ -5568,7 +5568,7 @@ position: absolute;
 z-index: 0;
 right: 0;
 top: 0;
-border-right: 50px solid #ff7d26;
+border-right: 50px solid {{ $secondColor }};
 border-bottom: 50px solid transparent;
 }
 
@@ -5625,7 +5625,7 @@ filter: alpha(opacity=0);
 -moz-opacity: 0;
 -khtml-opacity: 0;
 opacity: 0;
-background: #ff7d26;
+background: {{ $secondColor }};
 height: 50%;
 width: 100%;
 -webkit-border-radius: 100px 100px 0 0;
@@ -5725,7 +5725,7 @@ height: 24px;
 -ms-border-radius: 24px 24px 0 0;
 border-radius: 24px 24px 0 0;
 display: none;
-background: #ff7d26;
+background: {{ $secondColor }};
 left: 0;
 top: 0;
 -webkit-transform: rotate(30deg);
@@ -5796,7 +5796,7 @@ height: 1.75em;
 -moz-border-radius: 1.75em 1.75em 0 0;
 -ms-border-radius: 1.75em 1.75em 0 0;
 border-radius: 1.75em 1.75em 0 0;
-background: #ff7d26;
+background: {{ $secondColor }};
 -webkit-transform: rotate(45deg);
 -moz-transform: rotate(45deg);
 -ms-transform: rotate(45deg);
@@ -5851,7 +5851,7 @@ background: {{ $color }};
 }
 
 .icon-box[class*=" style-boxed-"].style-boxed-1:hover .icon-container i:after {
-background: #ff7d26;
+background: {{ $secondColor }};
 }
 
 .icon-box[class*=" style-boxed-"].style-boxed-2 {
@@ -5956,7 +5956,7 @@ top: 0;
 z-index: 0;
 width: 100%;
 height: 50%;
-background: #ff7d26;
+background: {{ $secondColor }};
 -webkit-border-radius: 37px 37px 0 0;
 -moz-border-radius: 37px 37px 0 0;
 -ms-border-radius: 37px 37px 0 0;
@@ -6181,7 +6181,7 @@ position: absolute;
 top: 0;
 left: 0;
 z-index: 0;
-background: #ff7d26;
+background: {{ $secondColor }};
 width: 100%;
 height: 50%;
 -webkit-border-radius: 1.7em 1.7em 0 0;
@@ -8269,7 +8269,7 @@ height: 23px;
 -moz-border-radius: 23px 23px 0 0;
 -ms-border-radius: 23px 23px 0 0;
 border-radius: 23px 23px 0 0;
-background: #ff7d26;
+background: {{ $secondColor }};
 -webkit-transform: rotate(30deg);
 -moz-transform: rotate(30deg);
 -ms-transform: rotate(30deg);
@@ -8594,7 +8594,7 @@ height: 43px;
 -moz-border-radius: 43px 43px 0 0;
 -ms-border-radius: 43px 43px 0 0;
 border-radius: 43px 43px 0 0;
-background: #ff7d26;
+background: {{ $secondColor }};
 -webkit-transform: rotate(45deg);
 -moz-transform: rotate(45deg);
 -ms-transform: rotate(45deg);
@@ -9877,7 +9877,7 @@ left: 0;
 top: 0;
 width: 90px;
 height: 45px;
-background: #ff7d26;
+background: {{ $secondColor }};
 -webkit-border-radius: 45px 45px 0 0;
 -moz-border-radius: 45px 45px 0 0;
 -ms-border-radius: 45px 45px 0 0;
@@ -10600,7 +10600,7 @@ top: 0;
 z-index: 0;
 width: 100%;
 height: 50%;
-background: #ff7d26;
+background: {{ $secondColor }};
 -webkit-border-radius: 35px 35px 0 0;
 -moz-border-radius: 35px 35px 0 0;
 -ms-border-radius: 35px 35px 0 0;

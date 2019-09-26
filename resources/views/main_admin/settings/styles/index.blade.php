@@ -44,6 +44,15 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label class="control-label" for="color">Дополнительный цвет:</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="color" id="color" name="styles:second-color" value="{{ $secondColor }}">
+                </div>
+            </div>
+
             <div class="tile-footer">
                 <button class="btn btn-default" type="submit" disabled>
                     <i class="fas fa-check-circle mr-2"></i>Сохранить
