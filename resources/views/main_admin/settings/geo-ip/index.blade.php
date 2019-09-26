@@ -1,13 +1,13 @@
 <div class="tab-pane fade geo-ip-tab" id="geo-ip">
     <div class="tile">
-        <h4 class="line-head">Geo-ip</h4>
+        <h4 class="line-head">Местоположение</h4>
 
         <form autocomplete="off" class="settings-general-form" method="post" action="{{ route('admin.settings.update', 'geo-ip') }}">
             <div class="row">
-                <div class="col-md-3">
-                    <label class="control-label">Использовать geo-ip:</label>
+                <div class="col-md-4">
+                    <label class="control-label">Использовать настройки местоположения:</label>
                 </div>
-                <div class="col-md-9 toggle-flip">
+                <div class="col-md-8 toggle-flip">
                     <label>
                         <input
                                 name="general:is-use-geo-ip"

@@ -86,7 +86,9 @@ class PageController extends Controller
             ? StandardColorsShowcaseEnum::SECOND_COLOR_HEX
             : $this->showcase->config('styles:second-color');
 
-        $content = view('miracle.vendor.styles', compact('color', 'secondColor'));
+        $customStyles = $this->showcase->config('styles:custom');
+
+        $content = view('miracle.vendor.styles', compact('color', 'secondColor', 'customStyles'));
 
         return response($content)->header('Content-Type', 'text/css');
     }

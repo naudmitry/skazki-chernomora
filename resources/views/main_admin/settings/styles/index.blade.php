@@ -53,6 +53,21 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label class="control-label" for="custom">Новые стили:</label>
+                </div>
+                <div class="col-md-9">
+                    <textarea
+                            rows="20"
+                            cols="5"
+                            class="form-control"
+                            name="styles:custom"
+                            id="custom"
+                    >{{ $customStyles }}</textarea>
+                </div>
+            </div>
+
             <div class="tile-footer">
                 <button class="btn btn-default" type="submit" disabled>
                     <i class="fas fa-check-circle mr-2"></i>Сохранить

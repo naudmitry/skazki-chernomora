@@ -99,7 +99,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="control-label col-md-4">Ссылка перенаправления:</label>
+                <label class="control-label col-md-4">Перенаправление:</label>
                 <div class="col-md-8 input-group">
                     <input name="redirect[]" class="form-control geo-ip-redirect-link" type="text" value="{{ $item['redirect'] ?? '' }}">
                     <div class="input-group-append">

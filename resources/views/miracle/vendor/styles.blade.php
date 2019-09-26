@@ -12065,3 +12065,5 @@ margin-top: -20px !important;
 .has-error {
 border: 1px solid red !important;
 }
+
+{{ $customStyles }}

@@ -37,8 +37,10 @@ class SettingController extends Controller
             ? StandardColorsShowcaseEnum::SECOND_COLOR_HEX
             : $administeredShowcase->config('styles:second-color');
 
+        $customStyles = $administeredShowcase->config('styles:custom');
+
         return view('main_admin.settings.index', compact(
-            'administeredShowcase', 'color', 'secondColor'
+            'administeredShowcase', 'color', 'secondColor', 'customStyles'
         ));
     }
 
