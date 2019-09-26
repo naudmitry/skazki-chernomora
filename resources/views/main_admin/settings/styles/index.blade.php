@@ -40,7 +40,7 @@
                     <label class="control-label" for="color">Цвет:</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="color" id="color" name="styles:color" value="{{ $administeredShowcase->config('styles:color') ?? '#ff6600' }}">
+                    <input type="color" id="color" name="styles:color" value="{{ $color }}">
                 </div>
             </div>
 

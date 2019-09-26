@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\StandardColorsShowcaseEnum;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Country;
@@ -28,8 +29,12 @@ class SettingController extends Controller
      */
     public function index(Showcase $administeredShowcase)
     {
+        $color = empty($administeredShowcase->config('styles:color'))
+            ? StandardColorsShowcaseEnum::MAIN_COLOR_HEX
+            : $administeredShowcase->config('styles:color');
+
         return view('main_admin.settings.index', compact(
-            'administeredShowcase'
+            'administeredShowcase', 'color'
         ));
     }
 
