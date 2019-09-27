@@ -6,7 +6,7 @@ class ColorConverter
 {
     /**
      * @param $color
-     * @param bool $opacity
+     * @param mixed $opacity
      * @return string
      */
     public static function hex2rgba($color, $opacity = false)
@@ -34,7 +34,7 @@ class ColorConverter
         if ($opacity) {
             if (abs($opacity) > 1)
                 $opacity = 1.0;
-            $output = 'rgba(' . implode(",", $rgb) . ',' . $opacity . ')';
+            $output = 'rgba(' . implode(",", $rgb) . ',' . number_format($opacity, 2, '.', '') . ')';
         } else {
             $output = 'rgb(' . implode(",", $rgb) . ')';
         }
