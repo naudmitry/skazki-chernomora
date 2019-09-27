@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Classes\Coloring\ColorConverter;
 use App\Classes\StandardColorsShowcaseEnum;
 use App\Classes\StaticPageTypesEnum;
 use App\Models\Page;
@@ -82,13 +83,18 @@ class PageController extends Controller
             ? StandardColorsShowcaseEnum::MAIN_COLOR_HEX
             : $this->showcase->config('styles:color');
 
+        $rgba = ColorConverter::hex2rgba($color, 0);
+        $opaqueRgba = ColorConverter::hex2rgba($color, 0.85);
+
         $secondColor = empty($this->showcase->config('styles:second-color'))
             ? StandardColorsShowcaseEnum::SECOND_COLOR_HEX
             : $this->showcase->config('styles:second-color');
 
         $customStyles = $this->showcase->config('styles:custom');
 
-        $content = view('miracle.vendor.styles', compact('color', 'secondColor', 'customStyles'));
+        $content = view('miracle.vendor.styles', compact(
+            'color', 'secondColor', 'customStyles', 'rgba', 'opaqueRgba'
+        ));
 
         return response($content)->header('Content-Type', 'text/css');
     }
