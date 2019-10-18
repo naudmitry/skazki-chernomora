@@ -31,10 +31,6 @@
 
         <link id="main-style" rel="stylesheet" type="text/css" href="{{ route('site.custom-styles') }}">
 
-{{--        <link id="main-style" rel="stylesheet" href="{{ asset('miracle/css/style.css') . '?v=' . time() }}">--}}
-{{--        <link rel="stylesheet" href="{{ asset('miracle/css/custom.css') }}">--}}
-{{--        <link rel="stylesheet" href="{{ asset('miracle/css/updates.css') }}">--}}
-{{--        <link rel="stylesheet" href="{{ asset('miracle/css/responsive.css') }}">--}}
         @yield('header__ss')
     </head>
 
