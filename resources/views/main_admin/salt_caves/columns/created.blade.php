@@ -1,1 +1,1 @@
-@{{ cave.created_at }}
+@{{cave.formatCreatedAt}}

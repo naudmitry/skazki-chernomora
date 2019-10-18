@@ -63,8 +63,14 @@ class Admin extends Authenticatable
         'showcasesIds',
         'groupsIds',
         'companiesIds',
-        'full_name'
+        'full_name',
+        'formatRegisteredAt'
     ];
+
+    protected $dates =
+        [
+            'registered_at',
+        ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -212,5 +218,13 @@ class Admin extends Authenticatable
                 ->where('updater_id', $this->id)
                 ->update(['updater_id' => null]);
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatRegisteredAtAttribute()
+    {
+        return $this->registered_at->format('d/m/Y H:i');
     }
 }

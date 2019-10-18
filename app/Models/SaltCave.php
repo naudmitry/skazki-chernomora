@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Date\DateableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -29,10 +30,16 @@ class SaltCave extends Model
 {
     use SoftDeletes;
     use ShowcasableTrait;
+    use DateableTrait;
 
-    var $casts = [
+    protected $casts = [
         'working_time' => 'array',
         'phone_numbers' => 'array',
+    ];
+
+    protected $appends = [
+        'formatCreatedAt',
+        'formatUpdatedAt'
     ];
 
     /**

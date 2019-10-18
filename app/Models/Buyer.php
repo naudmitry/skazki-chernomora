@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Date\DateableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,6 +42,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Buyer extends Model
 {
+    use DateableTrait;
+
     protected $with = [
         'adSources',
         'diagnoses',
@@ -53,7 +56,9 @@ class Buyer extends Model
     ];
 
     protected $appends = [
-        'full_name'
+        'full_name',
+        'formatCreatedAt',
+        'formatUpdatedAt'
     ];
 
     /**
