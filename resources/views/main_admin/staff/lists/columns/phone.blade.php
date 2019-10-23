@@ -1,3 +1,1 @@
-<span>
-    @{{admin.phone}}
-</span>
+@{{admin.phone}}

@@ -1,3 +1,1 @@
-<span>
-    @{{admin.email}}
-</span>
+@{{admin.email}}

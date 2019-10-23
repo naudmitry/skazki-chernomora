@@ -1,3 +1,1 @@
-<span>
-    @{{admin.login_from}}
-</span>
+@{{admin.login_from}}

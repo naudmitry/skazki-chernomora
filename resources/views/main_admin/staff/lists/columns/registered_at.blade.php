@@ -1,3 +1,1 @@
-<span>
-    @{{admin.formatRegisteredAt}}
-</span>
+@{{admin.formatRegisteredAt}}

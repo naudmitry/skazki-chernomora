@@ -67,10 +67,9 @@ class Admin extends Authenticatable
         'formatRegisteredAt'
     ];
 
-    protected $dates =
-        [
-            'registered_at',
-        ];
+    protected $dates = [
+        'registered_at',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -225,6 +224,6 @@ class Admin extends Authenticatable
      */
     public function getFormatRegisteredAtAttribute()
     {
-        return $this->registered_at->format('d/m/Y H:i');
+        return $this->registered_at ? $this->registered_at->format('d/m/Y H:i') : '';
     }
 }
