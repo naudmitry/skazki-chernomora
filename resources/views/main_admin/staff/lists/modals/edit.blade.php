@@ -101,7 +101,7 @@
                             </div>
                         </div>
 
-                        @if ($company->super)
+                        @if ($administeredCompany->super)
                             <div class="form-group row">
                                 <label class="control-label col-md-3" for="companies">Компании:</label>
                                 <div class="col-md-8">

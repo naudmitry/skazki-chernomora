@@ -73,11 +73,9 @@ class AdminController extends Controller
         $adminShowcases = $admin->showcases->toArray();
         $adminCompanies = $admin->companies->toArray();
 
-        $company = $admin->company;
-
         return response()->json([
             'view' => view('main_admin.staff.lists.modals.edit', compact(
-                'admin', 'company', 'administeredCompany', 'companies',
+                'admin', 'administeredCompany', 'companies',
                 'adminGroups', 'adminShowcases', 'adminCompanies'
             ))->render(),
         ]);
