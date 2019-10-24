@@ -1,4 +1,3 @@
-<!-- Navbar-->
 <header class="app-header">
     <a class="app-header__logo" href="javascript:;">Sacave</a>
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar">
@@ -30,7 +29,7 @@
                 <ul class="app-notification dropdown-menu dropdown-menu-rigth">
                     <div class="app-notification__content">
                         <li>
-                            <a class="app-notification__item" href="#">
+                            <a class="app-notification__item" href="{{ route('admin.admins.edit', auth('admin')->user()->id) }}">
                                 <span class="app-notification__icon">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-users-cog"></i>

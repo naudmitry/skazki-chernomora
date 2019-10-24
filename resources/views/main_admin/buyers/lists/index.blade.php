@@ -12,7 +12,7 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="{{ route('admin.buyer.list.modal') }}" class="btn btn-primary open-buyer-modal" type="button">
+                            <button data-href="{{ route('admin.buyers.modal') }}" class="btn btn-primary open-buyer-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
@@ -48,7 +48,7 @@
                     <table
                             class="table table-hover"
                             id="buyersListsTable"
-                            data-href="{{ route('admin.buyer.list.index') }}"
+                            data-href="{{ route('admin.buyers.index') }}"
                             width="100%"
                     >
                         <thead>

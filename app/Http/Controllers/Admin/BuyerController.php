@@ -107,7 +107,7 @@ class BuyerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(Buyer $buyer)
+    public function destroy(Buyer $buyer)
     {
         $buyer->delete();
 
@@ -122,7 +122,7 @@ class BuyerController extends Controller
      * @param $tab
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Request $request, Buyer $buyer, $tab)
+    public function store(Request $request, Buyer $buyer, $tab)
     {
         switch ($tab) {
             case 'general' :

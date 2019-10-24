@@ -6,7 +6,7 @@
                         autocomplete="off"
                         class="modal-content buyer-create-form"
                         method="post"
-                        action="{{ route('admin.buyer.list.create') }}">
+                        action="{{ route('admin.buyers.create') }}">
 
                     <div class="modal-header">
                         <h5 class="modal-title">Клиент</h5>

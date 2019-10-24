@@ -11,7 +11,7 @@
         <li>
             <a
                 class="app-menu__item @if (Route::is('admin.buyer.*')) active scroll-here @endif"
-                href="{{ route('admin.buyer.list.index') }}"
+                href="{{ route('admin.buyers.index') }}"
             ><i class="app-menu__icon fas fa-users"></i><span class="app-menu__label">Клиенты</span></a>
         </li>
     @endif

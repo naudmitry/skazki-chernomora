@@ -2,7 +2,7 @@
     <div class="tile">
         <h4 class="line-head">Карточка клиента</h4>
 
-        <form autocomplete="off" class="buyer-general-form" method="post" action="{{ route('admin.buyer.list.save', [$buyer, 'general']) }}">
+        <form autocomplete="off" class="buyer-general-form" method="post" action="{{ route('admin.buyers.store', [$buyer, 'general']) }}">
             {{ csrf_field() }}
 
             <div class="row">

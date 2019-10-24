@@ -55,13 +55,20 @@ class AdminController extends Controller
         ));
     }
 
+    public function edit(Admin $admin)
+    {
+        return view('main_admin.staff.personal_area.index', compact(
+            'admin'
+        ));
+    }
+
     /**
      * @param Company $administeredCompany
      * @param Admin|null $admin
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function edit(Company $administeredCompany, Admin $admin = null)
+    public function openEditModal(Company $administeredCompany, Admin $admin = null)
     {
         if (!isset($admin->id)) {
             $admin = new Admin();

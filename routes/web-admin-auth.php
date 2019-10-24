@@ -31,6 +31,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             'prefix' => 'showcase-{administeredShowcase}',
         ], function () {
 
+            Route::get('admins/{admin}/edit', ['uses' => 'Admin\AdminController@edit', 'as' => 'admin.admins.edit'])
+                ->where('admin', '[0-9]+');
+
             Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_ROLES], function () {
                 Route::get('staff/roles', ['uses' => 'Admin\RoleController@index', 'as' => 'admin.staff.roles']);
                 Route::get('staff/role/edit/{role?}', ['uses' => 'Admin\RoleController@edit', 'as' => 'admin.staff.role.edit'])
@@ -45,7 +48,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/staff/lists', ['uses' => 'Admin\AdminController@index', 'as' => 'admin.staff.list.index',]);
                 Route::post('/staff/lists/save/{admin?}', ['uses' => 'Admin\AdminController@save', 'as' => 'admin.staff.list.save'])
                     ->where('admin', '[0-9]+');
-                Route::get('/staff/lists/edit/{admin?}', ['uses' => 'Admin\AdminController@edit', 'as' => 'admin.staff.list.edit'])
+                Route::get('/staff/lists/edit/{admin?}', ['uses' => 'Admin\AdminController@openEditModal', 'as' => 'admin.staff.list.edit'])
                     ->where('admin', '[0-9]+');
                 Route::post('/staff/lists/create', ['uses' => 'Admin\AdminController@create', 'as' => 'admin.staff.list.create']);
                 Route::delete('/staff/lists/delete/{admin?}', ['uses' => 'Admin\AdminController@delete', 'as' => 'admin.staff.list.delete'])
@@ -222,16 +225,16 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_CUSTOMERS], function () {
-                Route::get('/buyers', ['uses' => 'Admin\BuyerController@index', 'as' => 'admin.buyer.list.index']);
-                Route::get('/buyer/edit/{buyer}', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyer.list.edit'])
+                Route::get('/buyers', ['uses' => 'Admin\BuyerController@index', 'as' => 'admin.buyers.index']);
+                Route::get('/buyers/edit/{buyer}', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyers.edit'])
                     ->where('buyer', '[0-9]+');
-                Route::delete('/buyer/{buyer}', ['uses' => 'Admin\BuyerController@delete', 'as' => 'admin.buyer.list.delete'])
+                Route::delete('/buyers/{buyer}', ['uses' => 'Admin\BuyerController@destroy', 'as' => 'admin.buyers.destroy'])
                     ->where('buyer', '[0-9]+');
-                Route::post('/buyer/save/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@save', 'as' => 'admin.buyer.list.save',])
+                Route::post('/buyers/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store',])
                     ->where('buyer', '[0-9]+')
                     ->where('tab', 'general');
-                Route::post('/buyer/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyer.list.create']);
-                Route::get('/buyer/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyer.list.modal']);
+                Route::post('/buyers/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyers.create']);
+                Route::get('/buyers/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyers.modal']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES], function () {
