@@ -20,6 +20,11 @@
                             Абонементы
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#admins" data-toggle="tab">
+                            Администраторы
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -27,6 +32,7 @@
             <div class="tab-content">
                 @include('main_admin.buyers.item.tabs.general')
                 @include('main_admin.buyers.item.tabs.orders')
+                @include('main_admin.buyers.item.tabs.admins')
             </div>
         </div>
     </div>

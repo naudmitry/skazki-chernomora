@@ -2,21 +2,37 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\EventHistoryEnum;
 use App\Http\Requests\Blog\BuyerRequest;
+use App\Models\Admin;
 use App\Models\AdSource;
 use App\Models\Buyer;
 use App\Models\Company;
 use App\Models\Complaint;
 use App\Models\Diagnosis;
+use App\Models\History;
 use App\Models\Order;
 use App\Models\Organization;
 use App\Models\Showcase;
+use App\Repositories\HistoryRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class BuyerController extends Controller
 {
+    protected $historyRepository;
+
+    /**
+     * BuyerController constructor.
+     * @param HistoryRepository $historyRepository
+     */
+    public function __construct(HistoryRepository $historyRepository)
+    {
+        $this->historyRepository = $historyRepository;
+
+        parent::__construct();
+    }
     /**
      * @param BuyerRequest $request
      * @param Showcase $administeredShowcase
@@ -24,6 +40,8 @@ class BuyerController extends Controller
      */
     public function create(BuyerRequest $request, Showcase $administeredShowcase)
     {
+        $admin = Admin::findOrFail($request->get('admin_id'));
+
         $buyer = new Buyer();
         $buyer->name = $request->get('name');
         $buyer->surname = $request->get('surname');
@@ -33,7 +51,10 @@ class BuyerController extends Controller
         $buyer->showcase_id = $administeredShowcase->id;
         $buyer->gender = $request->get('gender');
         $buyer->phone_number = $request->get('phone_number');
+        $buyer->admin_id = $admin->id;
         $buyer->save();
+
+        $this->historyRepository->store($admin, EventHistoryEnum::CHANGE_ADMIN, $buyer, $administeredShowcase);
 
         return response()->json([
             'status' => 200
@@ -51,9 +72,13 @@ class BuyerController extends Controller
             ->where('company_id', $administeredCompany->id)
             ->get();
 
+        $admins = Admin::query()
+            ->where('company_id', $administeredCompany->id)
+            ->get();
+
         return response()->json([
             'view' => view('main_admin.buyers.lists.modals.create', compact(
-                'organizations'
+                'organizations', 'admins'
             ))->render(),
         ]);
     }
@@ -97,8 +122,13 @@ class BuyerController extends Controller
             ->where('buyer_id', $buyer->id)
             ->get();
 
+        $adminChangeHistory = History::query()
+            ->where('buyer_id', $buyer->id)
+            ->where('entity_type', Admin::class)
+            ->get();
+
         return view('main_admin.buyers.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders'
+            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'adminChangeHistory'
         ));
     }
 
@@ -109,6 +139,7 @@ class BuyerController extends Controller
      */
     public function destroy(Buyer $buyer)
     {
+        $buyer->histories()->delete();
         $buyer->delete();
 
         return response()->json([

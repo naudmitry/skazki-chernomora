@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Repositories\Date\DateableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Buyer
@@ -37,12 +38,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $password
  * @property boolean $is_processing_personal_data
  * @property string $type_subscription
+ * @property integer $admin_id
  *
  * @mixin \Eloquent
  */
 class Buyer extends Model
 {
     use DateableTrait;
+    use SoftDeletes;
 
     protected $with = [
         'adSources',
@@ -91,5 +94,21 @@ class Buyer extends Model
     public function getFullNameAttribute()
     {
         return $this->name . ' ' . $this->surname;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function histories()
+    {
+        return $this->hasMany(History::class);
     }
 }

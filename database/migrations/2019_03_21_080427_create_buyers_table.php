@@ -45,9 +45,11 @@ class CreateBuyersTable extends Migration
             $table->unsignedInteger('organization_id')->nullable();
             $table->string('dynamics')->nullable();
             $table->string('type_subscription')->default(BuyerTypeSubscriptionEnum::FREE);
+            $table->unsignedInteger('admin_id')->nullable();
 
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('showcase_id')->references('id')->on('showcases')->onDelete('cascade');
             $table->foreign('organization_id')->references('id')->on('organizations');
