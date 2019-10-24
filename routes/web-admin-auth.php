@@ -221,7 +221,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
 
             Route::group(['components' => AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY], function () {
                 Route::get('/pre-entry', ['uses' => 'Admin\PreEntryController@index', 'as' => 'admin.pre-entry.index']);
-                Route::delete('/pre-entry/delete/{preEntry}', ['uses' => 'Admin\PreEntryController@destroy', 'as' => 'admin.pre-entry.delete']);
+                Route::delete('/pre-entry/{preEntry}', ['uses' => 'Admin\PreEntryController@destroy', 'as' => 'admin.pre-entry.delete']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_CUSTOMERS], function () {
