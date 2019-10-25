@@ -28,6 +28,22 @@
 
                     <div class="row form-group">
                         <div class="col-md-4">
+                            <label class="control-label" for="admin_id">Администратор:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="admin_id" class="select2">
+                                @foreach ($admins as $admin)
+                                    <option
+                                            @if ($buyer->admin_id == $admin->id) selected @endif
+                                            value="{{ $admin->id }}"
+                                    >{{ $admin->full_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
                             <label class="control-label" for="surname">Фамилия:</label>
                         </div>
                         <div class="col-md-8">
