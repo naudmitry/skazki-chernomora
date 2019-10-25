@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $event
  * @property integer $buyer_id
  * @property integer $showcase_id
+ * @property integer $author_id
  */
 class History extends Model
 {
@@ -22,5 +23,13 @@ class History extends Model
     public function historiable()
     {
         return $this->morphTo('entity');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(Admin::class);
     }
 }

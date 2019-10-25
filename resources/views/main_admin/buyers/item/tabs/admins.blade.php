@@ -6,6 +6,7 @@
                 <tr>
                     <th>Создан</th>
                     <th>Администратор</th>
+                    <th>Редактор</th>
                     <th>Событие</th>
                 </tr>
                 </thead>
@@ -14,6 +15,7 @@
                         <tr>
                             <td>{{ $history->created_at }}</td>
                             <td><a href="{{ route('admin.admins.edit', $history->historiable) }}">{{ $history->historiable->full_name }}</a></td>
+                            <td><a href="{{ route('admin.admins.edit', $history->author->id) }}">{{ $history->author->full_name }}</a></td>
                             <td>{{ App\Classes\EventHistoryEnum::$labels[$history->event] }}</td>
                         </tr>
                     @endforeach

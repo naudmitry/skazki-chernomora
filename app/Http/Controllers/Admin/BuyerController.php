@@ -104,11 +104,12 @@ class BuyerController extends Controller
     }
 
     /**
+     * @param Company $administeredCompany
      * @param Showcase $administeredShowcase
      * @param Buyer $buyer
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Showcase $administeredShowcase, Buyer $buyer)
+    public function edit(Company $administeredCompany, Showcase $administeredShowcase, Buyer $buyer)
     {
         $adSources = AdSource::query()
             ->orderBy('sort', 'asc')
@@ -127,8 +128,12 @@ class BuyerController extends Controller
             ->where('entity_type', Admin::class)
             ->get();
 
+        $admins = Admin::query()
+            ->where('company_id', $administeredCompany->id)
+            ->get();
+
         return view('main_admin.buyers.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'adminChangeHistory'
+            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'adminChangeHistory', 'admins'
         ));
     }
 
@@ -149,11 +154,12 @@ class BuyerController extends Controller
 
     /**
      * @param Request $request
+     * @param Showcase $administeredShowcase
      * @param Buyer $buyer
      * @param $tab
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request, Buyer $buyer, $tab)
+    public function store(Request $request, Showcase $administeredShowcase, Buyer $buyer, $tab)
     {
         switch ($tab) {
             case 'general' :
@@ -162,6 +168,8 @@ class BuyerController extends Controller
                     'name' => 'required',
                     'phone_number' => 'required',
                 ]);
+
+                $admin = Admin::findOrFail($request->get('admin_id'));
 
                 $buyer->surname = $request->get('surname');
                 $buyer->name = $request->get('name');
@@ -178,6 +186,12 @@ class BuyerController extends Controller
                 $buyer->organization_id = $request->get('organization_id');
                 $buyer->type_subscription = $request->get('type_subscription');
                 $buyer->passport = $request->get('passport');
+                $buyer->admin_id = $admin->id;
+
+                if ($buyer->isDirty('admin_id')) {
+                    $this->historyRepository->store($admin, EventHistoryEnum::CHANGE_ADMIN, $buyer, $administeredShowcase);
+                }
+
                 $buyer->save();
 
                 $buyer->adSources()->sync($request->get('ad_source_ids'));
