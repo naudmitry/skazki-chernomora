@@ -22,6 +22,7 @@ class HistoryRepository
         $history->event = $event;
         $history->buyer_id = $buyer->id;
         $history->showcase_id = $showcase->id;
+        $history->author_id = \Auth::guard('admin')->user()->id;
         $history->save();
     }
 }
