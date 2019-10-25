@@ -36,7 +36,7 @@ class OrganizationController extends Controller
                 ->make(true);
         }
 
-        return view('main_admin.organization.index', compact('counters'));
+        return view('main_admin.organizations.index', compact('counters'));
     }
 
     /**
@@ -51,7 +51,7 @@ class OrganizationController extends Controller
         }
 
         return response()->json([
-            'view' => view('main_admin.organization.modals.edit', compact('organization'))->render(),
+            'view' => view('main_admin.organizations.modals.edit', compact('organization'))->render(),
         ]);
     }
 

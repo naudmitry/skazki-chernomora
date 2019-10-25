@@ -49,22 +49,19 @@ class Blog extends Model implements SlugableInterface, WidgetableInterface
     use PageableTrait;
     use DateableTrait;
 
-    protected $with =
-        [
-            'author'
-        ];
+    protected $with = [
+        'author'
+    ];
 
-    protected $appends =
-        [
-            'formatCreatedAt',
-            'formatUpdatedAt'
-        ];
+    protected $appends = [
+        'formatCreatedAt',
+        'formatUpdatedAt'
+    ];
 
-    protected $dates =
-        [
-            'created_at',
-            'updated_at'
-        ];
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

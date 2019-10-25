@@ -1,1 +1,1 @@
-@{{ diagnosis.created_at }}
+@{{ diagnosis.formatCreatedAt }}

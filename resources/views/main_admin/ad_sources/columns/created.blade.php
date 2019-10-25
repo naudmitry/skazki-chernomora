@@ -1,1 +1,1 @@
-@{{ source.created_at }}
+@{{ source.formatCreatedAt }}

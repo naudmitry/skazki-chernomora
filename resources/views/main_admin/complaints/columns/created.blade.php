@@ -1,1 +1,1 @@
-@{{ complaint.created_at }}
+@{{ complaint.formatCreatedAt }}

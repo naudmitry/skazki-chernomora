@@ -1,1 +1,1 @@
-@{{ subscription.created_at }}
+@{{ subscription.formatCreatedAt }}

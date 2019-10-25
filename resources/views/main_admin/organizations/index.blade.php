@@ -65,18 +65,18 @@
     <div class="div-for-modal"></div>
 
     <script type="application/x-tmpl-mustache" class="template-organizations-table-column-actions">
-        @include('main_admin.organization.columns.actions')
+        @include('main_admin.organizations.columns.actions')
     </script>
     <script type="application/x-tmpl-mustache" class="template-organizations-table-column-title">
-        @include('main_admin.organization.columns.title')
+        @include('main_admin.organizations.columns.title')
     </script>
     <script type="application/x-tmpl-mustache" class="template-organizations-table-column-created">
-        @include('main_admin.organization.columns.created')
+        @include('main_admin.organizations.columns.created')
     </script>
     <script type="application/x-tmpl-mustache" class="template-organizations-table-column-address">
-        @include('main_admin.organization.columns.address')
+        @include('main_admin.organizations.columns.address')
     </script>
     <script type="application/x-tmpl-mustache" class="template-organizations-table-column-author">
-        @include('main_admin.organization.columns.author')
+        @include('main_admin.organizations.columns.author')
     </script>
 @endsection

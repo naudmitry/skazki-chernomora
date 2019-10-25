@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Date\DateableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,6 +17,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Organization extends Model
 {
+    use DateableTrait;
+
+    protected $appends = [
+        'formatCreatedAt',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

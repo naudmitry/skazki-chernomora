@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Date\DateableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,6 +22,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Complaint extends Model
 {
     use SoftDeletes;
+    use DateableTrait;
+
+    protected $appends = [
+        'formatCreatedAt',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
