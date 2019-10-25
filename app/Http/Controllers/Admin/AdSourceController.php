@@ -66,7 +66,7 @@ class AdSourceController extends Controller
         }
 
         $source->title = $request->get('title');
-        $source->sort = $request->get('sort');
+        $source->sort = $request->filled('sort') ? $request->get('sort') : null;
         $source->save();
 
         return response()->json([

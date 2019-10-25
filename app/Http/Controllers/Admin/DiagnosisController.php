@@ -60,7 +60,7 @@ class DiagnosisController extends Controller
         }
 
         $diagnosis->title = $request->get('title');
-        $diagnosis->count_visits = $request->get('count_visits');
+        $diagnosis->count_visits = $request->filled('count_visits') ? $request->get('count_visits') : null;
         $diagnosis->save();
 
         return response()->json([
