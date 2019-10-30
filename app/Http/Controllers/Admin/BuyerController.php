@@ -10,7 +10,6 @@ use App\Models\Buyer;
 use App\Models\Company;
 use App\Models\Complaint;
 use App\Models\Diagnosis;
-use App\Models\History;
 use App\Models\Order;
 use App\Models\Organization;
 use App\Models\Showcase;
@@ -33,15 +32,16 @@ class BuyerController extends Controller
 
         parent::__construct();
     }
+
     /**
      * @param BuyerRequest $request
      * @param Showcase $administeredShowcase
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function create(BuyerRequest $request, Showcase $administeredShowcase)
     {
-        $admin = Admin::findOrFail($request->get('admin_id'));
-
+        \DB::beginTransaction();
         $buyer = new Buyer();
         $buyer->name = $request->get('name');
         $buyer->surname = $request->get('surname');
@@ -51,10 +51,11 @@ class BuyerController extends Controller
         $buyer->showcase_id = $administeredShowcase->id;
         $buyer->gender = $request->get('gender');
         $buyer->phone_number = $request->get('phone_number');
-        $buyer->admin_id = $admin->id;
+        $buyer->admin_id = $request->get('admin_id');
         $buyer->save();
 
-        $this->historyRepository->store($admin, EventHistoryEnum::CHANGE_ADMIN, $buyer, $administeredShowcase);
+        $this->historyRepository->store($administeredShowcase, $buyer, EventHistoryEnum::CHANGE_ADMIN, $buyer->admin);
+        \DB::commit();
 
         return response()->json([
             'status' => 200
@@ -123,17 +124,12 @@ class BuyerController extends Controller
             ->where('buyer_id', $buyer->id)
             ->get();
 
-        $adminChangeHistory = History::query()
-            ->where('buyer_id', $buyer->id)
-            ->where('entity_type', Admin::class)
-            ->get();
-
         $admins = Admin::query()
             ->where('company_id', $administeredCompany->id)
             ->get();
 
         return view('main_admin.buyers.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'adminChangeHistory', 'admins'
+            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'admins'
         ));
     }
 
@@ -169,7 +165,7 @@ class BuyerController extends Controller
                     'phone_number' => 'required',
                 ]);
 
-                $admin = Admin::findOrFail($request->get('admin_id'));
+                $admin = Admin::firstOrFail($request->get('admin_id'));
 
                 $buyer->surname = $request->get('surname');
                 $buyer->name = $request->get('name');
@@ -189,7 +185,7 @@ class BuyerController extends Controller
                 $buyer->admin_id = $admin->id;
 
                 if ($buyer->isDirty('admin_id')) {
-                    $this->historyRepository->store($admin, EventHistoryEnum::CHANGE_ADMIN, $buyer, $administeredShowcase);
+                    $this->historyRepository->store($administeredShowcase, $buyer, EventHistoryEnum::CHANGE_ADMIN, $admin);
                 }
 
                 $buyer->save();

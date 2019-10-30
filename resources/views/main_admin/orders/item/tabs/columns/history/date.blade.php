@@ -1,1 +1,0 @@
-@{{ history.date_at }}

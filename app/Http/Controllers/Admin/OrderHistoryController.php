@@ -12,27 +12,6 @@ use Yajra\DataTables\DataTables;
 class OrderHistoryController extends Controller
 {
     /**
-     * @param Order $order
-     * @return mixed
-     * @throws \Exception
-     */
-    public function index(Order $order)
-    {
-        $histories = $order->histories()
-            ->with('buyer')
-            ->get();
-
-        $counters =
-            [
-                'histories_count' => $histories->count(),
-            ];
-
-        return Datatables::of($histories)
-            ->with('counters')
-            ->make(true);
-    }
-
-    /**
      * @param Request $request
      * @param Order $order
      */

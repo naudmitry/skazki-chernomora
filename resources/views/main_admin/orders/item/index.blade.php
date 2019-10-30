@@ -18,7 +18,7 @@
                             <a class="nav-link" href="#family" data-toggle="tab">Семья</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#history" data-toggle="tab">История посещений</a>
+                            <a class="nav-link" href="#history" data-toggle="tab">Посещения</a>
                         </li>
                     @endif
                 </ul>

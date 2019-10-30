@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Repositories\Date\DateableTrait;
+use App\Traits\HistoriableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -40,17 +41,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $type_subscription
  * @property integer $admin_id
  *
+ * @property Admin $admin
+ *
  * @mixin \Eloquent
  */
 class Buyer extends Model
 {
     use DateableTrait;
     use SoftDeletes;
+    use HistoriableTrait;
 
     protected $with = [
         'adSources',
         'diagnoses',
-        'complaints'
+        'complaints',
     ];
 
     protected $dates = [
@@ -89,26 +93,18 @@ class Buyer extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
+    /**
      * @return string
      */
     public function getFullNameAttribute()
     {
         return $this->name . ' ' . $this->surname;
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function admin()
-    {
-        return $this->hasOne(Admin::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function histories()
-    {
-        return $this->hasMany(History::class);
     }
 }

@@ -23,3 +23,4 @@ require('./pages/admin/applications');
 require('./pages/admin/seo-integrations');
 require('./pages/admin/communication');
 require('./pages/admin/pre-entry');
+require('./pages/admin/history');

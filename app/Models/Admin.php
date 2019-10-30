@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HistoriableTrait;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,7 @@ use Illuminate\Support\Collection;
 class Admin extends Authenticatable
 {
     use Notifiable;
+    use HistoriableTrait;
 
     protected $fillable = [
         'name', 'email', 'password'

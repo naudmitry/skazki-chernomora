@@ -1,1 +1,0 @@
-@{{history.buyer.full_name}}

@@ -34,6 +34,16 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             Route::get('admins/{admin}/edit', ['uses' => 'Admin\AdminController@edit', 'as' => 'admin.admins.edit'])
                 ->where('admin', '[0-9]+');
 
+            Route::group([], function () {
+                Route::get('histories/{id}/{type}', ['uses' => 'Admin\HistoryController@index', 'as' => 'admin.histories.index']);
+
+
+                Route::post('/order/{order}/history/save', ['uses' => 'Admin\OrderHistoryController@save', 'as' => 'admin.order.history.save'])
+                    ->where('order', '[0-9]+');
+                Route::get('/order/{order}/history/buyers', ['uses' => 'Admin\OrderHistoryController@buyers', 'as' => 'admin.order.history.buyer'])
+                    ->where('order', '[0-9]+');
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_ROLES], function () {
                 Route::get('staff/roles', ['uses' => 'Admin\RoleController@index', 'as' => 'admin.staff.roles']);
                 Route::get('staff/role/edit/{role?}', ['uses' => 'Admin\RoleController@edit', 'as' => 'admin.staff.role.edit'])
@@ -206,12 +216,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('order', '[0-9]+')
                     ->where('buyer', '[0-9]+');
                 Route::get('/order/{order}/family/buyers', ['uses' => 'Admin\OrderFamilyController@buyers', 'as' => 'admin.order.family.buyer'])
-                    ->where('order', '[0-9]+');
-                Route::get('/order/{order}/histories', ['uses' => 'Admin\OrderHistoryController@index', 'as' => 'admin.order.history.index'])
-                    ->where('order', '[0-9]+');
-                Route::post('/order/{order}/history/save', ['uses' => 'Admin\OrderHistoryController@save', 'as' => 'admin.order.history.save'])
-                    ->where('order', '[0-9]+');
-                Route::get('/order/{order}/history/buyers', ['uses' => 'Admin\OrderHistoryController@buyers', 'as' => 'admin.order.history.buyer'])
                     ->where('order', '[0-9]+');
             });
 

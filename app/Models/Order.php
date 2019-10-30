@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Classes\OrderStatus;
 use App\Repositories\Date\DateableTrait;
 use App\Repositories\Showcase\ShowcasableTrait;
+use App\Traits\HistoriableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,28 +40,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Buyer $buyer
  * @property-read Buyer[] $buyers
  * @property-read OrderHistory[] $histories
+ *
+ * @mixin \Eloquent
  */
 class Order extends Model
 {
     use SoftDeletes;
     use ShowcasableTrait;
     use DateableTrait;
+    use HistoriableTrait;
 
-    protected $appends =
-        [
-            'formatCreatedAt',
-            'formatUpdatedAt',
-            'formatBeginAt',
-            'formatEndAt',
-            'saltCaveTitle',
-            'statusI18n',
-        ];
+    protected $appends = [
+        'formatCreatedAt',
+        'formatUpdatedAt',
+        'formatBeginAt',
+        'formatEndAt',
+        'saltCaveTitle',
+        'statusI18n',
+    ];
 
-    protected $dates =
-        [
-            'begin_at',
-            'end_at',
-        ];
+    protected $dates = [
+        'begin_at',
+        'end_at',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -92,14 +94,6 @@ class Order extends Model
     public function buyers()
     {
         return $this->belongsToMany(Buyer::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function histories()
-    {
-        return $this->hasMany(OrderHistory::class);
     }
 
     /**

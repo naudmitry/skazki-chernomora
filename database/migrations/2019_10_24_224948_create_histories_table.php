@@ -17,9 +17,10 @@ class CreateHistoriesTable extends Migration
             $table->string('entity_type')->index();
             $table->unsignedInteger('entity_id')->index();
             $table->string('event');
-            $table->unsignedInteger('buyer_id')->index();
-            $table->unsignedInteger('showcase_id')->index();
-            $table->unsignedInteger('author_id')->index();
+            $table->string('object_type')->index();
+            $table->unsignedInteger('object_id')->index();
+            $table->unsignedInteger('showcase_id');
+            $table->unsignedInteger('author_id');
             $table->timestamps();
         });
     }

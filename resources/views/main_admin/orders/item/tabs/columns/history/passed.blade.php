@@ -1,1 +1,0 @@
-@{{ history.count_sessions_passed }}
