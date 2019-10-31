@@ -62,4 +62,5 @@ $(function () {
     });
 
     require('./family');
+    require('./history');
 });

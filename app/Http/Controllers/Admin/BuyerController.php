@@ -165,8 +165,9 @@ class BuyerController extends Controller
                     'phone_number' => 'required',
                 ]);
 
-                $admin = Admin::firstOrFail($request->get('admin_id'));
+                $admin = Admin::findOrFail($request->get('admin_id'));
 
+                \DB::beginTransaction();
                 $buyer->surname = $request->get('surname');
                 $buyer->name = $request->get('name');
                 $buyer->middle_name = $request->get('middle_name');
@@ -193,6 +194,7 @@ class BuyerController extends Controller
                 $buyer->adSources()->sync($request->get('ad_source_ids'));
                 $buyer->diagnoses()->sync($request->get('diagnosis_ids'));
                 $buyer->complaints()->sync($request->get('complaint_ids'));
+                \DB::commit();
                 break;
             default:
         }

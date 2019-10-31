@@ -5,7 +5,7 @@ $('.app-sidebar').scrollTo('.scroll-here', 300, {offset: -100});
 require('./pages/admin/main');
 require('./pages/admin/swith-companies');
 require('./pages/admin/blog');
-require('./pages/admin/order');
+require('./pages/admin/orders');
 require('./pages/admin/faq');
 require('./pages/admin/page');
 require('./pages/admin/settings');

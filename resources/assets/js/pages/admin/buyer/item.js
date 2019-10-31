@@ -10,7 +10,11 @@ $(function () {
         width: '100%'
     });
 
-    $('#contract_at, #birthday_at').datepicker();
+    $('#contract_at, #birthday_at').datepicker({
+        changeYear: true,
+        changeMonth: true,
+        yearRange: ((new Date).getFullYear() - 100) + ':' + (new Date).getFullYear(),
+    });
 
     $(document).on('change keyup', '.buyer-general-form', function (e) {
         let $form = $(this);
@@ -37,6 +41,7 @@ $(function () {
             data: $form.serialize(),
             success: response => {
                 notifyService.showMessage('info', 'Успех!', response.message);
+                $('#historiesTable').DataTable().ajax.reload();
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {

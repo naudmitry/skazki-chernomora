@@ -40,6 +40,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
 
                 Route::post('/order/{order}/history/save', ['uses' => 'Admin\OrderHistoryController@save', 'as' => 'admin.order.history.save'])
                     ->where('order', '[0-9]+');
+
+
                 Route::get('/order/{order}/history/buyers', ['uses' => 'Admin\OrderHistoryController@buyers', 'as' => 'admin.order.history.buyer'])
                     ->where('order', '[0-9]+');
             });

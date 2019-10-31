@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="tile-body datatable-scroll-lg">
-                            <table class="table table-hover" id="orderHistoriesTableModal" data-href="{{ route('admin.order.history.buyer', $order) }}" width="100%">
+                            <table class="table table-hover" id="orderHistoriesTableModal" data-href="{{ route('admin.order.history.buyer', $order) }}">
                                 <thead>
                                 <tr>
                                     <th>Пользователь</th>
