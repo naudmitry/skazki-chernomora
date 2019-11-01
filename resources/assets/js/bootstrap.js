@@ -28,6 +28,6 @@ window.DataTable = require('datatables.net-bs4');
 import swal from 'sweetalert';
 window.swal = swal;
 
-const notifyService = require("./pages/admin/notify");
+const notifyService = require("./vali-admin/notify");
 
 window.notifyService = notifyService;

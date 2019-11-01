@@ -41,7 +41,6 @@ class CreateBuyersTable extends Migration
             $table->string('login_from')->nullable();
             $table->string('created_from')->nullable();
             $table->string('password')->nullable();
-            $table->boolean('is_processing_personal_data')->default(false);
             $table->unsignedInteger('organization_id')->nullable();
             $table->string('dynamics')->nullable();
             $table->string('type_subscription')->default(BuyerTypeSubscriptionEnum::FREE);

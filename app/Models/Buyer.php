@@ -37,7 +37,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $login_from
  * @property string $created_from
  * @property string $password
- * @property boolean $is_processing_personal_data
  * @property string $type_subscription
  * @property integer $admin_id
  *

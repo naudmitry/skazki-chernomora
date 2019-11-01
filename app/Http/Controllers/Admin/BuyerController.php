@@ -179,7 +179,6 @@ class BuyerController extends Controller
                 $buyer->number_contract = $request->get('number_contract');
                 $buyer->contract_at = $request->get('contract_at') ? Carbon::createFromFormat('d.m.Y', $request->get('contract_at')) : null;
                 $buyer->is_enabled = $request->get('is_enabled', 0);
-                $buyer->is_processing_personal_data = $request->get('is_processing_personal_data', 0);
                 $buyer->organization_id = $request->get('organization_id');
                 $buyer->type_subscription = $request->get('type_subscription');
                 $buyer->passport = $request->get('passport');

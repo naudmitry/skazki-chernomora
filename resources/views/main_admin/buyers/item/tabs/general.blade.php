@@ -1,6 +1,6 @@
 <div class="tab-pane active" id="general">
     <div class="tile">
-        <h4 class="line-head">Карточка клиента</h4>
+        <h4 class="line-head">Основная информация</h4>
 
         <form autocomplete="off" class="buyer-general-form" method="post" action="{{ route('admin.buyers.store', [$buyer, 'general']) }}">
             {{ csrf_field() }}
@@ -83,53 +83,6 @@
                                     value="{{ $buyer->middle_name }}">
                         </div>
                     </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label" for="passport">Паспорт:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input
-                                    id="passport"
-                                    name="passport"
-                                    class="form-control"
-                                    type="text"
-                                    value="{{ $buyer->passport }}">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label" for="birthday_at">Дата рождения:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input
-                                    id="birthday_at"
-                                    name="birthday_at"
-                                    class="form-control"
-                                    type="text"
-                                    value="{{ $buyer->birthday_at ? $buyer->birthday_at->format('d.m.Y') : '' }}">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label" for="is_processing_personal_data">Обработка данных:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="toggle-flip">
-                                <label class="checkbox-left">
-                                    <input
-                                            class="checkbox"
-                                            type="checkbox"
-                                            name="is_processing_personal_data"
-                                            value="1"
-                                            @if ($buyer->is_processing_personal_data) checked @endif
-                                    ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="column col-md-6">
@@ -165,47 +118,7 @@
                         </div>
                     </div>
 
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label" for="address">Адрес:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input
-                                    id="address"
-                                    name="address"
-                                    class="form-control"
-                                    type="text"
-                                    value="{{ $buyer->address }}">
-                        </div>
-                    </div>
 
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label" for="email">Email:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input
-                                    id="email"
-                                    name="email"
-                                    class="form-control"
-                                    type="email"
-                                    value="{{ $buyer->email }}">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label" for="phone_number">Номер телефона:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input
-                                    id="phone_number"
-                                    name="phone_number"
-                                    class="form-control"
-                                    type="text"
-                                    value="{{ $buyer->phone_number }}">
-                        </div>
-                    </div>
 
                     <div class="row form-group">
                         <div class="col-md-4">
@@ -234,6 +147,84 @@
                                     value="{{ $buyer->contract_at ? $buyer->contract_at->format('d.m.Y') : '' }}">
                         </div>
                     </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="passport">Паспорт:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input
+                                    id="passport"
+                                    name="passport"
+                                    class="form-control"
+                                    type="text"
+                                    value="{{ $buyer->passport }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="line-head mt-4">Дополнительная информация</h4>
+
+            <div class="row">
+                <div class="column col-md-6">
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="email">Email:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input
+                                    id="email"
+                                    name="email"
+                                    class="form-control"
+                                    type="email"
+                                    value="{{ $buyer->email }}">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="phone_number">Номер телефона:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input
+                                    id="phone_number"
+                                    name="phone_number"
+                                    class="form-control"
+                                    type="text"
+                                    value="{{ $buyer->phone_number }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column col-md-6">
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="address">Адрес:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input
+                                    id="address"
+                                    name="address"
+                                    class="form-control"
+                                    type="text"
+                                    value="{{ $buyer->address }}">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="birthday_at">Дата рождения:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input
+                                    id="birthday_at"
+                                    name="birthday_at"
+                                    class="form-control"
+                                    type="text"
+                                    value="{{ $buyer->birthday_at ? $buyer->birthday_at->format('d.m.Y') : '' }}">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -252,6 +243,8 @@
                     </select>
                 </div>
             </div>
+
+            <h4 class="line-head mt-4">Медицинские сведения</h4>
 
             <div class="form-group row">
                 <div class="col-md-2">
@@ -290,13 +283,13 @@
                     <label class="control-label" for="dynamics">Динамика:</label>
                 </div>
                 <div class="col-md-10">
-                    <textarea
-                            id="dynamics"
-                            name="dynamics"
-                            rows="4"
-                            cols="5"
-                            class="form-control"
-                    >{{ $buyer->dynamics }}</textarea>
+                        <textarea
+                                id="dynamics"
+                                name="dynamics"
+                                rows="4"
+                                cols="5"
+                                class="form-control"
+                        >{{ $buyer->dynamics }}</textarea>
                 </div>
             </div>
 
