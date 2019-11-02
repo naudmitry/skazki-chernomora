@@ -33,6 +33,7 @@ use Illuminate\Support\Collection;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
+ * @property Carbon $birthday_at
  *
  * @property-read Company $company
  * @property-read Role $role
@@ -70,7 +71,7 @@ class Admin extends Authenticatable
     ];
 
     protected $dates = [
-        'registered_at',
+        'registered_at', 'birthday_at'
     ];
 
     /**

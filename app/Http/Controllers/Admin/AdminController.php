@@ -27,7 +27,6 @@ class AdminController extends Controller
         parent::__construct();
     }
 
-
     /**
      * @param Request $request
      * @param Company $administeredCompany
@@ -55,9 +54,13 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @param Admin $admin
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Admin $admin)
     {
-        return view('main_admin.staff.personal_area.index', compact(
+        return view('main_admin.staff.item.index', compact(
             'admin'
         ));
     }

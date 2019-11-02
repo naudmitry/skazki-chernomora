@@ -30,6 +30,7 @@ class CreateAdminsTable extends Migration
 
             $table->timestamp('registered_at')->nullable()->index();
             $table->timestamp('login_at')->nullable()->index();
+            $table->timestamp('birthday_at')->nullable();
 
             $table->string('registered_from')->nullable();
             $table->string('login_from')->nullable();

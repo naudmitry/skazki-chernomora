@@ -118,8 +118,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="row form-group">
                         <div class="col-md-4">
                             <label class="control-label" for="number_contract">Номер договора:</label>
