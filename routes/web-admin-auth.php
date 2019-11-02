@@ -30,10 +30,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         Route::group([
             'prefix' => 'showcase-{administeredShowcase}',
         ], function () {
-
-            Route::get('admins/{admin}/edit', ['uses' => 'Admin\AdminController@edit', 'as' => 'admin.admins.edit'])
-                ->where('admin', '[0-9]+');
-
             Route::group([], function () {
                 Route::get('histories/{id}/{type}', ['uses' => 'Admin\HistoryController@index', 'as' => 'admin.histories.index']);
 
@@ -57,6 +53,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_ADMIN_LIST], function () {
+                Route::get('admins/{admin}/edit', ['uses' => 'Admin\AdminController@edit', 'as' => 'admin.admins.edit'])
+                    ->where('admin', '[0-9]+');
+
                 Route::get('/staff/lists', ['uses' => 'Admin\AdminController@index', 'as' => 'admin.staff.list.index',]);
                 Route::post('/staff/lists/save/{admin?}', ['uses' => 'Admin\AdminController@save', 'as' => 'admin.staff.list.save'])
                     ->where('admin', '[0-9]+');

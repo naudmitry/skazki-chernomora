@@ -3,7 +3,7 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Персонал',
-        'page' => 'Страница пользователя'
+        'page' => 'Страница администратора'
     ])
 
     <div class="row user">
