@@ -76,8 +76,8 @@
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-registered-at">
         @include('main_admin.staff.lists.columns.registered_at')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-user">
-        @include('main_admin.staff.lists.columns.user')
+    <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-name">
+        @include('main_admin.staff.lists.columns.name')
     </script>
     <script type="application/x-tmpl-mustache" class="template-admin-lists-table-column-phone">
         @include('main_admin.staff.lists.columns.phone')
