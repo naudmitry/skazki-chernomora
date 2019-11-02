@@ -92,9 +92,13 @@ class BuyerController extends Controller
      */
     public function index(Request $request, Showcase $administeredShowcase)
     {
-        $buyerQuery = Buyer::query()
-            ->where('showcase_id', $administeredShowcase->id)
-            ->get();
+        $buyerQuery = Buyer::query()->where('showcase_id', $administeredShowcase->id);
+
+        if ($adminId = $request->get('admin_id')) {
+            $buyerQuery = $buyerQuery->where('admin_id', $adminId);
+        }
+
+        $buyerQuery->get();
 
         if ($request->ajax()) {
             return Datatables::of($buyerQuery)
@@ -154,6 +158,7 @@ class BuyerController extends Controller
      * @param Buyer $buyer
      * @param $tab
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function store(Request $request, Showcase $administeredShowcase, Buyer $buyer, $tab)
     {

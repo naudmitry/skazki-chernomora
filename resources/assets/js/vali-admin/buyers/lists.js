@@ -1,16 +1,13 @@
 $(function () {
-    let $buyersLists = $('.buyers-lists');
+    let $buyersListsTable = $('#buyersListsTable');
 
-    if (!$buyersLists.length) {
+    if (!$buyersListsTable.length) {
         return;
     }
 
-    let $buyersListsTable = $('#buyersListsTable');
     let mustacheTemplateBuyersListsTableColumnActions = $('.template-buyers-lists-table-column-actions').text();
     let mustacheTemplateBuyersListsTableColumnPhone = $('.template-buyers-lists-table-column-phone').text();
     let mustacheTemplateBuyersListsTableColumnStatus = $('.template-buyers-lists-table-column-status').text();
-    let mustacheTemplateBuyersListsTableColumnOrders = $('.template-buyers-lists-table-column-orders').text();
-    let mustacheTemplateBuyersListsTableColumnOrdersSum = $('.template-buyers-lists-table-column-orders-sum').text();
     let mustacheTemplateBuyersListsTableColumnLogin = $('.template-buyers-lists-table-column-login').text();
     let mustacheTemplateBuyersListsTableColumnUser = $('.template-buyers-lists-table-column-user').text();
     let mustacheTemplateBuyersListsTableColumnCreated = $('.template-buyers-lists-table-column-created').text();
@@ -52,14 +49,6 @@ $(function () {
             },
             {
                 targets: 5,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnOrders, {buyer}),
-            },
-            {
-                targets: 6,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnOrdersSum, {buyer}),
-            },
-            {
-                targets: 7,
                 orderable: false,
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnActions, {buyer}),
             },

@@ -1,7 +1,7 @@
 require('./bootstrap');
 
-require('./pages/miracle/preloader');
-require('./pages/miracle/pre-entry');
-require('./pages/miracle/help-desks');
-require('./pages/miracle/application');
-require('./pages/miracle/review');
+require('./miracle/preloader');
+require('./miracle/pre-entry');
+require('./miracle/help-desks');
+require('./miracle/application');
+require('./miracle/review');

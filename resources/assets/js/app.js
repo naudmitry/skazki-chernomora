@@ -15,7 +15,7 @@ require('./vali-admin/showcases');
 require('./vali-admin/roles');
 require('./vali-admin/content');
 require('./vali-admin/common');
-require('./vali-admin/buyer');
+require('./vali-admin/buyers');
 require('./vali-admin/reviews');
 require('./vali-admin/salt-caves');
 require('./vali-admin/handbooks');
