@@ -50,7 +50,7 @@ $(function () {
             {
                 targets: 5,
                 orderable: false,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnActions, {buyer}),
+                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnActions.replace('@buyerId', buyer.id), {buyer}),
             },
         ],
         order: [[0, 'asc']],
