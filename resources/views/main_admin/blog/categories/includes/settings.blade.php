@@ -2,7 +2,7 @@
     <h4 class="line-head">Настройки категории</h4>
 
     <div class="tile-body">
-        <form class="form-horizontal blog-category-settings-form" action="{{ route('admin.blog.category.save', $category) }}" method="post">
+        <form class="form-horizontal blog-category-settings-form" action="{{ route('admin.blog.categories.save', $category) }}" method="post">
             {{ csrf_field() }}
 
             <div class="form-group row">

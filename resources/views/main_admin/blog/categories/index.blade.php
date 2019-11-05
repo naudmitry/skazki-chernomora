@@ -11,7 +11,7 @@
             <div class="tile">
                 <h4 class="line-head">Категории</h4>
 
-                <div class="blog-categories-list" id="container">
+                <div class="blog-categories-list" data-color="#FFA07A" id="container">
                     @foreach ($categories as $category)
                         @include('main_admin.blog.categories.includes.item')
                     @endforeach
@@ -21,7 +21,7 @@
                     <button
                         class="btn btn-primary blog-category-settings-open"
                         type="button"
-                        href="{{ route('admin.blog.category.create') }}"
+                        href="{{ route('admin.blog.categories.create') }}"
                     ><i class="fas fa-plus-circle mr-2" aria-hidden="true"></i>Добавить</button>
                 </div>
             </div>
@@ -38,7 +38,7 @@
 @section('footer__script')
     <script type="text/javascript">
         let backendPageConfig = {
-            saveCategorySequence: '{{ route('admin.blog.category.sequence') }}',
+            saveCategorySequence: '{{ route('admin.blog.categories.sequence') }}',
         };
     </script>
 @endsection

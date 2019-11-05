@@ -83,34 +83,26 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_BLOG], function () {
-                Route::get('/blog/articles', ['uses' => 'Admin\BlogController@index', 'as' => 'admin.blog.article.index',]);
-                Route::get('/blog/article/create', ['uses' => 'Admin\BlogController@create', 'as' => 'admin.blog.article.create']);
-                Route::post('/blog/article/save/{blog?}', ['uses' => 'Admin\BlogController@save', 'as' => 'admin.blog.article.save'])
-                    ->where('blog', '[0-9]+');
-                Route::post('/blog/article/save/content/{blog}', ['uses' => 'Admin\BlogController@saveContent', 'as' => 'admin.blog.article.save.content',])
-                    ->where('blog', '[0-9]+');
-                Route::get('/blog/article/edit/{blog}', ['uses' => 'Admin\BlogController@edit', 'as' => 'admin.blog.article.edit'])
-                    ->where('blog', '[0-9]+');
-                Route::delete('/blog/article/{blog}', ['uses' => 'Admin\BlogController@delete', 'as' => 'admin.blog.article.delete'])
-                    ->where('blog', '[0-9]+');
-                Route::post('/blog/article/enable/{blog}', ['uses' => 'Admin\BlogController@enable', 'as' => 'admin.blog.article.enable'])
-                    ->where('blog', '[0-9]+');
-                Route::post('/blog/article/favorite/{blog}', ['uses' => 'Admin\BlogController@favorite', 'as' => 'admin.blog.article.favorite'])
-                    ->where('blog', '[0-9]+');
+                Route::group(['prefix' => 'blog'], function () {
+                    Route::get('/articles', ['uses' => 'Admin\BlogController@index', 'as' => 'admin.blog.articles.index',]);
+                    Route::get('/articles/create', ['uses' => 'Admin\BlogController@create', 'as' => 'admin.blog.articles.create']);
+                    Route::post('/articles/{blog?}', ['uses' => 'Admin\BlogController@save', 'as' => 'admin.blog.articles.save'])->where('blog', '[0-9]+');
+                    Route::post('/articles/save/content/{blog}', ['uses' => 'Admin\BlogController@saveContent', 'as' => 'admin.blog.articles.save.content',])->where('blog', '[0-9]+');
+                    Route::get('/articles/{blog}/edit', ['uses' => 'Admin\BlogController@edit', 'as' => 'admin.blog.articles.edit'])->where('blog', '[0-9]+');
+                    Route::delete('/articles/{blog}', ['uses' => 'Admin\BlogController@destroy', 'as' => 'admin.blog.articles.destroy'])->where('blog', '[0-9]+');
+                    Route::post('/articles/enable/{blog}', ['uses' => 'Admin\BlogController@enable', 'as' => 'admin.blog.articles.enable'])->where('blog', '[0-9]+');
+                    Route::post('/articles/favorite/{blog}', ['uses' => 'Admin\BlogController@favorite', 'as' => 'admin.blog.articles.favorite'])->where('blog', '[0-9]+');
 
-                Route::get('/blog/categories', ['uses' => 'Admin\BlogCategoryController@index', 'as' => 'admin.blog.category.index']);
-                Route::get('/blog/category/create', ['uses' => 'Admin\BlogCategoryController@create', 'as' => 'admin.blog.category.create']);
-                Route::post('/blog/category/save/{category?}', ['uses' => 'Admin\BlogCategoryController@save', 'as' => 'admin.blog.category.save'])
-                    ->where('category', '[0-9]+');
-                Route::get('/blog/category/{category}/edit', ['uses' => 'Admin\BlogCategoryController@edit', 'as' => 'admin.blog.category.edit'])
-                    ->where('category', '[0-9]+');
-                Route::delete('/blog/category/{category}', ['uses' => 'Admin\BlogCategoryController@delete', 'as' => 'admin.blog.category.delete'])
-                    ->where('category', '[0-9]+');
-                Route::post('/blog/category/sequence', ['uses' => 'Admin\BlogCategoryController@sequence', 'as' => 'admin.blog.category.sequence']);
-                Route::post('/blog/category/{category}/enable', ['uses' => 'Admin\BlogCategoryController@enable', 'as' => 'admin.blog.category.enable'])
-                    ->where('category', '[0-9]+');
+                    Route::get('/categories', ['uses' => 'Admin\BlogCategoryController@index', 'as' => 'admin.blog.categories.index']);
+                    Route::get('/categories/create', ['uses' => 'Admin\BlogCategoryController@create', 'as' => 'admin.blog.categories.create']);
+                    Route::post('/categories/{category?}', ['uses' => 'Admin\BlogCategoryController@save', 'as' => 'admin.blog.categories.save'])->where('category', '[0-9]+');
+                    Route::get('/categories/{category}/edit', ['uses' => 'Admin\BlogCategoryController@edit', 'as' => 'admin.blog.categories.edit'])->where('category', '[0-9]+');
+                    Route::delete('/categories/{category}', ['uses' => 'Admin\BlogCategoryController@destroy', 'as' => 'admin.blog.categories.destroy'])->where('category', '[0-9]+');
+                    Route::post('/categories/sequence', ['uses' => 'Admin\BlogCategoryController@sequence', 'as' => 'admin.blog.categories.sequence']);
+                    Route::post('/categories/{category}/enable', ['uses' => 'Admin\BlogCategoryController@enable', 'as' => 'admin.blog.categories.enable'])->where('category', '[0-9]+');
 
-                Route::get('/blog/main', ['uses' => 'Admin\BlogController@main', 'as' => 'admin.blog.main.index']);
+                    Route::get('/main', ['uses' => 'Admin\BlogController@main', 'as' => 'admin.blog.main.index']);
+                });
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_FAQ], function () {
@@ -231,13 +223,9 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
 
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_CUSTOMERS], function () {
                 Route::get('/buyers', ['uses' => 'Admin\BuyerController@index', 'as' => 'admin.buyers.index']);
-                Route::get('/buyers/{buyer}/edit', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyers.edit'])
-                    ->where('buyer', '[0-9]+');
-                Route::delete('/buyers/{buyer}', ['uses' => 'Admin\BuyerController@destroy', 'as' => 'admin.buyers.destroy'])
-                    ->where('buyer', '[0-9]+');
-                Route::post('/buyers/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store',])
-                    ->where('buyer', '[0-9]+')
-                    ->where('tab', 'general');
+                Route::get('/buyers/{buyer}/edit', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyers.edit'])->where('buyer', '[0-9]+');
+                Route::delete('/buyers/{buyer}', ['uses' => 'Admin\BuyerController@destroy', 'as' => 'admin.buyers.destroy'])->where('buyer', '[0-9]+');
+                Route::post('/buyers/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store',])->where('buyer', '[0-9]+')->where('tab', 'general');
                 Route::post('/buyers/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyers.create']);
                 Route::get('/buyers/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyers.modal']);
             });

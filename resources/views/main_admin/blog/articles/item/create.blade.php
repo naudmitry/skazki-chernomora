@@ -11,7 +11,7 @@
             <div class="tile">
                 <h4 class="line-head">Добавление статьи</h4>
 
-                <form class="tab-content blog-item-form" action="{{ route('admin.blog.article.save', '') }}" method="post">
+                <form class="tab-content blog-item-form" action="{{ route('admin.blog.articles.save', '') }}" method="post">
                     {{ csrf_field() }}
 
                     <div class="row">

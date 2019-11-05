@@ -1,19 +1,16 @@
 $(function () {
-    let $blogArticles = $('.blog-articles');
+    let $blogArticlesTable = $('#blogArticlesTable');
 
-    if (!$blogArticles.length) {
+    if (!$blogArticlesTable.length) {
         return;
     }
 
-    let $blogArticlesTable = $('#blogArticlesTable');
     let mustacheTemplateBlogArticlesTableColumnCreated = $('.template-blog-articles-table-column-created').text();
     let mustacheTemplateBlogArticlesTableColumnTitle = $('.template-blog-articles-table-column-title').text();
     let mustacheTemplateBlogArticlesTableColumnCategories = $('.template-blog-articles-table-column-categories').text();
     let mustacheTemplateBlogArticlesTableColumnPublished = $('.template-blog-articles-table-column-published').text();
     let mustacheTemplateBlogArticlesTableColumnFavorite = $('.template-blog-articles-table-column-favorite').text();
-    let mustacheTemplateBlogArticlesTableColumnAuthor = $('.template-blog-articles-table-column-author').text();
     let mustacheTemplateBlogArticlesTableColumnUpdated = $('.template-blog-articles-table-column-updated').text();
-    let mustacheTemplateBlogArticlesTableColumnUpdater = $('.template-blog-articles-table-column-updater').text();
     let mustacheTemplateBlogArticlesTableColumnViewed = $('.template-blog-articles-table-column-viewed').text();
     let mustacheTemplateBlogArticlesTableColumnActions = $('.template-blog-articles-table-column-actions').text();
 
@@ -50,7 +47,7 @@ $(function () {
             {
                 targets: 3,
                 data: 'enable',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnPublished, {blog}),
+                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnPublished.replace(/@blogId/g, blog.id), {blog}),
             },
             {
                 targets: 4,
@@ -59,30 +56,18 @@ $(function () {
             },
             {
                 targets: 5,
-                data: 'author_id',
-                sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnAuthor, {blog}),
-            },
-            {
-                targets: 6,
                 data: 'updated_at',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdated, {blog}),
             },
             {
-                targets: 7,
-                data: 'updater_id',
-                sortable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdater, {blog}),
-            },
-            {
-                targets: 8,
+                targets: 6,
                 data: 'view_count',
                 render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnViewed, {blog}),
             },
             {
-                targets: 9,
+                targets: 7,
                 orderable: false,
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnActions, {blog}),
+                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnActions.replace(/@blogId/g, blog.id), {blog}),
             },
         ],
         order: [[0, 'desc']],
@@ -151,8 +136,8 @@ $(function () {
                     type: 'delete',
                     url: $this.attr('href'),
                     success: response => {
-                        notifyService.showMessage('danger', 'Успех!', response.message);
                         $blogArticlesTable.DataTable().ajax.reload();
+                        notifyService.showMessage('info', 'Успех!', response.message);
                     },
                     error: xhr => {
                         console.error(xhr);

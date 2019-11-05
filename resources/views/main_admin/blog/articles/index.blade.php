@@ -12,7 +12,7 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="{{ route('admin.blog.article.create') }}" class="btn btn-primary open-create-form" type="button">
+                            <button data-href="{{ route('admin.blog.articles.create') }}" class="btn btn-primary open-create-form" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
@@ -45,12 +45,7 @@
                 </div>
 
                 <div class="tile-body datatable-scroll-lg">
-                    <table
-                            class="table table-hover"
-                            id="blogArticlesTable"
-                            data-href="{{ route('admin.blog.article.index') }}"
-                            width="100%"
-                    >
+                    <table class="table table-hover" id="blogArticlesTable" data-href="{{ route('admin.blog.articles.index') }}">
                         <thead>
                         <tr>
                             <th>Создан</th>
@@ -58,9 +53,7 @@
                             <th>Категории</th>
                             <th>Опубликован</th>
                             <th>Избранное</th>
-                            <th>Автор</th>
                             <th>Обновлено</th>
-                            <th>Редактор</th>
                             <th>Просмотров</th>
                             <th>Действия</th>
                         </tr>
@@ -87,14 +80,8 @@
     <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-favorite">
         @include('main_admin.blog.articles.columns.favorite')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-author">
-        @include('main_admin.blog.articles.columns.author')
-    </script>
     <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-updated">
         @include('main_admin.blog.articles.columns.updated')
-    </script>
-    <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-updater">
-        @include('main_admin.blog.articles.columns.updater')
     </script>
     <script type="application/x-tmpl-mustache" class="template-blog-articles-table-column-viewed">
         @include('main_admin.blog.articles.columns.viewed')

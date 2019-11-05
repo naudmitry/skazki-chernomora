@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12 blog-article">
-        <form class="tile blog-item-editor-form" action="{{ route('admin.blog.article.save.content', $blog) }}" method="post">
+        <form class="tile blog-item-editor-form" action="{{ route('admin.blog.articles.save.content', $blog) }}" method="post">
             <h4 class="line-head">Редактор статьи</h4>
 
             <div class="form-group row">

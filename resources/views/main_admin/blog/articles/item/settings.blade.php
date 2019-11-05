@@ -1,7 +1,7 @@
 <div class="tile">
     <h4 class="line-head">Настройка статьи</h4>
 
-    <form class="tab-content blog-item-form" action="{{ route('admin.blog.article.save', $blog ?? '') }}" method="post">
+    <form class="tab-content blog-item-form" action="{{ route('admin.blog.articles.save', $blog ?? '') }}" method="post">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-md-8">
@@ -94,7 +94,7 @@
                                     <div class="toggle-flip">
                                         <label class="mb-0">
                                             <input
-                                                    data-href="{{ isset($blog) ? route('admin.blog.article.enable', $blog) : '' }}"
+                                                    data-href="{{ isset($blog) ? route('admin.blog.articles.enable', $blog) : '' }}"
                                                     @if ($blog->enable) checked @endif
                                                     type="checkbox"
                                                     class="checkbox entity-availability"
@@ -109,7 +109,7 @@
                                     <div class="toggle-flip">
                                         <label class="mb-0">
                                             <input
-                                                    data-href="{{ isset($blog) ? route('admin.blog.article.favorite', $blog) : '' }}"
+                                                    data-href="{{ isset($blog) ? route('admin.blog.articles.favorite', $blog) : '' }}"
                                                     @if ($blog->favorite) checked @endif
                                                     type="checkbox"
                                                     class="checkbox entity-availability"

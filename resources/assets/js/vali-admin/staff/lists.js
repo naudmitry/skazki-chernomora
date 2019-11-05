@@ -38,7 +38,7 @@ $(function () {
             {
                 targets: 1,
                 data: 'name',
-                render: (data, type, admin) => Mustache.render(mustacheTemplateAdminListsTableColumnName.replace('@adminId', admin.id), {admin}),
+                render: (data, type, admin) => Mustache.render(mustacheTemplateAdminListsTableColumnName.replace(/@adminId/g, admin.id), {admin}),
             },
             {
                 targets: 2,

@@ -129,7 +129,7 @@ class BlogCategoryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function delete(BlogCategory $category)
+    public function destroy(BlogCategory $category)
     {
         \DB::transaction(function () use (&$category) {
             $this->slugRepository->deleteSlug($category);

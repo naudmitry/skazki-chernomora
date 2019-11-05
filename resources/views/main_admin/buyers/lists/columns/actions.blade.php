@@ -1,4 +1,4 @@
-<div class="dropdown">
+<div class="dropdown dropleft">
     <a data-toggle="dropdown" href="#">
         <i class="fas fa-ellipsis-h"></i>
     </a>

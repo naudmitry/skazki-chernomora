@@ -1,15 +1,14 @@
 import slug from "slug";
 
 $(function () {
-    let $blogCategories = $('.blog-categories');
+    let $blogCategoriesList = $('.blog-categories-list');
 
-    if (!$blogCategories.length) {
+    if (!$blogCategoriesList.length) {
         return;
     }
 
     let $blogCategoriesSettingsContainer = $('.blog-categories-settings-container');
     let blogCategorySettingsLoadingTemplate = $('.blog-category-settings-loading-template').text();
-    let $blogCategoriesList = $('.blog-categories-list');
     let isChange = false;
 
     $(document).on('click', '.blog-category-settings-open', function (e) {
@@ -32,8 +31,7 @@ $(function () {
                     swal("Изменение отменено!", "Данные не будут изменены.", "error");
                 }
             });
-        }
-        else {
+        } else {
             edit($this.attr('href'));
         }
     });
@@ -49,6 +47,8 @@ $(function () {
             cache: false,
             success: response => {
                 $blogCategoriesSettingsContainer.html(response);
+
+                setBackgroundListItem(3, true);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
@@ -78,8 +78,7 @@ $(function () {
                     $blogCategoriesList.find('.blog-categories-list-item[data-blog-category-id="' + response.category.id + '"]');
                 if ($blogCategoriesListItem.length) {
                     $blogCategoriesListItem.replaceWith(response.row);
-                }
-                else {
+                } else {
                     $blogCategoriesList.append(response.row);
                 }
                 $blogCategoriesSettingsContainer.html(response.settings);
@@ -131,7 +130,7 @@ $(function () {
                         }
                         $blogCategoriesListItem.remove();
                         isChange = false;
-                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        notifyService.showMessage('info', 'Успех!', response.message);
                     },
                     error: xhr => {
                         console.error(xhr);
@@ -206,4 +205,10 @@ $(function () {
         $blogCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
         $blogCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
+
+    let setBackgroundListItem = function (categoryId, set) {
+        let $blogCategoryItem = $blogCategoriesList
+            .find('.blog-categories-list-item[data-blog-category-id="' + categoryId + '"]');
+        $blogCategoryItem.css('background', (set) ? $blogCategoriesList.data('color') : '');
+    };
 });

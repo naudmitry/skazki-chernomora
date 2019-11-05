@@ -133,7 +133,7 @@ class BlogController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function delete(Blog $blog)
+    public function destroy(Blog $blog)
     {
         \DB::transaction(function () use (&$blog) {
             $this->slugRepository->deleteSlug($blog);
@@ -191,7 +191,7 @@ class BlogController extends Controller
 
         return response()->json([
             'message' => 'Статья успешно сохранена.',
-            'redirectUrl' => $isNew ? route('admin.blog.article.edit', $blog) : null,
+            'redirectUrl' => $isNew ? route('admin.blog.articles.edit', $blog) : null,
             'settings' => $settings,
         ]);
     }
