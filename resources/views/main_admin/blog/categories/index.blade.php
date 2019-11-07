@@ -11,7 +11,7 @@
             <div class="tile">
                 <h4 class="line-head">Категории</h4>
 
-                <div class="blog-categories-list" data-color="#FFA07A" id="container">
+                <div class="blog-categories-list" data-color="#FAEBD7" id="container">
                     @foreach ($categories as $category)
                         @include('main_admin.blog.categories.includes.item')
                     @endforeach

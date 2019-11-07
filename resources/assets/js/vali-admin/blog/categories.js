@@ -40,15 +40,18 @@ $(function () {
         if ($blogCategoriesSettingsContainer.data('ajax')) {
             $blogCategoriesSettingsContainer.data('ajax').abort();
         }
+        let prevCategoryId = $blogCategoriesSettingsContainer.find('.blog-category-settings-container').data('category-id');
         $blogCategoriesSettingsContainer.html(blogCategorySettingsLoadingTemplate);
         $blogCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: response => {
-                $blogCategoriesSettingsContainer.html(response);
-
-                setBackgroundListItem(3, true);
+                $blogCategoriesSettingsContainer.html(response.view);
+                if (prevCategoryId !== response.categoryId) {
+                    setBackgroundListItem(prevCategoryId, false);
+                }
+                setBackgroundListItem(response.categoryId, true);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
@@ -82,6 +85,7 @@ $(function () {
                     $blogCategoriesList.append(response.row);
                 }
                 $blogCategoriesSettingsContainer.html(response.settings);
+                setBackgroundListItem(response.category.id, true);
                 notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
@@ -207,8 +211,7 @@ $(function () {
     });
 
     let setBackgroundListItem = function (categoryId, set) {
-        let $blogCategoryItem = $blogCategoriesList
-            .find('.blog-categories-list-item[data-blog-category-id="' + categoryId + '"]');
+        let $blogCategoryItem = $blogCategoriesList.find('.blog-categories-list-item[data-blog-category-id="' + categoryId + '"]');
         $blogCategoryItem.css('background', (set) ? $blogCategoriesList.data('color') : '');
     };
 });

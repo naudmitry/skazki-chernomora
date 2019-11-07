@@ -59,13 +59,15 @@ class BlogCategoryController extends Controller
 
     /**
      * @param BlogCategory $category
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function edit(BlogCategory $category)
     {
-        return view('main_admin.blog.categories.includes.settings', compact(
-            'category'
-        ));
+        return response()->json([
+            'view' => view('main_admin.blog.categories.includes.settings', compact('category'))->render(),
+            'categoryId' => $category->id
+        ]);
     }
 
     /**
@@ -143,15 +145,17 @@ class BlogCategoryController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function create()
     {
         $category = new BlogCategory();
 
-        return view('main_admin.blog.categories.includes.settings', compact(
-            'category'
-        ));
+        return response()->json([
+            'view' => view('main_admin.blog.categories.includes.settings', compact('category'))->render(),
+            'categoryId' => $category->id
+        ]);
     }
 
     /**
