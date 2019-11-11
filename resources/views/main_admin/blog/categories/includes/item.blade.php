@@ -1,13 +1,15 @@
 <div class="blog-categories-list-item list-items-container" data-blog-category-id="{{ $category->id }}">
     <div class="toggle-flip title-center">
-        <label class="checkbox-left">
-            <input
-                    class="checkbox"
-                    type="checkbox"
-                    data-href="{{ route('admin.blog.categories.enable', $category) }}"
-                    @if ($category->enable) checked @endif
-            ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
-        </label>
+        <div class="toggle">
+            <label class="mb-0">
+                <input
+                        class="checkbox"
+                        type="checkbox"
+                        @if ($category->enable) checked @endif
+                        data-href="{{ route('admin.blog.categories.enable', $category) }}"
+                ><span class="button-indecator"></span>
+            </label>
+        </div>
 
         <p class="title dragula-handle mb-0">
             <a class="blog-category-settings-open" href="{{ route('admin.blog.categories.edit', $category) }}">

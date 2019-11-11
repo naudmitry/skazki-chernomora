@@ -1,4 +1,4 @@
-<div class="tile" id="widget-panel">
+<div class="tile" data-widget-id="{{ $widget->id }}" id="widget-panel">
     <h4 class="line-head">Настройки виджета</h4>
 
     <div class="tile-body">

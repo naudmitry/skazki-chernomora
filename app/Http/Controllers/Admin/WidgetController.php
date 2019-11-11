@@ -227,7 +227,8 @@ class WidgetController extends Controller
         $viewData = compact('widget', 'widget_setting', 'widget_container', 'showcase');
 
         return response()->json([
-            'view' => view($viewWidgetObj->getSettingsTmpl(), $viewData)->render()
+            'view' => view($viewWidgetObj->getSettingsTmpl(), $viewData)->render(),
+            'widgetId' => $widget->id
         ]);
     }
 

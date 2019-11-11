@@ -1,4 +1,4 @@
-<div class="tile widgets-panel" data-role="widgets-control-panel">
+<div class="tile widgets-panel" data-role="widgets-control-panel" data-color="#ffc107">
     <h4 class="line-head">Виджеты</h4>
 
     <div class="tile-body">

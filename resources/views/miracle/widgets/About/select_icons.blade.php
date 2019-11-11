@@ -4,15 +4,16 @@
     'google-plus',
     'linkedin',
     'skype',
-    'skype',
     'dribbble',
     'tumblr',
     'vk',
-    'instagram'
+    'instagram',
+    'odnoklassniki'
 ] as $iteratedIcon)
     <option
             value="{{ $iteratedIcon }}"
             data-icon="{{ $iteratedIcon }}"
+            data-with-icons="true"
             @if (isset($icon) && ($icon == $iteratedIcon)) selected @endif
     >{{ $iteratedIcon }}</option>
 @endforeach

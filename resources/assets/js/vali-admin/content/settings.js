@@ -12,9 +12,21 @@ let scriptModule =
 
             // scriptModule.validate($('#widget-panel'));
 
+            function formatState (state) {
+                if (!state.id) {
+                    return state.text;
+                }
+                return ($(state.element).data('with-icons').toString() === 'true')
+                    ? $('<span><i class="fab fa-' + $(state.element).data('icon') + ' has-circle"></i> ' + state.text + '</span>')
+                    : state.text;
+            }
+
             $context.find('.select2').select2({
                 minimumResultsForSearch: Infinity,
-                width: '100%'
+                width: '100%',
+                templateResult: formatState,
+                templateSelection: formatState,
+                allowHtml: true
             });
 
             $context.find("#accordionExample").sortable({

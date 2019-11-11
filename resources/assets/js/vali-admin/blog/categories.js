@@ -211,7 +211,9 @@ $(function () {
     });
 
     let setBackgroundListItem = function (categoryId, set) {
-        let $blogCategoryItem = $blogCategoriesList.find('.blog-categories-list-item[data-blog-category-id="' + categoryId + '"]');
-        $blogCategoryItem.css('background', (set) ? $blogCategoriesList.data('color') : '');
+        let $blogCategoryItem = $blogCategoriesList
+            .find('.blog-categories-list-item[data-blog-category-id="' + categoryId + '"]')
+            .find('.blog-category-settings-open');
+        $blogCategoryItem.css('color', (set) ? $blogCategoriesList.data('color') : '');
     };
 });

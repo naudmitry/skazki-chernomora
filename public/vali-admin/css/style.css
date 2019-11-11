@@ -14465,11 +14465,11 @@ be a descendant of the grid when it is being dragged.
 }
 
 .toggle input[type="checkbox"] + .button-indecator:before {
-  content: "";
-  font-family: "FontAwesome";
+  content: "\f204";
+  font-family: 'Font Awesome 5 Free';
   speak: none;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
@@ -14481,7 +14481,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .toggle input[type="checkbox"]:checked + .button-indecator:before {
-  content: "";
+  content: "\f205";
   color: #009688;
   -webkit-animation: toggleBtn 0.3s ease-in-out;
           animation: toggleBtn 0.3s ease-in-out;

@@ -1,8 +1,8 @@
-<div class="tile" id="widget-panel">
+<div class="tile" data-widget-id="{{ $widget->id }}" id="widget-panel">
     <h4 class="line-head">Настройки виджета</h4>
 
     <div class="tile-body">
-        <form class="form-horizontal widget-settings-form" id="form-widget-panel" action="{{ route('widget.save', $widget) }}">
+        <form autocomplete="off" class="form-horizontal widget-settings-form" id="form-widget-panel" action="{{ route('widget.save', $widget) }}">
             {{ csrf_field() }}
 
             <div class="form-group row">

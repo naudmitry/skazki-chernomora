@@ -3,6 +3,14 @@ let settingsModule = require('./settings');
 
 let loadingTemplate = $('.loading-template').text();
 let $settingsWidgetContainer = $('.settings-widget-container');
+let $widgetPanel = $('.widgets-panel');
+
+let setBackgroundListItem = function (widgetId, set) {
+    let $item = $widgetPanel
+        .find('.widgets-list-item[id="' + widgetId + '"]')
+        .find('.widget-settings-open');
+    $item.css('color', (set) ? $widgetPanel.data('color') : '');
+};
 
 let contentCommonService =
     {
@@ -56,12 +64,18 @@ let contentCommonService =
             if ($settingsWidgetContainer.data('ajax')) {
                 $settingsWidgetContainer.data('ajax').abort();
             }
+            let prevItemId = $settingsWidgetContainer.find('div[id="widget-panel"]').data('widget-id');
             $settingsWidgetContainer.html(loadingTemplate);
             $settingsWidgetContainer.data('ajax', $.ajax({
                 url: openSettingsWidgetUrl,
                 type: 'GET',
                 success: (data) => {
                     $settingsWidgetContainer.html(data.view);
+
+                    if (prevItemId !== data.widgetId) {
+                        setBackgroundListItem(prevItemId, false);
+                    }
+                    setBackgroundListItem(data.widgetId, true);
 
                     let $formContext = $('#setting-widget-pc');
                     settingsModule.init($formContext);
