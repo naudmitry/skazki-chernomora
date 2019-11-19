@@ -59,7 +59,7 @@ class SlugRepository
      */
     public function deleteSlug(SlugableInterface $mixed)
     {
-        $mixed->slug->each(function (Slug $slug) {
+        $mixed->slug()->get()->each(function (Slug $slug) {
             $slug->delete();
         });
     }

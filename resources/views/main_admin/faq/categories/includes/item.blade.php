@@ -1,33 +1,28 @@
-<div
-        class="faq-categories-list-item list-items-container"
-        data-faq-category-id="{{ $category->id }}"
->
+<div class="faq-categories-list-item list-items-container" data-faq-category-id="{{ $category->id }}">
     <div class="toggle-flip title-center">
-        <label class="checkbox-left">
-            <input
-                    class="checkbox"
-                    type="checkbox"
-                    data-href="{{ route('admin.faq.category.enable', $category) }}"
-                    @if ($category->enable) checked @endif
-            ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
-        </label>
+        <div class="toggle">
+            <label class="mb-0">
+                <input
+                        class="checkbox"
+                        type="checkbox"
+                        @if ($category->enable) checked @endif
+                        data-href="{{ route('admin.faq.category.enable', $category) }}"
+                ><span class="button-indecator"></span>
+            </label>
+        </div>
 
-        <p class="title dragula-handle" style="margin-bottom: 0;">{{ $category->title }}</p>
+        <p class="title dragula-handle mb-0">
+            <a class="faq-category-settings-open" href="{{ route('admin.faq.category.edit', $category) }}">
+                {{ $category->title }}
+            </a>
+        </p>
     </div>
-
-    <div class="btn-group">
-        <a class="btn btn-primary dragula-handle" href="#">
+    <div class="toggle-flip title-center">
+        <a class="dragula-handle mr-2" href="#">
             <i class="fas fa-arrows-alt dragula-handle" style="vertical-align: middle;"></i>
         </a>
-
-        <a
-            class="btn btn-primary faq-category-settings-open"
-            href="{{ route('admin.faq.category.edit', $category) }}"
-        ><i class="fas fa-edit"></i></a>
-
-        <a
-            class="btn btn-primary faq-category-delete"
-            href="{{ route('admin.faq.category.delete', $category) }}"
-        ><i class="fas fa-trash"></i></a>
+        <a class="faq-category-delete" href="{{ route('admin.faq.category.delete', $category) }}">
+            <i class="fas fa-trash-alt mr-2"></i>
+        </a>
     </div>
 </div>

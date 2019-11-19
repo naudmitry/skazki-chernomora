@@ -2,7 +2,7 @@
     <h4 class="line-head">Настройки категории</h4>
 
     <div class="tile-body">
-        <form class="form-horizontal faq-category-settings-form" action="{{ route('admin.faq.category.save', $category ?? '') }}" method="post">
+        <form autocomplete="off" class="form-horizontal faq-category-settings-form" action="{{ route('admin.faq.category.save', $category ?? '') }}" method="post">
             {{ csrf_field() }}
 
             <div class="form-group row">

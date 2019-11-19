@@ -53,20 +53,22 @@ class FaqCategoryController extends Controller
         );
 
         return view('main_admin.faq.categories.index', compact(
-            'categories', 'staticPage', 'administeredShowcase'
+            'categories', 'staticPage'
         ));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function create()
     {
         $category = new FaqCategory();
 
-        return view('main_admin.faq.categories.includes.settings', compact([
-            'category'
-        ]));
+        return response()->json([
+            'view' => view('main_admin.faq.categories.includes.settings', compact('category'))->render(),
+            'categoryId' => $category->id
+        ]);
     }
 
     /**
@@ -109,15 +111,16 @@ class FaqCategoryController extends Controller
     }
 
     /**
-     * @param Showcase $administeredShowcase
      * @param FaqCategory $category
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
-    public function edit(Showcase $administeredShowcase, FaqCategory $category)
+    public function edit(FaqCategory $category)
     {
-        return view('main_admin.faq.categories.includes.settings', compact(
-            'category', 'administeredShowcase'
-        ));
+        return response()->json([
+            'view' => view('main_admin.faq.categories.includes.settings', compact('category'))->render(),
+            'categoryId' => $category->id
+        ]);
     }
 
     /**
@@ -133,7 +136,7 @@ class FaqCategoryController extends Controller
         });
 
         return response()->json([
-            'message' => 'Категория новости удалена.',
+            'message' => 'Категория FAQ удалена.',
             'category' => $category,
         ]);
     }
@@ -187,7 +190,7 @@ class FaqCategoryController extends Controller
         ))->render();
 
         return response()->json([
-            'message' => 'Категория вопроса успешно сохранена.',
+            'message' => 'Категория FAQ успешно сохранена.',
             'category' => $category,
             'row' => $row,
             'settings' => $settings,

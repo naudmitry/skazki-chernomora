@@ -1,15 +1,14 @@
 import slug from "slug";
 
 $(function () {
-    let $faqCategories = $('.faq-categories');
+    let $faqCategoriesList = $('.faq-categories-list');
 
-    if (!$faqCategories.length) {
+    if (!$faqCategoriesList.length) {
         return;
     }
 
     let $faqCategoriesSettingsContainer = $('.faq-categories-settings-container');
     let faqCategorySettingsLoadingTemplate = $('.faq-category-settings-loading-template').text();
-    let $faqCategoriesList = $('.faq-categories-list');
     let isChange = false;
 
     $(document).on('click', '.faq-category-settings-open', function (e) {
@@ -32,8 +31,7 @@ $(function () {
                     swal("Изменение отменено!", "Данные не будут изменены.", "error");
                 }
             });
-        }
-        else {
+        } else {
             edit($this.attr('href'));
         }
     });
@@ -42,13 +40,18 @@ $(function () {
         if ($faqCategoriesSettingsContainer.data('ajax')) {
             $faqCategoriesSettingsContainer.data('ajax').abort();
         }
+        let prevCategoryId = $faqCategoriesSettingsContainer.find('.faq-category-settings-container').data('category-id');
         $faqCategoriesSettingsContainer.html(faqCategorySettingsLoadingTemplate);
         $faqCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
             url: href,
             cache: false,
             success: response => {
-                $faqCategoriesSettingsContainer.html(response);
+                $faqCategoriesSettingsContainer.html(response.view);
+                if (prevCategoryId !== response.categoryId) {
+                    setBackgroundListItem(prevCategoryId, false);
+                }
+                setBackgroundListItem(response.categoryId, true);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
@@ -78,11 +81,11 @@ $(function () {
                     $faqCategoriesList.find('.faq-categories-list-item[data-faq-category-id="' + response.category.id + '"]');
                 if ($faqCategoriesListItem.length) {
                     $faqCategoriesListItem.replaceWith(response.row);
-                }
-                else {
+                } else {
                     $faqCategoriesList.append(response.row);
                 }
                 $faqCategoriesSettingsContainer.html(response.settings);
+                setBackgroundListItem(response.category.id, true);
                 notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
@@ -132,9 +135,10 @@ $(function () {
                         }
                         $faqCategoriesListItem.remove();
                         isChange = false;
-                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        notifyService.showMessage('info', 'Успех!', response.message);
                     },
                     error: xhr => {
+                        notifyService.showMessage('danger', 'Ошибка!', xhr.responseJSON.message);
                         console.error(xhr);
                     },
                 });
@@ -209,4 +213,11 @@ $(function () {
         $faqCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
         $faqCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
+
+    let setBackgroundListItem = function (categoryId, set) {
+        let $faqCategoryItem = $faqCategoriesList
+            .find('.faq-categories-list-item[data-faq-category-id="' + categoryId + '"]')
+            .find('.faq-category-settings-open');
+        $faqCategoryItem.css('color', (set) ? $faqCategoriesList.data('color') : '');
+    };
 });
