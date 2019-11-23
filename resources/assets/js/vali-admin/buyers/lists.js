@@ -33,7 +33,7 @@ $(function () {
             },
             {
                 targets: 1,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnUser, {buyer}),
+                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnUser.replace(/@buyerId/g, buyer.id), {buyer}),
             },
             {
                 targets: 2,

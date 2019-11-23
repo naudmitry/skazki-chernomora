@@ -12,7 +12,7 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="{{ route('admin.faq.question.create') }}" class="btn btn-primary open-create-form" type="button">
+                            <button data-href="{{ route('admin.faq.questions.create') }}" class="btn btn-primary open-create-form" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
@@ -48,7 +48,7 @@
                     <table
                             class="table table-hover" style="width: 100%"
                             id="faqQuestionsTable"
-                            data-href="{{ route('admin.faq.question.index') }}"
+                            data-href="{{ route('admin.faq.questions.index') }}"
                     >
                         <thead>
                         <tr>
@@ -57,9 +57,7 @@
                             <th>Категории</th>
                             <th>Опубликован</th>
                             <th>Избранное</th>
-                            <th>Автор</th>
                             <th>Обновлено</th>
-                            <th>Редактор</th>
                             <th>Просмотрено</th>
                             <th>Действия</th>
                         </tr>
@@ -86,14 +84,8 @@
     <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-favorite">
         @include('main_admin.faq.questions.columns.favorite')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-author">
-        @include('main_admin.faq.questions.columns.author')
-    </script>
     <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-updated">
         @include('main_admin.faq.questions.columns.updated')
-    </script>
-    <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-updater">
-        @include('main_admin.faq.questions.columns.updater')
     </script>
     <script type="application/x-tmpl-mustache" class="template-faq-questions-table-column-viewed">
         @include('main_admin.faq.questions.columns.viewed')

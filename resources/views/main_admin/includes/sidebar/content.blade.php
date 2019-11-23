@@ -60,8 +60,8 @@
 
                 <li>
                     <a
-                        class="treeview-item @if (Route::is('admin.faq.question.*')) active @endif"
-                        href="{{ route('admin.faq.question.index') }}"
+                        class="treeview-item @if (Route::is('admin.faq.questions.*')) active @endif"
+                        href="{{ route('admin.faq.questions.index') }}"
                     ><i class="icon far fa-circle"></i>Вопросы</a>
                 </li>
 

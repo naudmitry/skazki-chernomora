@@ -31,13 +31,12 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                data: 'created_at',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCreated, {blog}),
+                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnCreated.replace(/@authorId/g, blog.author.id), {blog}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnTitle, {blog}),
+                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnTitle.replace(/@blogId/g, blog.id), {blog}),
             },
             {
                 targets: 2,
@@ -56,8 +55,7 @@ $(function () {
             },
             {
                 targets: 5,
-                data: 'updated_at',
-                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdated, {blog}),
+                render: (data, type, blog) => Mustache.render(mustacheTemplateBlogArticlesTableColumnUpdated.replace(/@authorId/g, blog.updater.id), {blog}),
             },
             {
                 targets: 6,

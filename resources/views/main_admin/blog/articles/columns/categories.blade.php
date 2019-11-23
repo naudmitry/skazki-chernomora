@@ -1,5 +1,3 @@
-<ul>
-    @{{#blog.categories}}
-    <li class="text-nowrap">@{{title}}</li>
-    @{{/blog.categories}}
-</ul>
+@{{#blog.categories}}
+    <span class="badge badge-success">@{{title}}</span>
+@{{/blog.categories}}

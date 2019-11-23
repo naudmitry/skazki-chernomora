@@ -106,32 +106,34 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_FAQ], function () {
-                Route::get('/faq/categories', ['uses' => 'Admin\FaqCategoryController@index', 'as' => 'admin.faq.category.index']);
-                Route::get('/faq/category/create', ['uses' => 'Admin\FaqCategoryController@create', 'as' => 'admin.faq.category.create']);
-                Route::post('/faq/category/sequence', ['uses' => 'Admin\FaqCategoryController@sequence', 'as' => 'admin.faq.category.sequence']);
-                Route::post('/faq/category/{category}/enable', ['uses' => 'Admin\FaqCategoryController@enable', 'as' => 'admin.faq.category.enable'])
-                    ->where('category', '[0-9]+');
-                Route::get('/faq/category/{category}/edit', ['uses' => 'Admin\FaqCategoryController@edit', 'as' => 'admin.faq.category.edit'])
-                    ->where('category', '[0-9]+');
-                Route::delete('/faq/category/{category}', ['uses' => 'Admin\FaqCategoryController@delete', 'as' => 'admin.faq.category.delete'])
-                    ->where('category', '[0-9]+');
-                Route::post('/faq/category/save/{category?}', ['uses' => 'Admin\FaqCategoryController@save', 'as' => 'admin.faq.category.save'])
-                    ->where('category', '[0-9]+');
+                Route::group(['prefix' => 'faq'], function () {
+                    Route::get('/questions', ['uses' => 'Admin\FaqController@index', 'as' => 'admin.faq.questions.index']);
+                    Route::get('/questions/create', ['uses' => 'Admin\FaqController@create', 'as' => 'admin.faq.questions.create']);
+                    Route::get('/questions/{faq}/edit', ['uses' => 'Admin\FaqController@edit', 'as' => 'admin.faq.questions.edit'])
+                        ->where('faq', '[0-9]+');
+                    Route::delete('/questions/{faq}', ['uses' => 'Admin\FaqController@destroy', 'as' => 'admin.faq.questions.destroy'])
+                        ->where('faq', '[0-9]+');
+                    Route::post('/questions/enable/{faq}', ['uses' => 'Admin\FaqController@enable', 'as' => 'admin.faq.questions.enable'])
+                        ->where('faq', '[0-9]+');
+                    Route::post('/questions/favorite/{faq}', ['uses' => 'Admin\FaqController@favorite', 'as' => 'admin.faq.question.favorite'])
+                        ->where('faq', '[0-9]+');
+                    Route::post('/questions/{faq?}', ['uses' => 'Admin\FaqController@save', 'as' => 'admin.faq.questions.save'])
+                        ->where('faq', '[0-9]+');
 
-                Route::get('/faq/questions', ['uses' => 'Admin\FaqController@index', 'as' => 'admin.faq.question.index']);
-                Route::get('/faq/question/create', ['uses' => 'Admin\FaqController@create', 'as' => 'admin.faq.question.create']);
-                Route::get('/faq/question/edit/{faq}', ['uses' => 'Admin\FaqController@edit', 'as' => 'admin.faq.question.edit'])
-                    ->where('faq', '[0-9]+');
-                Route::delete('/faq/question/{faq}', ['uses' => 'Admin\FaqController@delete', 'as' => 'admin.faq.question.delete'])
-                    ->where('faq', '[0-9]+');
-                Route::post('/faq/question/enable/{faq}', ['uses' => 'Admin\FaqController@enable', 'as' => 'admin.faq.question.enable'])
-                    ->where('faq', '[0-9]+');
-                Route::post('/faq/question/favorite/{faq}', ['uses' => 'Admin\FaqController@favorite', 'as' => 'admin.faq.question.favorite'])
-                    ->where('faq', '[0-9]+');
-                Route::post('/faq/question/save/{faq?}', ['uses' => 'Admin\FaqController@save', 'as' => 'admin.faq.question.save'])
-                    ->where('faq', '[0-9]+');
+                    Route::get('/categories', ['uses' => 'Admin\FaqCategoryController@index', 'as' => 'admin.faq.category.index']);
+                    Route::get('/category/create', ['uses' => 'Admin\FaqCategoryController@create', 'as' => 'admin.faq.category.create']);
+                    Route::post('/category/sequence', ['uses' => 'Admin\FaqCategoryController@sequence', 'as' => 'admin.faq.category.sequence']);
+                    Route::post('/category/{category}/enable', ['uses' => 'Admin\FaqCategoryController@enable', 'as' => 'admin.faq.category.enable'])
+                        ->where('category', '[0-9]+');
+                    Route::get('/category/{category}/edit', ['uses' => 'Admin\FaqCategoryController@edit', 'as' => 'admin.faq.category.edit'])
+                        ->where('category', '[0-9]+');
+                    Route::delete('/category/{category}', ['uses' => 'Admin\FaqCategoryController@delete', 'as' => 'admin.faq.category.delete'])
+                        ->where('category', '[0-9]+');
+                    Route::post('/category/save/{category?}', ['uses' => 'Admin\FaqCategoryController@save', 'as' => 'admin.faq.category.save'])
+                        ->where('category', '[0-9]+');
 
-                Route::get('/faq/main', ['uses' => 'Admin\FaqController@main', 'as' => 'admin.faq.main.index']);
+                    Route::get('/main', ['uses' => 'Admin\FaqController@main', 'as' => 'admin.faq.main.index']);
+                });
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_CONTENT_BLOCKS], function () {

@@ -11,7 +11,7 @@
             <div class="tile">
                 <h4 class="line-head">Добавление вопроса</h4>
 
-                <form class="tab-content faq-item-form" action="{{ route('admin.faq.question.save', '') }}" method="post">
+                <form class="tab-content faq-item-form" action="{{ route('admin.faq.questions.save', '') }}" method="post">
                     {{ csrf_field() }}
 
                     <div class="row">

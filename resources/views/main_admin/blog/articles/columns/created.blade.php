@@ -1,4 +1,6 @@
 <div>
     @{{blog.formatCreatedAt}}
 </div>
-@{{blog.author.full_name}}
+<a href="{{ route('admin.admins.edit', '@authorId') }}">
+    @{{blog.author.full_name}}
+</a>

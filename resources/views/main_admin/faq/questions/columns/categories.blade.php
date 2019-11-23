@@ -1,5 +1,3 @@
-<ul>
-    @{{#faq.categories}}
-    <li class="text-nowrap">@{{title}}</li>
-    @{{/faq.categories}}
-</ul>
+@{{#faq.categories}}
+    <span class="badge badge-success">@{{title}}</span>
+@{{/faq.categories}}

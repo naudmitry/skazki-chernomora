@@ -11,9 +11,7 @@ $(function () {
     let mustacheTemplateFaqQuestionsTableColumnCategories = $('.template-faq-questions-table-column-categories').text();
     let mustacheTemplateFaqQuestionsTableColumnPublished = $('.template-faq-questions-table-column-published').text();
     let mustacheTemplateFaqQuestionsTableColumnFavorite = $('.template-faq-questions-table-column-favorite').text();
-    let mustacheTemplateFaqQuestionsTableColumnAuthor = $('.template-faq-questions-table-column-author').text();
     let mustacheTemplateFaqQuestionsTableColumnUpdated = $('.template-faq-questions-table-column-updated').text();
-    let mustacheTemplateFaqQuestionsTableColumnUpdater = $('.template-faq-questions-table-column-updater').text();
     let mustacheTemplateFaqQuestionsTableColumnViewed = $('.template-faq-questions-table-column-viewed').text();
     let mustacheTemplateFaqQuestionsTableColumnActions = $('.template-faq-questions-table-column-actions').text();
 
@@ -34,13 +32,12 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                data: 'created_at',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnCreated, {faq}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnCreated.replace(/@authorId/g, faq.author.id), {faq}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnTitle, {faq}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnTitle.replace(/@faqId/g, faq.id), {faq}),
             },
             {
                 targets: 2,
@@ -59,30 +56,17 @@ $(function () {
             },
             {
                 targets: 5,
-                data: 'author_id',
-                sortable: false,
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnAuthor, {faq}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdated.replace(/@authorId/g, faq.updater.id), {faq}),
             },
             {
                 targets: 6,
-                data: 'updated_at',
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdated, {faq}),
-            },
-            {
-                targets: 7,
-                data: 'updater_id',
-                sortable: false,
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnUpdater, {faq}),
-            },
-            {
-                targets: 8,
                 data: 'view_count',
                 render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnViewed, {faq}),
             },
             {
-                targets: 9,
+                targets: 7,
                 orderable: false,
-                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnActions, {faq}),
+                render: (data, type, faq) => Mustache.render(mustacheTemplateFaqQuestionsTableColumnActions.replace(/@faqId/g, faq.id), {faq}),
             },
         ],
         order: [[0, 'desc']],

@@ -104,7 +104,7 @@ class FaqController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function delete(Faq $faq)
+    public function destroy(Faq $faq)
     {
         \DB::transaction(function () use (&$faq) {
             $this->slugRepository->deleteSlug($faq);
@@ -190,7 +190,7 @@ class FaqController extends Controller
 
         return response()->json([
             'message' => 'Вопрос успешно сохранен.',
-            'redirectUrl' => $isNew ? route('admin.faq.question.edit', $faq) : null,
+            'redirectUrl' => $isNew ? route('admin.faq.questions.edit', $faq) : null,
             'settings' => $settings,
         ]);
     }

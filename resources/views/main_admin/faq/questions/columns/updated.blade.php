@@ -1,3 +1,6 @@
-<span class="text-semibold">
+<div>
     @{{faq.formatUpdatedAt}}
-</span>
+</div>
+<a href="{{ route('admin.admins.edit', '@authorId') }}">
+    @{{faq.updater.full_name}}
+</a>

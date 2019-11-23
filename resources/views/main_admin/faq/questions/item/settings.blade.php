@@ -1,7 +1,7 @@
 <div class="tile">
     <h4 class="line-head">Настройка вопроса</h4>
 
-    <form class="tab-content faq-item-form" action="{{ route('admin.faq.question.save', $faq ?? '') }}" method="post">
+    <form class="tab-content faq-item-form" action="{{ route('admin.faq.questions.save', $faq ?? '') }}" method="post">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-md-8">
@@ -101,7 +101,7 @@
                                     <div class="toggle-flip">
                                         <label class="mb-0">
                                             <input
-                                                    data-href="{{ isset($faq) ? route('admin.faq.question.enable', $faq) : '' }}"
+                                                    data-href="{{ isset($faq) ? route('admin.faq.questions.enable', $faq) : '' }}"
                                                     @if ($faq->enable) checked @endif
                                                     type="checkbox"
                                                     class="checkbox entity-availability"

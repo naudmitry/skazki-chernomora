@@ -1,4 +1,6 @@
 <div>
     @{{blog.formatUpdatedAt}}
 </div>
-@{{blog.updater.full_name}}
+<a href="{{ route('admin.admins.edit', '@authorId') }}">
+    @{{blog.updater.full_name}}
+</a>
