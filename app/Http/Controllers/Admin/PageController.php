@@ -65,7 +65,7 @@ class PageController extends Controller
                 ->make(true);
         }
 
-        return view('main_admin.page.lists.index', compact(
+        return view('main_admin.pages.lists.index', compact(
             'counters'
         ));
     }
@@ -102,7 +102,7 @@ class PageController extends Controller
             }
         });
 
-        $settings = view('main_admin.page.static.settings', compact(
+        $settings = view('main_admin.pages.static.settings', compact(
             'staticPage', 'administeredShowcase'
         ))->render();
 
@@ -124,7 +124,7 @@ class PageController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
-        return view('main_admin.page.lists.item.create', compact(
+        return view('main_admin.pages.lists.item.create', compact(
             'categories'
         ));
     }
@@ -151,7 +151,7 @@ class PageController extends Controller
         $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
-        return view('main_admin.page.lists.item.index', compact(
+        return view('main_admin.pages.lists.item.index', compact(
             'page', 'categories', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
         ));
     }
@@ -228,7 +228,7 @@ class PageController extends Controller
             ->where('showcase_id', $administeredShowcase->id)
             ->get();
 
-        $settings = $isNew ? null : $settings = view('main_admin.page.lists.item.settings', compact(
+        $settings = $isNew ? null : $settings = view('main_admin.pages.lists.item.settings', compact(
             'page', 'categories'
         ))->render();
 

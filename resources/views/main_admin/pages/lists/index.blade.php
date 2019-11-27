@@ -72,30 +72,30 @@
     </div>
 
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-created">
-        @include('main_admin.page.lists.columns.created')
+        @include('main_admin.pages.lists.columns.created')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-title">
-        @include('main_admin.page.lists.columns.title')
+        @include('main_admin.pages.lists.columns.title')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-category">
-        @include('main_admin.page.lists.columns.category')
+        @include('main_admin.pages.lists.columns.category')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-published">
-        @include('main_admin.page.lists.columns.published')
+        @include('main_admin.pages.lists.columns.published')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-author">
-        @include('main_admin.page.lists.columns.author')
+        @include('main_admin.pages.lists.columns.author')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-updated">
-        @include('main_admin.page.lists.columns.updated')
+        @include('main_admin.pages.lists.columns.updated')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-updater">
-        @include('main_admin.page.lists.columns.updater')
+        @include('main_admin.pages.lists.columns.updater')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-viewed">
-        @include('main_admin.page.lists.columns.viewed')
+        @include('main_admin.pages.lists.columns.viewed')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-actions">
-        @include('main_admin.page.lists.columns.actions')
+        @include('main_admin.pages.lists.columns.actions')
     </script>
 @endsection

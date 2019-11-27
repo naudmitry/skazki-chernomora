@@ -8,11 +8,11 @@
 
     <div class="row page-item">
         <div class="col-md-12 page-settings">
-            @include('main_admin.page.lists.item.settings')
+            @include('main_admin.pages.lists.item.settings')
         </div>
     </div>
 
-    @include('main_admin.page.lists.item.editor')
+    @include('main_admin.pages.lists.item.editor')
 
     @if (isset($page->id))
         <div class="row admin-content-header">
@@ -26,6 +26,6 @@
     @endif
 
     <script type="text/template" class="page-item-settings-loading-template">
-        @include('main_admin.page.lists.item.loading')
+        @include('main_admin.pages.lists.item.loading')
     </script>
 @endsection

@@ -1,15 +1,14 @@
 import slug from "slug";
 
 $(function () {
-    let $pageCategories = $('.page-categories');
+    let $pageCategoriesList = $('.page-categories-list');
 
-    if (!$pageCategories.length) {
+    if (!$pageCategoriesList.length) {
         return;
     }
 
     let $pageCategoriesSettingsContainer = $('.page-categories-settings-container');
     let pageCategorySettingsLoadingTemplate = $('.page-category-settings-loading-template').text();
-    let $pageCategoriesList = $('.page-categories-list');
     let isChange = false;
 
     $(document).on('click', '.page-category-settings-open', function (e) {
@@ -42,6 +41,7 @@ $(function () {
         if ($pageCategoriesSettingsContainer.data('ajax')) {
             $pageCategoriesSettingsContainer.data('ajax').abort();
         }
+        let prevCategoryId = $pageCategoriesSettingsContainer.find('.page-category-settings-container').data('category-id');
         $pageCategoriesSettingsContainer.html(pageCategorySettingsLoadingTemplate);
         $pageCategoriesSettingsContainer.data('ajax', $.ajax({
             type: 'get',
@@ -49,6 +49,12 @@ $(function () {
             cache: false,
             success: response => {
                 $pageCategoriesSettingsContainer.html(response);
+
+                $pageCategoriesSettingsContainer.html(response.view);
+                if (prevCategoryId !== response.categoryId) {
+                    setBackgroundListItem(prevCategoryId, false);
+                }
+                setBackgroundListItem(response.categoryId, true);
             },
             error: xhr => {
                 if (xhr.statusText == 'abort') {
@@ -78,11 +84,11 @@ $(function () {
                     $pageCategoriesList.find('.page-categories-list-item[data-page-category-id="' + response.category.id + '"]');
                 if ($pageCategoriesListItem.length) {
                     $pageCategoriesListItem.replaceWith(response.row);
-                }
-                else {
+                } else {
                     $pageCategoriesList.append(response.row);
                 }
                 $pageCategoriesSettingsContainer.html(response.settings);
+                setBackgroundListItem(response.category.id, true);
                 notifyService.showMessage('info', 'Успех!', response.message);
                 isChange = false;
             },
@@ -131,9 +137,10 @@ $(function () {
                         }
                         $pageCategoriesListItem.remove();
                         isChange = false;
-                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        notifyService.showMessage('info', 'Успех!', response.message);
                     },
                     error: xhr => {
+                        notifyService.showMessage('danger', 'Ошибка!', xhr.responseJSON.message);
                         console.error(xhr);
                     },
                 });
@@ -207,4 +214,11 @@ $(function () {
         $pageCategoriesSettingsContainer.find('#metaTitle').val(title.slice(0, 27) + ((title.length > 27) ? '...' : ''));
         $pageCategoriesSettingsContainer.find('#metaDescription').val(title.slice(0, 57) + ((title.length > 57) ? '...' : ''));
     });
+
+    let setBackgroundListItem = function (categoryId, set) {
+        let $pageCategoryItem = $pageCategoriesList
+            .find('.page-categories-list-item[data-page-category-id="' + categoryId + '"]')
+            .find('.page-category-settings-open');
+        $pageCategoryItem.css('color', (set) ? $pageCategoriesList.data('color') : '');
+    };
 });

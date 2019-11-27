@@ -42,21 +42,23 @@ class PageCategoryController extends Controller
             ->orderBy('position')
             ->get();
 
-        return view('main_admin.page.categories.index', compact(
+        return view('main_admin.pages.categories.index', compact(
             'categories'
         ));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function create()
     {
         $category = new PageCategory();
 
-        return view('main_admin.page.categories.includes.settings', compact([
-            'category'
-        ]));
+        return response()->json([
+            'view' => view('main_admin.pages.categories.includes.settings', compact('category'))->render(),
+            'categoryId' => $category->id
+        ]);
     }
 
     /**
@@ -99,15 +101,16 @@ class PageCategoryController extends Controller
     }
 
     /**
-     * @param Showcase $administeredShowcase
      * @param PageCategory $category
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
-    public function edit(Showcase $administeredShowcase, PageCategory $category)
+    public function edit(PageCategory $category)
     {
-        return view('main_admin.page.categories.includes.settings', compact(
-            'category', 'administeredShowcase'
-        ));
+        return response()->json([
+            'view' => view('main_admin.pages.categories.includes.settings', compact('category'))->render(),
+            'categoryId' => $category->id
+        ]);
     }
 
     /**
@@ -168,11 +171,11 @@ class PageCategoryController extends Controller
             $this->slugRepository->updateSlug($category, $data['address']);
         });
 
-        $row = view('main_admin.page.categories.includes.item', compact(
+        $row = view('main_admin.pages.categories.includes.item', compact(
             'category'
         ))->render();
 
-        $settings = view('main_admin.page.categories.includes.settings', compact(
+        $settings = view('main_admin.pages.categories.includes.settings', compact(
             'category'
         ))->render();
 

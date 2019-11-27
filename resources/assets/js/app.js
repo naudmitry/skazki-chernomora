@@ -7,7 +7,7 @@ require('./vali-admin/swith-companies');
 require('./vali-admin/blog');
 require('./vali-admin/orders');
 require('./vali-admin/faq');
-require('./vali-admin/page');
+require('./vali-admin/pages');
 require('./vali-admin/settings');
 require('./vali-admin/staff');
 require('./vali-admin/companies');

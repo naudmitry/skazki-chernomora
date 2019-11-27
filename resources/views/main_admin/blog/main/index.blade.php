@@ -7,7 +7,7 @@
     ])
 
     <div class="page-settings">
-        @include('main_admin.page.static.settings')
+        @include('main_admin.pages.static.settings')
     </div>
 
     <div class="row admin-content-header">

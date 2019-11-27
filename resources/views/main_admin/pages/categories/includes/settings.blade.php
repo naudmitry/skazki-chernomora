@@ -2,7 +2,7 @@
     <h4 class="line-head">Настройки категории</h4>
 
     <div class="tile-body">
-        <form class="form-horizontal page-category-settings-form" action="{{ route('admin.page.category.save', $category) }}" method="post">
+        <form autocomplete="off" class="form-horizontal page-category-settings-form" action="{{ route('admin.page.category.save', $category) }}" method="post">
             {{ csrf_field() }}
 
             <div class="form-group row">

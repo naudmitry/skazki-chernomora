@@ -11,9 +11,9 @@
             <div class="tile">
                 <h4 class="line-head">Категории</h4>
 
-                <div class="page-categories-list" id="container">
+                <div class="page-categories-list" data-color="#fd7e14" id="container">
                     @foreach ($categories as $category)
-                        @include('main_admin.page.categories.includes.item')
+                        @include('main_admin.pages.categories.includes.item')
                     @endforeach
                 </div>
 
@@ -31,7 +31,7 @@
     </div>
 
     <script type="text/template" class="page-category-settings-loading-template">
-        @include('main_admin.page.categories.includes.loading')
+        @include('main_admin.pages.categories.includes.loading')
     </script>
 @endsection
 
