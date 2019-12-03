@@ -57,9 +57,7 @@
                             <th>Наименование</th>
                             <th>Категория</th>
                             <th>Опубликован</th>
-                            <th>Автор</th>
                             <th>Обновлено</th>
-                            <th>Редактор</th>
                             <th>Просмотрено</th>
                             <th>Действия</th>
                         </tr>
@@ -83,14 +81,8 @@
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-published">
         @include('main_admin.pages.lists.columns.published')
     </script>
-    <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-author">
-        @include('main_admin.pages.lists.columns.author')
-    </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-updated">
         @include('main_admin.pages.lists.columns.updated')
-    </script>
-    <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-updater">
-        @include('main_admin.pages.lists.columns.updater')
     </script>
     <script type="application/x-tmpl-mustache" class="template-page-lists-table-column-viewed">
         @include('main_admin.pages.lists.columns.viewed')

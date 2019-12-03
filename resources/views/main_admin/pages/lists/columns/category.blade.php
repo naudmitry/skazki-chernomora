@@ -1,3 +1,1 @@
-<span class="text-semibold">
-    @{{page.category.title}}
-</span>
+<span class="badge badge-success">@{{page.category.title}}</span>

@@ -10,9 +10,7 @@ $(function () {
     let mustacheTemplatePageListsTableColumnTitle = $('.template-page-lists-table-column-title').text();
     let mustacheTemplatePageListsTableColumnCategory = $('.template-page-lists-table-column-category').text();
     let mustacheTemplatePageListsTableColumnPublished = $('.template-page-lists-table-column-published').text();
-    let mustacheTemplatePageListsTableColumnAuthor = $('.template-page-lists-table-column-author').text();
     let mustacheTemplatePageListsTableColumnUpdated = $('.template-page-lists-table-column-updated').text();
-    let mustacheTemplatePageListsTableColumnUpdater = $('.template-page-lists-table-column-updater').text();
     let mustacheTemplatePageListsTableColumnViewed = $('.template-page-lists-table-column-viewed').text();
     let mustacheTemplatePageListsTableColumnActions = $('.template-page-lists-table-column-actions').text();
 
@@ -34,12 +32,12 @@ $(function () {
             {
                 targets: 0,
                 data: 'created_at',
-                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnCreated, {page}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnCreated.replace(/@authorId/g, page.author.id), {page}),
             },
             {
                 targets: 1,
                 data: 'title',
-                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnTitle, {page}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnTitle.replace(/@pageId/g, page.id), {page}),
             },
             {
                 targets: 2,
@@ -49,34 +47,22 @@ $(function () {
             {
                 targets: 3,
                 data: 'enable',
-                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnPublished, {page}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnPublished.replace(/@pageId/g, page.id), {page}),
             },
             {
                 targets: 4,
-                data: 'author_id',
-                sortable: false,
-                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnAuthor, {page}),
+                data: 'updated_at',
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnUpdated.replace(/@authorId/g, page.updater.id), {page}),
             },
             {
                 targets: 5,
-                data: 'updated_at',
-                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnUpdated, {page}),
-            },
-            {
-                targets: 6,
-                data: 'updater_id',
-                sortable: false,
-                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnUpdater, {page}),
-            },
-            {
-                targets: 7,
                 data: 'view_count',
                 render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnViewed, {page}),
             },
             {
-                targets: 8,
+                targets: 6,
                 orderable: false,
-                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnActions, {page}),
+                render: (data, type, page) => Mustache.render(mustacheTemplatePageListsTableColumnActions.replace(/@pageId/g, page.id), {page}),
             },
         ],
         order: [[0, 'desc']],
