@@ -176,6 +176,23 @@
                                     value="{{ $buyer->passport }}">
                         </div>
                     </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="organization_id">Организация:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="select2" name="organization_id">
+                                <option value="">Нет организации</option>
+                                @foreach ($organizations as $organization)
+                                    <option
+                                            @if ($organization->id == $buyer->organization_id) selected @endif
+                                            value="{{ $organization->id }}"
+                                    >{{ $organization->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -137,8 +137,12 @@ class BuyerController extends Controller
             ->where('is_enabled', true)
             ->get();
 
+        $organizations = Organization::query()
+            ->where('company_id', $administeredCompany->id)
+            ->get();
+
         return view('main_admin.buyers.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'admins', 'privileges'
+            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'admins', 'privileges', 'organizations'
         ));
     }
 
@@ -189,7 +193,7 @@ class BuyerController extends Controller
                 $buyer->number_contract = $request->get('number_contract');
                 $buyer->contract_at = $request->get('contract_at') ? Carbon::createFromFormat('d.m.Y', $request->get('contract_at')) : null;
                 $buyer->is_enabled = $request->get('is_enabled', 0);
-                $buyer->organization_id = $request->get('organization_id');
+                $buyer->organization_id = empty($request->get('organization_id')) ? null : $request->get('organization_id');
                 $buyer->type_subscription = $request->get('type_subscription');
                 $buyer->passport = $request->get('passport');
                 $buyer->admin_id = $admin->id;
