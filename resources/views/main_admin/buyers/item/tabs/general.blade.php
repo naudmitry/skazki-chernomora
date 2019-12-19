@@ -83,6 +83,23 @@
                                     value="{{ $buyer->middle_name }}">
                         </div>
                     </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label" for="privilege_id">Льгота:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="privilege_id" class="select2">
+                                <option value="">Нет льготы</option>
+                                @foreach ($privileges as $privilege)
+                                    <option
+                                            @if ($privilege->id == $buyer->privilege_id) selected @endif
+                                            value="{{ $privilege->id }}"
+                                    >{{ $privilege->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="column col-md-6">

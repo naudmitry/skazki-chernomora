@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $password
  * @property string $type_subscription
  * @property integer $admin_id
+ * @property integer $privilege_id
  *
  * @property Admin $admin
  *
@@ -54,7 +55,8 @@ class Buyer extends Model
         'adSources',
         'diagnoses',
         'complaints',
-        'admin'
+        'admin',
+        'privilege'
     ];
 
     protected $dates = [
@@ -98,6 +100,14 @@ class Buyer extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function privilege()
+    {
+        return $this->belongsTo(Privilege::class);
     }
 
     /**

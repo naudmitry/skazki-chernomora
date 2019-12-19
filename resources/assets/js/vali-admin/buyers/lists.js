@@ -7,7 +7,7 @@ $(function () {
 
     let mustacheTemplateBuyersListsTableColumnActions = $('.template-buyers-lists-table-column-actions').text();
     let mustacheTemplateBuyersListsTableColumnPhone = $('.template-buyers-lists-table-column-phone').text();
-    let mustacheTemplateBuyersListsTableColumnStatus = $('.template-buyers-lists-table-column-status').text();
+    let mustacheTemplateBuyersListsTableColumnPrivilege = $('.template-buyers-lists-table-column-privilege').text();
     let mustacheTemplateBuyersListsTableColumnLogin = $('.template-buyers-lists-table-column-login').text();
     let mustacheTemplateBuyersListsTableColumnUser = $('.template-buyers-lists-table-column-user').text();
     let mustacheTemplateBuyersListsTableColumnCreated = $('.template-buyers-lists-table-column-created').text();
@@ -50,7 +50,7 @@ $(function () {
             },
             {
                 targets: 5,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnStatus, {buyer}),
+                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnPrivilege, {buyer}),
             },
             {
                 targets: 6,

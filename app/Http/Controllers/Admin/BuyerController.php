@@ -12,6 +12,7 @@ use App\Models\Complaint;
 use App\Models\Diagnosis;
 use App\Models\Order;
 use App\Models\Organization;
+use App\Models\Privilege;
 use App\Models\Showcase;
 use App\Repositories\HistoryRepository;
 use Carbon\Carbon;
@@ -132,8 +133,12 @@ class BuyerController extends Controller
             ->where('company_id', $administeredCompany->id)
             ->get();
 
+        $privileges = Privilege::query()
+            ->where('is_enabled', true)
+            ->get();
+
         return view('main_admin.buyers.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'admins'
+            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'admins', 'privileges'
         ));
     }
 
@@ -188,6 +193,7 @@ class BuyerController extends Controller
                 $buyer->type_subscription = $request->get('type_subscription');
                 $buyer->passport = $request->get('passport');
                 $buyer->admin_id = $admin->id;
+                $buyer->privilege_id = empty($request->get('privilege_id')) ? null : $request->get('privilege_id');
 
                 if ($buyer->isDirty('admin_id')) {
                     $this->historyRepository->store($administeredShowcase, $buyer, EventHistoryEnum::CHANGE_ADMIN, $admin);

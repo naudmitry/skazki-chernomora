@@ -45,6 +45,7 @@ class CreateBuyersTable extends Migration
             $table->string('dynamics')->nullable();
             $table->string('type_subscription')->default(BuyerTypeSubscriptionEnum::FREE);
             $table->unsignedInteger('admin_id')->nullable();
+            $table->unsignedInteger('privilege_id')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

@@ -42,7 +42,7 @@
             <th>Телефон</th>
             <th>Администратор</th>
             <th>Дата последнего входа/IP</th>
-            <th>Статус</th>
+            <th>Льгота</th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -56,8 +56,8 @@
 <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-phone">
     @include('main_admin.buyers.lists.columns.phone')
 </script>
-<script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-status">
-    @include('main_admin.buyers.lists.columns.status')
+<script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-privilege">
+    @include('main_admin.buyers.lists.columns.privilege')
 </script>
 <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-login">
     @include('main_admin.buyers.lists.columns.login')
