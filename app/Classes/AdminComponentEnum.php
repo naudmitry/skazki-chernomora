@@ -11,6 +11,7 @@ class AdminComponentEnum extends Enum
     const COMPANY_ORDERS_APPLICATIONS = 'orders.applications';
 
     const COMPANY_HANDBOOKS_AD_SOURCES = 'handbooks.ad-sources';
+    const COMPANY_HANDBOOKS_PRIVILEGES = 'handbooks.privileges';
     const COMPANY_HANDBOOKS_DIAGNOSES = 'handbooks.diagnoses';
     const COMPANY_HANDBOOKS_COMPLAINTS = 'handbooks.complaints';
     const COMPANY_HANDBOOKS_SUBSCRIPTIONS = 'handbooks.subscriptions';
@@ -53,6 +54,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_ORDERS_PRE_ENTRY,
                     self::COMPANY_ORDERS_APPLICATIONS,
                     self::COMPANY_HANDBOOKS_AD_SOURCES,
+                    self::COMPANY_HANDBOOKS_PRIVILEGES,
                     self::COMPANY_HANDBOOKS_COMPLAINTS,
                     self::COMPANY_HANDBOOKS_DIAGNOSES,
                     self::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
@@ -88,6 +90,7 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_ORDERS_PRE_ENTRY,
                     self::COMPANY_ORDERS_APPLICATIONS,
                     self::COMPANY_HANDBOOKS_AD_SOURCES,
+                    self::COMPANY_HANDBOOKS_PRIVILEGES,
                     self::COMPANY_HANDBOOKS_COMPLAINTS,
                     self::COMPANY_HANDBOOKS_DIAGNOSES,
                     self::COMPANY_HANDBOOKS_SUBSCRIPTIONS,

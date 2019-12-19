@@ -244,6 +244,16 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('source', '[0-9]+');
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_PRIVILEGES], function () {
+                Route::get('/privileges', ['uses' => 'Admin\PrivilegeController@index', 'as' => 'admin.privileges.index']);
+                Route::get('/privileges/{privilege}/edit', ['uses' => 'Admin\PrivilegeController@edit', 'as' => 'admin.privileges.edit'])->where('privilege', '[0-9]+');
+                Route::delete('/privileges/{privilege}', ['uses' => 'Admin\PrivilegeController@destroy', 'as' => 'admin.privileges.destroy'])->where('privilege', '[0-9]+');
+                Route::post('/privileges/{privilege}/enable', ['uses' => 'Admin\PrivilegeController@enable', 'as' => 'admin.privileges.enable'])->where('privilege', '[0-9]+');
+                Route::post('/privileges', ['uses' => 'Admin\PrivilegeController@store', 'as' => 'admin.privileges.store',])->where('privilege', '[0-9]+');
+                Route::patch('/privileges/{privilege}', ['uses' => 'Admin\PrivilegeController@update', 'as' => 'admin.privileges.update',])->where('privilege', '[0-9]+');
+                Route::get('/privileges/create', ['uses' => 'Admin\PrivilegeController@create', 'as' => 'admin.privileges.create']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES], function () {
                 Route::get('/diagnoses', ['uses' => 'Admin\DiagnosisController@index', 'as' => 'admin.diagnosis.list.index']);
                 Route::delete('/diagnosis/{diagnosis}', ['uses' => 'Admin\DiagnosisController@delete', 'as' => 'admin.diagnosis.list.delete'])

@@ -54,6 +54,7 @@ class Buyer extends Model
         'adSources',
         'diagnoses',
         'complaints',
+        'admin'
     ];
 
     protected $dates = [

@@ -11,6 +11,7 @@ $(function () {
     let mustacheTemplateBuyersListsTableColumnLogin = $('.template-buyers-lists-table-column-login').text();
     let mustacheTemplateBuyersListsTableColumnUser = $('.template-buyers-lists-table-column-user').text();
     let mustacheTemplateBuyersListsTableColumnCreated = $('.template-buyers-lists-table-column-created').text();
+    let mustacheTemplateBuyersListsTableColumnAdmin = $('.template-buyers-lists-table-column-admin').text();
 
     $buyersListsTable.DataTable({
         info: true,
@@ -41,14 +42,18 @@ $(function () {
             },
             {
                 targets: 3,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnLogin, {buyer}),
+                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnAdmin.replace(/@adminId/g, buyer.admin.id), {buyer}),
             },
             {
                 targets: 4,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnStatus, {buyer}),
+                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnLogin, {buyer}),
             },
             {
                 targets: 5,
+                render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnStatus, {buyer}),
+            },
+            {
+                targets: 6,
                 orderable: false,
                 render: (data, type, buyer) => Mustache.render(mustacheTemplateBuyersListsTableColumnActions.replace(/@buyerId/g, buyer.id), {buyer}),
             },

@@ -1,6 +1,7 @@
 @if ($administerableShowcases->count() && auth('admin')->user()->hasAccessTo(
 [
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES,
+    App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_PRIVILEGES,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS,
     App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
@@ -17,6 +18,15 @@
                 class="app-menu__item @if (Route::is('admin.ad-source.*')) active scroll-here @endif"
                 href="{{ route('admin.ad-source.list.index') }}"
             ><i class="app-menu__icon fas fa-ad"></i><span class="app-menu__label">Источники рекламы</span></a>
+        </li>
+    @endif
+
+    @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_PRIVILEGES, $administeredCompany))
+        <li>
+            <a
+                class="app-menu__item @if (Route::is('admin.privileges.*')) active scroll-here @endif"
+                href="{{ route('admin.privileges.index') }}"
+            ><i class="app-menu__icon fas fa-crown"></i><span class="app-menu__label">Льготы</span></a>
         </li>
     @endif
 

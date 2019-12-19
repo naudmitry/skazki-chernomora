@@ -31,6 +31,7 @@ class AdminRoleSettingsComposer
                     'handbooks' => array_intersect($components,
                         [
                             AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES,
+                            AdminComponentEnum::COMPANY_HANDBOOKS_PRIVILEGES,
                             AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES,
                             AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS,
                             AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,

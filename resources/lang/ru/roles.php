@@ -17,6 +17,7 @@ return [
     AdminComponentEnum::COMPANY_USERS_REVIEWS => 'Отзывы',
 
     AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES => 'Источники рекламы',
+    AdminComponentEnum::COMPANY_HANDBOOKS_PRIVILEGES => 'Льготы',
     AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES => 'Диагнозы',
     AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS => 'Жалобы',
     AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS => 'Абонементы',

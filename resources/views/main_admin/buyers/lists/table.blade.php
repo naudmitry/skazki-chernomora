@@ -40,6 +40,7 @@
             <th>Зарегистрирован/IP</th>
             <th>Пользователь/Email</th>
             <th>Телефон</th>
+            <th>Администратор</th>
             <th>Дата последнего входа/IP</th>
             <th>Статус</th>
             <th>Действия</th>
@@ -66,4 +67,7 @@
 </script>
 <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-created">
     @include('main_admin.buyers.lists.columns.created')
+</script>
+<script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-admin">
+    @include('main_admin.buyers.lists.columns.admin')
 </script>
