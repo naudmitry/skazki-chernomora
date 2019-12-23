@@ -111,7 +111,7 @@ $(function () {
                     type: 'delete',
                     url: $this.attr('href'),
                     success: response => {
-                        notifyService.showMessage('danger', 'Успех!', response.message);
+                        notifyService.showMessage('info', 'Успех!', response.message);
                         $buyersListsTable.DataTable().ajax.reload();
                     },
                     error: xhr => {

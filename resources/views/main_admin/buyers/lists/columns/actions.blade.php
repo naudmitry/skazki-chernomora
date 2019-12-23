@@ -6,7 +6,7 @@
         <a class="dropdown-item" href="{{ route('admin.buyers.edit', '@buyerId') }}">
             <i class="fas fa-edit mr-2"></i>Изменить
         </a>
-        <a class="dropdown-item" href="{{ route('admin.buyers.destroy', '@buyerId') }}">
+        <a class="dropdown-item buyer-list-delete" href="{{ route('admin.buyers.destroy', '@buyerId') }}">
             <i class="fas fa-trash-alt mr-2"></i>Удалить
         </a>
     </div>
