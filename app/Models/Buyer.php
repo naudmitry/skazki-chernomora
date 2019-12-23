@@ -56,7 +56,8 @@ class Buyer extends Model
         'diagnoses',
         'complaints',
         'admin',
-        'privilege'
+        'privilege',
+        'organization'
     ];
 
     protected $dates = [
@@ -108,6 +109,14 @@ class Buyer extends Model
     public function privilege()
     {
         return $this->belongsTo(Privilege::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
     }
 
     /**
