@@ -312,7 +312,7 @@
 
             <div class="form-group row">
                 <div class="col-md-2">
-                    <label class="control-label" for="dynamics">Динамика:</label>
+                    <label class="control-label" for="dynamics">Заметки:</label>
                 </div>
                 <div class="col-md-10">
                         <textarea
