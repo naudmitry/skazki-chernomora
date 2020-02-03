@@ -33,8 +33,8 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.diagnosis.*')) active scroll-here @endif"
-                href="{{ route('admin.diagnosis.list.index') }}"
+                class="app-menu__item @if (Route::is('admin.diagnoses.*')) active scroll-here @endif"
+                href="{{ route('admin.diagnoses.index') }}"
             ><i class="app-menu__icon fas fa-diagnoses"></i><span class="app-menu__label">Диагнозы</span></a>
         </li>
     @endif

@@ -2,7 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form autocomplete="off" class="modal-content diagnosis-list-edit-form" method="post" action="{{ route('admin.diagnosis.list.save', $diagnosis ?? null) }}">
+                <form autocomplete="off" class="modal-content diagnosis-list-edit-form" method="{{ $diagnosis ? 'patch' : 'post' }}" action="{{ $diagnosis ? route('admin.diagnoses.update', $diagnosis) : route('admin.diagnoses.store') }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Диагноз</h5>
                         <button

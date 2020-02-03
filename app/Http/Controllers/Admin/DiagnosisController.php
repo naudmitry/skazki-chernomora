@@ -38,7 +38,7 @@ class DiagnosisController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(Diagnosis $diagnosis)
+    public function destroy(Diagnosis $diagnosis)
     {
         $diagnosis->delete();
 
@@ -69,11 +69,26 @@ class DiagnosisController extends Controller
     }
 
     /**
-     * @param Diagnosis|null $diagnosis
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function edit(Diagnosis $diagnosis = null)
+    public function create()
+    {
+        $diagnosis = null;
+
+        return response()->json([
+            'view' => view('main_admin.diagnoses.modals.edit', compact(
+                'diagnosis'
+            ))->render(),
+        ]);
+    }
+
+    /**
+     * @param Diagnosis $diagnosis
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function edit(Diagnosis $diagnosis)
     {
         return response()->json([
             'view' => view('main_admin.diagnoses.modals.edit', compact(
@@ -93,6 +108,24 @@ class DiagnosisController extends Controller
 
         return response()->json([
             'message' => 'Доступность успешно изменена.',
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Diagnosis $diagnosis
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, Diagnosis $diagnosis)
+    {
+        $diagnosis->title = $request->get('title');
+        if ($countVizits = $request->get('count_visits')) {
+            $diagnosis->count_visits = $countVizits;
+        }
+        $diagnosis->update();
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.'
         ]);
     }
 }

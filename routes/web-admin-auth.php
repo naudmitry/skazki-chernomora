@@ -255,15 +255,13 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_DIAGNOSES], function () {
-                Route::get('/diagnoses', ['uses' => 'Admin\DiagnosisController@index', 'as' => 'admin.diagnosis.list.index']);
-                Route::delete('/diagnosis/{diagnosis}', ['uses' => 'Admin\DiagnosisController@delete', 'as' => 'admin.diagnosis.list.delete'])
-                    ->where('diagnosis', '[0-9]+');
-                Route::post('/diagnosis/save/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@save', 'as' => 'admin.diagnosis.list.save',])
-                    ->where('diagnosis', '[0-9]+');
-                Route::get('/diagnosis/edit/{diagnosis?}', ['uses' => 'Admin\DiagnosisController@edit', 'as' => 'admin.diagnosis.list.edit'])
-                    ->where('diagnosis', '[0-9]+');
-                Route::post('/diagnosis/enable/{diagnosis}', ['uses' => 'Admin\DiagnosisController@enable', 'as' => 'admin.diagnosis.list.enable'])
-                    ->where('diagnosis', '[0-9]+');
+                Route::get('/diagnoses', ['uses' => 'Admin\DiagnosisController@index', 'as' => 'admin.diagnoses.index']);
+                Route::get('/diagnoses/{diagnosis}/edit', ['uses' => 'Admin\DiagnosisController@edit', 'as' => 'admin.diagnoses.edit'])->where('diagnosis', '[0-9]+');
+                Route::delete('/diagnoses/{diagnosis}', ['uses' => 'Admin\DiagnosisController@destroy', 'as' => 'admin.diagnoses.destroy'])->where('diagnosis', '[0-9]+');
+                Route::post('/diagnoses/{diagnosis}/enable', ['uses' => 'Admin\DiagnosisController@enable', 'as' => 'admin.diagnoses.enable'])->where('diagnosis', '[0-9]+');
+                Route::post('/diagnoses', ['uses' => 'Admin\DiagnosisController@store', 'as' => 'admin.diagnoses.store']);
+                Route::patch('/diagnoses/{diagnosis}', ['uses' => 'Admin\DiagnosisController@update', 'as' => 'admin.diagnoses.update',])->where('diagnosis', '[0-9]+');
+                Route::get('/diagnoses/create', ['uses' => 'Admin\DiagnosisController@create', 'as' => 'admin.diagnoses.create']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS], function () {

@@ -50,12 +50,12 @@ $(function () {
             {
                 targets: 4,
                 data: 'is_enabled',
-                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnEnabled, {diagnosis}),
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnEnabled.replace(/@diagnosisId/g, diagnosis.id), {diagnosis}),
             },
             {
                 targets: 5,
                 orderable: false,
-                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnActions, {diagnosis}),
+                render: (data, type, diagnosis) => Mustache.render(mustacheTemplateDiagnosesListsTableColumnActions.replace(/@diagnosisId/g, diagnosis.id), {diagnosis}),
             },
         ],
         order: [[1, 'asc']],
@@ -109,7 +109,7 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.diagnosis-list-delete', function (e) {
+    $(document).on('click', '.item-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
