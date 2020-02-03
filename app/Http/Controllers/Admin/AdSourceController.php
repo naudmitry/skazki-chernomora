@@ -44,7 +44,7 @@ class AdSourceController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(AdSource $source)
+    public function destroy(AdSource $source)
     {
         $source->delete();
 
@@ -55,22 +55,48 @@ class AdSourceController extends Controller
 
     /**
      * @param AdSourceRequest $request
-     * @param AdSource|null $source
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(AdSourceRequest $request, AdSource $source = null)
+    public function store(AdSourceRequest $request)
     {
-        if (!isset($source)) {
-            $source = new AdSource();
-            $source->author_id = \Auth::guard('admin')->user()->id;
-        }
-
+        $source = new AdSource();
+        $source->author_id = \Auth::guard('admin')->user()->id;
         $source->title = $request->get('title');
         $source->sort = $request->filled('sort') ? $request->get('sort') : null;
         $source->save();
 
         return response()->json([
             'message' => 'Данные успешно сохранены.'
+        ]);
+    }
+
+    /**
+     * @param AdSourceRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(AdSourceRequest $request, AdSource $source)
+    {
+        $source->title = $request->get('title');
+        $source->sort = $request->filled('sort') ? $request->get('sort') : null;
+        $source->save();
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.'
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function create()
+    {
+        $source = null;
+
+        return response()->json([
+            'view' => view('main_admin.ad_sources.modals.edit', compact(
+                'source'
+            ))->render(),
         ]);
     }
 

@@ -15,8 +15,8 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.ad-source.*')) active scroll-here @endif"
-                href="{{ route('admin.ad-source.list.index') }}"
+                class="app-menu__item @if (Route::is('admin.ad-sources.*')) active scroll-here @endif"
+                href="{{ route('admin.ad-sources.index') }}"
             ><i class="app-menu__icon fas fa-ad"></i><span class="app-menu__label">Источники рекламы</span></a>
         </li>
     @endif

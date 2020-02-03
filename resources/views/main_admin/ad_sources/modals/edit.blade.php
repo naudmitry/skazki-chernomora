@@ -2,7 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form autocomplete="off" class="modal-content ad-source-list-edit-form" method="post" action="{{ route('admin.ad-source.list.save', $source ?? null) }}">
+                <form autocomplete="off" class="modal-content ad-source-list-edit-form" method="{{ $source ? 'patch' : 'post' }}" action="{{ $source ? route('admin.ad-sources.update', $source) : route('admin.ad-sources.store') }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Источник рекламы</h5>
                         <button

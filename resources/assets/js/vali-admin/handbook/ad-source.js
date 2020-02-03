@@ -46,7 +46,7 @@ $(function () {
             {
                 targets: 3,
                 data: 'is_enabled',
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnEnabled, {source}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnEnabled.replace(/@sourceId/g, source.id), {source}),
             },
             {
                 targets: 4,
@@ -56,7 +56,7 @@ $(function () {
             {
                 targets: 5,
                 orderable: false,
-                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnActions, {source}),
+                render: (data, type, source) => Mustache.render(mustacheTemplateAdSourcesListsTableColumnActions.replace(/@sourceId/g, source.id), {source}),
             },
         ],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
@@ -109,7 +109,7 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.ad-source-list-delete', function (e) {
+    $(document).on('click', '.item-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 

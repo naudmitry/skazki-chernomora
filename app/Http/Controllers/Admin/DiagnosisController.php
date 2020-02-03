@@ -49,16 +49,12 @@ class DiagnosisController extends Controller
 
     /**
      * @param DiagnosisRequest $request
-     * @param Diagnosis|null $diagnosis
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(DiagnosisRequest $request, Diagnosis $diagnosis = null)
+    public function store(DiagnosisRequest $request)
     {
-        if (!isset($diagnosis)) {
-            $diagnosis = new Diagnosis();
-            $diagnosis->author_id = \Auth::guard('admin')->user()->id;
-        }
-
+        $diagnosis = new Diagnosis();
+        $diagnosis->author_id = \Auth::guard('admin')->user()->id;
         $diagnosis->title = $request->get('title');
         $diagnosis->count_visits = $request->filled('count_visits') ? $request->get('count_visits') : null;
         $diagnosis->save();
@@ -119,9 +115,7 @@ class DiagnosisController extends Controller
     public function update(Request $request, Diagnosis $diagnosis)
     {
         $diagnosis->title = $request->get('title');
-        if ($countVizits = $request->get('count_visits')) {
-            $diagnosis->count_visits = $countVizits;
-        }
+        $diagnosis->count_visits = $request->filled('count_visits') ? $request->get('count_visits') : null;
         $diagnosis->update();
 
         return response()->json([

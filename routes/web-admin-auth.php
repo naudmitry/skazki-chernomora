@@ -233,15 +233,13 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES], function () {
-                Route::get('/ad-sources', ['uses' => 'Admin\AdSourceController@index', 'as' => 'admin.ad-source.list.index']);
-                Route::delete('/ad-source/{source}', ['uses' => 'Admin\AdSourceController@delete', 'as' => 'admin.ad-source.list.delete'])
-                    ->where('source', '[0-9]+');
-                Route::post('/ad-source/save/{source?}', ['uses' => 'Admin\AdSourceController@save', 'as' => 'admin.ad-source.list.save',])
-                    ->where('source', '[0-9]+');
-                Route::get('/ad-source/edit/{source?}', ['uses' => 'Admin\AdSourceController@edit', 'as' => 'admin.ad-source.list.edit'])
-                    ->where('source', '[0-9]+');
-                Route::post('/ad-source/enable/{source}', ['uses' => 'Admin\AdSourceController@enable', 'as' => 'admin.ad-source.list.enable'])
-                    ->where('source', '[0-9]+');
+                Route::get('/ad-sources', ['uses' => 'Admin\AdSourceController@index', 'as' => 'admin.ad-sources.index']);
+                Route::get('/ad-sources/{source}/edit', ['uses' => 'Admin\AdSourceController@edit', 'as' => 'admin.ad-sources.edit'])->where('source', '[0-9]+');
+                Route::delete('/ad-sources/{source}', ['uses' => 'Admin\AdSourceController@destroy', 'as' => 'admin.ad-sources.destroy'])->where('source', '[0-9]+');
+                Route::post('/ad-sources/{source}/enable', ['uses' => 'Admin\AdSourceController@enable', 'as' => 'admin.ad-sources.enable'])->where('source', '[0-9]+');
+                Route::post('/ad-sources', ['uses' => 'Admin\AdSourceController@store', 'as' => 'admin.ad-sources.store']);
+                Route::patch('/ad-sources/{source}', ['uses' => 'Admin\AdSourceController@update', 'as' => 'admin.ad-sources.update',])->where('source', '[0-9]+');
+                Route::get('/ad-sources/create', ['uses' => 'Admin\AdSourceController@create', 'as' => 'admin.ad-sources.create']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_PRIVILEGES], function () {
