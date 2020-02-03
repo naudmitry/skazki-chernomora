@@ -44,12 +44,12 @@ $(function () {
             {
                 targets: 3,
                 data: 'is_enabled',
-                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnEnabled, {complaint}),
+                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnEnabled.replace(/@complaintId/g, complaint.id), {complaint}),
             },
             {
                 targets: 4,
                 orderable: false,
-                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnActions, {complaint}),
+                render: (data, type, complaint) => Mustache.render(mustacheTemplateComplaintsListsTableColumnActions.replace(/@complaintId/g, complaint.id), {complaint}),
             },
         ],
         order: [[1, 'asc']],
@@ -103,7 +103,7 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.complaint-delete', function (e) {
+    $(document).on('click', '.item-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 

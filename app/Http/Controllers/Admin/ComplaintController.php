@@ -38,7 +38,7 @@ class ComplaintController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(Complaint $complaint)
+    public function destroy(Complaint $complaint)
     {
         $complaint->delete();
 
@@ -49,16 +49,12 @@ class ComplaintController extends Controller
 
     /**
      * @param ComplaintRequest $request
-     * @param Complaint|null $complaint
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(ComplaintRequest $request, Complaint $complaint = null)
+    public function store(ComplaintRequest $request)
     {
-        if (!isset($complaint)) {
-            $complaint = new Complaint();
-            $complaint->author_id = \Auth::guard('admin')->user()->id;
-        }
-
+        $complaint = new Complaint();
+        $complaint->author_id = \Auth::guard('admin')->user()->id;
         $complaint->title = $request->get('title');
         $complaint->save();
 
@@ -68,11 +64,42 @@ class ComplaintController extends Controller
     }
 
     /**
-     * @param Complaint|null $complaint
+     * @param ComplaintRequest $request
+     * @param Complaint $complaint
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(ComplaintRequest $request, Complaint $complaint)
+    {
+        $complaint->title = $request->get('title');
+        $complaint->update();
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.'
+        ]);
+    }
+
+    /**
+     * @param Complaint $complaint
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function edit(Complaint $complaint = null)
+    public function create()
+    {
+        $complaint = null;
+
+        return response()->json([
+            'view' => view('main_admin.complaints.modals.edit', compact(
+                'complaint'
+            ))->render(),
+        ]);
+    }
+
+    /**
+     * @param Complaint $complaint
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function edit(Complaint $complaint)
     {
         return response()->json([
             'view' => view('main_admin.complaints.modals.edit', compact(

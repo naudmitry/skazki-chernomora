@@ -2,7 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form autocomplete="off" class="modal-content complaint-edit-form" method="post" action="{{ route('admin.complaint.list.save', $complaint ?? null) }}">
+                <form autocomplete="off" class="modal-content complaint-edit-form" method="{{ $complaint ? 'patch' : 'post' }}" action="{{ $complaint ? route('admin.complaints.update', $complaint) : route('admin.complaints.store') }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Жалоба</h5>
                         <button

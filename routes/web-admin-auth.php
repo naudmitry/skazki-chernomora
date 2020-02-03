@@ -263,15 +263,13 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS], function () {
-                Route::get('/complaints', ['uses' => 'Admin\ComplaintController@index', 'as' => 'admin.complaint.list.index']);
-                Route::delete('/complaint/{complaint}', ['uses' => 'Admin\ComplaintController@delete', 'as' => 'admin.complaint.list.delete'])
-                    ->where('complaint', '[0-9]+');
-                Route::post('/complaint/save/{complaint?}', ['uses' => 'Admin\ComplaintController@save', 'as' => 'admin.complaint.list.save',])
-                    ->where('complaint', '[0-9]+');
-                Route::get('/complaint/edit/{complaint?}', ['uses' => 'Admin\ComplaintController@edit', 'as' => 'admin.complaint.list.edit'])
-                    ->where('complaint', '[0-9]+');
-                Route::post('/complaint/enable/{complaint}', ['uses' => 'Admin\ComplaintController@enable', 'as' => 'admin.complaint.list.enable'])
-                    ->where('complaint', '[0-9]+');
+                Route::get('/complaints', ['uses' => 'Admin\ComplaintController@index', 'as' => 'admin.complaints.index']);
+                Route::get('/complaints/{complaint}/edit', ['uses' => 'Admin\ComplaintController@edit', 'as' => 'admin.complaints.edit'])->where('complaint', '[0-9]+');
+                Route::delete('/complaints/{complaint}', ['uses' => 'Admin\ComplaintController@destroy', 'as' => 'admin.complaints.destroy'])->where('complaint', '[0-9]+');
+                Route::post('/complaints/{complaint}/enable', ['uses' => 'Admin\ComplaintController@enable', 'as' => 'admin.complaints.enable'])->where('complaint', '[0-9]+');
+                Route::post('/complaints', ['uses' => 'Admin\ComplaintController@store', 'as' => 'admin.complaints.store'])->where('complaint', '[0-9]+');
+                Route::patch('/complaints/{complaint}', ['uses' => 'Admin\ComplaintController@update', 'as' => 'admin.complaints.update',])->where('complaint', '[0-9]+');
+                Route::get('/complaints/create', ['uses' => 'Admin\ComplaintController@create', 'as' => 'admin.complaints.create']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_REVIEWS], function () {

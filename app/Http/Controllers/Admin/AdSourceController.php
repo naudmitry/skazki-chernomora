@@ -105,7 +105,7 @@ class AdSourceController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function edit(AdSource $source = null)
+    public function edit(AdSource $source)
     {
         return response()->json([
             'view' => view('main_admin.ad_sources.modals.edit', compact(

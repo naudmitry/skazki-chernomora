@@ -42,8 +42,8 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_COMPLAINTS, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.complaint.*')) active scroll-here @endif"
-                href="{{ route('admin.complaint.list.index') }}"
+                class="app-menu__item @if (Route::is('admin.complaints.*')) active scroll-here @endif"
+                href="{{ route('admin.complaints.index') }}"
             ><i class="app-menu__icon fas fa-notes-medical"></i><span class="app-menu__label">Жалобы</span></a>
         </li>
     @endif
