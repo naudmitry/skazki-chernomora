@@ -37,30 +37,80 @@ class BuyerController extends Controller
     /**
      * @param BuyerRequest $request
      * @param Showcase $administeredShowcase
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function create(BuyerRequest $request, Showcase $administeredShowcase)
+    public function store(BuyerRequest $request, Showcase $administeredShowcase)
     {
+        $admin = Admin::findOrFail($request->get('admin_id'));
+
         \DB::beginTransaction();
         $buyer = new Buyer();
-        $buyer->name = $request->get('name');
         $buyer->surname = $request->get('surname');
+        $buyer->name = $request->get('name');
         $buyer->middle_name = $request->get('middle_name');
+        $buyer->dynamics = $request->get('dynamics');
+        $buyer->birthday_at = $request->get('birthday_at') ? Carbon::createFromFormat('d.m.Y', $request->get('birthday_at')) : null;
+        $buyer->address = $request->get('address');
         $buyer->email = $request->get('email');
-        $buyer->created_from = $request->ip();
-        $buyer->showcase_id = $administeredShowcase->id;
-        $buyer->gender = $request->get('gender');
         $buyer->phone_number = $request->get('phone_number');
-        $buyer->admin_id = $request->get('admin_id');
+        $buyer->number_contract = $request->get('number_contract');
+        $buyer->contract_at = $request->get('contract_at') ? Carbon::createFromFormat('d.m.Y', $request->get('contract_at')) : null;
+        $buyer->is_enabled = $request->get('is_enabled', 0);
+        $buyer->organization_id = empty($request->get('organization_id')) ? null : $request->get('organization_id');
+        $buyer->type_subscription = $request->get('type_subscription');
+        $buyer->passport = $request->get('passport');
+        $buyer->admin_id = $admin->id;
+        $buyer->privilege_id = empty($request->get('privilege_id')) ? null : $request->get('privilege_id');
+        $buyer->showcase_id = $administeredShowcase->id;
         $buyer->save();
 
-        $this->historyRepository->store($administeredShowcase, $buyer, EventHistoryEnum::CHANGE_ADMIN, $buyer->admin);
+        $this->historyRepository->store($administeredShowcase, $buyer, EventHistoryEnum::CHANGE_ADMIN, $admin);
+
+        $buyer->adSources()->sync($request->get('ad_source_ids'));
+        $buyer->diagnoses()->sync($request->get('diagnosis_ids'));
+        $buyer->complaints()->sync($request->get('complaint_ids'));
         \DB::commit();
 
-        return response()->json([
-            'status' => 200
-        ]);
+        return redirect()->route('admin.buyers.edit', $buyer);
+    }
+
+    /**
+     * @param Company $administeredCompany
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create(Company $administeredCompany)
+    {
+        $buyer = null;
+
+        $admins = Admin::query()
+            ->where('company_id', $administeredCompany->id)
+            ->get();
+
+        $organizations = Organization::query()
+            ->where('company_id', $administeredCompany->id)
+            ->get();
+
+        $privileges = Privilege::query()
+            ->where('is_enabled', true)
+            ->get();
+
+        $adSources = AdSource::query()
+            ->where('is_enabled', true)
+            ->orderBy('sort', 'asc')
+            ->get();
+
+        $diagnoses = Diagnosis::query()
+            ->where('is_enabled', true)
+            ->get();
+
+        $complaints = Complaint::query()
+            ->where('is_enabled', true)
+            ->get();
+
+        return view('main_admin.buyers.item.create', compact(
+            'buyer', 'admins', 'organizations', 'privileges', 'adSources', 'diagnoses', 'complaints'
+        ));
     }
 
     /**
@@ -169,7 +219,7 @@ class BuyerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function store(Request $request, Showcase $administeredShowcase, Buyer $buyer, $tab)
+    public function update(Request $request, Showcase $administeredShowcase, Buyer $buyer, $tab)
     {
         switch ($tab) {
             case 'general' :
