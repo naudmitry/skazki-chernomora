@@ -40,35 +40,43 @@ class OrganizationController extends Controller
     }
 
     /**
-     * @param Organization|null $organization
+     * @param Organization $organization
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function edit(Organization $organization = null)
+    public function edit(Organization $organization)
     {
-        if (!$organization) {
-            $organization = new Organization();
-        }
+        return response()->json([
+            'view' => view('main_admin.organizations.modals.edit', compact(
+                'organization'
+            ))->render(),
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function create()
+    {
+        $organization= null;
 
         return response()->json([
-            'view' => view('main_admin.organizations.modals.edit', compact('organization'))->render(),
+            'view' => view('main_admin.organizations.modals.edit', compact(
+                'organization'
+            ))->render(),
         ]);
     }
 
     /**
      * @param Company $administeredCompany
-     * @param Showcase $administeredShowcase
      * @param OrganizationRequest $request
-     * @param Organization|null $organization
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Company $administeredCompany, Showcase $administeredShowcase, OrganizationRequest $request, Organization $organization = null)
+    public function store(Company $administeredCompany, OrganizationRequest $request)
     {
-        if (!$organization) {
-            $organization = new Organization();
-            $organization->company_id = $administeredCompany->id;
-        }
-
+        $organization = new Organization();
+        $organization->company_id = $administeredCompany->id;
         $organization->title = $request->get('title');
         $organization->address = $request->get('address');
         $organization->author_id = \Auth::guard('admin')->user()->id;;
@@ -80,30 +88,32 @@ class OrganizationController extends Controller
     }
 
     /**
+     * @param OrganizationRequest $request
      * @param Organization $organization
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
      */
-    public function delete(Organization $organization)
+    public function update(OrganizationRequest $request, Organization $organization)
     {
-        $organization->delete();
+        $organization->title = $request->get('title');
+        $organization->address = $request->get('address');
+        $organization->update();
 
         return response()->json([
-            'message' => 'Организация успешно удалена.'
+            'message' => 'Данные успешно сохранены.'
         ]);
     }
 
     /**
      * @param Organization $organization
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function enabled(Organization $organization)
+    public function destroy(Organization $organization)
     {
-        $organization->is_enabled = !$organization->is_enabled;
-        $organization->update();
+        $organization->delete();
 
         return response()->json([
-            'message' => 'Доступность организации изменена.',
+            'message' => 'Организация успешно удалена.'
         ]);
     }
 }

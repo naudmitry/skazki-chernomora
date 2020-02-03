@@ -46,7 +46,7 @@ $(function () {
             {
                 targets: 4,
                 orderable: false,
-                render: (data, type, organization) => Mustache.render(mustacheTemplateOrganizationsTableColumnActions, {organization}),
+                render: (data, type, organization) => Mustache.render(mustacheTemplateOrganizationsTableColumnActions.replace(/@organizationId/g, organization.id), {organization}),
             },
         ],
         order: [[0, 'asc']],
@@ -100,7 +100,7 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.organization-delete', function (e) {
+    $(document).on('click', '.item-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 

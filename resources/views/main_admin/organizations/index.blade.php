@@ -12,7 +12,7 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button href="{{ route('admin.organization.edit') }}" class="btn btn-primary open-edit-modal" type="button">
+                            <button href="{{ route('admin.organizations.create') }}" class="btn btn-primary open-edit-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="tile-body datatable-scroll-lg">
-                    <table class="table table-hover" id="organizationsTable" data-href="{{ route('admin.organization.index') }}" width="100%">
+                    <table class="table table-hover" id="organizationsTable" data-href="{{ route('admin.organizations.index') }}" width="100%">
                         <thead>
                         <tr>
                             <th>Создан</th>

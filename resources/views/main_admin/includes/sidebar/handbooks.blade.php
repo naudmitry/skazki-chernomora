@@ -60,8 +60,8 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS, $administeredCompany))
         <li>
             <a
-                    class="app-menu__item @if (Route::is('admin.organization.*')) active scroll-here @endif"
-                    href="{{ route('admin.organization.index') }}"
+                    class="app-menu__item @if (Route::is('admin.organizations.*')) active scroll-here @endif"
+                    href="{{ route('admin.organizations.index') }}"
             ><i class="app-menu__icon fas fa-building"></i><span class="app-menu__label">Организации</span></a>
         </li>
     @endif

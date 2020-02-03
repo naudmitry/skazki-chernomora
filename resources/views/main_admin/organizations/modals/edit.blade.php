@@ -2,7 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form autocomplete="off" class="modal-content organization-edit-form" method="post" action="{{ route('admin.organization.save', $organization ?? null) }}">
+                <form autocomplete="off" class="modal-content organization-edit-form" method="{{ $organization ? 'patch' : 'post' }}" action="{{ $organization ? route('admin.organizations.update', $organization) : route('admin.organizations.store') }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Организация</h5>
                         <button

@@ -282,6 +282,15 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/subscriptions/create', ['uses' => 'Admin\SubscriptionController@create', 'as' => 'admin.subscriptions.create']);
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS], function () {
+                Route::get('/organizations', ['uses' => 'Admin\OrganizationController@index', 'as' => 'admin.organizations.index']);
+                Route::get('/organizations/{organization}/edit', ['uses' => 'Admin\OrganizationController@edit', 'as' => 'admin.organizations.edit'])->where('organization', '[0-9]+');
+                Route::delete('/organizations/{organization}', ['uses' => 'Admin\OrganizationController@destroy', 'as' => 'admin.organizations.destroy'])->where('organization', '[0-9]+');
+                Route::post('/organizations', ['uses' => 'Admin\OrganizationController@store', 'as' => 'admin.organizations.store']);
+                Route::patch('/organizations/{organization}', ['uses' => 'Admin\OrganizationController@update', 'as' => 'admin.organizations.update'])->where('organization', '[0-9]+');
+                Route::get('/organizations/create', ['uses' => 'Admin\OrganizationController@create', 'as' => 'admin.organizations.create']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_REVIEWS], function () {
                 Route::get('/reviews', ['uses' => 'Admin\ReviewController@index', 'as' => 'admin.reviews.index']);
                 Route::delete('/review/{review}', ['uses' => 'Admin\ReviewController@delete', 'as' => 'admin.review.delete'])
@@ -311,18 +320,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::delete('/help-desks/{helpDesk}', ['uses' => 'Admin\HelpDeskController@destroy', 'as' => 'admin.help-desks.destroy']);
                 Route::patch('/help-desks/{helpDesk}', ['uses' => 'Admin\HelpDeskController@update', 'as' => 'admin.help-desks.update']);
                 Route::get('/help-desks/open-modal/{helpDesk}', ['uses' => 'Admin\HelpDeskController@openModal', 'as' => 'admin.help-desks.open-modal']);
-            });
-
-            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS], function () {
-                Route::get('/organizations', ['uses' => 'Admin\OrganizationController@index', 'as' => 'admin.organization.index']);
-                Route::delete('/organization/{organization}', ['uses' => 'Admin\OrganizationController@delete', 'as' => 'admin.organization.delete'])
-                    ->where('organization', '[0-9]+');
-                Route::post('/organization/save/{organization?}', ['uses' => 'Admin\OrganizationController@save', 'as' => 'admin.organization.save',])
-                    ->where('organization', '[0-9]+');
-                Route::get('/organization/edit/{organization?}', ['uses' => 'Admin\OrganizationController@edit', 'as' => 'admin.organization.edit'])
-                    ->where('organization', '[0-9]+');
-                Route::post('/organization/enable/{organization}', ['uses' => 'Admin\OrganizationController@enable', 'as' => 'admin.organization.enable'])
-                    ->where('organization', '[0-9]+');
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_SETTINGS_SEO_INTEGRATION], function () {
