@@ -291,6 +291,16 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/organizations/create', ['uses' => 'Admin\OrganizationController@create', 'as' => 'admin.organizations.create']);
             });
 
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES], function () {
+                Route::get('/salt-caves', ['uses' => 'Admin\SaltCaveController@index', 'as' => 'admin.salt-caves.index']);
+                Route::get('/salt-caves/{saltCave}/edit', ['uses' => 'Admin\SaltCaveController@edit', 'as' => 'admin.salt-caves.edit'])->where('saltCave', '[0-9]+');
+                Route::delete('/salt-caves/{saltCave}', ['uses' => 'Admin\SaltCaveController@destroy', 'as' => 'admin.salt-caves.destroy'])->where('saltCave', '[0-9]+');
+                Route::post('/salt-caves', ['uses' => 'Admin\SaltCaveController@store', 'as' => 'admin.salt-caves.store']);
+                Route::post('/salt-caves/{saltCave}/enable', ['uses' => 'Admin\SaltCaveController@enable', 'as' => 'admin.salt-caves.enable'])->where('saltCave', '[0-9]+');
+                Route::patch('/salt-caves/{saltCave}', ['uses' => 'Admin\SaltCaveController@update', 'as' => 'admin.salt-caves.update'])->where('saltCave', '[0-9]+');
+                Route::get('/salt-caves/create', ['uses' => 'Admin\SaltCaveController@create', 'as' => 'admin.salt-caves.create']);
+            });
+
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_REVIEWS], function () {
                 Route::get('/reviews', ['uses' => 'Admin\ReviewController@index', 'as' => 'admin.reviews.index']);
                 Route::delete('/review/{review}', ['uses' => 'Admin\ReviewController@delete', 'as' => 'admin.review.delete'])
@@ -301,18 +311,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('review', '[0-9]+');
                 Route::get('/review/modal/{review?}', ['uses' => 'Admin\ReviewController@modal', 'as' => 'admin.review.modal'])
                     ->where('review', '[0-9]+');
-            });
-
-            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES], function () {
-                Route::get('/salt-caves', ['uses' => 'Admin\SaltCaveController@index', 'as' => 'admin.salt-caves.index']);
-                Route::get('/salt-cave/modal/{saltCave?}', ['uses' => 'Admin\SaltCaveController@modal', 'as' => 'admin.salt-cave.modal'])
-                    ->where('saltCave', '[0-9]+');
-                Route::post('/salt-cave/save/{saltCave?}', ['uses' => 'Admin\SaltCaveController@save', 'as' => 'admin.salt-cave.save'])
-                    ->where('saltCave', '[0-9]+');
-                Route::delete('/salt-cave/{saltCave}', ['uses' => 'Admin\SaltCaveController@delete', 'as' => 'admin.salt-cave.delete'])
-                    ->where('saltCave', '[0-9]+');
-                Route::post('/salt-cave/enabled/{saltCave}', ['uses' => 'Admin\SaltCaveController@enabled', 'as' => 'admin.salt-cave.enabled'])
-                    ->where('category', '[0-9]+');
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK], function () {

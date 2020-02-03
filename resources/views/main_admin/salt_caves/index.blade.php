@@ -12,7 +12,7 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button href="{{ route('admin.salt-cave.modal') }}" class="btn btn-primary open-salt-cave-modal" type="button">
+                            <button href="{{ route('admin.salt-caves.create') }}" class="btn btn-primary open-edit-modal" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
                             </button>
                         </div>

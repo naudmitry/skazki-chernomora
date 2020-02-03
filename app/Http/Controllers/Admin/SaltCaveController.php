@@ -39,36 +39,45 @@ class SaltCaveController extends Controller
     }
 
     /**
-     * @param null $saltCave
+     * @param SaltCave $saltCave
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function modal(SaltCave $saltCave = null)
+    public function edit(SaltCave $saltCave)
     {
-        if (!$saltCave) {
-            $saltCave = new SaltCave();
-        }
-
         return response()->json([
-            'view' => view('main_admin.salt_caves.modals.create', compact('saltCave'))->render(),
+            'view' => view('main_admin.salt_caves.modals.create', compact(
+                'saltCave'
+            ))->render(),
         ]);
     }
 
     /**
-     * @param SaltCaveRequest $request
-     * @param SaltCave $saltCave
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function create()
+    {
+        $saltCave = null;
+
+        return response()->json([
+            'view' => view('main_admin.salt_caves.modals.create', compact(
+                'saltCave'
+            ))->render(),
+        ]);
+    }
+
+    /**
      * @param Company $administeredCompany
      * @param Showcase $administeredShowcase
+     * @param SaltCaveRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Company $administeredCompany, Showcase $administeredShowcase, SaltCaveRequest $request, SaltCave $saltCave = null)
+    public function store(Company $administeredCompany, Showcase $administeredShowcase, SaltCaveRequest $request)
     {
-        if (!$saltCave) {
-            $saltCave = new SaltCave();
-            $saltCave->company_id = $administeredCompany->id;
-            $saltCave->showcase_id = $administeredShowcase->id;
-        }
-
+        $saltCave = new SaltCave();
+        $saltCave->company_id = $administeredCompany->id;
+        $saltCave->showcase_id = $administeredShowcase->id;
         $saltCave->title = $request->get('title');
         $saltCave->address = $request->get('address');
         $saltCave->is_enabled = $request->get('is_enabled', false);
@@ -82,11 +91,30 @@ class SaltCaveController extends Controller
     }
 
     /**
+     * @param SaltCaveRequest $request
+     * @param SaltCave $saltCave
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(SaltCaveRequest $request, SaltCave $saltCave)
+    {
+        $saltCave->title = $request->get('title');
+        $saltCave->address = $request->get('address');
+        $saltCave->is_enabled = $request->get('is_enabled', false);
+        $saltCave->working_time = $request->get('working_time', []);
+        $saltCave->phone_numbers = $request->get('phone_numbers', []);
+        $saltCave->update();
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.'
+        ]);
+    }
+
+    /**
      * @param SaltCave $saltCave
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(SaltCave $saltCave)
+    public function destroy(SaltCave $saltCave)
     {
         $saltCave->delete();
 
@@ -99,7 +127,7 @@ class SaltCaveController extends Controller
      * @param SaltCave $saltCave
      * @return \Illuminate\Http\JsonResponse
      */
-    public function enabled(SaltCave $saltCave)
+    public function enable(SaltCave $saltCave)
     {
         $saltCave->is_enabled = !$saltCave->is_enabled;
         $saltCave->update();

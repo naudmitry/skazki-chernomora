@@ -51,12 +51,12 @@ $(function () {
             },
             {
                 targets: 5,
-                render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnEnabled, {cave}),
+                render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnEnabled.replace(/@caveId/g, cave.id), {cave}),
             },
             {
                 targets: 6,
                 orderable: false,
-                render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnActions, {cave}),
+                render: (data, type, cave) => Mustache.render(mustacheTemplateSaltCavesTableColumnActions.replace(/@caveId/g, cave.id), {cave}),
             },
         ],
         order: [[0, 'asc']],
@@ -96,7 +96,7 @@ $(function () {
         }
     });
 
-    $(document).on('click', '.open-salt-cave-modal', function (e) {
+    $(document).on('click', '.open-edit-modal', function (e) {
         e.preventDefault();
         let $this = $(this);
         if ($this.data('ajax')) {
@@ -167,7 +167,7 @@ $(function () {
         }));
     });
 
-    $(document).on('click', '.salt-caves-delete', function (e) {
+    $(document).on('click', '.item-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 
@@ -198,7 +198,7 @@ $(function () {
         });
     });
 
-    $(document).on('change', '.salt-cave-enabled', function () {
+    $(document).on('change', '.item-enable', function () {
         $.ajax({
             url: $(this).data('href'),
             type: 'post',

@@ -2,12 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form
-                        autocomplete="off"
-                        class="modal-content salt-cave-create-form"
-                        method="post"
-                        action="{{ route('admin.salt-cave.save', $saltCave) }}">
-
+                <form autocomplete="off" class="modal-content salt-cave-create-form" method="{{ $saltCave ? 'patch' : 'post' }}" action="{{ $saltCave ? route('admin.salt-caves.update', $saltCave) : route('admin.salt-caves.store') }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Соляная пещера</h5>
                         <button
@@ -43,7 +38,7 @@
                                                 class="checkbox"
                                                 type="checkbox"
                                                 value="1"
-                                                @if ($saltCave->is_enabled) checked @endif
+                                                @if ($saltCave && $saltCave->is_enabled) checked @endif
                                         ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                                     </label>
                                 </div>
