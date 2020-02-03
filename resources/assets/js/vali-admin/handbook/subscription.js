@@ -44,12 +44,12 @@ $(function () {
             {
                 targets: 3,
                 data: 'is_enabled',
-                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnEnabled, {subscription}),
+                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnEnabled.replace(/@subscriptionId/g, subscription.id), {subscription}),
             },
             {
                 targets: 4,
                 orderable: false,
-                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnActions, {subscription}),
+                render: (data, type, subscription) => Mustache.render(mustacheTemplateSubscriptionsTableColumnActions.replace(/@subscriptionId/g, subscription.id), {subscription}),
             },
         ],
         order: [[1, 'asc']],
@@ -103,7 +103,7 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.subscription-delete', function (e) {
+    $(document).on('click', '.item-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 

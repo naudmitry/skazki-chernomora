@@ -227,7 +227,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/buyers', ['uses' => 'Admin\BuyerController@index', 'as' => 'admin.buyers.index']);
                 Route::get('/buyers/{buyer}/edit', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyers.edit'])->where('buyer', '[0-9]+');
                 Route::delete('/buyers/{buyer}', ['uses' => 'Admin\BuyerController@destroy', 'as' => 'admin.buyers.destroy'])->where('buyer', '[0-9]+');
-                Route::post('/buyers/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store',])->where('buyer', '[0-9]+')->where('tab', 'general');
+                Route::post('/buyers/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store'])->where('buyer', '[0-9]+')->where('tab', 'general');
                 Route::post('/buyers/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyers.create']);
                 Route::get('/buyers/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyers.modal']);
             });
@@ -238,7 +238,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::delete('/ad-sources/{source}', ['uses' => 'Admin\AdSourceController@destroy', 'as' => 'admin.ad-sources.destroy'])->where('source', '[0-9]+');
                 Route::post('/ad-sources/{source}/enable', ['uses' => 'Admin\AdSourceController@enable', 'as' => 'admin.ad-sources.enable'])->where('source', '[0-9]+');
                 Route::post('/ad-sources', ['uses' => 'Admin\AdSourceController@store', 'as' => 'admin.ad-sources.store']);
-                Route::patch('/ad-sources/{source}', ['uses' => 'Admin\AdSourceController@update', 'as' => 'admin.ad-sources.update',])->where('source', '[0-9]+');
+                Route::patch('/ad-sources/{source}', ['uses' => 'Admin\AdSourceController@update', 'as' => 'admin.ad-sources.update'])->where('source', '[0-9]+');
                 Route::get('/ad-sources/create', ['uses' => 'Admin\AdSourceController@create', 'as' => 'admin.ad-sources.create']);
             });
 
@@ -248,7 +248,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::delete('/privileges/{privilege}', ['uses' => 'Admin\PrivilegeController@destroy', 'as' => 'admin.privileges.destroy'])->where('privilege', '[0-9]+');
                 Route::post('/privileges/{privilege}/enable', ['uses' => 'Admin\PrivilegeController@enable', 'as' => 'admin.privileges.enable'])->where('privilege', '[0-9]+');
                 Route::post('/privileges', ['uses' => 'Admin\PrivilegeController@store', 'as' => 'admin.privileges.store',])->where('privilege', '[0-9]+');
-                Route::patch('/privileges/{privilege}', ['uses' => 'Admin\PrivilegeController@update', 'as' => 'admin.privileges.update',])->where('privilege', '[0-9]+');
+                Route::patch('/privileges/{privilege}', ['uses' => 'Admin\PrivilegeController@update', 'as' => 'admin.privileges.update'])->where('privilege', '[0-9]+');
                 Route::get('/privileges/create', ['uses' => 'Admin\PrivilegeController@create', 'as' => 'admin.privileges.create']);
             });
 
@@ -258,7 +258,7 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::delete('/diagnoses/{diagnosis}', ['uses' => 'Admin\DiagnosisController@destroy', 'as' => 'admin.diagnoses.destroy'])->where('diagnosis', '[0-9]+');
                 Route::post('/diagnoses/{diagnosis}/enable', ['uses' => 'Admin\DiagnosisController@enable', 'as' => 'admin.diagnoses.enable'])->where('diagnosis', '[0-9]+');
                 Route::post('/diagnoses', ['uses' => 'Admin\DiagnosisController@store', 'as' => 'admin.diagnoses.store']);
-                Route::patch('/diagnoses/{diagnosis}', ['uses' => 'Admin\DiagnosisController@update', 'as' => 'admin.diagnoses.update',])->where('diagnosis', '[0-9]+');
+                Route::patch('/diagnoses/{diagnosis}', ['uses' => 'Admin\DiagnosisController@update', 'as' => 'admin.diagnoses.update'])->where('diagnosis', '[0-9]+');
                 Route::get('/diagnoses/create', ['uses' => 'Admin\DiagnosisController@create', 'as' => 'admin.diagnoses.create']);
             });
 
@@ -268,8 +268,18 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::delete('/complaints/{complaint}', ['uses' => 'Admin\ComplaintController@destroy', 'as' => 'admin.complaints.destroy'])->where('complaint', '[0-9]+');
                 Route::post('/complaints/{complaint}/enable', ['uses' => 'Admin\ComplaintController@enable', 'as' => 'admin.complaints.enable'])->where('complaint', '[0-9]+');
                 Route::post('/complaints', ['uses' => 'Admin\ComplaintController@store', 'as' => 'admin.complaints.store'])->where('complaint', '[0-9]+');
-                Route::patch('/complaints/{complaint}', ['uses' => 'Admin\ComplaintController@update', 'as' => 'admin.complaints.update',])->where('complaint', '[0-9]+');
+                Route::patch('/complaints/{complaint}', ['uses' => 'Admin\ComplaintController@update', 'as' => 'admin.complaints.update'])->where('complaint', '[0-9]+');
                 Route::get('/complaints/create', ['uses' => 'Admin\ComplaintController@create', 'as' => 'admin.complaints.create']);
+            });
+
+            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS], function () {
+                Route::get('/subscriptions', ['uses' => 'Admin\SubscriptionController@index', 'as' => 'admin.subscriptions.index']);
+                Route::get('/subscriptions/{subscription}/edit', ['uses' => 'Admin\SubscriptionController@edit', 'as' => 'admin.subscriptions.edit'])->where('subscription', '[0-9]+');
+                Route::delete('/subscriptions/{subscription}', ['uses' => 'Admin\SubscriptionController@destroy', 'as' => 'admin.subscriptions.destroy'])->where('subscription', '[0-9]+');
+                Route::post('/subscriptions/{subscription}/enable', ['uses' => 'Admin\SubscriptionController@enable', 'as' => 'admin.subscriptions.enable'])->where('subscription', '[0-9]+');
+                Route::post('/subscriptions', ['uses' => 'Admin\SubscriptionController@store', 'as' => 'admin.subscriptions.store']);
+                Route::patch('/subscriptions/{subscription}', ['uses' => 'Admin\SubscriptionController@update', 'as' => 'admin.subscriptions.update'])->where('subscription', '[0-9]+');
+                Route::get('/subscriptions/create', ['uses' => 'Admin\SubscriptionController@create', 'as' => 'admin.subscriptions.create']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_REVIEWS], function () {
@@ -294,18 +304,6 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                     ->where('saltCave', '[0-9]+');
                 Route::post('/salt-cave/enabled/{saltCave}', ['uses' => 'Admin\SaltCaveController@enabled', 'as' => 'admin.salt-cave.enabled'])
                     ->where('category', '[0-9]+');
-            });
-
-            Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS], function () {
-                Route::get('/subscriptions', ['uses' => 'Admin\SubscriptionController@index', 'as' => 'admin.subscription.index']);
-                Route::delete('/subscription/{subscription}', ['uses' => 'Admin\SubscriptionController@delete', 'as' => 'admin.subscription.delete'])
-                    ->where('subscription', '[0-9]+');
-                Route::post('/subscription/save/{subscription?}', ['uses' => 'Admin\SubscriptionController@save', 'as' => 'admin.subscription.save',])
-                    ->where('subscription', '[0-9]+');
-                Route::get('/subscription/edit/{subscription?}', ['uses' => 'Admin\SubscriptionController@edit', 'as' => 'admin.subscription.edit'])
-                    ->where('subscription', '[0-9]+');
-                Route::post('/subscription/enable/{subscription}', ['uses' => 'Admin\SubscriptionController@enable', 'as' => 'admin.subscription.enable'])
-                    ->where('subscription', '[0-9]+');
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK], function () {

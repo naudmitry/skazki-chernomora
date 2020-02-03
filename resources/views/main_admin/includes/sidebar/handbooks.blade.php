@@ -51,8 +51,8 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS, $administeredCompany))
         <li>
             <a
-                    class="app-menu__item @if (Route::is('admin.subscription.*')) active scroll-here @endif"
-                    href="{{ route('admin.subscription.index') }}"
+                class="app-menu__item @if (Route::is('admin.subscriptions.*')) active scroll-here @endif"
+                href="{{ route('admin.subscriptions.index') }}"
             ><i class="app-menu__icon fas fa-ticket-alt"></i><span class="app-menu__label">Абонементы</span></a>
         </li>
     @endif

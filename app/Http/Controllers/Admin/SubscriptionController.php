@@ -40,7 +40,7 @@ class SubscriptionController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(Subscription $subscription)
+    public function destroy(Subscription $subscription)
     {
         $subscription->delete();
 
@@ -50,11 +50,26 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @param Subscription|null $subscription
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
-    public function edit(Subscription $subscription = null)
+    public function create()
+    {
+        $subscription = null;
+
+        return response()->json([
+            'view' => view('main_admin.subscriptions.modals.edit', compact(
+                'subscription'
+            ))->render(),
+        ]);
+    }
+
+    /**
+     * @param Subscription $subscription
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function edit(Subscription $subscription)
     {
         return response()->json([
             'view' => view('main_admin.subscriptions.modals.edit', compact(
@@ -81,20 +96,31 @@ class SubscriptionController extends Controller
      * @param Company $administeredCompany
      * @param Showcase $administeredShowcase
      * @param SubscriptionRequest $request
-     * @param Subscription|null $subscription
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Company $administeredCompany, Showcase $administeredShowcase, SubscriptionRequest $request, Subscription $subscription = null)
+    public function store(Company $administeredCompany, Showcase $administeredShowcase, SubscriptionRequest $request)
     {
-        if (!isset($subscription)) {
-            $subscription = new Subscription();
-            $subscription->company_id = $administeredCompany->id;
-            $subscription->showcase_id = $administeredShowcase->id;
-        }
-
+        $subscription = new Subscription();
+        $subscription->company_id = $administeredCompany->id;
+        $subscription->showcase_id = $administeredShowcase->id;
         $subscription->title = $request->get('title');
-        $subscription->author_id= \Auth::guard('admin')->user()->id;
+        $subscription->author_id = \Auth::guard('admin')->user()->id;
         $subscription->save();
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.'
+        ]);
+    }
+
+    /**
+     * @param SubscriptionRequest $request
+     * @param Subscription $subscription
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(SubscriptionRequest $request, Subscription $subscription)
+    {
+        $subscription->title = $request->get('title');
+        $subscription->update();
 
         return response()->json([
             'message' => 'Данные успешно сохранены.'

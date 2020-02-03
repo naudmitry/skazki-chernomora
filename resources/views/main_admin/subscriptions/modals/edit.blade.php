@@ -2,7 +2,7 @@
     <div class="bs-component">
         <div class="modal custom-modal">
             <div class="modal-dialog" role="document">
-                <form autocomplete="off" class="modal-content subscription-edit-form" method="post" action="{{ route('admin.subscription.save', $subscription ?? null) }}">
+                <form autocomplete="off" class="modal-content subscription-edit-form" method="{{ $subscription ? 'patch' : 'post' }}" action="{{ $subscription ? route('admin.subscriptions.update', $subscription) : route('admin.subscriptions.store') }}">
                     <div class="modal-header">
                         <h5 class="modal-title">Абонемент</h5>
                         <button
