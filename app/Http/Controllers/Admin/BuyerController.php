@@ -129,11 +129,10 @@ class BuyerController extends Controller
 
     /**
      * @param Company $administeredCompany
-     * @param Showcase $administeredShowcase
      * @param Buyer $buyer
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Company $administeredCompany, Showcase $administeredShowcase, Buyer $buyer)
+    public function edit(Company $administeredCompany, Buyer $buyer)
     {
         $adSources = AdSource::query()
             ->orderBy('sort', 'asc')
@@ -145,11 +144,6 @@ class BuyerController extends Controller
 
         $diagnoses = Diagnosis::query()
             ->where('is_enabled', true)
-            ->get();
-
-        $orders = Order::query()
-            ->where('showcase_id', $administeredShowcase->id)
-            ->where('buyer_id', $buyer->id)
             ->get();
 
         $admins = Admin::query()
@@ -165,7 +159,7 @@ class BuyerController extends Controller
             ->get();
 
         return view('main_admin.buyers.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses', 'orders', 'admins', 'privileges', 'organizations'
+            'buyer', 'adSources', 'complaints', 'diagnoses', 'admins', 'privileges', 'organizations'
         ));
     }
 

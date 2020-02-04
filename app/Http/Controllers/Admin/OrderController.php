@@ -28,14 +28,18 @@ class OrderController extends Controller
         $ordersQuery = Order::query()
             ->with('saltCave')
             ->where('company_id', $administeredCompany->id)
-            ->where('showcase_id', $administeredShowcase->id)
-            ->get();
+            ->where('showcase_id', $administeredShowcase->id);
 
-        $counters =
-            [
-                'orders_count' => (clone $ordersQuery)->count(),
-                'orders_paid' => (clone $ordersQuery)->where('payment_status', PaymentStatus::PAID)->count(),
-            ];
+        if ($buyerId = $request->get('buyer_id')) {
+            $ordersQuery = $ordersQuery->where('buyer_id', $buyerId);
+        }
+
+        $ordersQuery = $ordersQuery->get();
+
+        $counters = [
+            'orders_count' => (clone $ordersQuery)->count(),
+            'orders_paid' => (clone $ordersQuery)->where('payment_status', PaymentStatus::PAID)->count(),
+        ];
 
         if ($request->ajax()) {
             return Datatables::of($ordersQuery)
@@ -85,7 +89,9 @@ class OrderController extends Controller
 
         return view('main_admin.orders.item.index', compact(
             'order', 'employees', 'buyers', 'saltCaves'
-        ));
+        ) + [
+            'buyer' => null
+        ]);
     }
 
     /**
@@ -131,11 +137,12 @@ class OrderController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param Company $administeredCompany
      * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Company $administeredCompany, Showcase $administeredShowcase)
+    public function create(Request $request, Company $administeredCompany, Showcase $administeredShowcase)
     {
         $order = new Order();
 
@@ -145,10 +152,14 @@ class OrderController extends Controller
             })
             ->get();
 
-        $buyers = Buyer::query()
-            ->where('showcase_id', $administeredShowcase->id)
-            ->where('is_enabled', true)
-            ->get();
+        if ($buyerId = $request->get('buyer_id')) {
+            $buyer = Buyer::findOrFail($buyerId);
+        } else {
+            $buyers = Buyer::query()
+                ->where('showcase_id', $administeredShowcase->id)
+                ->where('is_enabled', true)
+                ->get();
+        }
 
         $saltCaves = SaltCave::query()
             ->where('company_id', $administeredCompany->id)
@@ -157,8 +168,11 @@ class OrderController extends Controller
             ->get();
 
         return view('main_admin.orders.item.index', compact(
-            'order', 'employees', 'buyers', 'saltCaves'
-        ));
+            'order', 'employees', 'saltCaves'
+        ) + [
+            'buyers' => $buyers ?? null,
+            'buyer' => $buyer ?? null
+        ]);
     }
 
     /**

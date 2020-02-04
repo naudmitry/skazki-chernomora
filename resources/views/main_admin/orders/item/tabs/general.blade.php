@@ -38,7 +38,7 @@
                 <div class="column col-md-6">
                     <div class="row form-group">
                         <div class="col-md-4">
-                            <label class="control-label">Номер заказа:</label>
+                            <label class="control-label">Номер абонемента:</label>
                         </div>
                         <div class="col-md-8">
                             <input
@@ -58,7 +58,7 @@
                                 @foreach ($employees as $employee)
                                     <option
                                             @if ($employee->id == $order->manager_id) selected @endif
-                                    value="{{ $employee->id }}"
+                                            value="{{ $employee->id }}"
                                     >{{ $employee->full_name }}</option>
                                 @endforeach
                             </select>
@@ -74,7 +74,7 @@
                                 @foreach ($employees as $employee)
                                     <option
                                             @if ($employee->id == $order->executant_id) selected @endif
-                                    value="{{ $employee->id }}"
+                                            value="{{ $employee->id }}"
                                     >{{ $employee->full_name }}</option>
                                 @endforeach
                             </select>
@@ -86,14 +86,19 @@
                             <label class="control-label">Клиент:</label>
                         </div>
                         <div class="col-md-8">
-                            <select class="select2" name="buyer_id">
-                                @foreach ($buyers as $buyer)
-                                    <option
-                                            @if ($buyer->id == $order->buyer_id) selected @endif
-                                    value="{{ $buyer->id }}"
-                                    >{{ $buyer->full_name }}</option>
-                                @endforeach
-                            </select>
+                            @if ($buyer)
+                                <label class="control-label">{{ $buyer->full_name }}</label>
+                                <input type="hidden" name="buyer_id" value="{{ $buyer->id }}" />
+                            @else
+                                <select class="select2" name="buyer_id">
+                                    @foreach ($buyers as $buyer)
+                                        <option
+                                                @if ($buyer->id == $order->buyer_id) selected @endif
+                                                value="{{ $buyer->id }}"
+                                        >{{ $buyer->full_name }}</option>
+                                    @endforeach
+                                </select>
+                            @endif
                         </div>
                     </div>
                 </div>

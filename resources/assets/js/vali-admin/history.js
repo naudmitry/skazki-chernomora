@@ -1,4 +1,10 @@
 $(function () {
+    let $historyLists = $('.history-lists');
+
+    if (!$historyLists.length) {
+        return;
+    }
+
     let $historiesTable = $('#historiesTable');
     let mustacheTemplateHistoriesTableColumnCreatedAt = $('.template-histories-table-column-created').text();
     let mustacheTemplateHistoriesTableColumnAuthor = $('.template-histories-table-column-author').text();
@@ -10,10 +16,9 @@ $(function () {
         autoWidth: false,
         processing: true,
         serverSide: true,
-        ajax:
-            {
-                url: $historiesTable.data('href'),
-            },
+        ajax: {
+            url: $historiesTable.data('href'),
+        },
         columnDefs: [
             {
                 targets: 0,
@@ -52,19 +57,9 @@ $(function () {
         },
         lengthMenu: [15, 25, 50, 75, 100],
         displayLength: 15,
-        drawCallback: function (settings) {
-            $('.histories-count').text(settings.json.counters.count);
-            // $('.orders-paid').text(settings.json.counters.orders_paid);
-        },
     });
 
-    $(document).on('keyup', '.history-search', function (e) {
-        if (e.keyCode == 13) {
-            $('#historiesTable').DataTable().search(this.value).draw();
-        }
-    });
-
-    $('.dataTables_length select').select2({
+    $('.dataTables_length select', $historyLists).select2({
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });

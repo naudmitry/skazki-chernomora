@@ -5,7 +5,7 @@ $(function () {
         return;
     }
 
-    $('.select2').select2({
+    $('.select2', $buyerItem).select2({
         width: '100%'
     });
 

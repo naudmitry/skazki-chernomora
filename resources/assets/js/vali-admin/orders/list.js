@@ -97,7 +97,7 @@ $(function () {
         },
     });
 
-    $('.dataTables_length select').select2({
+    $('.dataTables_length select', $orderLists).select2({
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });

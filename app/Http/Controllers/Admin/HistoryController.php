@@ -17,7 +17,6 @@ class HistoryController extends Controller
      */
     public function index(int $id, string $type)
     {
-
         switch ($type) {
             case TypeHistoryEnum::ORDER:
                 $entity = Order::findOrFail($id);
@@ -33,7 +32,7 @@ class HistoryController extends Controller
         ];
 
         return Datatables::of($histories)
-            ->with('counters')
+            ->with(compact('counters'))
             ->make(true);
     }
 }
