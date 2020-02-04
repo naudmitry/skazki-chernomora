@@ -159,34 +159,6 @@ $(function () {
         }));
     });
 
-    // $(document).on('click', '.open-buyer-modal', function (e) {
-    //     e.preventDefault();
-    //     let $this = $(this);
-    //     if ($this.data('ajax')) {
-    //         return;
-    //     }
-    //     let $divForModal = $('.div-for-modal');
-    //     $this.data('ajax', $.ajax({
-    //         url: $this.data('href'),
-    //         success: response => {
-    //             $divForModal.html(response.view);
-    //             let $modal = $('#buyer-modal');
-    //             $modal.find('.select2').select2({
-    //                 minimumResultsForSearch: Infinity,
-    //                 width: '100%'
-    //             });
-    //             $modal.modal('show');
-    //             $modal.on('hidden.bs.modal', function (event) {
-    //                 $divForModal.empty();
-    //             });
-    //         },
-    //         error: xhr => {
-    //             console.error(xhr);
-    //         },
-    //         complete: () => $this.removeData('ajax'),
-    //     }));
-    // });
-
     $(document).on('change keyup', '.buyer-create-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);

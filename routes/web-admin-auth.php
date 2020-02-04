@@ -225,13 +225,11 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
 
             Route::group(['components' => AdminComponentEnum::COMPANY_USERS_CUSTOMERS], function () {
                 Route::get('/buyers', ['uses' => 'Admin\BuyerController@index', 'as' => 'admin.buyers.index']);
-                Route::get('/buyers/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyers.create']);
-                Route::post('/buyers', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store']);
-
                 Route::get('/buyers/{buyer}/edit', ['uses' => 'Admin\BuyerController@edit', 'as' => 'admin.buyers.edit'])->where('buyer', '[0-9]+');
                 Route::delete('/buyers/{buyer}', ['uses' => 'Admin\BuyerController@destroy', 'as' => 'admin.buyers.destroy'])->where('buyer', '[0-9]+');
-                Route::post('/buyers/{buyer}/{tab}', ['uses' => 'Admin\BuyerController@update', 'as' => 'admin.buyers.update'])->where('buyer', '[0-9]+')->where('tab', 'general');
-                Route::get('/buyers/modal', ['uses' => 'Admin\BuyerController@modal', 'as' => 'admin.buyers.modal']);
+                Route::post('/buyers', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store']);
+                Route::patch('/buyers/{buyer}', ['uses' => 'Admin\BuyerController@update', 'as' => 'admin.buyers.update'])->where('buyer', '[0-9]+');
+                Route::get('/buyers/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyers.create']);
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES], function () {

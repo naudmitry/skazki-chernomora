@@ -1,7 +1,7 @@
 <div class="tile">
     <h4 class="line-head">Основная информация</h4>
 
-    <form autocomplete="off" class="buyer-general-form" method="post" action="{{ $buyer ? route('admin.buyers.update', [$buyer, 'general']) : route('admin.buyers.store') }}">
+    <form autocomplete="off" class="buyer-general-form" method="{{ $buyer ? 'patch' : 'post' }}" action="{{ $buyer ? route('admin.buyers.update', [$buyer, 'tab' => 'general']) : route('admin.buyers.store') }}">
         {{ csrf_field() }}
 
         <div class="row">

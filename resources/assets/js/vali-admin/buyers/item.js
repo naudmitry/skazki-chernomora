@@ -27,37 +27,41 @@ $(function () {
             .prop('disabled', false);
     });
 
-    // $(document).on('submit', '.buyer-general-form', function (e) {
-    //     e.preventDefault();
-    //     let $form = $(this);
-    //     if ($form.data('ajax')) {
-    //         return;
-    //     }
-    //     $form.find('.is-invalid').removeClass('is-invalid');
-    //     $form.data('ajax', $.ajax({
-    //         type: $form.attr('method'),
-    //         url: $form.attr('action'),
-    //         data: $form.serialize(),
-    //         success: response => {
-    //             notifyService.showMessage('info', 'Успех!', response.message);
-    //             $('#historiesTable').DataTable().ajax.reload();
-    //         },
-    //         error: xhr => {
-    //             if ('object' === typeof xhr.responseJSON) {
-    //                 for (let key in xhr.responseJSON['errors']) {
-    //                     $form.find('[name="' + key + '"]').addClass('is-invalid');
-    //                 }
-    //                 return;
-    //             }
-    //             console.error(xhr);
-    //         },
-    //         complete: () => {
-    //             $form.removeData('ajax');
-    //             $form.find('[type=submit]')
-    //                 .removeClass('btn-primary')
-    //                 .addClass('btn-default')
-    //                 .prop('disabled', true);
-    //         },
-    //     }));
-    // });
+    $(document).on('submit', '.buyer-general-form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+        if ($form.data('ajax')) {
+            return;
+        }
+        $form.find('.is-invalid').removeClass('is-invalid');
+        $form.data('ajax', $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: response => {
+                if (response.redirectTo) {
+                    window.location.href = response.redirectTo;
+                } else {
+                    notifyService.showMessage('info', 'Успех!', response.message);
+                    $('#historiesTable').DataTable().ajax.reload();
+                }
+            },
+            error: xhr => {
+                if ('object' === typeof xhr.responseJSON) {
+                    for (let key in xhr.responseJSON['errors']) {
+                        $form.find('[name="' + key + '"]').addClass('is-invalid');
+                    }
+                    return;
+                }
+                console.error(xhr);
+            },
+            complete: () => {
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
+            },
+        }));
+    });
 });

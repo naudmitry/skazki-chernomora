@@ -14,22 +14,25 @@ use App\Models\Order;
 use App\Models\Organization;
 use App\Models\Privilege;
 use App\Models\Showcase;
+use App\Repositories\BuyerRepository;
 use App\Repositories\HistoryRepository;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class BuyerController extends Controller
 {
     protected $historyRepository;
+    protected $buyerRepository;
 
     /**
      * BuyerController constructor.
      * @param HistoryRepository $historyRepository
+     * @param BuyerRepository $buyerRepository
      */
-    public function __construct(HistoryRepository $historyRepository)
+    public function __construct(HistoryRepository $historyRepository, BuyerRepository $buyerRepository)
     {
         $this->historyRepository = $historyRepository;
+        $this->buyerRepository = $buyerRepository;
 
         parent::__construct();
     }
@@ -37,7 +40,7 @@ class BuyerController extends Controller
     /**
      * @param BuyerRequest $request
      * @param Showcase $administeredShowcase
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
     public function store(BuyerRequest $request, Showcase $administeredShowcase)
@@ -46,22 +49,7 @@ class BuyerController extends Controller
 
         \DB::beginTransaction();
         $buyer = new Buyer();
-        $buyer->surname = $request->get('surname');
-        $buyer->name = $request->get('name');
-        $buyer->middle_name = $request->get('middle_name');
-        $buyer->dynamics = $request->get('dynamics');
-        $buyer->birthday_at = $request->get('birthday_at') ? Carbon::createFromFormat('d.m.Y', $request->get('birthday_at')) : null;
-        $buyer->address = $request->get('address');
-        $buyer->email = $request->get('email');
-        $buyer->phone_number = $request->get('phone_number');
-        $buyer->number_contract = $request->get('number_contract');
-        $buyer->contract_at = $request->get('contract_at') ? Carbon::createFromFormat('d.m.Y', $request->get('contract_at')) : null;
-        $buyer->is_enabled = $request->get('is_enabled', 0);
-        $buyer->organization_id = empty($request->get('organization_id')) ? null : $request->get('organization_id');
-        $buyer->type_subscription = $request->get('type_subscription');
-        $buyer->passport = $request->get('passport');
-        $buyer->admin_id = $admin->id;
-        $buyer->privilege_id = empty($request->get('privilege_id')) ? null : $request->get('privilege_id');
+        $this->buyerRepository->fill($request, $buyer);
         $buyer->showcase_id = $administeredShowcase->id;
         $buyer->save();
 
@@ -72,7 +60,9 @@ class BuyerController extends Controller
         $buyer->complaints()->sync($request->get('complaint_ids'));
         \DB::commit();
 
-        return redirect()->route('admin.buyers.edit', $buyer);
+        return response()->json([
+            'redirectTo' => route('admin.buyers.edit', $buyer)
+        ]);
     }
 
     /**
@@ -114,28 +104,6 @@ class BuyerController extends Controller
     }
 
     /**
-     * @param Company $administeredCompany
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Throwable
-     */
-    public function modal(Company $administeredCompany)
-    {
-        $organizations = Organization::query()
-            ->where('company_id', $administeredCompany->id)
-            ->get();
-
-        $admins = Admin::query()
-            ->where('company_id', $administeredCompany->id)
-            ->get();
-
-        return response()->json([
-            'view' => view('main_admin.buyers.lists.modals.create', compact(
-                'organizations', 'admins'
-            ))->render(),
-        ]);
-    }
-
-    /**
      * @param Request $request
      * @param Showcase $administeredShowcase
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -171,8 +139,13 @@ class BuyerController extends Controller
             ->orderBy('sort', 'asc')
             ->get();
 
-        $complaints = Complaint::all();
-        $diagnoses = Diagnosis::all();
+        $complaints = Complaint::query()
+            ->where('is_enabled', true)
+            ->get();
+
+        $diagnoses = Diagnosis::query()
+            ->where('is_enabled', true)
+            ->get();
 
         $orders = Order::query()
             ->where('showcase_id', $administeredShowcase->id)
@@ -212,48 +185,26 @@ class BuyerController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param BuyerRequest $request
      * @param Showcase $administeredShowcase
      * @param Buyer $buyer
-     * @param $tab
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function update(Request $request, Showcase $administeredShowcase, Buyer $buyer, $tab)
+    public function update(BuyerRequest $request, Showcase $administeredShowcase, Buyer $buyer)
     {
-        switch ($tab) {
+        switch ($request->get('tab')) {
             case 'general' :
-                $this->validate($request, [
-                    'surname' => 'required',
-                    'name' => 'required',
-                    'phone_number' => 'required',
-                ]);
-
                 $admin = Admin::findOrFail($request->get('admin_id'));
 
                 \DB::beginTransaction();
-                $buyer->surname = $request->get('surname');
-                $buyer->name = $request->get('name');
-                $buyer->middle_name = $request->get('middle_name');
-                $buyer->dynamics = $request->get('dynamics');
-                $buyer->birthday_at = $request->get('birthday_at') ? Carbon::createFromFormat('d.m.Y', $request->get('birthday_at')) : null;
-                $buyer->address = $request->get('address');
-                $buyer->email = $request->get('email');
-                $buyer->phone_number = $request->get('phone_number');
-                $buyer->number_contract = $request->get('number_contract');
-                $buyer->contract_at = $request->get('contract_at') ? Carbon::createFromFormat('d.m.Y', $request->get('contract_at')) : null;
-                $buyer->is_enabled = $request->get('is_enabled', 0);
-                $buyer->organization_id = empty($request->get('organization_id')) ? null : $request->get('organization_id');
-                $buyer->type_subscription = $request->get('type_subscription');
-                $buyer->passport = $request->get('passport');
-                $buyer->admin_id = $admin->id;
-                $buyer->privilege_id = empty($request->get('privilege_id')) ? null : $request->get('privilege_id');
+                $this->buyerRepository->fill($request, $buyer);
 
                 if ($buyer->isDirty('admin_id')) {
                     $this->historyRepository->store($administeredShowcase, $buyer, EventHistoryEnum::CHANGE_ADMIN, $admin);
                 }
 
-                $buyer->save();
+                $buyer->update();
 
                 $buyer->adSources()->sync($request->get('ad_source_ids'));
                 $buyer->diagnoses()->sync($request->get('diagnosis_ids'));
@@ -261,6 +212,9 @@ class BuyerController extends Controller
                 \DB::commit();
                 break;
             default:
+                return response()->json([
+                    'message' => 'Произошла ошибка при сохранении'
+                ]);
         }
 
         return response()->json([
