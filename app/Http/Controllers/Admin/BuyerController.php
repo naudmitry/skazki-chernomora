@@ -111,7 +111,8 @@ class BuyerController extends Controller
      */
     public function index(Request $request, Showcase $administeredShowcase)
     {
-        $buyerQuery = Buyer::query()->where('showcase_id', $administeredShowcase->id);
+        $buyerQuery = Buyer::query()
+            ->where('showcase_id', $administeredShowcase->id);
 
         if ($adminId = $request->get('admin_id')) {
             $buyerQuery = $buyerQuery->where('admin_id', $adminId);

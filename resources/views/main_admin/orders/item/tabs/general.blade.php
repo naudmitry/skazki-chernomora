@@ -31,17 +31,18 @@
 
         <h4 class="line-head">Общая информация</h4>
 
-        <form autocomplete="off" class="order-general-form" method="post" action="{{ route('admin.order.save', $order) }}">
+        <form autocomplete="off" class="order-general-form" method="{{ $order->id ? 'patch' : 'post' }}" action="{{ $order->id ? route('admin.orders.update', $order) : route('admin.orders.store') }}">
             {{ csrf_field() }}
 
             <div class="row">
                 <div class="column col-md-6">
                     <div class="row form-group">
                         <div class="col-md-4">
-                            <label class="control-label">Номер абонемента:</label>
+                            <label class="control-label" for="number">Номер абонемента:</label>
                         </div>
                         <div class="col-md-8">
                             <input
+                                    id="number"
                                     name="number"
                                     class="form-control"
                                     type="text"

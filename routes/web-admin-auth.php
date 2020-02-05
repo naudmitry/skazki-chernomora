@@ -194,14 +194,13 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_ORDERS_LIST], function () {
-                Route::get('/orders', ['uses' => 'Admin\OrderController@index', 'as' => 'admin.order.list.index']);
-                Route::get('/order/edit/{order}', ['uses' => 'Admin\OrderController@edit', 'as' => 'admin.order.edit'])
-                    ->where('order', '[0-9]+');
-                Route::get('/order/create', ['uses' => 'Admin\OrderController@create', 'as' => 'admin.order.create']);
-                Route::post('/order/save/{order?}', ['uses' => 'Admin\OrderController@save', 'as' => 'admin.order.save'])
-                    ->where('order', '[0-9]+');
-                Route::delete('/order/lists/{order}', ['uses' => 'Admin\OrderController@delete', 'as' => 'admin.order.list.delete'])
-                    ->where('order', '[0-9]+');
+                Route::get('/orders', ['uses' => 'Admin\OrderController@index', 'as' => 'admin.orders.index']);
+                Route::get('/orders/{order}/edit', ['uses' => 'Admin\OrderController@edit', 'as' => 'admin.orders.edit'])->where('order', '[0-9]+');
+                Route::delete('/orders/{order}', ['uses' => 'Admin\OrderController@destroy', 'as' => 'admin.orders.destroy'])->where('order', '[0-9]+');
+                Route::post('/orders', ['uses' => 'Admin\OrderController@store', 'as' => 'admin.orders.store']);
+                Route::patch('/orders/{order}', ['uses' => 'Admin\OrderController@update', 'as' => 'admin.orders.update'])->where('order', '[0-9]+');
+                Route::get('/orders/create', ['uses' => 'Admin\OrderController@create', 'as' => 'admin.orders.create']);
+
                 Route::get('/order/{order}/open-modal/{modal}', ['uses' => 'Admin\OrderController@openModal', 'as' => 'admin.order.open-modal']);
                 Route::get('/order/{order}/families', ['uses' => 'Admin\OrderFamilyController@index', 'as' => 'admin.order.family.index'])
                     ->where('order', '[0-9]+');

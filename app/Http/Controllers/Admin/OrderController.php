@@ -9,13 +9,26 @@ use App\Models\Company;
 use App\Models\Order;
 use App\Models\SaltCave;
 use App\Models\Showcase;
-use Carbon\Carbon;
+use App\Repositories\OrderRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class OrderController extends Controller
 {
+    protected $orderRepository;
+
+    /**
+     * OrderController constructor.
+     * @param OrderRepository $orderRepository
+     */
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+
+        parent::__construct();
+    }
+
     /**
      * @param Request $request
      * @param Company $administeredCompany
@@ -55,7 +68,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(Order $order)
+    public function destroy(Order $order)
     {
         $order->delete();
 
@@ -101,38 +114,31 @@ class OrderController extends Controller
      * @param Order $order
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Company $administeredCompany, Showcase $administeredShowcase, Request $request, Order $order = null)
+    public function store(Company $administeredCompany, Showcase $administeredShowcase, Request $request)
     {
-        $isNew = false;
-
-        if (empty($order)) {
-            $order = new Order();
-            $order->company_id = $administeredCompany->id;
-            $order->showcase_id = $administeredShowcase->id;
-            $isNew = true;
-        }
-
-        $order->salt_cave_id = $request->get('salt_cave_id');
-        $order->amount_sessions = $request->get('amount_sessions');
-        $order->number = $request->get('number');
-        $order->status = $request->get('status');
-        $order->payment_type = $request->get('payment_type');
-        $order->payment_status = $request->get('payment_status');
-        $order->manager_id = $request->get('manager_id');
-        $order->executant_id = $request->get('executant_id');
-        $order->begin_at = $request->get('begin_at') ? Carbon::createFromFormat('d.m.Y', $request->get('begin_at')) : null;
-        $order->end_at = $request->get('end_at') ? Carbon::createFromFormat('d.m.Y', $request->get('end_at')) : null;
-        $order->buyer_id = $request->get('buyer_id');
-
-        $order->cost = 0;
-        $order->paid = 0;
-        $order->debt = 0;
-
+        $order = new Order();
+        $order->company_id = $administeredCompany->id;
+        $order->showcase_id = $administeredShowcase->id;
+        $this->orderRepository->fill($request, $order);
         $order->save();
 
         return response()->json([
             'message' => 'Данные успешно сохранены.',
-            'redirect' => $isNew ? route('admin.order.edit', $order) : ''
+            'redirect' => route('admin.orders.edit', $order)
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, Order $order) {
+        $this->orderRepository->fill($request, $order);
+        $order->update();
+
+        return response()->json([
+            'message' => 'Данные успешно сохранены.',
         ]);
     }
 

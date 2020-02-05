@@ -1,10 +1,11 @@
 $(function () {
-    let $buyersListsTable = $('#buyersListsTable');
+    let $buyerLists = $('.buyers-lists');
 
-    if (!$buyersListsTable.length) {
+    if (!$buyerLists.length) {
         return;
     }
 
+    let $buyersListsTable = $('#buyersListsTable');
     let mustacheTemplateBuyersListsTableColumnActions = $('.template-buyers-lists-table-column-actions').text();
     let mustacheTemplateBuyersListsTableColumnPhone = $('.template-buyers-lists-table-column-phone').text();
     let mustacheTemplateBuyersListsTableColumnPrivilege = $('.template-buyers-lists-table-column-privilege').text();
@@ -84,7 +85,7 @@ $(function () {
         },
     });
 
-    $('.dataTables_length select').select2({
+    $('.dataTables_length select', $buyerLists).select2({
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });

@@ -8,8 +8,8 @@
 
     <div class="row">
         @include('main_admin.orders.lists.table', [
-            'indexRoute' => route('admin.order.list.index'),
-            'createRoute' => route('admin.order.create')
+            'indexRoute' => route('admin.orders.index'),
+            'createRoute' => route('admin.orders.create')
         ])
     </div>
 @endsection

@@ -12,7 +12,7 @@
         <li>
             <a
                 class="app-menu__item @if (Route::is('admin.order.*')) active scroll-here @endif"
-                href="{{ route('admin.order.list.index') }}"
+                href="{{ route('admin.orders.index') }}"
             ><i class="app-menu__icon fas fa-shopping-cart"></i><span class="app-menu__label">Абонементы</span></a>
         </li>
     @endif

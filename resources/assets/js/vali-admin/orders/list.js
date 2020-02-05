@@ -34,7 +34,7 @@ $(function () {
             {
                 targets: 1,
                 data: 'name',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnNumber, {order}),
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnNumber.replace(/@orderId/g, order.id), {order}),
             },
             {
                 targets: 2,
@@ -68,7 +68,7 @@ $(function () {
             {
                 targets: 8,
                 orderable: false,
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnActions, {order}),
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnActions.replace(/@orderId/g, order.id), {order}),
             },
         ],
         order: [[0, 'asc']],
@@ -102,7 +102,7 @@ $(function () {
         width: 'auto'
     });
 
-    $(document).on('click', '.order-list-delete', function (e) {
+    $(document).on('click', '.item-delete', function (e) {
         e.preventDefault();
         let $this = $(this);
 

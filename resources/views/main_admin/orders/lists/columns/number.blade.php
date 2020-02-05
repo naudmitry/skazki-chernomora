@@ -1,1 +1,1 @@
-<a href="{{ route('admin.order.edit', '') }}/@{{order.id}}">@{{order.number}}</a>
+<a href="{{ route('admin.orders.edit', '@orderId') }}">@{{order.number}}</a>
