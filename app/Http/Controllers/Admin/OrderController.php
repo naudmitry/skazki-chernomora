@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes\PaymentStatus;
+use App\Http\Requests\Order\OrderRequest;
 use App\Models\Admin;
 use App\Models\Buyer;
 use App\Models\Company;
@@ -110,11 +111,10 @@ class OrderController extends Controller
     /**
      * @param Company $administeredCompany
      * @param Showcase $administeredShowcase
-     * @param Request $request
-     * @param Order $order
+     * @param OrderRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Company $administeredCompany, Showcase $administeredShowcase, Request $request)
+    public function store(Company $administeredCompany, Showcase $administeredShowcase, OrderRequest $request)
     {
         $order = new Order();
         $order->company_id = $administeredCompany->id;
@@ -129,11 +129,11 @@ class OrderController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param OrderRequest $request
      * @param Order $order
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Order $order) {
+    public function update(OrderRequest $request, Order $order) {
         $this->orderRepository->fill($request, $order);
         $order->update();
 
