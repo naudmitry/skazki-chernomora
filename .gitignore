@@ -6,3 +6,6 @@
 /public/images/
 .env
 .package-lock.json
+/public/vali-admin/js/app.js
+/public/vali-admin/css/app.css
+/public/miracle/js/miracle.js
