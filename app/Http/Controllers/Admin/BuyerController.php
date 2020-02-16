@@ -71,7 +71,7 @@ class BuyerController extends Controller
      */
     public function create(Company $administeredCompany)
     {
-        $buyer = null;
+        $buyer = new Buyer();
 
         $admins = Admin::query()
             ->where('company_id', $administeredCompany->id)

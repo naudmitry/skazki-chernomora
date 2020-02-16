@@ -23,6 +23,8 @@ class CreateBuyersTable extends Migration
             $table->string('name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('passport')->nullable();
+            $table->timestamp('passport_issuing_at')->nullable();
+            $table->string('passport_issued_by')->nullable();
             $table->string('gender')->nullable();
             $table->timestamp('birthday_at')->nullable();
             $table->string('address')->nullable();

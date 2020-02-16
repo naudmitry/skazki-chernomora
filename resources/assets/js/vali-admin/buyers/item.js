@@ -15,6 +15,11 @@ $(function () {
         yearRange: ((new Date).getFullYear() - 100) + ':' + (new Date).getFullYear(),
     });
 
+    $('#passport_issuing_at').datepicker({
+        changeYear: true,
+        changeMonth: true,
+    });
+
     $(document).on('change keyup', '.buyer-general-form', function (e) {
         let $form = $(this);
         let $input = $(e.target);

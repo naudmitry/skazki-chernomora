@@ -1,8 +1,8 @@
 <div class="tile">
     <h4 class="line-head">Основная информация</h4>
 
-    <form autocomplete="off" class="buyer-general-form" method="{{ $buyer ? 'patch' : 'post' }}"
-          action="{{ $buyer ? route('admin.buyers.update', [$buyer, 'tab' => 'general']) : route('admin.buyers.store') }}">
+    <form autocomplete="off" class="buyer-general-form" method="{{ $buyer->id ? 'patch' : 'post' }}"
+          action="{{ $buyer->id ? route('admin.buyers.update', [$buyer, 'tab' => 'general']) : route('admin.buyers.store') }}">
         {{ csrf_field() }}
 
         <div class="row">
@@ -19,7 +19,7 @@
                                         type="checkbox"
                                         name="is_enabled"
                                         value="1"
-                                        @if ($buyer && $buyer->is_enabled) checked @endif
+                                        @if ($buyer->is_enabled) checked @endif
                                 ><span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                             </label>
                         </div>
@@ -34,7 +34,7 @@
                         <select name="admin_id" class="select2">
                             @foreach ($admins as $admin)
                                 <option
-                                        @if ($buyer && $buyer->admin_id == $admin->id) selected @endif
+                                        @if ($buyer->admin_id == $admin->id) selected @endif
                                 value="{{ $admin->id }}"
                                 >{{ $admin->full_name ?? '' }}</option>
                             @endforeach
@@ -80,7 +80,7 @@
                             <option value="">Нет льготы</option>
                             @foreach ($privileges as $privilege)
                                 <option
-                                        @if ($buyer && $buyer->privilege_id == $privilege->id) selected @endif
+                                        @if ($buyer->privilege_id == $privilege->id) selected @endif
                                 value="{{ $privilege->id }}"
                                 >{{ $privilege->title }}</option>
                             @endforeach
@@ -98,7 +98,7 @@
                         <select class="select2" name="gender">
                             @foreach (\App\Classes\GenderEnum::lists() as $gender)
                                 <option
-                                        @if ($buyer && $buyer->gender == $gender) selected @endif
+                                        @if ($buyer->gender == $gender) selected @endif
                                 value="{{ $gender }}"
                                 >{{ trans('gender.' . $gender) }}</option>
                             @endforeach
@@ -114,7 +114,7 @@
                         <select class="select2" name="type_subscription">
                             @foreach (\App\Classes\BuyerTypeSubscriptionEnum::lists() as $type)
                                 <option
-                                        @if ($buyer && $buyer->type_subscription == $type) selected @endif
+                                        @if ($buyer->type_subscription == $type) selected @endif
                                 value="{{ $type }}"
                                 >{{ \App\Classes\BuyerTypeSubscriptionEnum::$labels[$type] }}</option>
                             @endforeach
@@ -138,7 +138,7 @@
                     </div>
                     <div class="col-md-8">
                         <input id="contract_at" name="contract_at" class="form-control" type="text"
-                               value="{{ $buyer && $buyer->contract_at ? $buyer->contract_at->format('d.m.Y') : '' }}">
+                               value="{{ $buyer->contract_at ? $buyer->contract_at->format('d.m.Y') : '' }}">
                     </div>
                 </div>
 
@@ -151,7 +151,7 @@
                             <option value="">Нет организации</option>
                             @foreach ($organizations as $organization)
                                 <option
-                                        @if ($buyer && $buyer->organization_id == $organization->id) selected @endif
+                                        @if ($buyer->organization_id == $organization->id) selected @endif
                                 value="{{ $organization->id }}"
                                 >{{ $organization->title }}</option>
                             @endforeach
@@ -167,13 +167,35 @@
             <div class="column col-md-6">
                 <div class="row form-group">
                     <div class="col-md-4">
-                        <label class="control-label" for="passport">Паспорт:</label>
+                        <label class="control-label" for="passport">Номер паспорта:</label>
                     </div>
                     <div class="col-md-8">
                         <input id="passport" name="passport" class="form-control" type="text"
                                value="{{ $buyer->passport ?? '' }}">
                     </div>
                 </div>
+            </div>
+
+            <div class="column col-md-6">
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label class="control-label" for="passport_issuing_at">Дата выдачи:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input id="passport_issuing_at" name="passport_issuing_at" class="form-control" type="text"
+                               value="{{ $buyer->passport_issuing_at ? $buyer->passport_issuing_at->format('d.m.Y') : '' }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="control-label" for="passport_issued_by">Кем выдан:</label>
+            </div>
+            <div class="col-md-10">
+                <input id="passport_issued_by" name="passport_issued_by" class="form-control" type="text"
+                       value="{{ $buyer->passport_issued_by ?? '' }}">
             </div>
         </div>
 
@@ -219,7 +241,7 @@
                     </div>
                     <div class="col-md-8">
                         <input id="birthday_at" name="birthday_at" class="form-control" type="text"
-                               value="{{ $buyer && $buyer->birthday_at ? $buyer->birthday_at->format('d.m.Y') : '' }}">
+                               value="{{ $buyer->birthday_at ? $buyer->birthday_at->format('d.m.Y') : '' }}">
                     </div>
                 </div>
             </div>
@@ -234,7 +256,8 @@
                     @foreach ($adSources as $adSource)
                         <option
                                 value="{{ $adSource->id }}"
-                                @if ($buyer && $buyer->adSources->whereIn('id', $adSource->id)->count()) selected @endif
+                                {{--TODO: remove request--}}
+                                @if ($buyer->adSources->whereIn('id', $adSource->id)->count()) selected @endif
                         >{{ $adSource->title }}</option>
                     @endforeach
                 </select>
@@ -252,7 +275,8 @@
                     @foreach ($diagnoses as $diagnosis)
                         <option
                                 value="{{ $diagnosis->id }}"
-                                @if ($buyer && $buyer->diagnoses->whereIn('id', $diagnosis->id)->count()) selected @endif
+                                {{--TODO: remove request--}}
+                                @if ($buyer->diagnoses->whereIn('id', $diagnosis->id)->count()) selected @endif
                         >{{ $diagnosis->title }}</option>
                     @endforeach
                 </select>
@@ -268,7 +292,8 @@
                     @foreach ($complaints as $complaint)
                         <option
                                 value="{{ $complaint->id }}"
-                                @if ($buyer&& $buyer->complaints->whereIn('id', $complaint->id)->count()) selected @endif
+                                {{--TODO: remove request--}}
+                                @if ($buyer->complaints->whereIn('id', $complaint->id)->count()) selected @endif
                         >{{ $complaint->title }}</option>
                     @endforeach
                 </select>

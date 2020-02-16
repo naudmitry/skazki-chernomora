@@ -31,6 +31,8 @@ class BuyerRepository
         $buyer->passport = $request->get('passport');
         $buyer->admin_id = $request->get('admin_id');
         $buyer->privilege_id = empty($request->get('privilege_id')) ? null : $request->get('privilege_id');
+        $buyer->passport_issuing_at = $request->get('passport_issuing_at') ? Carbon::createFromFormat('d.m.Y', $request->get('passport_issuing_at')) : null;
+        $buyer->passport_issued_by = $request->get('passport_issued_by');
 
         return $buyer;
     }

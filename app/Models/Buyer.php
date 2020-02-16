@@ -40,6 +40,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $type_subscription
  * @property integer $admin_id
  * @property integer $privilege_id
+ * @property Carbon $passport_issuing_at
+ * @property string $passport_issued_by
  *
  * @property Admin $admin
  *
@@ -62,7 +64,8 @@ class Buyer extends Model
 
     protected $dates = [
         'contract_at',
-        'birthday_at'
+        'birthday_at',
+        'passport_issuing_at'
     ];
 
     protected $appends = [
