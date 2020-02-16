@@ -1,7 +1,8 @@
 <div class="tile">
     <h4 class="line-head">Основная информация</h4>
 
-    <form autocomplete="off" class="buyer-general-form" method="{{ $buyer ? 'patch' : 'post' }}" action="{{ $buyer ? route('admin.buyers.update', [$buyer, 'tab' => 'general']) : route('admin.buyers.store') }}">
+    <form autocomplete="off" class="buyer-general-form" method="{{ $buyer ? 'patch' : 'post' }}"
+          action="{{ $buyer ? route('admin.buyers.update', [$buyer, 'tab' => 'general']) : route('admin.buyers.store') }}">
         {{ csrf_field() }}
 
         <div class="row">
@@ -34,7 +35,7 @@
                             @foreach ($admins as $admin)
                                 <option
                                         @if ($buyer && $buyer->admin_id == $admin->id) selected @endif
-                                        value="{{ $admin->id }}"
+                                value="{{ $admin->id }}"
                                 >{{ $admin->full_name ?? '' }}</option>
                             @endforeach
                         </select>
@@ -46,7 +47,8 @@
                         <label class="control-label" for="surname">Фамилия:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="surname" name="surname" class="form-control" type="text" value="{{ $buyer->surname ?? '' }}">
+                        <input id="surname" name="surname" class="form-control" type="text"
+                               value="{{ $buyer->surname ?? '' }}">
                     </div>
                 </div>
 
@@ -64,7 +66,8 @@
                         <label class="control-label" for="middle_name">Отчество:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="middle_name" name="middle_name" class="form-control" type="text" value="{{ $buyer->middle_name ?? '' }}">
+                        <input id="middle_name" name="middle_name" class="form-control" type="text"
+                               value="{{ $buyer->middle_name ?? '' }}">
                     </div>
                 </div>
 
@@ -78,7 +81,7 @@
                             @foreach ($privileges as $privilege)
                                 <option
                                         @if ($buyer && $buyer->privilege_id == $privilege->id) selected @endif
-                                        value="{{ $privilege->id }}"
+                                value="{{ $privilege->id }}"
                                 >{{ $privilege->title }}</option>
                             @endforeach
                         </select>
@@ -96,7 +99,7 @@
                             @foreach (\App\Classes\GenderEnum::lists() as $gender)
                                 <option
                                         @if ($buyer && $buyer->gender == $gender) selected @endif
-                                        value="{{ $gender }}"
+                                value="{{ $gender }}"
                                 >{{ trans('gender.' . $gender) }}</option>
                             @endforeach
                         </select>
@@ -112,7 +115,7 @@
                             @foreach (\App\Classes\BuyerTypeSubscriptionEnum::lists() as $type)
                                 <option
                                         @if ($buyer && $buyer->type_subscription == $type) selected @endif
-                                        value="{{ $type }}"
+                                value="{{ $type }}"
                                 >{{ \App\Classes\BuyerTypeSubscriptionEnum::$labels[$type] }}</option>
                             @endforeach
                         </select>
@@ -124,7 +127,8 @@
                         <label class="control-label" for="number_contract">Номер договора:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="number_contract" name="number_contract" class="form-control" type="text" value="{{ $buyer->number_contract ?? '' }}">
+                        <input id="number_contract" name="number_contract" class="form-control" type="text"
+                               value="{{ $buyer->number_contract ?? '' }}">
                     </div>
                 </div>
 
@@ -133,16 +137,8 @@
                         <label class="control-label" for="contract_at">Дата договора:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="contract_at" name="contract_at" class="form-control" type="text" value="{{ $buyer && $buyer->contract_at ? $buyer->contract_at->format('d.m.Y') : '' }}">
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="control-label" for="passport">Паспорт:</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input id="passport" name="passport" class="form-control" type="text" value="{{ $buyer->passport ?? '' }}">
+                        <input id="contract_at" name="contract_at" class="form-control" type="text"
+                               value="{{ $buyer && $buyer->contract_at ? $buyer->contract_at->format('d.m.Y') : '' }}">
                     </div>
                 </div>
 
@@ -156,10 +152,26 @@
                             @foreach ($organizations as $organization)
                                 <option
                                         @if ($buyer && $buyer->organization_id == $organization->id) selected @endif
-                                        value="{{ $organization->id }}"
+                                value="{{ $organization->id }}"
                                 >{{ $organization->title }}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="line-head mt-4">Паспортные данные</h4>
+
+        <div class="row">
+            <div class="column col-md-6">
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label class="control-label" for="passport">Паспорт:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input id="passport" name="passport" class="form-control" type="text"
+                               value="{{ $buyer->passport ?? '' }}">
                     </div>
                 </div>
             </div>
@@ -174,7 +186,8 @@
                         <label class="control-label" for="email">Email:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="email" name="email" class="form-control" type="email" value="{{ $buyer->email ?? '' }}">
+                        <input id="email" name="email" class="form-control" type="email"
+                               value="{{ $buyer->email ?? '' }}">
                     </div>
                 </div>
 
@@ -183,7 +196,8 @@
                         <label class="control-label" for="phone_number">Номер телефона:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="phone_number" name="phone_number" class="form-control" type="text" value="{{ $buyer->phone_number ?? '' }}">
+                        <input id="phone_number" name="phone_number" class="form-control" type="tel"
+                               value="{{ $buyer->phone_number ?? '' }}">
                     </div>
                 </div>
             </div>
@@ -194,7 +208,8 @@
                         <label class="control-label" for="address">Адрес:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="address" name="address" class="form-control" type="text" value="{{ $buyer->address ?? '' }}">
+                        <input id="address" name="address" class="form-control" type="text"
+                               value="{{ $buyer->address ?? '' }}">
                     </div>
                 </div>
 
@@ -203,7 +218,8 @@
                         <label class="control-label" for="birthday_at">Дата рождения:</label>
                     </div>
                     <div class="col-md-8">
-                        <input id="birthday_at" name="birthday_at" class="form-control" type="text" value="{{ $buyer && $buyer->birthday_at ? $buyer->birthday_at->format('d.m.Y') : '' }}">
+                        <input id="birthday_at" name="birthday_at" class="form-control" type="text"
+                               value="{{ $buyer && $buyer->birthday_at ? $buyer->birthday_at->format('d.m.Y') : '' }}">
                     </div>
                 </div>
             </div>
@@ -264,7 +280,8 @@
                 <label class="control-label" for="dynamics">Заметки:</label>
             </div>
             <div class="col-md-10">
-                <textarea id="dynamics" name="dynamics" rows="4" cols="5" class="form-control">{{ $buyer->dynamics ?? '' }}</textarea>
+                <textarea id="dynamics" name="dynamics" rows="4" cols="5"
+                          class="form-control">{{ $buyer->dynamics ?? '' }}</textarea>
             </div>
         </div>
 

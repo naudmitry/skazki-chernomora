@@ -34,7 +34,7 @@ $(function () {
             {
                 targets: 1,
                 data: 'name',
-                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnNumber.replace(/@orderId/g, order.id), {order}),
+                render: (data, type, order) => Mustache.render(mustacheTemplateOrderListsTableColumnNumber.replace(/@orderId/g, order.id).replace(/@buyerId/g, order.buyer.id), {order}),
             },
             {
                 targets: 2,

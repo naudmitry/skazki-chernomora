@@ -41,6 +41,7 @@ class OrderController extends Controller
     {
         $ordersQuery = Order::query()
             ->with('saltCave')
+            ->with('buyer')
             ->where('company_id', $administeredCompany->id)
             ->where('showcase_id', $administeredShowcase->id);
 

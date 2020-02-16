@@ -109,7 +109,7 @@ class Order extends Model
      */
     public function getFormatBeginAtAttribute()
     {
-        return $this->begin_at->format('d/m/Y H:i');
+        return $this->begin_at->format('d/m/Y');
     }
 
     /**
@@ -117,7 +117,7 @@ class Order extends Model
      */
     public function getFormatEndAtAttribute()
     {
-        return $this->end_at->format('d/m/Y H:i');
+        return $this->end_at->format('d/m/Y');
     }
 
     /**

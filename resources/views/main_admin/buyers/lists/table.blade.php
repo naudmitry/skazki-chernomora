@@ -41,7 +41,6 @@
             <th>Пользователь/Email</th>
             <th>Телефон</th>
             <th>Администратор</th>
-            <th>Дата последнего входа/IP</th>
             <th>Льгота/Организация</th>
             <th>Действия</th>
         </tr>
@@ -58,9 +57,6 @@
 </script>
 <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-privilege">
     @include('main_admin.buyers.lists.columns.privilege')
-</script>
-<script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-login">
-    @include('main_admin.buyers.lists.columns.login')
 </script>
 <script type="application/x-tmpl-mustache" class="template-buyers-lists-table-column-user">
     @include('main_admin.buyers.lists.columns.user')

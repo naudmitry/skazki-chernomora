@@ -24,10 +24,10 @@ require('jquery.scrollto');
 
 window.Mustache = require('mustache');
 window.DataTable = require('datatables.net-bs4');
+window.InputMask = require('inputmask');
 
 import swal from 'sweetalert';
 window.swal = swal;
 
 const notifyService = require("./vali-admin/notify");
-
 window.notifyService = notifyService;
