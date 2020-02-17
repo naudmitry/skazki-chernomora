@@ -36,6 +36,8 @@ class Review extends Model
     use ShowcasableTrait;
     use DateableTrait;
 
+    // TODO: добавить email для обратной связи с клиентом
+
     protected $appends =
         [
             'ratingStars',

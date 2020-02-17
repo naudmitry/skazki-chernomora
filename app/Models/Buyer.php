@@ -129,4 +129,12 @@ class Buyer extends Model
     {
         return $this->name . ' ' . $this->surname;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
+    {
+        return $this->hasMany(Child::class);
+    }
 }

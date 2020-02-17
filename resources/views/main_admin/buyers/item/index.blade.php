@@ -6,33 +6,31 @@
         'page' => 'Настройка клиента'
     ])
 
+    @php $tabs = [] @endphp
+    @php $tabs[] =['name' => 'general', 'title' => 'Карточка клиента', 'view' => 'general'] @endphp
+    @php $tabs[] =['name' => 'orders', 'title' => 'Абонементы', 'view' => 'orders'] @endphp
+    @php $tabs[] =['name' => 'admins', 'title' => 'Администраторы', 'view' => 'admins'] @endphp
+    @php $tabs[] =['name' => 'children', 'title' => 'Дети', 'view' => 'children'] @endphp
+
     <div class="row user">
         <div class="col-md-3">
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#general" data-toggle="tab">
-                            Карточка клиента
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#orders" data-toggle="tab">
-                            Абонементы
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#admins" data-toggle="tab">
-                            Администраторы
-                        </a>
-                    </li>
+                    @foreach($tabs as $tab)
+                        <li class="nav-item">
+                            <a class="nav-link{{ $loop->first ? ' active' : '' }}" href="#{{ $tab['name'] }}" data-toggle="tab">
+                                {{ $tab['title'] }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
         <div class="col-md-9">
             <div class="tab-content">
-                @include('main_admin.buyers.item.tabs.general')
-                @include('main_admin.buyers.item.tabs.orders')
-                @include('main_admin.buyers.item.tabs.admins')
+                @foreach($tabs as $tab)
+                    @include('main_admin.buyers.item.tabs.' . $tab['view'])
+                @endforeach
             </div>
         </div>
     </div>
