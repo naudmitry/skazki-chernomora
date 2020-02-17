@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $executant_id
  * @property integer $buyer_id
  * @property integer $amount_sessions
- * @property string $number
  * @property string $status
  * @property string $payment_type
  * @property string $payment_status
@@ -39,7 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read SaltCave $saltCave
  * @property-read Buyer $buyer
  * @property-read Buyer[] $buyers
- * @property-read OrderHistory[] $histories
+ * @property-read History[] $histories
  *
  * @mixin \Eloquent
  */
@@ -57,6 +56,7 @@ class Order extends Model
         'formatEndAt',
         'saltCaveTitle',
         'statusI18n',
+        'number'
     ];
 
     protected $dates = [
@@ -126,5 +126,13 @@ class Order extends Model
     public function getStatusI18nAttribute()
     {
         return OrderStatus::$labels[$this->status];
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumberAttribute()
+    {
+        return 'А-' . $this->id;
     }
 }

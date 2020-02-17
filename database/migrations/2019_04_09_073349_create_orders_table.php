@@ -23,7 +23,6 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('buyer_id')->index();
             $table->unsignedInteger('parent_id')->nullable()->index();
 
-            $table->string('number');
             $table->string('status');
             $table->timestamp('begin_at')->default(Carbon::now());
             $table->timestamp('end_at')->default(Carbon::now());

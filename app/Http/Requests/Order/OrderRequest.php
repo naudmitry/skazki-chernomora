@@ -24,7 +24,6 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|string',
             'begin_at' => 'required',
             'end_at' => 'required',
             'amount_sessions' => 'required',

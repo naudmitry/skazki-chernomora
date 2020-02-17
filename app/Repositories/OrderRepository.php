@@ -17,7 +17,6 @@ class OrderRepository
     {
         $order->salt_cave_id = $request->get('salt_cave_id');
         $order->amount_sessions = $request->get('amount_sessions');
-        $order->number = $request->get('number');
         $order->status = $request->get('status');
         $order->payment_type = $request->get('payment_type');
         $order->payment_status = $request->get('payment_status');

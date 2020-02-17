@@ -41,12 +41,32 @@
                             <label class="control-label" for="number">Номер абонемента:</label>
                         </div>
                         <div class="col-md-8">
-                            <input
-                                    id="number"
-                                    name="number"
-                                    class="form-control"
-                                    type="text"
-                                    value="{{ $order->number}}">
+                            <label class="control-label">
+                                {{ $order->number ?? '' }}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="control-label">Клиент:</label>
+                        </div>
+                        <div class="col-md-8">
+                            @if ($buyer or $order->id)
+                                <label class="control-label">
+                                    <a href="{{ route('admin.buyers.edit', $buyer) }}">{{ $buyer->full_name }}</a>
+                                </label>
+                                <input type="hidden" name="buyer_id" value="{{ $buyer->id }}" />
+                            @else
+                                <select class="select2" name="buyer_id">
+                                    @foreach ($buyers as $buyer)
+                                        <option
+                                                @if ($buyer->id == $order->buyer_id) selected @endif
+                                        value="{{ $buyer->id }}"
+                                        >{{ $buyer->full_name }}</option>
+                                    @endforeach
+                                </select>
+                            @endif
                         </div>
                     </div>
 
@@ -79,29 +99,6 @@
                                     >{{ $employee->full_name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label">Клиент:</label>
-                        </div>
-                        <div class="col-md-8">
-                            @if ($buyer or $order->id)
-                                <label class="control-label">
-                                    <a href="{{ route('admin.buyers.edit', $buyer) }}">{{ $buyer->full_name }}</a>
-                                </label>
-                                <input type="hidden" name="buyer_id" value="{{ $buyer->id }}" />
-                            @else
-                                <select class="select2" name="buyer_id">
-                                    @foreach ($buyers as $buyer)
-                                        <option
-                                                @if ($buyer->id == $order->buyer_id) selected @endif
-                                                value="{{ $buyer->id }}"
-                                        >{{ $buyer->full_name }}</option>
-                                    @endforeach
-                                </select>
-                            @endif
                         </div>
                     </div>
                 </div>
