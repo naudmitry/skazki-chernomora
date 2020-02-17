@@ -92,10 +92,7 @@ class OrderController extends Controller
             })
             ->get();
 
-        $buyers = Buyer::query()
-            ->where('showcase_id', $administeredShowcase->id)
-            ->where('is_enabled', true)
-            ->get();
+        $buyer = $order->buyer;
 
         $saltCaves = SaltCave::query()
             ->where('showcase_id', $administeredShowcase->id)
@@ -103,10 +100,8 @@ class OrderController extends Controller
             ->get();
 
         return view('main_admin.orders.item.index', compact(
-            'order', 'employees', 'buyers', 'saltCaves'
-        ) + [
-            'buyer' => null
-        ]);
+            'order', 'employees', 'saltCaves', 'buyer'
+        ));
     }
 
     /**

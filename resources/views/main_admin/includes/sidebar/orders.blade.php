@@ -11,7 +11,7 @@
     @if (auth('admin')->user()->hasAccessTo(App\Classes\AdminComponentEnum::COMPANY_ORDERS_LIST, $administeredCompany))
         <li>
             <a
-                class="app-menu__item @if (Route::is('admin.order.*')) active scroll-here @endif"
+                class="app-menu__item @if (Route::is('admin.orders.*')) active scroll-here @endif"
                 href="{{ route('admin.orders.index') }}"
             ><i class="app-menu__icon fas fa-shopping-cart"></i><span class="app-menu__label">Абонементы</span></a>
         </li>

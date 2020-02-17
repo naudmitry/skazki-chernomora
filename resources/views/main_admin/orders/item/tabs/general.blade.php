@@ -87,8 +87,10 @@
                             <label class="control-label">Клиент:</label>
                         </div>
                         <div class="col-md-8">
-                            @if ($buyer)
-                                <label class="control-label">{{ $buyer->full_name }}</label>
+                            @if ($buyer or $order->id)
+                                <label class="control-label">
+                                    <a href="{{ route('admin.buyers.edit', $buyer) }}">{{ $buyer->full_name }}</a>
+                                </label>
                                 <input type="hidden" name="buyer_id" value="{{ $buyer->id }}" />
                             @else
                                 <select class="select2" name="buyer_id">
