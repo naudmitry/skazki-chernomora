@@ -1,0 +1,1 @@
+@{{ child.format_birthday }}

@@ -16,11 +16,40 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Child extends Model
 {
+    protected $dates = [
+        'birthday'
+    ];
+
+    protected $appends = [
+        'age',
+        'format_birthday'
+    ];
+
+    protected $with = [
+        'buyer'
+    ];
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function buyer()
     {
-        return $this->hasOne(Buyer::class);
+        return $this->belongsTo(Buyer::class);
+    }
+
+    /**
+     * @return int
+     */
+    public function getAgeAttribute()
+    {
+        return Carbon::parse($this->birthday)->age;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatBirthdayAttribute()
+    {
+        return $this->birthday->format('d/m/Y');
     }
 }

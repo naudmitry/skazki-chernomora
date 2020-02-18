@@ -24,3 +24,4 @@ require('./vali-admin/seo-integrations');
 require('./vali-admin/communication');
 require('./vali-admin/pre-entry');
 require('./vali-admin/history');
+require('./vali-admin/children');

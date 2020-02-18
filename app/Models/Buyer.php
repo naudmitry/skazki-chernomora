@@ -7,6 +7,7 @@ use App\Traits\HistoriableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 /**
  * Class Buyer
@@ -42,6 +43,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $privilege_id
  * @property Carbon $passport_issuing_at
  * @property string $passport_issued_by
+ * @property-read Collection|Child[] $children
  *
  * @property Admin $admin
  *

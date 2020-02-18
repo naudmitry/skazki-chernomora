@@ -32,12 +32,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
         ], function () {
             Route::group([], function () {
                 Route::get('histories/{id}/{type}', ['uses' => 'Admin\HistoryController@index', 'as' => 'admin.histories.index']);
-
-
                 Route::post('/order/{order}/history/save', ['uses' => 'Admin\OrderHistoryController@save', 'as' => 'admin.order.history.save'])
                     ->where('order', '[0-9]+');
-
-
                 Route::get('/order/{order}/history/buyers', ['uses' => 'Admin\OrderHistoryController@buyers', 'as' => 'admin.order.history.buyer'])
                     ->where('order', '[0-9]+');
             });
@@ -229,6 +225,12 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::post('/buyers', ['uses' => 'Admin\BuyerController@store', 'as' => 'admin.buyers.store']);
                 Route::patch('/buyers/{buyer}', ['uses' => 'Admin\BuyerController@update', 'as' => 'admin.buyers.update'])->where('buyer', '[0-9]+');
                 Route::get('/buyers/create', ['uses' => 'Admin\BuyerController@create', 'as' => 'admin.buyers.create']);
+
+                Route::get('buyers/{buyer}/children', ['uses' => 'Admin\ChildController@index', 'as' => 'admin.children.index'])->where('buyer', '[0-9]+');
+                Route::get('buyers/{buyer}/children/create', ['uses' => 'Admin\ChildController@create', 'as' => 'admin.children.create'])->where('buyer', '[0-9]+');
+                Route::get('/buyers/{buyer}/children/{child}/edit', ['uses' => 'Admin\ChildController@edit', 'as' => 'admin.children.edit'])->where('buyer', '[0-9]+')->where('child', '[0-9]+');
+                Route::post('/children', ['uses' => 'Admin\ChildController@store', 'as' => 'admin.children.store']);
+                Route::patch('/children/{child}', ['uses' => 'Admin\ChildController@update', 'as' => 'admin.children.update'])->where('child', '[0-9]+');
             });
 
             Route::group(['components' => AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES], function () {

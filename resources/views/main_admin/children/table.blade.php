@@ -1,9 +1,9 @@
-<div class="col-md-12 order-lists">
+<div class="col-md-12 children-list">
     <div class="tile">
         <div class="tile-body mb-4">
             <div class="row">
                 <div class="col-md-6 col-lg-3">
-                    <a href="#" class="btn btn-primary">
+                    <a href="{{ route('admin.children.create', $buyer) }}" class="btn btn-primary">
                         <i class="fas fa-plus-circle mr-2"></i>Добавить
                     </a>
                 </div>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="tile-body datatable-scroll-lg">
-            <table class="table table-hover" id="childrenTable" data-href="#">
+            <table class="table table-hover" id="childrenTable" data-href="{{ route('admin.children.index', $buyer) }}">
                 <thead>
                 <tr>
                     <th>Полное имя</th>
@@ -49,3 +49,14 @@
         </div>
     </div>
 </div>
+
+@php $columns = [] @endphp
+@php $columns[] =['name' => 'full-name', 'view' => 'full_name'] @endphp
+@php $columns[] =['name' => 'birthday', 'view' => 'birthday'] @endphp
+@php $columns[] =['name' => 'age', 'view' => 'age'] @endphp
+
+@foreach($columns as $column)
+    <script type="application/x-tmpl-mustache" class="template-children-table-column-{{ $column['name'] }}">
+        @include('main_admin.children.columns.' . $column['view'])
+    </script>
+@endforeach
