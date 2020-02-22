@@ -7,7 +7,7 @@
     ])
 
     <div class="row">
-        <div class="col-md-12 child-item">
+        <div class="col-md-6 child-item">
             <div class="tile">
                 <h4 class="line-head">Сведения о ребенке</h4>
 
@@ -18,7 +18,7 @@
                     <input hidden name="buyer_id" value="{{ $buyer->id }}"/>
 
                     <div class="row">
-                        <div class="column col-md-6">
+                        <div class="column col-md-12">
                             <div class="row form-group">
                                 <div class="col-md-4">
                                     <label class="control-label" for="fullName">Полное имя:</label>
