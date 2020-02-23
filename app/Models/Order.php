@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $buyer_id
  * @property integer $amount_sessions
  * @property string $status
- * @property string $payment_type
  * @property string $payment_status
  * @property double $cost
  * @property double $paid

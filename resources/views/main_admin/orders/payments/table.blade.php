@@ -2,7 +2,7 @@
     <div class="tile-body mb-4">
         <div class="row">
             <div class="col-md-6 col-lg-3">
-                <a href="#" class="btn btn-primary">
+                <a href="{{ route('admin.orders.payments.create', $order) }}" class="btn btn-primary">
                     <i class="fas fa-plus-circle mr-2"></i>Добавить
                 </a>
             </div>
@@ -17,6 +17,7 @@
                 <th>Дата</th>
                 <th>Сумма</th>
                 <th>Задолженность</th>
+                <th>Тип</th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -31,5 +32,8 @@
     </script>
     <script type="application/x-tmpl-mustache" class="template-payments-table-column-debt">
         @include('main_admin.orders.payments.columns.debt')
+    </script>
+    <script type="application/x-tmpl-mustache" class="template-payments-table-column-type">
+        @include('main_admin.orders.payments.columns.type')
     </script>
 </div>

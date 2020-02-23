@@ -1,1 +1,1 @@
-@{{ history.formatCreatedAt }}
+@{{ payment.amount }}

@@ -4,6 +4,7 @@
 /vendor
 /.idea
 /public/images/
+/public/fonts/
 .env
 /package-lock.json
 /composer.lock

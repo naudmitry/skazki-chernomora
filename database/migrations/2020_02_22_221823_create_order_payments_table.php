@@ -20,6 +20,7 @@ class CreateOrderPaymentsTable extends Migration
             $table->unsignedInteger('order_id')->index();
             $table->decimal('amount', 20, 2);
             $table->decimal('debt', 20, 2);
+            $table->string('type');
             $table->unsignedInteger('buyer_id')->index();
             $table->timestamps();
         });

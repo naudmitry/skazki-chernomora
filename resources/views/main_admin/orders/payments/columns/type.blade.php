@@ -1,0 +1,1 @@
+@{{ payment.type_name }}

@@ -1,1 +1,1 @@
-@{{ history.author.full_name }}
+@{{ payment.created_at }}

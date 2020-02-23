@@ -198,6 +198,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::get('/orders/create', ['uses' => 'Admin\OrderController@create', 'as' => 'admin.orders.create']);
 
                 Route::get('/orders/{order}/payments', ['uses' => 'Admin\OrderPaymentController@index', 'as' => 'admin.orders.payments.index'])->where('order', '[0-9]+');
+                Route::post('/orders/{order}/payments', ['uses' => 'Admin\OrderPaymentController@store', 'as' => 'admin.orders.payments.store'])->where('order', '[0-9]+');
+                Route::get('/orders/{order}/payments/create', ['uses' => 'Admin\OrderPaymentController@create', 'as' => 'admin.orders.payments.create'])->where('order', '[0-9]+');
 
                 Route::get('/order/{order}/open-modal/{modal}', ['uses' => 'Admin\OrderController@openModal', 'as' => 'admin.order.open-modal']);
                 Route::get('/order/{order}/families', ['uses' => 'Admin\OrderFamilyController@index', 'as' => 'admin.order.family.index'])

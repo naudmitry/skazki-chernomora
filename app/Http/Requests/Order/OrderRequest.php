@@ -27,6 +27,7 @@ class OrderRequest extends FormRequest
             'begin_at' => 'required',
             'end_at' => 'required',
             'amount_sessions' => 'required',
+            'debt' => 'required',
         ];
     }
 }

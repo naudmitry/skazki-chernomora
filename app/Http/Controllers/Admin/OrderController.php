@@ -189,6 +189,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Throwable
      */
+//    TODO: проверить где используется данный метод
     public function openModal(Order $order, $modal)
     {
         return response()->json([

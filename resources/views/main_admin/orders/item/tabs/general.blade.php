@@ -1,37 +1,40 @@
 <div class="tab-pane active" id="general">
     <div class="tile">
-        <div class="row mb-4">
-            <div class="col-md-4">
-                <div class="widget-small warning"><i class="icon fas fa-handshake"></i>
-                    <div class="info">
-                        <h4>Стоимость</h4>
-                        <p><b>{{ $order->cost ?? 0 }}</b></p>
+        @if ($order->id)
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="widget-small warning"><i class="icon fas fa-handshake"></i>
+                        <div class="info">
+                            <h4>Стоимость</h4>
+                            <p><b>{{ $order->cost ?? 0 }}</b></p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="widget-small primary"><i class="icon fas fa-thumbs-up"></i>
-                    <div class="info">
-                        <h4>Оплачено</h4>
-                        <p><b>{{ $order->paid ?? 0 }}</b></p>
+                <div class="col-md-4">
+                    <div class="widget-small primary"><i class="icon fas fa-thumbs-up"></i>
+                        <div class="info">
+                            <h4>Оплачено</h4>
+                            <p><b>{{ $order->paid ?? 0 }}</b></p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="widget-small danger"><i class="icon fas fa-thumbs-down"></i>
-                    <div class="info">
-                        <h4>Задолженность</h4>
-                        <p><b>{{ $order->debt ?? 0 }}</b></p>
+                <div class="col-md-4">
+                    <div class="widget-small danger"><i class="icon fas fa-thumbs-down"></i>
+                        <div class="info">
+                            <h4>Задолженность</h4>
+                            <p><b>{{ $order->debt ?? 0 }}</b></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
 
         <h4 class="line-head">Общая информация</h4>
 
-        <form autocomplete="off" class="order-general-form" method="{{ $order->id ? 'patch' : 'post' }}" action="{{ $order->id ? route('admin.orders.update', $order) : route('admin.orders.store') }}">
+        <form autocomplete="off" class="order-general-form" method="{{ $order->id ? 'patch' : 'post' }}"
+              action="{{ $order->id ? route('admin.orders.update', $order) : route('admin.orders.store') }}">
             {{ csrf_field() }}
 
             <div class="row">
@@ -56,13 +59,13 @@
                                 <label class="control-label">
                                     <a href="{{ route('admin.buyers.edit', $buyer) }}">{{ $buyer->full_name }}</a>
                                 </label>
-                                <input type="hidden" name="buyer_id" value="{{ $buyer->id }}" />
+                                <input type="hidden" name="buyer_id" value="{{ $buyer->id }}"/>
                             @else
                                 <select class="select2" name="buyer_id">
                                     @foreach ($buyers as $buyer)
                                         <option
                                                 @if ($buyer->id == $order->buyer_id) selected @endif
-                                        value="{{ $buyer->id }}"
+                                                value="{{ $buyer->id }}"
                                         >{{ $buyer->full_name }}</option>
                                     @endforeach
                                 </select>
@@ -106,6 +109,15 @@
                 <div class="column col-md-6">
                     <div class="row form-group">
                         <div class="col-md-4">
+                            <label class="control-label">Статус оплаты:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="control-label">{{\App\Classes\PaymentStatus::$labels[$order->payment_status]}}</label>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-4">
                             <label class="control-label">Статус:</label>
                         </div>
                         <div class="col-md-8">
@@ -113,40 +125,8 @@
                                 @foreach (\App\Classes\OrderStatus::lists() as $orderStatus)
                                     <option
                                             @if ($orderStatus == $order->status) selected @endif
-                                    value="{{ $orderStatus }}"
+                                            value="{{ $orderStatus }}"
                                     >{{ trans('order_status.' . $orderStatus) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label">Оплата:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select class="select2" name="payment_type">
-                                @foreach (\App\Classes\PaymentType::lists() as $paymentType)
-                                    <option
-                                            @if ($paymentType == $order->payment_type) selected @endif
-                                    value="{{ $paymentType }}"
-                                    >{{ trans('payment_type.' . $paymentType) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="control-label">Статус оплаты:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select class="select2" name="payment_status">
-                                @foreach (\App\Classes\PaymentStatus::lists() as $paymentStatus)
-                                    <option
-                                            @if ($paymentStatus == $order->payment_status) selected @endif
-                                    value="{{ $paymentStatus }}"
-                                    >{{ trans('payment_status.' . $paymentStatus) }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -161,12 +141,28 @@
                                 @foreach ($saltCaves as $saltCave)
                                     <option
                                             @if ($saltCave->id == $order->salt_cave_id) selected @endif
-                                    value="{{ $saltCave->id }}"
+                                            value="{{ $saltCave->id }}"
                                     >{{ $saltCave->title }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+
+                    @if (!$order->id)
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="control-label" for="debt">Стоимость:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input
+                                        id="debt"
+                                        name="debt"
+                                        class="form-control"
+                                        type="text"
+                                        value="{{ $order->debt ?? '' }}">
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
 

@@ -9,9 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('vali-admin/logo.png') }}" />
 
-        <link rel="stylesheet" href="{{ asset('vali-admin/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') . '?v=' . time() }}">
-        <link rel="stylesheet" href="{{ mix('vali-admin/css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') }}">
+        <link rel="stylesheet" href="{{ mix('vali-admin/css/app.css') . '?v=' . time() }}">
 
         @yield('header__sc')
     </head>

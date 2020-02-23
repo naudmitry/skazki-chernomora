@@ -31,8 +31,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('cost', 20, 2);
             $table->decimal('paid', 20, 2);
             $table->decimal('debt', 20, 2);
-            $table->string('payment_type');
-            $table->string('payment_status');
+            $table->string('payment_status')->default(\App\Classes\PaymentStatus::NOT_PAID);
             $table->unsignedInteger('manager_id')->index();
             $table->unsignedInteger('executant_id')->index();
             $table->string('reason_cancellation')->nullable();

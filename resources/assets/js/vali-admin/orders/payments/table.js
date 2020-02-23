@@ -7,9 +7,10 @@ $(function () {
 
     let $paymentsTable = $('#paymentsTable');
 
-    let mustacheTemplateOrderFamiliesTableColumnBuyer = $('.template-order-families-table-column-buyer').text();
-    let mustacheTemplateOrderFamiliesTableColumnPassport = $('.template-order-families-table-column-passport').text();
-    let mustacheTemplateOrderFamiliesTableColumnBirthday = $('.template-order-families-table-column-birthday').text();
+    let mustacheTemplatePaymentsTableColumnAmount = $('.template-payments-table-column-amount').text();
+    let mustacheTemplatePaymentsTableColumnDate = $('.template-payments-table-column-date').text();
+    let mustacheTemplatePaymentsTableColumnDebt = $('.template-payments-table-column-debt').text();
+    let mustacheTemplatePaymentsTableColumnType = $('.template-payments-table-column-type').text();
 
     $paymentsTable.DataTable({
         info: true,
@@ -23,16 +24,20 @@ $(function () {
         columnDefs: [
             {
                 targets: 0,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateOrderFamiliesTableColumnBuyer, {buyer}),
+                render: (data, type, payment) => Mustache.render(mustacheTemplatePaymentsTableColumnDate, {payment}),
             },
             {
                 targets: 1,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateOrderFamiliesTableColumnPassport, {buyer}),
+                render: (data, type, payment) => Mustache.render(mustacheTemplatePaymentsTableColumnAmount, {payment}),
             },
             {
                 targets: 2,
-                render: (data, type, buyer) => Mustache.render(mustacheTemplateOrderFamiliesTableColumnBirthday, {buyer}),
+                render: (data, type, payment) => Mustache.render(mustacheTemplatePaymentsTableColumnDebt, {payment}),
             },
+            {
+                targets: 3,
+                render: (data, type, payment) => Mustache.render(mustacheTemplatePaymentsTableColumnType, {payment}),
+            }
         ],
         order: [[0, 'asc']],
         dom: '<"datatable-scroll-lg"t><"datatable-footer"ilp>',
