@@ -197,6 +197,8 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
                 Route::patch('/orders/{order}', ['uses' => 'Admin\OrderController@update', 'as' => 'admin.orders.update'])->where('order', '[0-9]+');
                 Route::get('/orders/create', ['uses' => 'Admin\OrderController@create', 'as' => 'admin.orders.create']);
 
+                Route::get('/orders/{order}/payments', ['uses' => 'Admin\OrderPaymentController@index', 'as' => 'admin.orders.payments.index'])->where('order', '[0-9]+');
+
                 Route::get('/order/{order}/open-modal/{modal}', ['uses' => 'Admin\OrderController@openModal', 'as' => 'admin.order.open-modal']);
                 Route::get('/order/{order}/families', ['uses' => 'Admin\OrderFamilyController@index', 'as' => 'admin.order.family.index'])
                     ->where('order', '[0-9]+');
@@ -328,10 +330,12 @@ Route::group(['domain' => env('DOMAIN_ADMIN')], function () {
             });
         });
 
-        Route::get('/{any?}',
+        Route::get(
+            '/{any?}',
             function (Request $request) {
                 abort(Response::HTTP_NOT_FOUND);
-            })
+            }
+        )
             ->where('any', '(.*)');
     });
 });

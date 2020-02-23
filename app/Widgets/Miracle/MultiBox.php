@@ -37,6 +37,7 @@ class MultiBox extends AbstractContentWidget
                 'items.*.subtitle' => 'Введите подзаголовок.',
                 'items.*.icon' => 'Выберите иконку.',
                 'items.*.link' => 'Введите ссылку.',
-            ]);
+            ]
+        );
     }
 }

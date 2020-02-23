@@ -22,11 +22,13 @@ class GroupsSeeder extends Seeder
                 ->create(
                     [
                         'company_id' => $company->id,
-                    ])
+                    ]
+                )
                 ->each(
                     function (Group $group) use ($admins) {
                         $group->admins()->saveMany($admins->shuffle()->take(rand(0, $admins->count())));
-                    });
+                    }
+                );
         }
     }
 }

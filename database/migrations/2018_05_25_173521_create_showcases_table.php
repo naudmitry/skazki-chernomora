@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateShowcasesTable extends Migration
 {
@@ -31,8 +31,7 @@ class CreateShowcasesTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
         });
 
-        \Schema::create('showcase_domains', function (Blueprint $table)
-        {
+        \Schema::create('showcase_domains', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 

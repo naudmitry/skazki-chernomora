@@ -53,7 +53,8 @@ class FaqCategoryController extends Controller
         );
 
         return view('main_admin.faq.categories.index', compact(
-            'categories', 'staticPage'
+            'categories',
+            'staticPage'
         ));
     }
 
@@ -163,8 +164,7 @@ class FaqCategoryController extends Controller
 
         $slugUniqueValidationRule = $this
             ->slugRepository
-            ->getSlugUniqueValidationRule
-            (
+            ->getSlugUniqueValidationRule(
                 $administeredShowcase,
                 FaqCategory::class,
                 $category->id ?? null

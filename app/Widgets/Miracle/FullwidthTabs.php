@@ -29,6 +29,7 @@ class FullwidthTabs extends AbstractContentWidget
             [
                 'items.*.title' => 'Выберите переход.',
                 'items.*.text' => 'Введите скорость перехода.'
-            ]);
+            ]
+        );
     }
 }

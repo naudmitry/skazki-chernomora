@@ -23,7 +23,7 @@ class AdSourcesSeeder extends Seeder
             $superCompany = Company::query()->where('super', true)->first();
             $superAdmin = $superCompany->admins()->where('super', true)->first();
 
-            while (($data = fgetcsv($file, 200, ",")) !== FALSE) {
+            while (($data = fgetcsv($file, 200, ",")) !== false) {
                 $source = new AdSource();
                 $source->title = $data[0];
                 $source->is_enabled = true;

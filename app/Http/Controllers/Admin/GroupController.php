@@ -69,7 +69,6 @@ class GroupController extends Controller
      */
     public function save(Company $administeredCompany, Request $request, Group $group = null)
     {
-
         if (!isset($group)) {
             $group = new Group();
             $group->company_id = $administeredCompany->id;

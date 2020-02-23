@@ -1,3 +1,4 @@
+{{--TODO: переименовать данный файл в table.blade.php--}}
 <div class="tile history-lists">
     <div class="tile-body mb-4">
         <div class="row">

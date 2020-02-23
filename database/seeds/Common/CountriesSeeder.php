@@ -14,7 +14,7 @@ class CountriesSeeder extends Seeder
         $file = fopen($path, "r");
 
         \DB::transaction(function () use ($file) {
-            while (($data = fgetcsv($file, 200, ";")) !== FALSE) {
+            while (($data = fgetcsv($file, 200, ";")) !== false) {
                 Country::create([
                     'name' => $data[0],
                     'iso2' => $data[1],

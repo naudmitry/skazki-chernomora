@@ -26,7 +26,8 @@ class AdminsSeeder extends Seeder
                     [
                         'company_id' => $company->id,
                         'role_id' => $companyAdminRole->id,
-                    ])
+                    ]
+                )
                 ->each(
                     function (Admin $admin) use ($faker, $company) {
                         $admin->created_at = $faker->dateTimeBetween($company->created_at);
@@ -37,7 +38,8 @@ class AdminsSeeder extends Seeder
                         foreach ($admin->company->showcases as $showcase) {
                             $admin->showcases()->attach($showcase->id);
                         }
-                    });
+                    }
+                );
         }
     }
 }

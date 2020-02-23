@@ -28,6 +28,7 @@ class OneLevelMenu extends AbstractContentWidget
             [
                 'title' => 'Введите название.',
                 'link' => 'Введите ссылку.'
-            ]);
+            ]
+        );
     }
 }

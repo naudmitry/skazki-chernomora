@@ -33,6 +33,7 @@ class HelpDesk extends AbstractContentWidget
                 'title' => 'Введите заголовок.',
                 'subtitle' => 'Введите подзаголовок.',
                 'text' => 'Введите текст подтверждения.',
-            ]);
+            ]
+        );
     }
 }

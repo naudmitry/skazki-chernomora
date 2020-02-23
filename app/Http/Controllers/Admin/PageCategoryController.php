@@ -153,8 +153,7 @@ class PageCategoryController extends Controller
 
         $slugUniqueValidationRule = $this
             ->slugRepository
-            ->getSlugUniqueValidationRule
-            (
+            ->getSlugUniqueValidationRule(
                 $administeredShowcase,
                 PageCategory::class,
                 $category->id ?? null

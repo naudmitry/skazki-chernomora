@@ -8,8 +8,8 @@ use App\Models\Showcase;
 use App\Models\ShowcaseWidget;
 use App\Models\ShowcaseWidgetDescription;
 use App\WidgetContainer;
-use App\Widgets\Miracle as MiracleWidgets;
 use App\Widgets\Miracle\AbstractContentWidget;
+use App\Widgets\Miracle as MiracleWidgets;
 
 class WidgetRepository
 {

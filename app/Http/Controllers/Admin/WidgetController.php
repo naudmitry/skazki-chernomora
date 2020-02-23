@@ -55,7 +55,10 @@ class WidgetController extends Controller
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.main.index', compact(
-            'staticPage', 'allContainerWidgets', 'activeWidgets', 'widgetContainer'
+            'staticPage',
+            'allContainerWidgets',
+            'activeWidgets',
+            'widgetContainer'
         ));
     }
 
@@ -83,7 +86,10 @@ class WidgetController extends Controller
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.contacts.index', compact(
-            'staticPage', 'allContainerWidgets', 'activeWidgets', 'widgetContainer'
+            'staticPage',
+            'allContainerWidgets',
+            'activeWidgets',
+            'widgetContainer'
         ));
     }
 
@@ -98,7 +104,9 @@ class WidgetController extends Controller
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.header.index', compact(
-            'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+            'widgetContainer',
+            'allContainerWidgets',
+            'activeWidgets'
         ));
     }
 
@@ -113,7 +121,9 @@ class WidgetController extends Controller
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.footer.index', compact(
-            'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+            'widgetContainer',
+            'allContainerWidgets',
+            'activeWidgets'
         ));
     }
 

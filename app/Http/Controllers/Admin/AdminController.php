@@ -85,8 +85,12 @@ class AdminController extends Controller
 
         return response()->json([
             'view' => view('main_admin.staff.lists.modals.edit', compact(
-                'admin', 'administeredCompany', 'companies',
-                'adminGroups', 'adminShowcases', 'adminCompanies'
+                'admin',
+                'administeredCompany',
+                'companies',
+                'adminGroups',
+                'adminShowcases',
+                'adminCompanies'
             ))->render(),
         ]);
     }
@@ -132,7 +136,8 @@ class AdminController extends Controller
             return abort(Response::HTTP_NOT_FOUND);
         }
 
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'name' => 'required',
                 'surname' => '',
@@ -142,7 +147,8 @@ class AdminController extends Controller
                 'showcases' => 'array',
                 'groups' => 'array',
                 'companies' => 'array',
-            ]);
+            ]
+        );
 
         /** @var Role $role */
         $role = $administeredCompany->roles()->where('roles.id', $request->input('role_id'))->firstOrFail();
@@ -203,7 +209,8 @@ class AdminController extends Controller
      */
     public function create(Request $request, Company $administeredCompany)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'name' => 'required',
                 'surname' => '',
@@ -213,7 +220,8 @@ class AdminController extends Controller
                 'role_id' => '',
                 'showcases' => 'array',
                 'groups' => 'array',
-            ]);
+            ]
+        );
 
         /** @var Role $role */
         $role = $administeredCompany->roles()->where('roles.id', $request->input('role_id'))->firstOrFail();

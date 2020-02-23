@@ -121,6 +121,7 @@ class RouteServiceProvider extends ServiceProvider
             ],
             function ($router) {
                 require base_path('routes/web-site.php');
-            });
+            }
+        );
     }
 }

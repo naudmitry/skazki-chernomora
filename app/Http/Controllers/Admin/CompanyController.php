@@ -97,14 +97,16 @@ class CompanyController extends Controller
      */
     public function create(Request $request, SettingsRepository $settingsRepository)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'title' => 'required',
                 'country_id' => 'required|exists:countries,id',
                 'name' => 'required',
                 'surname' => 'required',
                 'email' => 'required|email|unique:admins,email,NULL,id,deleted_at,NULL',
-            ]);
+            ]
+        );
 
         $country = Country::findOrFail($request->input('country_id'));
 

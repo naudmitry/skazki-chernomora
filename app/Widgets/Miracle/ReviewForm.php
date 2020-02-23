@@ -27,6 +27,7 @@ class ReviewForm extends AbstractContentWidget
             [],
             [
                 'title' => 'Введите заголовок.',
-            ]);
+            ]
+        );
     }
 }

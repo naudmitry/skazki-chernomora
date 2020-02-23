@@ -43,6 +43,7 @@ class About extends AbstractContentWidget
                 'items.*.title' => 'Введите название.',
                 'items.*.link' => 'Введите ссылку.',
                 'items.*.icon' => 'Выберите иконку.',
-            ]);
+            ]
+        );
     }
 }

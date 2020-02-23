@@ -31,6 +31,7 @@ class Parallax extends AbstractContentWidget
                 'title' => 'Введите заголовок.',
                 'subtitle' => 'Введите подзаголовок.',
                 'image_link' => 'Введите url картинки.'
-            ]);
+            ]
+        );
     }
 }

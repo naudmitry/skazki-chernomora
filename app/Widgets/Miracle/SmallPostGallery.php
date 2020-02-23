@@ -35,6 +35,7 @@ class SmallPostGallery extends AbstractContentWidget
                 'items.*.image_link' => 'Введите ссылку на картинку.',
                 'items.*.image_link_small' => 'Введите ссылку на картинку.',
                 'items.*.title' => 'Введите заголовок картинки.',
-            ]);
+            ]
+        );
     }
 }

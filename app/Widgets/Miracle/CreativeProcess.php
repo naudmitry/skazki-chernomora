@@ -34,6 +34,7 @@ class CreativeProcess extends AbstractContentWidget
                 'title' => 'Введите заголовок.',
                 'items.*.title' => 'Введите заголовок.',
                 'items.*.image_link' => 'Выберите иконку.'
-            ]);
+            ]
+        );
     }
 }

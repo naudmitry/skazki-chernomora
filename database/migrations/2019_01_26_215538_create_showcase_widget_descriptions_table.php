@@ -19,7 +19,8 @@ class CreateShowcaseWidgetDescriptionsTable extends Migration
             $table->text('setting');
             $table->string('other')->default('0');
 
-            $table->integer('showcase_widgets_id')->unsigned()->comment('Showcase widget ID');;
+            $table->integer('showcase_widgets_id')->unsigned()->comment('Showcase widget ID');
+            ;
             $table->foreign('showcase_widgets_id')->references('id')->on('showcase_widgets')->onDelete('cascade');
 
             $table->timestamps();

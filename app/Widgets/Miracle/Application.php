@@ -2,7 +2,6 @@
 
 namespace App\Widgets\Miracle;
 
-use App\Models\SaltCave;
 use Validator;
 
 class Application extends AbstractContentWidget
@@ -29,6 +28,7 @@ class Application extends AbstractContentWidget
             [
                 'title' => 'Введите текст.',
                 'text' => 'Введите текст подтверждения.',
-            ]);
+            ]
+        );
     }
 }

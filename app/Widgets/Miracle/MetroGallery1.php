@@ -33,6 +33,7 @@ class MetroGallery1 extends AbstractContentWidget
                 'title' => 'Введите заголовок.',
                 'items.*.image_link' => 'Введите ссылку на картинку.',
                 'items.*.title' => 'Введите наименование.',
-            ]);
+            ]
+        );
     }
 }

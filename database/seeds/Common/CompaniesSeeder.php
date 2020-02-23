@@ -29,7 +29,8 @@ class CompaniesSeeder extends Seeder
                 'title' => 'Super company',
                 'enable' => true,
                 'created_at' => $faker->dateTimeBetween('-12 month', '-11 month'),
-            ]);
+            ]
+        );
 
         /** @var Role $superAdminRole */
         $superAdminRole = $superCompany->roles()->where('enable', true)->firstOrFail();
@@ -45,7 +46,8 @@ class CompaniesSeeder extends Seeder
                 'email' => 'boss@mail.com',
                 'password' => bcrypt('123456'),
                 'remember_token' => '',
-            ]);
+            ]
+        );
 
         $superCompany->admin()->associate($superAdmin);
         $superCompany->save();
@@ -60,7 +62,8 @@ class CompaniesSeeder extends Seeder
                 'title' => 'Сказки Черномора',
                 'enable' => true,
                 'created_at' => $faker->dateTimeBetween('-10 month', '-9 month'),
-            ]);
+            ]
+        );
 
         /** @var Role $companyAdminRole */
         $companyAdminRole = $company->roles()->where('enable', true)->first();

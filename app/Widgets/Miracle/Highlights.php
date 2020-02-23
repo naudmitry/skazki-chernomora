@@ -25,6 +25,7 @@ class Highlights extends AbstractContentWidget
             [],
             [
                 'text' => 'Введите текст.',
-            ]);
+            ]
+        );
     }
 }

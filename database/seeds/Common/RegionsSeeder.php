@@ -21,14 +21,18 @@ class RegionsSeeder extends Seeder
         $file = fopen($path, "r");
 
         \DB::transaction(function () use ($file, $countries, &$regionByCountryAndName) {
-            while (($data = fgetcsv($file, 200, ",")) !== FALSE) {
+            while (($data = fgetcsv($file, 200, ",")) !== false) {
                 /** @var Country $country */
                 $country = array_get($countries, $data[0], null);
-                if (!isset($country)) continue;
+                if (!isset($country)) {
+                    continue;
+                }
 
                 $keyForRegion = $country->id . '-' . $data[2];
                 $region = array_get($regionByCountryAndName, $keyForRegion, null);
-                if (isset($region)) continue;
+                if (isset($region)) {
+                    continue;
+                }
 
                 $newRegion = Region::create([
                     'country_id' => $country->id,

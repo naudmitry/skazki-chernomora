@@ -31,6 +31,7 @@ class Slider extends AbstractContentWidget
                 'items.*.transition' => 'Выберите переход.',
                 'items.*.speed' => 'Введите скорость перехода.',
                 'items.*.image_link' => 'Введите ссылку картинки для слайдера.',
-            ]);
+            ]
+        );
     }
 }

@@ -34,6 +34,7 @@ class Video extends AbstractContentWidget
                 'subtitle' => 'Введите подзаголовок',
                 'poster_link' => 'Введите ссылку на постер.',
                 'video_link' => 'Введите ссылку на видео.'
-            ]);
+            ]
+        );
     }
 }

@@ -18,17 +18,22 @@ class AdminRoleSettingsComposer
 
             $groupsComponentsBySuper[$super] =
                 [
-                    'communication' => array_intersect($components,
+                    'communication' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_COMMUNICATION_HELPDESK,
-                        ]),
-                    'orders' => array_intersect($components,
+                        ]
+                    ),
+                    'orders' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_ORDERS_LIST,
                             AdminComponentEnum::COMPANY_ORDERS_PRE_ENTRY,
                             AdminComponentEnum::COMPANY_ORDERS_APPLICATIONS,
-                        ]),
-                    'handbooks' => array_intersect($components,
+                        ]
+                    ),
+                    'handbooks' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_HANDBOOKS_AD_SOURCES,
                             AdminComponentEnum::COMPANY_HANDBOOKS_PRIVILEGES,
@@ -37,38 +42,49 @@ class AdminRoleSettingsComposer
                             AdminComponentEnum::COMPANY_HANDBOOKS_SUBSCRIPTIONS,
                             AdminComponentEnum::COMPANY_HANDBOOKS_ORGANIZATIONS,
                             AdminComponentEnum::COMPANY_HANDBOOKS_SALT_CAVES,
-                        ]),
-                    'users' => array_intersect($components,
+                        ]
+                    ),
+                    'users' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_USERS_CUSTOMERS,
                             AdminComponentEnum::COMPANY_USERS_REVIEWS,
 
-                        ]),
-                    'marketing' => array_intersect($components,
+                        ]
+                    ),
+                    'marketing' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_MARKETING_DISCOUNTS,
-                        ]),
-                    'content' => array_intersect($components,
+                        ]
+                    ),
+                    'content' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_CONTENT_BLOG,
                             AdminComponentEnum::COMPANY_CONTENT_FAQ,
                             AdminComponentEnum::COMPANY_CONTENT_PAGES,
                             AdminComponentEnum::COMPANY_CONTENT_BLOCKS,
-                        ]),
-                    'settings' => array_intersect($components,
+                        ]
+                    ),
+                    'settings' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_SETTINGS_GENERAL,
                             AdminComponentEnum::COMPANY_SETTINGS_PRICING,
                             AdminComponentEnum::COMPANY_SETTINGS_SEO_INTEGRATION,
-                        ]),
-                    'administrator' => array_intersect($components,
+                        ]
+                    ),
+                    'administrator' => array_intersect(
+                        $components,
                         [
                             AdminComponentEnum::COMPANY_ADMIN_LIST,
                             AdminComponentEnum::COMPANY_ADMIN_ROLES,
                             AdminComponentEnum::COMPANY_ADMIN_GROUPS,
                             AdminComponentEnum::COMPANY_ADMIN_COMPANY,
                             AdminComponentEnum::COMPANY_ADMIN_SHOWCASES,
-                        ]),
+                        ]
+                    ),
                 ];
         }
 

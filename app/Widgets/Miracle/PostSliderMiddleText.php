@@ -38,6 +38,7 @@ class PostSliderMiddleText extends AbstractContentWidget
                 'items.*.title' => 'Введите заголовок.',
                 'items.*.subtitle' => 'Введите подзаголовок.',
                 'items.*.image_link' => 'Введите ссылку картинки.',
-            ]);
+            ]
+        );
     }
 }

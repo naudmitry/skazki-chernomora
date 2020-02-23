@@ -29,7 +29,8 @@ class MakeAppointment extends AbstractContentWidget
             [
                 'title' => 'Введите текст.',
                 'text' => 'Введите текст подтверждения.',
-            ]);
+            ]
+        );
     }
 
     /**
@@ -43,7 +44,8 @@ class MakeAppointment extends AbstractContentWidget
             ->where('showcase_id', $showcase->id)
             ->get();
 
-        return array_merge(parent::getFrontViewData(),
+        return array_merge(
+            parent::getFrontViewData(),
             compact('saltCaves')
         );
     }

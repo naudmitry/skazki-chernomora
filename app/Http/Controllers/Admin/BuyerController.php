@@ -10,7 +10,6 @@ use App\Models\Buyer;
 use App\Models\Company;
 use App\Models\Complaint;
 use App\Models\Diagnosis;
-use App\Models\Order;
 use App\Models\Organization;
 use App\Models\Privilege;
 use App\Models\Showcase;
@@ -99,7 +98,13 @@ class BuyerController extends Controller
             ->get();
 
         return view('main_admin.buyers.item.create', compact(
-            'buyer', 'admins', 'organizations', 'privileges', 'adSources', 'diagnoses', 'complaints'
+            'buyer',
+            'admins',
+            'organizations',
+            'privileges',
+            'adSources',
+            'diagnoses',
+            'complaints'
         ));
     }
 
@@ -160,7 +165,13 @@ class BuyerController extends Controller
             ->get();
 
         return view('main_admin.buyers.item.index', compact(
-            'buyer', 'adSources', 'complaints', 'diagnoses', 'admins', 'privileges', 'organizations'
+            'buyer',
+            'adSources',
+            'complaints',
+            'diagnoses',
+            'admins',
+            'privileges',
+            'organizations'
         ));
     }
 
@@ -189,7 +200,7 @@ class BuyerController extends Controller
     public function update(BuyerRequest $request, Showcase $administeredShowcase, Buyer $buyer)
     {
         switch ($request->get('tab')) {
-            case 'general' :
+            case 'general':
                 $admin = Admin::findOrFail($request->get('admin_id'));
 
                 \DB::beginTransaction();

@@ -36,6 +36,7 @@ class PostSlider extends AbstractContentWidget
                 'subtitle' => 'Введите подзаголовок',
                 'items.*.title' => 'Введите заголовок слайда',
                 'items.*.image_link' => 'Введите ссылку картинки для слайда.',
-            ]);
+            ]
+        );
     }
 }

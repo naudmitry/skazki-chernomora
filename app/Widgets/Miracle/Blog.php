@@ -29,7 +29,8 @@ class Blog extends AbstractContentWidget
             [
                 'title' => 'Введите заголовок.',
                 'subtitle' => 'Введите подзаголовок.'
-            ]);
+            ]
+        );
     }
 
     /**
@@ -50,7 +51,8 @@ class Blog extends AbstractContentWidget
         /** @var \Illuminate\Support\Collection $reviews */
         $blogs = $blogs->sortByDesc('created_at');
 
-        return array_merge(parent::getFrontViewData(),
+        return array_merge(
+            parent::getFrontViewData(),
             compact('blogs')
         );
     }

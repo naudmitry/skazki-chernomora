@@ -69,7 +69,8 @@ class BlogController extends Controller
         }
 
         return view('main_admin.blog.articles.index', compact(
-            'counters', 'administeredShowcase'
+            'counters',
+            'administeredShowcase'
         ));
     }
 
@@ -117,14 +118,20 @@ class BlogController extends Controller
             ->get();
 
         $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
-            $blog, WidgetsContainerTypesEnum::BLOG_PAGE, $administeredShowcase
+            $blog,
+            WidgetsContainerTypesEnum::BLOG_PAGE,
+            $administeredShowcase
         );
 
         $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.blog.articles.item.index', compact(
-            'blog', 'categories', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+            'blog',
+            'categories',
+            'widgetContainer',
+            'allContainerWidgets',
+            'activeWidgets'
         ));
     }
 
@@ -158,8 +165,7 @@ class BlogController extends Controller
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
-            ->getSlugUniqueValidationRule
-            (
+            ->getSlugUniqueValidationRule(
                 $administeredShowcase,
                 Blog::class,
                 $blog->id ?? null
@@ -186,7 +192,9 @@ class BlogController extends Controller
             ->get();
 
         $settings = $isNew ? null : $settings = view('main_admin.blog.articles.item.settings', compact(
-            'blog', 'categories', 'administeredShowcase'
+            'blog',
+            'categories',
+            'administeredShowcase'
         ))->render();
 
         return response()->json([
@@ -251,7 +259,10 @@ class BlogController extends Controller
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.blog.main.index', compact(
-            'staticPage', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+            'staticPage',
+            'widgetContainer',
+            'allContainerWidgets',
+            'activeWidgets'
         ));
     }
 }

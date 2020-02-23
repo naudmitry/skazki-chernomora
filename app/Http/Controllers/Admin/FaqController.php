@@ -69,7 +69,8 @@ class FaqController extends Controller
         }
 
         return view('main_admin.faq.questions.index', compact(
-            'counters', 'administeredShowcase'
+            'counters',
+            'administeredShowcase'
         ));
     }
 
@@ -88,14 +89,20 @@ class FaqController extends Controller
             ->get();
 
         $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
-            $faq, WidgetsContainerTypesEnum::FAQ_PAGE, $administeredShowcase
+            $faq,
+            WidgetsContainerTypesEnum::FAQ_PAGE,
+            $administeredShowcase
         );
 
         $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.faq.questions.item.index', compact(
-            'faq', 'categories', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+            'faq',
+            'categories',
+            'widgetContainer',
+            'allContainerWidgets',
+            'activeWidgets'
         ));
     }
 
@@ -157,8 +164,7 @@ class FaqController extends Controller
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
-            ->getSlugUniqueValidationRule
-            (
+            ->getSlugUniqueValidationRule(
                 $administeredShowcase,
                 Faq::class,
                 $faq->id ?? null
@@ -185,7 +191,9 @@ class FaqController extends Controller
             ->get();
 
         $settings = $isNew ? null : $settings = view('main_admin.faq.questions.item.settings', compact(
-            'faq', 'categories', 'administeredShowcase'
+            'faq',
+            'categories',
+            'administeredShowcase'
         ))->render();
 
         return response()->json([
@@ -234,7 +242,10 @@ class FaqController extends Controller
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.faq.main.index', compact(
-            'staticPage', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+            'staticPage',
+            'widgetContainer',
+            'allContainerWidgets',
+            'activeWidgets'
         ));
     }
 }

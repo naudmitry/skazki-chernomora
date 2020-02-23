@@ -29,11 +29,13 @@ class WidgetsPositionComposer
         $showcase = config('front.showcase');
 
         $view->with('widgets_top', $this->widgetRepository->getWidgetsBySingleContainerType(
-            $showcase, WidgetsContainerTypesEnum::HEADER
+            $showcase,
+            WidgetsContainerTypesEnum::HEADER
         ));
 
         $view->with('widgets_bottom', $this->widgetRepository->getWidgetsBySingleContainerType(
-            $showcase, WidgetsContainerTypesEnum::FOOTER
+            $showcase,
+            WidgetsContainerTypesEnum::FOOTER
         ));
     }
 }

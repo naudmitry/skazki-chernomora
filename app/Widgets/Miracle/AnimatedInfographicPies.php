@@ -37,6 +37,7 @@ class AnimatedInfographicPies extends AbstractContentWidget
                 'items.*.title' => 'Введите название.',
                 'items.*.subtitle' => 'Введите подзаголовок.',
                 'items.*.percent' => 'Введите процент.',
-            ]);
+            ]
+        );
     }
 }

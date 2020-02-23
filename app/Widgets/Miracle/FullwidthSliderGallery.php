@@ -33,6 +33,7 @@ class FullwidthSliderGallery extends AbstractContentWidget
                 'title' => 'Введите заголовок.',
                 'items.*.title' => 'Введите наименование.',
                 'items.*.image_link' => 'Введите ссылку.',
-            ]);
+            ]
+        );
     }
 }

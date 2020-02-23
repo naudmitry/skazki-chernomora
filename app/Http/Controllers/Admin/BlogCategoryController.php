@@ -53,7 +53,8 @@ class BlogCategoryController extends Controller
         );
 
         return view('main_admin.blog.categories.index', compact(
-            'categories', 'staticPage'
+            'categories',
+            'staticPage'
         ));
     }
 
@@ -92,8 +93,7 @@ class BlogCategoryController extends Controller
 
         $slugUniqueValidationRule = $this
             ->slugRepository
-            ->getSlugUniqueValidationRule
-            (
+            ->getSlugUniqueValidationRule(
                 $administeredShowcase,
                 BlogCategory::class,
                 $category->id ?? null

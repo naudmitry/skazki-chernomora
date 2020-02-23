@@ -32,6 +32,7 @@ class CallOutBox extends AbstractContentWidget
                 'title' => 'Введите название.',
                 'link' => 'Введите ссылку.',
                 'button' => 'Введите надпись для кнопки.'
-            ]);
+            ]
+        );
     }
 }

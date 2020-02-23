@@ -59,7 +59,8 @@ class History extends Model
     /**
      * @return mixed
      */
-    public function getEventNameAttribute() {
+    public function getEventNameAttribute()
+    {
         return EventHistoryEnum::$labels[$this->event];
     }
 }

@@ -21,7 +21,8 @@ class IndexController extends Controller
         $staticPage = app(PageRepository::class)->getStaticPage($this->showcase, StaticPageTypesEnum::MAIN_PAGE);
 
         $pageWidgets = $widgetRepository->getWidgetsForStaticPage(
-            $staticPage, WidgetsContainerTypesEnum::MAIN_PAGE
+            $staticPage,
+            WidgetsContainerTypesEnum::MAIN_PAGE
         );
 
         return view($this->showcase->theme . '.index', compact([
@@ -38,7 +39,8 @@ class IndexController extends Controller
         $staticPage->incrementViewsCount();
 
         $pageWidgets = app(WidgetRepository::class)->getWidgetsForStaticPage(
-            $staticPage, WidgetsContainerTypesEnum::BLOG_MAIN_PAGE
+            $staticPage,
+            WidgetsContainerTypesEnum::BLOG_MAIN_PAGE
         );
 
         $saltCaves = SaltCave::query()

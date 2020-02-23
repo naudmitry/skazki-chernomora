@@ -32,6 +32,7 @@ class CopyrightArea extends AbstractContentWidget
                 'copyright' => 'Введите название.',
                 'items.*.title' => 'Введите название.',
                 'items.*.link' => 'Введите ссылку.',
-            ]);
+            ]
+        );
     }
 }

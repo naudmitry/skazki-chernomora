@@ -58,7 +58,7 @@ class Review extends Model
      */
     public function getRatingStarsAttribute()
     {
-        $ratingStars = array();
+        $ratingStars = [];
 
         for ($i = 1; $i <= 5; $i++) {
             if ($this->rating >= $i) {

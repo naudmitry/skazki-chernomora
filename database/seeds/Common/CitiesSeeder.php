@@ -24,15 +24,19 @@ class CitiesSeeder extends Seeder
         $file = fopen($path, "r");
 
         \DB::transaction(function () use ($file, $regionsByCountry, $citiesByCountryAndRegionAndName) {
-            while (($data = fgetcsv($file, 200, ",")) !== FALSE) {
+            while (($data = fgetcsv($file, 200, ",")) !== false) {
                 $region = array_get($regionsByCountry, $data[1] . '-' . $data[2], null);
-                if (!isset($region)) continue;
+                if (!isset($region)) {
+                    continue;
+                }
 
                 if (!empty($data[3])) {
                     $keyForCity = $region['country_id'] . '-' . $region['id'] . '-' . $data[3];
 
                     $city = array_get($citiesByCountryAndRegionAndName, $keyForCity, null);
-                    if (isset($city)) continue;
+                    if (isset($city)) {
+                        continue;
+                    }
 
                     $newCity = City::create([
                         'country_id' => $region['country_id'],

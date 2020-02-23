@@ -93,7 +93,11 @@ class PageController extends Controller
         $customStyles = $this->showcase->config('styles:custom');
 
         $content = view('miracle.vendor.styles', compact(
-            'color', 'secondColor', 'customStyles', 'rgba', 'opaqueRgba'
+            'color',
+            'secondColor',
+            'customStyles',
+            'rgba',
+            'opaqueRgba'
         ));
 
         return response($content)->header('Content-Type', 'text/css');

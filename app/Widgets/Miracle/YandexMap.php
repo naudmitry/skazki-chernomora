@@ -25,6 +25,7 @@ class YandexMap extends AbstractContentWidget
             [],
             [
                 'map_link' => 'Введите ссылку карты.'
-            ]);
+            ]
+        );
     }
 }

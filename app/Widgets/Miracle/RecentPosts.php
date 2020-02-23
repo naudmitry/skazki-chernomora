@@ -26,7 +26,8 @@ class RecentPosts extends AbstractContentWidget
             [],
             [
                 'title' => 'Введите заголовок.',
-            ]);
+            ]
+        );
     }
 
     /**
@@ -45,7 +46,8 @@ class RecentPosts extends AbstractContentWidget
         /** @var \Illuminate\Support\Collection $reviews */
         $blogs = $blogs->sortByDesc('created_at');
 
-        return array_merge(parent::getFrontViewData(),
+        return array_merge(
+            parent::getFrontViewData(),
             compact('blogs')
         );
     }

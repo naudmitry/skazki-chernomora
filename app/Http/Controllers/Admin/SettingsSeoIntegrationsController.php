@@ -19,7 +19,8 @@ class SettingsSeoIntegrationsController extends Controller
         $settingsRepository->setObject($administeredShowcase);
 
         return view('main_admin.seo_integrations.index', compact(
-            'tab', 'administeredShowcase'
+            'tab',
+            'administeredShowcase'
         ));
     }
 
@@ -39,7 +40,8 @@ class SettingsSeoIntegrationsController extends Controller
             function ($key) {
                 return starts_with($key, 'seo-integration:');
             },
-            ARRAY_FILTER_USE_KEY);
+            ARRAY_FILTER_USE_KEY
+        );
 
         $settingsRepository->saveMany($data);
 

@@ -32,6 +32,7 @@ class UsefulLinks extends AbstractContentWidget
                 'title' => 'Введите заголовок.',
                 'items.*.title' => 'Введите заголовок.',
                 'items.*.link' => 'Введите ссылку.',
-            ]);
+            ]
+        );
     }
 }

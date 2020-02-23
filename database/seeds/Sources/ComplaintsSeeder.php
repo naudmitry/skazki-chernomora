@@ -23,7 +23,7 @@ class ComplaintsSeeder extends Seeder
             $superCompany = Company::query()->where('super', true)->first();
             $superAdmin = $superCompany->admins()->where('super', true)->first();
 
-            while (($data = fgetcsv($file, 200, ",")) !== FALSE) {
+            while (($data = fgetcsv($file, 200, ",")) !== false) {
                 $complaint = new Complaint();
                 $complaint->title = $data[0];
                 $complaint->is_enabled = true;

@@ -40,7 +40,10 @@ class SettingController extends Controller
         $customStyles = $administeredShowcase->config('styles:custom');
 
         return view('main_admin.settings.index', compact(
-            'administeredShowcase', 'color', 'secondColor', 'customStyles'
+            'administeredShowcase',
+            'color',
+            'secondColor',
+            'customStyles'
         ));
     }
 

@@ -29,7 +29,8 @@ class Reviews extends AbstractContentWidget
             [
                 'title' => 'Введите заголовок.',
                 'subtitle' => 'Введите подзаголовок.'
-            ]);
+            ]
+        );
     }
 
     /**
@@ -46,7 +47,8 @@ class Reviews extends AbstractContentWidget
             ->take(5)
             ->get();
 
-        return array_merge(parent::getFrontViewData(),
+        return array_merge(
+            parent::getFrontViewData(),
             compact('reviews')
         );
     }

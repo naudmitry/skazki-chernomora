@@ -70,7 +70,8 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_ADMIN_ROLES,
                     self::COMPANY_HANDBOOKS_SALT_CAVES,
                     self::COMPANY_SETTINGS_PRICING
-                ]);
+                ]
+            );
         });
     }
 
@@ -106,7 +107,8 @@ class AdminComponentEnum extends Enum
                     self::COMPANY_ADMIN_ROLES,
                     self::COMPANY_HANDBOOKS_SALT_CAVES,
                     self::COMPANY_SETTINGS_PRICING
-                ]);
+                ]
+            );
         });
     }
 }

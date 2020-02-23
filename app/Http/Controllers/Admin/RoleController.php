@@ -43,10 +43,12 @@ class RoleController extends Controller
      */
     public function save(Request $request, Company $administeredCompany, Role $role = null)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'title' => 'required',
-            ]);
+            ]
+        );
 
         if (!isset($role->id)) {
             $role = new Role;

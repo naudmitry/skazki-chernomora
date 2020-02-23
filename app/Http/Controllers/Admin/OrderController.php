@@ -100,7 +100,10 @@ class OrderController extends Controller
             ->get();
 
         return view('main_admin.orders.item.index', compact(
-            'order', 'employees', 'saltCaves', 'buyer'
+            'order',
+            'employees',
+            'saltCaves',
+            'buyer'
         ));
     }
 
@@ -129,7 +132,8 @@ class OrderController extends Controller
      * @param Order $order
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(OrderRequest $request, Order $order) {
+    public function update(OrderRequest $request, Order $order)
+    {
         $this->orderRepository->fill($request, $order);
         $order->update();
 
@@ -170,7 +174,9 @@ class OrderController extends Controller
             ->get();
 
         return view('main_admin.orders.item.index', compact(
-            'order', 'employees', 'saltCaves'
+            'order',
+            'employees',
+            'saltCaves'
         ) + [
             'buyers' => $buyers ?? null,
             'buyer' => $buyer ?? null

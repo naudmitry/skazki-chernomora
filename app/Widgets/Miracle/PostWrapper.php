@@ -34,6 +34,7 @@ class PostWrapper extends AbstractContentWidget
                 'items.*.title' => 'Введите название картинки.',
                 'items.*.image_link' => 'Введите ссылку на картинку.',
                 'items.*.category' => 'Введите категорию.',
-            ]);
+            ]
+        );
     }
 }

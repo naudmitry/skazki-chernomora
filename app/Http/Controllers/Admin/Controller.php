@@ -16,8 +16,7 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        $this->middleware(function ($request, $next)
-        {
+        $this->middleware(function ($request, $next) {
             return $next($request);
         });
     }

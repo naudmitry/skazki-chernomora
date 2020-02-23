@@ -46,16 +46,16 @@ class SlugController extends Controller
         switch (true) {
             case $entity instanceof Models\Page:
                 switch ($entity->static_page_type) {
-                    case StaticPageTypesEnum::BLOG_PAGE :
+                    case StaticPageTypesEnum::BLOG_PAGE:
                         return app(BlogController::class)->index($request);
 
-                    case StaticPageTypesEnum::FAQ_PAGE :
+                    case StaticPageTypesEnum::FAQ_PAGE:
                         return app(FaqController::class)->index($request);
 
-                    case StaticPageTypesEnum::MAIN_PAGE :
+                    case StaticPageTypesEnum::MAIN_PAGE:
                         return app(IndexController::class)->index();
 
-                    case StaticPageTypesEnum::CONTACTS_PAGE :
+                    case StaticPageTypesEnum::CONTACTS_PAGE:
                         return app(IndexController::class)->contact();
                 }
 

@@ -15,8 +15,7 @@ class ShowcaseCreatedEventListener
         /** @var Admin[] $admins */
         $admins = $showcase->company->admins()->where('role_id', $adminRole->id)->get();
 
-        foreach ($admins as $admin)
-        {
+        foreach ($admins as $admin) {
             $admin->showcases()->save($showcase);
         }
     }

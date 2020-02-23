@@ -59,11 +59,13 @@ class ShowcaseController extends Controller
      */
     public function create(Request $request, ShowcaseRepository $showcaseRepository, Company $administeredCompany)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'title' => 'required',
                 'domain' => 'required|domainname|unique:showcases,domain,NULL,id,deleted_at,NULL|unique:showcase_domains,name|not_in:' . env('DOMAIN_ADMIN'),
-            ]);
+            ]
+        );
 
         $showcase = new Showcase;
         $showcase->company()->associate($administeredCompany);

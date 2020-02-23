@@ -42,6 +42,7 @@ class FeaturesThree extends AbstractContentWidget
             [
                 'items.*.title' => 'Введите заголовок.',
                 'items.*.subtitle' => 'Введите подзаголовок',
-            ]);
+            ]
+        );
     }
 }

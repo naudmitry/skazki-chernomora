@@ -82,8 +82,7 @@ class PageController extends Controller
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
-            ->getSlugUniqueValidationRule
-            (
+            ->getSlugUniqueValidationRule(
                 $administeredShowcase,
                 Page::class,
                 $staticPage->id ?? null
@@ -103,7 +102,8 @@ class PageController extends Controller
         });
 
         $settings = view('main_admin.pages.static.settings', compact(
-            'staticPage', 'administeredShowcase'
+            'staticPage',
+            'administeredShowcase'
         ))->render();
 
         return response()->json([
@@ -145,14 +145,20 @@ class PageController extends Controller
             ->get();
 
         $widgetContainer = $this->widgetRepository->getOrCreateWidgetContainer(
-            $page, WidgetsContainerTypesEnum::CUSTOM_PAGE, $administeredShowcase
+            $page,
+            WidgetsContainerTypesEnum::CUSTOM_PAGE,
+            $administeredShowcase
         );
 
         $allContainerWidgets = $this->widgetRepository->getWidgetsForContainer($widgetContainer);
         $activeWidgets = $this->widgetRepository->getContainerItemsMap($widgetContainer);
 
         return view('main_admin.pages.lists.item.index', compact(
-            'page', 'categories', 'widgetContainer', 'allContainerWidgets', 'activeWidgets'
+            'page',
+            'categories',
+            'widgetContainer',
+            'allContainerWidgets',
+            'activeWidgets'
         ));
     }
 
@@ -201,8 +207,7 @@ class PageController extends Controller
     {
         $slugUniqueValidationRule = $this
             ->slugRepository
-            ->getSlugUniqueValidationRule
-            (
+            ->getSlugUniqueValidationRule(
                 $administeredShowcase,
                 Page::class,
                 $page->id ?? null
@@ -229,7 +234,8 @@ class PageController extends Controller
             ->get();
 
         $settings = $isNew ? null : $settings = view('main_admin.pages.lists.item.settings', compact(
-            'page', 'categories'
+            'page',
+            'categories'
         ))->render();
 
         return response()->json([

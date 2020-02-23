@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Handbooks\OrganizationRequest;
 use App\Models\Company;
 use App\Models\Organization;
-use App\Models\Showcase;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -79,7 +78,7 @@ class OrganizationController extends Controller
         $organization->company_id = $administeredCompany->id;
         $organization->title = $request->get('title');
         $organization->address = $request->get('address');
-        $organization->author_id = \Auth::guard('admin')->user()->id;;
+        $organization->author_id = \Auth::guard('admin')->user()->id;
         $organization->save();
 
         return response()->json([

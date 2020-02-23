@@ -34,7 +34,8 @@ class BannerSmall extends AbstractContentWidget
                 'title' => 'Введите заголовок.',
                 'title_color' => 'Введите цвет заголовка.',
                 'image_link' => 'Введите ссылку на картинку.'
-            ]);
+            ]
+        );
     }
 
     /**
@@ -48,18 +49,19 @@ class BannerSmall extends AbstractContentWidget
         $entity = $this->showcaseWidget->container->widgetable;
 
         switch (true) {
-            case $entity instanceof Models\Page :
+            case $entity instanceof Models\Page:
                 $currentPage = $entity->static_page_type
                     ? app(PageRepository::class)->getStaticPage($showcase, $entity->static_page_type)
                     : $entity;
                 break;
-            case $entity instanceof Models\Blog :
+            case $entity instanceof Models\Blog:
                 $currentPage = $entity;
                 break;
             default:
         }
 
-        return array_merge(parent::getFrontViewData(),
+        return array_merge(
+            parent::getFrontViewData(),
             compact('mainPage', 'currentPage', 'showcase')
         );
     }

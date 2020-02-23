@@ -30,6 +30,7 @@ class Quote extends AbstractContentWidget
             [
                 'content' => 'Введите текст.',
                 'style' => 'Выберите стиль.',
-            ]);
+            ]
+        );
     }
 }

@@ -37,6 +37,7 @@ class Trend extends AbstractContentWidget
                 'sub_title' => 'Введите подзаголовок.',
                 'items.*.percent' => 'Введите процент.',
                 'items.*.title' => 'Введите название позиции.',
-            ]);
+            ]
+        );
     }
 }
