@@ -10,6 +10,7 @@ use App\Models\Buyer;
 use App\Models\Company;
 use App\Models\Complaint;
 use App\Models\Diagnosis;
+use App\Models\Order;
 use App\Models\Organization;
 use App\Models\Privilege;
 use App\Models\Showcase;
@@ -182,8 +183,20 @@ class BuyerController extends Controller
      */
     public function destroy(Buyer $buyer)
     {
+        \DB::beginTransaction();
         $buyer->histories()->delete();
+        $buyer->complaints()->detach();
+        $buyer->diagnoses()->detach();
         $buyer->delete();
+
+        $orders = Order::query()
+            ->where('buyer_id', $buyer->id)
+            ->get();
+
+        foreach ($orders as $order) {
+            $order->delete();
+        }
+        \DB::commit();
 
         return response()->json([
             'message' => 'Клиент удален.'
