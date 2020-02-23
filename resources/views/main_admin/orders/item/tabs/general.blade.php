@@ -112,7 +112,7 @@
                             <label class="control-label">Статус оплаты:</label>
                         </div>
                         <div class="col-md-8">
-                            <label class="control-label">{{\App\Classes\PaymentStatus::$labels[$order->payment_status]}}</label>
+                            <label class="control-label">{{\App\Classes\PaymentStatus::$labels[$order->payment_status ?? \App\Classes\PaymentStatus::NOT_PAID]}}</label>
                         </div>
                     </div>
 
