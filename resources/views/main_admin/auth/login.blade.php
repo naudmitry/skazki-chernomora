@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ asset('vali-admin/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('vali-admin/css/app.css') }}">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('vali-admin/logo.png') }}" />
         <title>Вход | Sacave</title>
     </head>
@@ -30,16 +30,6 @@
                         <label class="control-label">Пароль:</label>
                         <input class="form-control" type="password" placeholder="Пароль" name="password">
                     </div>
-{{--                    <div class="form-group">--}}
-{{--                        <div class="utility">--}}
-{{--                            <div class="animated-checkbox">--}}
-{{--                                <label>--}}
-{{--                                    <input type="checkbox" name="remember"><span class="label-text">Запомнить</span>--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                            --}}{{--<p class="semibold-text mb-2"><a href="#" data-toggle="flip">Забыли пароль?</a></p>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <div class="form-group btn-container pt-4">
                         <button
                                 type="submit" class="btn btn-primary btn-block"
