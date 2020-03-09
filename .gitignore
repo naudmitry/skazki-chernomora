@@ -13,3 +13,4 @@
 /public/miracle/js/miracle.js
 /yarn.lock
 /.php_cs.cache
+/.vagrant/

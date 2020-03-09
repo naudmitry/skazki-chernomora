@@ -46,7 +46,8 @@ php artisan migrate:refresh --seed
 npm run dev
 npm run watch-poll (optional)
 
-vendor/bin/php-cs-fixer fix
+vendor/bin/php-cs-fixer fix (optional)
+composer update fzaninotto/faker (optional)
 ```
 
 ## Development Commands
