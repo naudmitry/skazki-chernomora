@@ -239,7 +239,6 @@ th {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
-  height: 32px;
 }
 
 button {
@@ -14965,7 +14964,7 @@ be a descendant of the grid when it is being dragged.
 .login-content .login-box {
   position: relative;
   min-width: 350px;
-  min-height: 400px;
+  min-height: 390px;
   background-color: #fff;
   -webkit-box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
           box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
@@ -15398,4 +15397,8 @@ table .icon {
   bottom: auto;
   z-index: 1;
   display: block;
+}
+
+.label-group {
+  height: 34px;
 }
