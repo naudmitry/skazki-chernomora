@@ -16,7 +16,6 @@
         "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.5",
         "filp/whoops": "~2.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "~1.4",
