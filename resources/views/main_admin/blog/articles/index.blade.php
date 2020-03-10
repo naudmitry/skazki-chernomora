@@ -7,6 +7,8 @@
     ])
 
     <div class="row">
+        @include('main_admin.blog.articles.filter')
+
         <div class="col-md-12 blog-articles">
             <div class="tile">
                 <div class="tile-body mb-4">
