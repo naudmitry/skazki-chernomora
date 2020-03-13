@@ -14,9 +14,9 @@
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <button data-href="{{ route('admin.blog.articles.create') }}" class="btn btn-primary open-create-form" type="button">
+                            <a href="{{ route('admin.blog.articles.create') }}" class="btn btn-primary" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
-                            </button>
+                            </a>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">
