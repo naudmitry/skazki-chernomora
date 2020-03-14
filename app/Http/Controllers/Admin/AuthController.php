@@ -62,7 +62,7 @@ class AuthController extends Controller
             return redirect($this->redirectTo);
         }
 
-        $request->session()->flash('error', trans('Wrong login or password!'));
+        $request->session()->flash('error', trans('Логин/пароль неверные.'));
 
         return redirect()->back();
     }

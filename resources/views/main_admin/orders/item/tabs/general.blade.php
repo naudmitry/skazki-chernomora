@@ -39,7 +39,7 @@
 
             <div class="row">
                 <div class="column col-md-6">
-                    <div class="row form-group">
+                    <div class="row form-group label-group">
                         <div class="col-md-4">
                             <label class="control-label" for="number">Номер абонемента:</label>
                         </div>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="row form-group">
+                    <div class="row form-group label-group">
                         <div class="col-md-4">
                             <label class="control-label">Клиент:</label>
                         </div>
@@ -107,7 +107,7 @@
                 </div>
 
                 <div class="column col-md-6">
-                    <div class="row form-group">
+                    <div class="row form-group label-group">
                         <div class="col-md-4">
                             <label class="control-label">Статус оплаты:</label>
                         </div>
