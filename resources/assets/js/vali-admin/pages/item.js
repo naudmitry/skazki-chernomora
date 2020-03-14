@@ -1,5 +1,4 @@
 import slug from 'slug';
-import {completeAjaxFormSubmit} from "../core";
 
 $(function () {
     let $pageItem = $('.page-item');
@@ -10,6 +9,18 @@ $(function () {
 
     $pageItem.find('.select2').select2({
         width: '100%'
+    });
+
+    $(document).on('input', '.page-item-form, .page-item-editor-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select,textarea')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 
     $(document).on('submit', '.page-item-form', function (e) {
@@ -46,7 +57,11 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });
@@ -109,7 +124,11 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });

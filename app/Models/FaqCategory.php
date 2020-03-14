@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Repositories\Showcase\ShowcasableTrait;
 use App\Repositories\Slug\SlugableInterface;
 use App\Repositories\Slug\SlugableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property integer $id
+ * @property integer $company_id
+ * @property integer $showcase_id
  * @property string $title
  * @property string $name
  * @property string $image_link
@@ -32,6 +35,7 @@ class FaqCategory extends Model implements SlugableInterface
 {
     use SoftDeletes;
     use SlugableTrait;
+    use ShowcasableTrait;
 
     protected $appends =
         [

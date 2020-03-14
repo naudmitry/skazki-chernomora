@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\Admin;
 use App\Models\Faq;
 use App\Models\FaqCategory;
-use Illuminate\Support\Facades\Auth;
 
 class FaqRepository
 {
@@ -17,6 +17,8 @@ class FaqRepository
     {
         if (!isset($category)) {
             $category = new FaqCategory();
+            $category->company_id = array_get($data, 'company_id');
+            $category->showcase_id = array_get($data, 'showcase_id');
         }
 
         $fields =
@@ -49,11 +51,14 @@ class FaqRepository
      */
     public function saveFaq(Faq $faq = null, $data)
     {
-        $admin = Auth::guard('admin')->user();
+        /** @var Admin $admin */
+        $admin = \Auth::guard('admin')->user();
 
         if (!isset($faq)) {
             $faq = new Faq();
             $faq->author_id = $admin->id;
+            $faq->company_id = array_get($data, 'company_id');
+            $faq->showcase_id = array_get($data, 'showcase_id');
         }
 
         $faq->title = array_get($data, 'title');

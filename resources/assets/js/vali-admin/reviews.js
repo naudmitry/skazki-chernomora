@@ -157,6 +157,18 @@ $(function () {
         }));
     });
 
+    $(document).on('change keyup', '.review-create-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select,textarea')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
+
     $(document).on('submit', '.review-create-form', function (e) {
         e.preventDefault();
         let $form = $(this);

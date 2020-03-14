@@ -1,5 +1,4 @@
 import slug from "slug";
-import {completeAjaxFormSubmit} from "../core";
 
 $(function () {
     let $faqItem = $('.faq-item');
@@ -12,6 +11,18 @@ $(function () {
 
     $faqItem.find('.select2').select2({
         width: '100%'
+    });
+
+    $(document).on('change keyup', '.faq-item-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select,textarea')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 
     $(document).on('submit', '.faq-item-form', function (e) {
@@ -47,7 +58,11 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });

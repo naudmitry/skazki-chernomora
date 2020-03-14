@@ -30,7 +30,7 @@
                         @foreach ($faqs as $faq)
                             <div class="item-holder">
                                 <div class="content-text">
-                                    <a href="{{ $faq->getShowcaseUrl() }}">
+                                    <a href="{{ $faq->getRoute() }}">
                                         <h6>{{ $faq->name }}</h6>
                                     </a>
                                     <span>{{ $faq->updater->full_name }} / {{ $faq->updated_at->format('d-m-Y H:i') }}</span>

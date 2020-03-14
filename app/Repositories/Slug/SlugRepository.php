@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Slug;
 
+use App\Models\Showcase;
 use App\Models\Slug;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +15,7 @@ class SlugRepository
     /**
      * @param SlugableInterface $mixed
      * @param $slugStr
-     * @return Slug
+     * @return Slug|\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\MorphTo|null|object
      */
     public function updateSlug(SlugableInterface $mixed, $slugStr)
     {
@@ -27,6 +28,7 @@ class SlugRepository
 
         if (!$slug) {
             $slug = new Slug;
+            $slug->showcase()->associate($mixed->showcase);
             $slug->entity()->associate($mixed);
         }
 
@@ -37,12 +39,14 @@ class SlugRepository
     }
 
     /**
+     * @param Showcase $showcase
      * @param $slugStr
-     * @return \Illuminate\Database\Eloquent\Model|null|static
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
      */
-    public function getSlug($slugStr)
+    public function getSlug(Showcase $showcase, $slugStr)
     {
         $query = Slug::query()
+            ->where('showcase_id', $showcase->id)
             ->where('slug', $slugStr);
 
         $obj = $query->first();
@@ -61,16 +65,19 @@ class SlugRepository
     }
 
     /**
+     * @param Showcase $showcase
      * @param null $slugableType
      * @param null $slugableId
-     * @return $this|\Illuminate\Validation\Rules\Unique
+     * @return \Illuminate\Validation\Rules\Unique
      */
-    public function getSlugUniqueValidationRule($slugableType = null, $slugableId = null)
+    public function getSlugUniqueValidationRule(Showcase $showcase, $slugableType = null, $slugableId = null)
     {
-        $uniqueRule = Rule::unique('slugs', 'slug');
+        $uniqueRule = Rule::unique('slugs', 'slug')
+            ->where('showcase_id', $showcase->id);
 
         if ($slugableType && $slugableId) {
             $ignoredItem = Slug::query()
+                ->where('showcase_id', $showcase->id)
                 ->where('entity_type', $slugableType)
                 ->where('entity_id', $slugableId)
                 ->first();
@@ -84,12 +91,14 @@ class SlugRepository
     }
 
     /**
+     * @param Showcase $showcase
      * @param $slug
      * @return bool
      */
-    public function isSlugUsed($slug)
+    public function isSlugUsed(Showcase $showcase, $slug)
     {
         $matchesCount = Slug::query()
+            ->where('showcase_id', $showcase->id)
             ->where('slug', $slug)
             ->count();
 

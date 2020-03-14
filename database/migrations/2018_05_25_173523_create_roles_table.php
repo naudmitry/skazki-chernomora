@@ -19,6 +19,7 @@ class CreateRolesTable extends Migration
             $table->boolean('super')->default(false);
             $table->integer('company_id')->unsigned();
             $table->string('title');
+            $table->text('components');
             $table->boolean('enable')->default(false);
 
             $table->timestamps();

@@ -43,7 +43,7 @@
                     @if (isset($category->id))
                         <div class="input-group-append">
                             <span class="input-group-text">
-                                <a href="{{ $category->getShowcaseUrl() }}" target="_blank">
+                                <a href="{{ $category->getShowcaseUrl($administeredShowcase) }}" target="_blank">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </span>

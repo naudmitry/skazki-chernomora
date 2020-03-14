@@ -31,19 +31,19 @@
                             <div class="item-holder">
                                 <div class="image-box">
                                     <figure>
-                                        <a href="{{ $blog->getShowcaseUrl() }}">
+                                        <a href="{{ $blog->getRoute() }}">
                                             <img src="{{ $blog->link }}" alt="{{ $blog->name }}">
                                         </a>
                                     </figure>
                                 </div>
                                 <div class="content-text">
-                                    <a href="{{ $blog->getShowcaseUrl() }}">
+                                    <a href="{{ $blog->getRoute() }}">
                                         <h6>{{ $blog->name }}</h6>
                                     </a>
                                     <span>{{ $blog->updater->full_name }} / {{ $blog->updated_at->format('d-m-Y H:i') }}</span>
                                     {!! mb_strimwidth($blog->content, 0, 300, "...") !!}
                                     <div class="link-btn">
-                                        <a href="{{ $blog->getShowcaseUrl() }}" class="btn-style-one">Подробнее</a>
+                                        <a href="{{ $blog->getRoute() }}" class="btn-style-one">Подробнее</a>
                                     </div>
                                 </div>
                             </div>

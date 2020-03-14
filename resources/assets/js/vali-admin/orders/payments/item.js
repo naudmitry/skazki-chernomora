@@ -1,5 +1,3 @@
-import {completeAjaxFormSubmit} from "../../core";
-
 $(function () {
     let $paymentItem = $('.payment-item');
 
@@ -10,6 +8,18 @@ $(function () {
     $('.select2').select2({
         minimumResultsForSearch: Infinity,
         width: '100%'
+    });
+
+    $(document).on('change keyup', '.payment-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 
     $(document).on('submit', '.payment-form', function (e) {
@@ -36,7 +46,11 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });

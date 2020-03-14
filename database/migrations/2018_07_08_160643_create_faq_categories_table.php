@@ -16,6 +16,8 @@ class CreateFaqCategoriesTable extends Migration
         Schema::create('faq_categories', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('company_id')->unsigned();
+            $table->integer('showcase_id')->unsigned();
             $table->string('slug')->nullable();
             $table->string('title');
             $table->string('name');
@@ -30,6 +32,9 @@ class CreateFaqCategoriesTable extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('showcase_id')->references('id')->on('showcases');
         });
     }
 

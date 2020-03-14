@@ -18,7 +18,7 @@ class CreateShowcasesTable extends Migration
 
             $table->string('slug', 40)->unique();
             $table->integer('company_id')->unsigned();
-            $table->string('name', 100);
+            $table->string('title', 100);
             $table->string('domain', 50)->index();
             $table->string('email', 50)->nullable();
             $table->string('theme', 20)->default('site');
@@ -35,7 +35,7 @@ class CreateShowcasesTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer('showcase_id')->unsigned()->comment('Showcase ID');
+            $table->integer('showcase_id')->unsigned();
             $table->foreign('showcase_id')->references('id')->on('showcases')->onDelete('cascade');
 
             $table->string('name', 50);

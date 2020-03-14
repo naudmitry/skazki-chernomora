@@ -1,5 +1,3 @@
-import {completeAjaxFormSubmit} from "../core";
-
 $(function () {
     let $order = $('.order-item');
 
@@ -13,6 +11,18 @@ $(function () {
     });
 
     $order.find('input[name=begin_at], input[name=end_at]').datepicker();
+
+    $(document).on('change keyup', '.order-general-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
 
     $(document).on('submit', '.order-general-form', function (e) {
         e.preventDefault();
@@ -42,7 +52,11 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });

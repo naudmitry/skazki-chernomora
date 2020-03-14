@@ -42,4 +42,20 @@ class Role extends Model
     {
         return $this->hasMany(Admin::class);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getComponentsAttribute()
+    {
+        return json_decode($this->attributes['components']);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setComponentsAttribute($value)
+    {
+        $this->attributes['components'] = json_encode($value);
+    }
 }

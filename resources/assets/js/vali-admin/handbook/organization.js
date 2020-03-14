@@ -185,4 +185,16 @@ $(function () {
             },
         }));
     });
+
+    $(document).on('change keyup', '.organization-edit-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
 });

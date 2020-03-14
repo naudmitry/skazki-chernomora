@@ -23,3 +23,30 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Group::class, function (Faker $faker) {
+    return
+        [
+            'company_id' => null,
+            'title' => $faker->word,
+        ];
+});
+
+$factory->define(App\Models\Admin::class, function (Faker $faker) {
+    static $password;
+
+    $name = $faker->unique()->firstName;
+    $middleName = $faker->unique()->lastName;
+
+    return [
+        'name' => $name . ' ' . $middleName,
+        'middle_name' => $name,
+        'surname' => $middleName,
+        'position' => 'Admin',
+        'email' => $faker->unique()->safeEmail,
+        'phone' => $faker->phoneNumber,
+        'password' => $password ?: $password = bcrypt('123456'),
+        'remember_token' => str_random(10),
+        'created_from' => $faker->ipv4,
+    ];
+});

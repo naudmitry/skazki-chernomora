@@ -179,6 +179,18 @@ $(function () {
         }));
     });
 
+    $(document).on('change keyup', '.add-family-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input[type=radio]')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
+
     $(document).on('click', '.order-family-delete', function (e) {
         e.preventDefault();
         let $this = $(this);

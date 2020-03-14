@@ -1,12 +1,11 @@
-import {completeAjaxFormSubmit} from "./core";
-
 $(function () {
-    let $showcasesTable = $('#showcasesTable');
+    let $showcases = $('.showcases');
 
-    if (!$showcasesTable.length) {
+    if (!$showcases.length) {
         return;
     }
 
+    let $showcasesTable = $('#showcasesTable');
     let mustacheTemplateShowcasesTableColumnCreated = $('.template-showcases-table-column-created').text();
     let mustacheTemplateShowcasesTableColumnTitle = $('.template-showcases-table-column-title').text();
     let mustacheTemplateShowcasesTableColumnWebAddress = $('.template-showcases-table-column-web-address').text();
@@ -21,6 +20,11 @@ $(function () {
         ajax:
             {
                 url: $showcasesTable.data('href'),
+                // data: function (data) {
+                //     $('.lists-filter-value').serializeArray().forEach(function (filter) {
+                //         data[filter.name] = filter.value;
+                //     });
+                // },
             },
         columnDefs: [
             {
@@ -137,7 +141,7 @@ $(function () {
             success: response => {
                 $showcasesTable.DataTable().ajax.reload();
                 $modal.modal('hide');
-                notifyService.showMessage('info', 'Успех!', response.message);
+                notifyService.showMessage('info', 'topRight', response.message);
             },
             error: xhr => {
                 if ('object' === typeof xhr.responseJSON) {
@@ -149,8 +153,27 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
+    });
+
+    $(document).on('input', '.showcase-add-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 });

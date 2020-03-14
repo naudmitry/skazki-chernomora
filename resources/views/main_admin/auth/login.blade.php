@@ -21,29 +21,16 @@
                 <form class="login-form" method="POST" action="{{ route('account.adminLoginPost') }}">
                     {{ csrf_field() }}
 
-                    <h4 class="login-head"><i class="fas fas-lg fas-fw fa-user"></i> Вход в систему</h4>
-
-                    <div class="form-group{{ session('error') ? '' : ' mt-4' }}">
+                    <h3 class="login-head"><i class="fas fas-lg fas-fw fa-user"></i> Вход в систему</h3>
+                    <div class="form-group">
                         <label class="control-label">Электронная почта:</label>
-                        <input class="form-control" type="text" placeholder="Email" autofocus name="email"">
+                        <input class="form-control" type="text" placeholder="Email" autofocus name="email">
                     </div>
-
                     <div class="form-group">
                         <label class="control-label">Пароль:</label>
                         <input class="form-control" type="password" placeholder="Пароль" name="password">
                     </div>
-
-                    @if (session('error'))
-                        <div class="form-group">
-                            <div class="bs-component">
-                                <div class="alert alert-dismissible alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                    <div class="form-group btn-container{{ session('error') ? '' : ' pt-4' }}">
+                    <div class="form-group btn-container pt-4">
                         <button
                                 type="submit" class="btn btn-primary btn-block"
                         ><i class="fas fa-sign-in-alt fas-lg fas-fw"></i> Войти</button>

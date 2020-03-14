@@ -1,5 +1,3 @@
-import {completeAjaxFormSubmit} from "../core";
-
 $(function () {
     let $buyerItem = $('.buyer-item');
 
@@ -20,6 +18,18 @@ $(function () {
     $('#passport_issuing_at').datepicker({
         changeYear: true,
         changeMonth: true,
+    });
+
+    $(document).on('change keyup', '.buyer-general-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select,textarea')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 
     $(document).on('submit', '.buyer-general-form', function (e) {
@@ -51,7 +61,11 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });

@@ -123,6 +123,18 @@ $(function () {
         }));
     });
 
+    $(document).on('change keyup', '.salt-cave-create-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
+
     $(document).on('submit', '.salt-cave-create-form', function (e) {
         e.preventDefault();
         let $form = $(this);

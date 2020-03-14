@@ -9,6 +9,10 @@
             {{--@if (array_search(\App\Classes\AdminComponentEnum::SUPER_ADMIN_COMPANIES, auth('admin')->user()->role->components))--}}
                 @include('main_admin.includes.switch_companies', ['companies' => auth('admin')->user()->companies, 'admin' => auth('admin')->user()])
             {{--@endif--}}
+
+            @if ($administerableShowcases->count() && $administeredShowcase)
+                @include('main_admin.includes.switch_showcases')
+            @endif
         </div>
 
 

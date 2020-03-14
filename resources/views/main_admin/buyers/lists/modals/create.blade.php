@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-default" type="submit" disabled>
                             <i class="fas fa-check-circle mr-2"></i>Сохранить
                         </button>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">

@@ -98,6 +98,22 @@ $(function () {
         });
     });
 
+    $(document).on('input', '.staff-group-settings-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        isChange = true;
+        if (!$input.is('input')) {
+            return;
+        }
+        if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
+
     $(document).on('submit', '.staff-group-settings-form', function (e) {
         e.preventDefault();
         let $form = $(this);

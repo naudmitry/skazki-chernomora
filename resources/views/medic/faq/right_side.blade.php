@@ -17,7 +17,7 @@
                     @if ($category->countFaqs)
                     <li>
                         <a
-                            href="{{ $category->getShowcaseUrl() }}"
+                            href="{{ $category->getRoute() }}"
                             @if (isset($currentCategory) && $category->id == $currentCategory->id) style="color: #48bdc5;" @endif
                         >{{ $category->name }} <span>({{ $category->countFaqs }})</span></a>
                     </li>

@@ -3,7 +3,6 @@ require('./bootstrap');
 $('.app-sidebar').scrollTo('.scroll-here', 300, {offset: -100});
 InputMask({"mask": "375(99)999-99-99"}).mask($('input[type="tel"]'));
 
-require('./vali-admin/core');
 require('./vali-admin/main');
 require('./vali-admin/swith-companies');
 require('./vali-admin/blog');

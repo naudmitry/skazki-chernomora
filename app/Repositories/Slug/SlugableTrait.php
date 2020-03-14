@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Slug;
 
+use App\Models\Showcase;
 use App\Models\Slug;
 
 /**
@@ -23,7 +24,9 @@ trait SlugableTrait
      */
     public function getSlug()
     {
-        $obj = $this->slug()->first();
+        $obj = $this->slug()
+            ->where('showcase_id', $this->showcase_id)
+            ->first();
 
         return $obj ? $obj->slug : null;
     }
@@ -42,10 +45,11 @@ trait SlugableTrait
     }
 
     /**
+     * @param Showcase $showcase
      * @return string
      */
-    public function getShowcaseUrl()
+    public function getShowcaseUrl(Showcase $showcase)
     {
-        return 'http://' . env('DOMAIN_CLIENT') . '/' . $this->getSlug();
+        return $showcase->http_origin . '/' . $this->getSlug();
     }
 }

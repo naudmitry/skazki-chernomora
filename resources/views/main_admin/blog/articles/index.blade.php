@@ -3,20 +3,18 @@
 @section('content')
     @include('main_admin.vendor.pageHeader', [
         'section' => 'Новости',
-        'page' => 'Список новостей'
+        'page' => 'Статьи'
     ])
 
     <div class="row">
-        @include('main_admin.blog.articles.filter')
-
         <div class="col-md-12 blog-articles">
             <div class="tile">
                 <div class="tile-body mb-4">
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
-                            <a href="{{ route('admin.blog.articles.create') }}" class="btn btn-primary" type="button">
+                            <button data-href="{{ route('admin.blog.articles.create') }}" class="btn btn-primary open-create-form" type="button">
                                 <i class="fas fa-plus-circle mr-2"></i>Добавить
-                            </a>
+                            </button>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="widget-small primary coloured-icon">

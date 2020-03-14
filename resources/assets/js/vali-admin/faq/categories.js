@@ -1,5 +1,4 @@
 import slug from "slug";
-import {completeAjaxFormSubmit} from "../core";
 
 $(function () {
     let $faqCategoriesList = $('.faq-categories-list');
@@ -103,7 +102,11 @@ $(function () {
                 console.error(xhr);
             },
             complete: () => {
-                completeAjaxFormSubmit($form);
+                $form.removeData('ajax');
+                $form.find('[type=submit]')
+                    .removeClass('btn-primary')
+                    .addClass('btn-default')
+                    .prop('disabled', true);
             },
         }));
     });
@@ -145,6 +148,22 @@ $(function () {
                 swal("Удаление отменено!", "Категория не будет удалена.", "error");
             }
         });
+    });
+
+    $(document).on('input', '.faq-category-settings-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        isChange = true;
+        if (!$input.is('input,select')) {
+            return;
+        }
+        if ((e.type == 'keyup') && ($input.attr('type') != 'text')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
     });
 
     let dragula = require('dragula');

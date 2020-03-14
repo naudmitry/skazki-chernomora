@@ -161,6 +161,18 @@ $(function () {
         }));
     });
 
+    $(document).on('change keyup', '.help-desks-edit-form', function (e) {
+        let $form = $(this);
+        let $input = $(e.target);
+        if (!$input.is('input,select,textarea')) {
+            return;
+        }
+        $form.find('[type=submit]')
+            .removeClass('btn-default')
+            .addClass('btn-primary')
+            .prop('disabled', false);
+    });
+
     $(document).on('submit', '.help-desks-edit-form', function (e) {
         e.preventDefault();
         let $form = $(this);
